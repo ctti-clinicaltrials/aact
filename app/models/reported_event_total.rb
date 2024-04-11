@@ -1,49 +1,43 @@
-class ReportedEventTotal < ApplicationRecord
-    def self.mapper(json)
-        adverse_events_module = json.dig('adverseEventsModule')
-        return [] unless adverse_events_module
-        event_groups = adverse_events_module.dig('eventGroups')
-        return [] unless event_groups
+class ReportedEventTotal < StudyRelationship
 
-        nct_id = json.dig('protocolSection')['identificationModule']['nctId']
-        collection = []
-
-        event_groups.each do |event_group|
-          collection << event_totals('serious', event_group, nct_id)
-          collection << event_totals('other', event_group, nct_id)
-          collection << event_totals('deaths', event_group, nct_id)
-        end
-        collection
-    end
-
-    def self.event_totals(event_type='serious', event_hash={}, nct_id)
-      return {} if event_hash.empty?
-  
-      if event_type == 'serious'
-        classification = 'Total, serious adverse events'
-      elsif event_type == 'other'
-        classification = 'Total, other adverse events'
-      elsif event_type == 'deaths'
-        classification = 'Total, all-cause mortality'
-      else
-        classification = ''
-      end
-
-      return {
-        nct_id: nct_id,
-        ctgov_group_code: event_hash['id'],
-        event_type: event_type,
-        classification: classification,
-        total_count: event_hash['deathsNumAffected'] ? event_hash['deathsNumAffected'] : 0
-      } if event_type == 'deaths'
+  add_mapping do
+    [
       {
-        nct_id: nct_id,
-        ctgov_group_code: event_hash['id'],
-        event_type: event_type,
-        classification: classification,
-        subjects_affected: event_hash["#{event_type}NumAffected"],
-        subjects_at_risk: event_hash["#{event_type}NumAtRisk"]
-      }
-    end
+        table: :reported_event_totals,
+        root: [:resultsSection, :adverseEventsModule, :eventGroups],
+        columns: [
+          { name: :ctgov_group_code, value: :id },
+          { name: :event_type, value: 'serious' },
+          { name: :classification, value: 'Total, serious adverse events' },
+          { name: :subjects_affected, value: :seriousNumAffected },
+          { name: :subjects_at_risk, value: :seriousNumAtRisk }
 
+        ]
+      },
+      {
+        table: :reported_event_totals,
+        root: [:resultsSection, :adverseEventsModule, :eventGroups],
+        columns: [
+          { name: :nct_id, value: :nct_id },
+          { name: :ctgov_group_code, value: :id },
+          { name: :event_type, value: 'other' },
+          { name: :classification, value: 'Total, other adverse events' },
+          { name: :subjects_affected, value: :otherNumAffected },
+          { name: :subjects_at_risk, value: :otherNumAtRisk }
+        ]
+      },
+      {
+        table: :reported_event_totals,
+        root: [:resultsSection, :adverseEventsModule, :eventGroups],
+        columns: [
+          { name: :nct_id, value: :nct_id },
+          { name: :ctgov_group_code, value: :id },
+          { name: :event_type, value: 'deaths' },
+          { name: :classification, value: 'Total, all-cause mortality'},
+          { name: :subjects_affected, value: :deathsNumAffected },
+          { name: :subjects_at_risk, value: :deathsNumAtRisk }
+        ]
+      }
+    ]
+  end
 end

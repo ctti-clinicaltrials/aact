@@ -1,59 +1,80 @@
 require 'rails_helper'
 
-RSpec.describe ReportedEventTotal, type: :model do
+describe 'ReportedEventTotal' do
+  it "should create instances of ReportedEventTotal from JSON", schema: :v2 do
+
+  expected_data = [
+    {
+      "nct_id" => "NCT000001",
+      "ctgov_group_code" => "EG000",
+      "event_type" => "deaths",
+      "classification" => "Total, all-cause mortality",
+      "subjects_affected" => 0,
+      "subjects_at_risk" => 20
+    },
+    {
+      "nct_id" => "NCT000001",
+      "ctgov_group_code" => "EG000",
+      "event_type" => "other",
+      "classification" => "Total, other adverse events",
+      "subjects_affected" => 8,
+      "subjects_at_risk" => 20
+    },
+    {
+      "nct_id" => "NCT000001",
+      "ctgov_group_code" => "EG000",
+      "event_type" => "serious",
+      "classification" => "Total, serious adverse events",
+      "subjects_affected" => 0,
+      "subjects_at_risk" => 20
+    },
+    {
+      "nct_id" => "NCT000001",
+      "ctgov_group_code" => "EG001",
+      "event_type" => "deaths",
+      "classification" => "Total, all-cause mortality",
+      "subjects_affected" => 0,
+      "subjects_at_risk" => 4
+    },
+    {
+      "nct_id" => "NCT000001",
+      "ctgov_group_code" => "EG001",
+      "event_type" => "other",
+      "classification" => "Total, other adverse events",
+      "subjects_affected" => 4,
+      "subjects_at_risk" => 4
+    },
+    {
+      "nct_id" => "NCT000001",
+      "ctgov_group_code" => "EG001",
+      "event_type" => "serious",
+      "classification" => "Total, serious adverse events",
+      "subjects_affected" => 0,
+      "subjects_at_risk" => 4
+    }
+  ]
+
+    # load json
+    content = JSON.parse(File.read('spec/support/json_data/reported_event_total.json'))
   
-  describe '.mapper' do
-    let(:base_json) do
-      {
-        'protocolSection' => {
-          'identificationModule' => { 'nctId' => 'NCT12345' }
-        }
-      }
+    # Create a brand new JSON record
+    StudyJsonRecord.create(nct_id: 'NCT000001', version: '2', content: content)
+
+    # Import the new JSON record
+    StudyJsonRecord::Worker.new.process
+
+    # Load the database entries
+    imported = ReportedEventTotal.all.order(:nct_id, :ctgov_group_code, :event_type).map do |x| 
+      x.attributes
     end
 
-    context 'when JSON lacks adverseEventsModule' do
-      it 'returns an empty array' do
-        json = base_json
-        expect(described_class.mapper(json)).to eq([])
-      end
+    # Remove the unwanted keys
+    imported.each do |x|
+      x.delete("id")
+      x.delete("created_at")
+      x.delete("updated_at")
     end
 
-    context 'when JSON lacks eventGroups in adverseEventsModule' do
-      it 'returns an empty array' do
-        json = base_json.merge('adverseEventsModule' => {})
-        expect(described_class.mapper(json)).to eq([])
-      end
-    end
-
-    context 'with valid JSON including various event groups' do
-      it 'correctly maps the event groups to totals' do
-        event_groups = [
-          { 'id' => 'EG1', 'seriousNumAffected' => 10, 'seriousNumAtRisk' => 100,
-            'otherNumAffected' => 5, 'otherNumAtRisk' => 100,
-            'deathsNumAffected' => 2 },
-          { 'id' => 'EG2', 'seriousNumAffected' => 20, 'seriousNumAtRisk' => 200,
-            'otherNumAffected' => 10, 'otherNumAtRisk' => 200 }
-        ]
-        json = base_json.merge('adverseEventsModule' => { 'eventGroups' => event_groups })
-        
-        expected_output = [
-          { nct_id: 'NCT12345', ctgov_group_code: 'EG1', event_type: 'serious', 
-            classification: 'Total, serious adverse events', subjects_affected: 10, subjects_at_risk: 100 },
-          { nct_id: 'NCT12345', ctgov_group_code: 'EG1', event_type: 'other', 
-            classification: 'Total, other adverse events', subjects_affected: 5, subjects_at_risk: 100 },
-          { nct_id: 'NCT12345', ctgov_group_code: 'EG1', event_type: 'deaths', 
-            classification: 'Total, all-cause mortality', total_count: 2 },
-          { nct_id: 'NCT12345', ctgov_group_code: 'EG2', event_type: 'serious', 
-            classification: 'Total, serious adverse events', subjects_affected: 20, subjects_at_risk: 200 },
-          { nct_id: 'NCT12345', ctgov_group_code: 'EG2', event_type: 'other', 
-            classification: 'Total, other adverse events', subjects_affected: 10, subjects_at_risk: 200 },
-          { nct_id: 'NCT12345', ctgov_group_code: 'EG2', event_type: 'deaths', 
-            classification: 'Total, all-cause mortality', total_count: 0 }
-        ]
-    
-        expect(described_class.mapper(json)).to match_array(expected_output)
-      end
-    end
-
+    expect(imported).to eq(expected_data)
   end
 end
