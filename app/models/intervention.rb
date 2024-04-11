@@ -17,7 +17,6 @@ class Intervention < StudyRelationship
           table: :intervention_other_names,
           root: [:otherNames],
           columns: [
-            { name: :intervention_id, value: nil },
             { name: :name, value: nil }
           ]
         }
