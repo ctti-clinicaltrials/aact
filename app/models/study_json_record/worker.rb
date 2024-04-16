@@ -56,7 +56,10 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       # update the nct_id and parent_id of the children
       collection = []
       collections[association.name].each do |child|
-        parent = child.send(association.inverse_of.name)
+        inverse_name = association.inverse_of&.name
+        next unless inverse_name
+  
+        parent = child.send(inverse_name)
         child.nct_id = parent.nct_id
         child[association.foreign_key] = parent.id
         collection << child
