@@ -1,0 +1,43 @@
+{
+  "protocolSection": {
+    "armsInterventionsModule": {
+      "interventions": [
+        {
+          "type": "BIOLOGICAL",
+          "name": "recombinant interferon alfa",
+          "description": "administered subcutaneously (SQ)at a dose of 3 million units Day 1,3, and 5 each week in Cycle 1",
+          "armGroupLabels": [
+            "Pancreatic Adenocarcinoma Patients"
+          ],
+          "otherNames": [
+            "IFN alpha",
+            "IFN-alpha-2b"
+          ]
+        },
+        {
+          "type": "DRUG",
+          "name": "cisplatin",
+          "description": "administered at a dose of 30 mg/m2 intravenously (IV) day 1 each week in Cycle 1",
+          "armGroupLabels": [
+            "Pancreatic Adenocarcinoma Patients"
+          ],
+          "otherNames": [
+            "cisplatinum",
+            "cis-diamminedichloroplatinum(II) (CDDP)"
+          ]
+        },
+        {
+          "type": "DRUG",
+          "name": "fluorouracil",
+          "description": "administered at a dose of 175 mg/m\\^2/day continuous infusion (CI) for 38 days in Cycle 1 and then 500 mg/m\\^2 intravenously (IV) each week for 6 weeks followed by a 2 week rest (1 cycle = 8 weeks)in Cycle 2 and 3",
+          "armGroupLabels": [
+            "Pancreatic Adenocarcinoma Patients"
+          ],
+          "otherNames": [
+            "5-FU"
+          ]
+        }
+      ]
+    }
+  }
+}

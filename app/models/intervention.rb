@@ -11,6 +11,15 @@ class Intervention < StudyRelationship
         { name: :intervention_type, value: :type },
         { name: :name, value: :name },
         { name: :description, value: :description }
+      ],
+      children: [
+        {
+          table: :intervention_other_names,
+          root: [:otherNames],
+          columns: [
+            { name: :name, value: nil }
+          ]
+        }
       ]
     }
   end
