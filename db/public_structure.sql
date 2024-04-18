@@ -1027,84 +1027,6 @@ CREATE TABLE ctgov.eligibilities (
 
 
 --
--- Name: studies; Type: TABLE; Schema: ctgov; Owner: -
---
-
-CREATE TABLE ctgov.studies (
-    nct_id character varying,
-    nlm_download_date_description character varying,
-    study_first_submitted_date date,
-    results_first_submitted_date date,
-    disposition_first_submitted_date date,
-    last_update_submitted_date date,
-    study_first_submitted_qc_date date,
-    study_first_posted_date date,
-    study_first_posted_date_type character varying,
-    results_first_submitted_qc_date date,
-    results_first_posted_date date,
-    results_first_posted_date_type character varying,
-    disposition_first_submitted_qc_date date,
-    disposition_first_posted_date date,
-    disposition_first_posted_date_type character varying,
-    last_update_submitted_qc_date date,
-    last_update_posted_date date,
-    last_update_posted_date_type character varying,
-    start_month_year character varying,
-    start_date_type character varying,
-    start_date date,
-    verification_month_year character varying,
-    verification_date date,
-    completion_month_year character varying,
-    completion_date_type character varying,
-    completion_date date,
-    primary_completion_month_year character varying,
-    primary_completion_date_type character varying,
-    primary_completion_date date,
-    target_duration character varying,
-    study_type character varying,
-    acronym character varying,
-    baseline_population text,
-    brief_title text,
-    official_title text,
-    overall_status character varying,
-    last_known_status character varying,
-    phase character varying,
-    enrollment integer,
-    enrollment_type character varying,
-    source character varying,
-    limitations_and_caveats character varying,
-    number_of_arms integer,
-    number_of_groups integer,
-    why_stopped character varying,
-    has_expanded_access boolean,
-    expanded_access_type_individual boolean,
-    expanded_access_type_intermediate boolean,
-    expanded_access_type_treatment boolean,
-    has_dmc boolean,
-    is_fda_regulated_drug boolean,
-    is_fda_regulated_device boolean,
-    is_unapproved_device boolean,
-    is_ppsd boolean,
-    is_us_export boolean,
-    biospec_retention character varying,
-    biospec_description text,
-    ipd_time_frame character varying,
-    ipd_access_criteria character varying,
-    ipd_url character varying,
-    plan_to_share_ipd character varying,
-    plan_to_share_ipd_description character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    source_class character varying,
-    delayed_posting character varying,
-    expanded_access_nctid character varying,
-    expanded_access_status_for_nctid character varying,
-    fdaaa801_violation boolean,
-    baseline_type_units_analyzed character varying
-);
-
-
---
 -- Name: covid_19_studies; Type: VIEW; Schema: ctgov; Owner: -
 --
 
@@ -1159,7 +1081,7 @@ CREATE VIEW ctgov.covid_19_studies AS
     ado.names AS design_outcomes,
     bs.description AS brief_summary,
     dd.description AS detailed_description
-   FROM (((((((((((ctgov.studies s
+   FROM (((((((((((ctgov_v2.studies s
      FULL JOIN ctgov.all_conditions ac ON (((s.nct_id)::text = (ac.nct_id)::text)))
      FULL JOIN ctgov.all_id_information aid ON (((s.nct_id)::text = (aid.nct_id)::text)))
      FULL JOIN ctgov.all_design_outcomes ado ON (((s.nct_id)::text = (ado.nct_id)::text)))
@@ -2354,6 +2276,84 @@ CREATE SEQUENCE ctgov.sponsors_id_seq
 --
 
 ALTER SEQUENCE ctgov.sponsors_id_seq OWNED BY ctgov.sponsors.id;
+
+
+--
+-- Name: studies; Type: TABLE; Schema: ctgov; Owner: -
+--
+
+CREATE TABLE ctgov.studies (
+    nct_id character varying,
+    nlm_download_date_description character varying,
+    study_first_submitted_date date,
+    results_first_submitted_date date,
+    disposition_first_submitted_date date,
+    last_update_submitted_date date,
+    study_first_submitted_qc_date date,
+    study_first_posted_date date,
+    study_first_posted_date_type character varying,
+    results_first_submitted_qc_date date,
+    results_first_posted_date date,
+    results_first_posted_date_type character varying,
+    disposition_first_submitted_qc_date date,
+    disposition_first_posted_date date,
+    disposition_first_posted_date_type character varying,
+    last_update_submitted_qc_date date,
+    last_update_posted_date date,
+    last_update_posted_date_type character varying,
+    start_month_year character varying,
+    start_date_type character varying,
+    start_date date,
+    verification_month_year character varying,
+    verification_date date,
+    completion_month_year character varying,
+    completion_date_type character varying,
+    completion_date date,
+    primary_completion_month_year character varying,
+    primary_completion_date_type character varying,
+    primary_completion_date date,
+    target_duration character varying,
+    study_type character varying,
+    acronym character varying,
+    baseline_population text,
+    brief_title text,
+    official_title text,
+    overall_status character varying,
+    last_known_status character varying,
+    phase character varying,
+    enrollment integer,
+    enrollment_type character varying,
+    source character varying,
+    limitations_and_caveats character varying,
+    number_of_arms integer,
+    number_of_groups integer,
+    why_stopped character varying,
+    has_expanded_access boolean,
+    expanded_access_type_individual boolean,
+    expanded_access_type_intermediate boolean,
+    expanded_access_type_treatment boolean,
+    has_dmc boolean,
+    is_fda_regulated_drug boolean,
+    is_fda_regulated_device boolean,
+    is_unapproved_device boolean,
+    is_ppsd boolean,
+    is_us_export boolean,
+    biospec_retention character varying,
+    biospec_description text,
+    ipd_time_frame character varying,
+    ipd_access_criteria character varying,
+    ipd_url character varying,
+    plan_to_share_ipd character varying,
+    plan_to_share_ipd_description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    source_class character varying,
+    delayed_posting character varying,
+    expanded_access_nctid character varying,
+    expanded_access_status_for_nctid character varying,
+    fdaaa801_violation boolean,
+    baseline_type_units_analyzed character varying
+);
 
 
 --
@@ -4618,6 +4618,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230720150513'),
 ('20231012015547'),
 ('20240204045613'),
-('20240204055613');
+('20240204055613'),
+('20240306012711'),
+('20240324222521');
 
 

@@ -41,6 +41,10 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     str.try(:downcase)
   end
 
+  def float(str)
+    Float(str) rescue nil
+  end
+
   def self.reset
     StudyRelationship.study_models.each(&:delete_all)
     StudyJsonRecord.where(version: '2').update_all(saved_study_at: nil) # rubocop:disable Rails/SkipsModelValidations
