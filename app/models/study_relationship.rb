@@ -296,4 +296,75 @@ class StudyRelationship < ActiveRecord::Base
       # puts "🛑 Missing mapping for #{m}"
     end
   end
+
+  # removes relative references to $parent and generates the absolute path
+  def self.collapse_path(path)
+    i = 0
+    while i < path.length
+      if path[i] == :$parent
+        path.delete_at(i)
+        path.delete_at(i-1)
+        i -= 1
+      else
+        i += 1
+      end
+    end
+    return path
+  end
+
+  def self.update_data_definitions
+    data_definitions = Hash.new{|h,k| h[k] = {} }
+    
+    MAPPING.each do |mapping|
+      # normalize the root path
+      root_path = []
+      if mapping[:root].is_a?(Symbol)
+        root_path << mapping[:root]
+      elsif mapping[:root].is_a?(Array)
+        root_path += mapping[:root]
+      end
+
+      # add the flatten parth
+      if mapping[:flatten]
+        root_path += mapping[:flatten]
+      end
+
+      mapping[:columns].each do |column|
+        column_path = nil
+        case column[:value]
+        when Symbol
+          column_path = [column[:value]]
+        when Array
+          column_path = column[:value]
+        when nil
+          column_path = []
+        end
+        source = column_path ? collapse_path(root_path + column_path) : nil
+        
+        if data_definitions[mapping[:table]][column[:name]]
+          s = data_definitions[mapping[:table]][column[:name]][:source]
+          data_definitions[mapping[:table]][column[:name]][:source] = s + " or " + source&.join(".") if source
+        else
+          data_definitions[mapping[:table]][column[:name]] = { 
+            table_name: mapping[:table], 
+            column_name: column[:name], 
+            data_type: mapping[:table].to_s.classify.constantize.type_for_attribute(column[:name]).type,
+            db_section: (root_path.first || 'protocol').to_s.gsub(/Section/,''),
+            source: source&.join(".")
+          }
+        end
+      end
+    end
+
+    data_definitions.each do |table_name, columns|
+      columns.each do |column_name, data|
+        definition = Admin::DataDefinition.find_by(table_name: table_name, column_name: column_name)
+        if definition
+          definition.update(data)
+        else
+          Admin::DataDefinition.create(data)
+        end
+      end
+    end
+  end
 end
