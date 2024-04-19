@@ -143,6 +143,7 @@
               "nonInferiorityType": "SUPERIORITY",
               "nonInferiorityComment": "Week 16",
               "pValue": "<0.0001",
+              "pValueComment": "p-value was nominal and not adjusted.",
               "statisticalMethod": "likelihood ratio test",
               "statisticalComment": "Assessed at one-sided 0.025 significance level",
               "paramType": "Odds Ratio (OR)",
