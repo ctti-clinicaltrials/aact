@@ -1,0 +1,163 @@
+{
+  "resultsSection": {
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "analyses": [
+            {
+              "groupIds": [
+                "OG000",
+                "OG001"
+              ],
+              "groupDescription": "Odds ratio: CZP/Placebo and p-value were calculated using logistic regression with factors for treatment, region and Magnetic Resonance Imaging/C- Reactive Protein (MRI/CRP) classification.",
+              "nonInferiorityType": "OTHER",
+              "nonInferiorityComment": "Weeks 8 and 24",
+              "pValue": "<0.001",
+              "pValueComment": "with significance level of 0.025",
+              "statisticalMethod": "Regression, Logistic",
+              "statisticalComment": "Treatment and baseline pain categorical score were factors.",
+              "paramType": "Odds Ratio (OR)",
+              "paramValue": "15.231",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "7.336",
+              "ciUpperLimit": "31.623"
+            }
+          ]  
+        },
+        {
+          "analyses": [
+            {
+              "groupIds": [
+                "OG002",
+                "OG003"
+              ],
+              "groupDescription": "Odds ratio: CZP/Placebo and p-value were calculated using logistic regression with factors for treatment, region and MRI/CRP classification.",
+              "nonInferiorityType": "OTHER",
+              "nonInferiorityComment": "4 letter margin (1-sided)",
+              "pValue": "<0.001",
+              "statisticalMethod": "Regression, Logistic",
+              "paramType": "Odds Ratio (OR)",
+              "paramValue": "7.436",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "4.127",
+              "ciUpperLimit": "13.401",
+              "ciUpperLimitComment": "Due to smaller number of participants with an event, upper limit of 95% CI could not be calculated.",
+              "estimateComment": "Hazard ratio and its CIs were estimated from Cox Proportional hazards model stratified by FLIPI2 risk categorization.",
+              "otherAnalysisDescription": "The mean difference is actually adjusted mean of difference and the dispersion value is standard error of differences.",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "0.73"     
+            }
+          ]
+        },
+        {
+          "analyses": [
+            {
+              "groupIds": [
+                "OG004",
+                "OG005"
+              ],
+              "groupDescription": "Odds ratio: CZP/Placebo and p-value were calculated using logistic regression with factors for treatment, region MRI/CRP classification.",
+              "nonInferiorityType": "OTHER",
+              "pValue": "<0.001",
+              "pValueComment": "p-value for treatment difference",
+              "statisticalMethod": "Regression, Logistic",
+              "statisticalComment": "A log-rank test stratified by FLIPI2 risk was used to compare the treatment groups with respect to PFS at a 2-sided alpha level of 0.05.",
+              "paramType": "Odds Ratio (OR)",
+              "paramValue": "7.359",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "4.286",
+              "ciUpperLimit": "12.636"
+            },
+            {
+              "groupIds": [
+                "OG006",
+                "OG007"
+              ],
+              "nonInferiorityType": "SUPERIORITY",
+              "nonInferiorityComment": "Week 64",
+              "pValue": "0.331",
+              "statisticalMethod": "ANCOVA",
+              "paramType": "LS Mean Difference",
+              "paramValue": "-1.1",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-3.4",
+              "ciUpperLimit": "1.2"
+            }
+          ]
+        },
+        {
+          "analyses": [
+            {
+              "groupIds": [
+                "OG008",
+                "OG009"
+              ],
+              "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+              "nonInferiorityType": "OTHER",
+              "nonInferiorityComment": "Week 18",
+              "pValue": "<0.001",
+              "statisticalMethod": "ANCOVA",
+              "statisticalComment": "Treatment and baseline pain categorical score were factors.",
+              "paramType": "Difference",
+              "paramValue": "-1.696",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-2.110",
+              "ciUpperLimit": "-1.282",
+              "ciUpperLimitComment": "Upper limit of the confidence interval is not reached due to censoring rate.",
+              "estimateComment": "The Kaplan Meier method was used to estimate median OS(in months). The Greenwood method was used to estimate confidence limits of median overall survival.",
+              "otherAnalysisDescription": "Hazard Ratio (HR) (Dex/PBO)"
+            }
+          ]
+        },
+        {
+          "analyses": [
+            {
+              "groupIds": [
+                "OG010",
+                "OG011"
+              ],
+              "groupDescription": "From an ANCOVA model including scores at Baseline, treatment group, region and MRI/CRP classification.",
+              "nonInferiorityType": "OTHER",
+              "nonInferiorityComment": "Week 13",
+              "pValue": "<0.0001",
+              "statisticalMethod": "ANCOVA",
+              "paramType": "Difference",
+              "paramValue": "-1.585",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-2.132",
+              "ciUpperLimit": "-1.038",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "9.87"
+            },
+            {
+              "groupIds": [
+                "OG012",
+                "OG013"
+              ],
+              "nonInferiorityType": "SUPERIORITY",
+              "nonInferiorityComment": "Week 16",
+              "pValue": "<0.0001",
+              "pValueComment": "p-value was nominal and not adjusted.",
+              "statisticalMethod": "likelihood ratio test",
+              "statisticalComment": "Assessed at one-sided 0.025 significance level",
+              "paramType": "Odds Ratio (OR)",
+              "paramValue": "2.6",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "1.7",
+              "ciUpperLimit": "3.9",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "11.26"
+            }
+          ]
+        }
+      ]  
+    }
+  }
+}
