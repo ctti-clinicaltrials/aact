@@ -48,6 +48,15 @@ class Outcome < StudyRelationship
             { name: :estimate_description, value: :estimateComment },
             { name: :groups_description, value: :groupDescription },
             { name: :other_analysis_description, value: :otherAnalysisDescription }
+          ]       
+        },
+        {
+          table: :outcome_analysis_groups,
+          root: [:analyses],
+          columns: [
+            { name: :outcome_analysis_id, value: nil },
+            { name: :result_group_id, value: :groupIds },
+            { name: :ctgov_group_code, value: :groupIds }
           ]
         }
       ]
