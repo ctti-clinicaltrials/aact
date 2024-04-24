@@ -13,12 +13,9 @@ class DropWithdrawal < StudyRelationship
         { name: :period, value: [:$parent, :$parent, :title] },
         { name: :reason, value: [:$parent, :type] },
         { name: :count, value: :numSubjects },
-        { name: :drop_withdraw_comment, value: [:$parent, :comment] || 'No comment' },
-        { name: :reason_comment, value: :comment || 'No reason comment provided' },
-        { name: :count_units, value: :numUnits || 'units not specified' }
-        # { name: :drop_withdraw_comment, value: [:$parent, :comment] },
-        # { name: :reason_comment, value: :comment },
-        # { name: :count_units, value: :numUnits }
+        { name: :drop_withdraw_comment, value: [:$parent, :comment] },
+        { name: :reason_comment, value: :comment },
+        { name: :count_units, value: :numUnits }
       ]
     }
   end
