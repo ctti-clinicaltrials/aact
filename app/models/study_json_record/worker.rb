@@ -136,6 +136,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   end
 
   def flatten(path, data, parent=nil)
+    return [] unless data
     child_key = path.first
     if child_key.nil?
       data.each {|i| append_parent(i, parent) } if parent
