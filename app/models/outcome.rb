@@ -7,6 +7,7 @@ class Outcome < StudyRelationship
     {
       table: :outcomes,
       root: [:resultsSection, :outcomeMeasuresModule, :outcomeMeasures],
+      requires: :result_groups,
       columns: [
         { name: :outcome_type, value: :type },
         { name: :title, value: :title },

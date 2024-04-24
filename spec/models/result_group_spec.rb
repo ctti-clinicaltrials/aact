@@ -14,19 +14,40 @@ describe ResultGroup do
     imported.each{|x| x.delete("id")}
 
     expected = [
+      # {
+      #   "nct_id"=>"NCT000001",
+      #   "result_type"=>"Participant Flow",
+      #   "ctgov_group_code"=>"FG000",
+      #   "title"=>"Cohort 1",
+      #   "description"=>"Cohort 1 received..."
+      # },
+      # {
+      #   "nct_id"=>"NCT000001",
+      #   "result_type"=>"Participant Flow",
+      #   "ctgov_group_code"=>"FG001",
+      #   "title"=>"Cohort 2",
+      #   "description"=>"Cohort 2 received..."
+      # },
       {
         "nct_id"=>"NCT000001",
-        "result_type"=>"Participant Flow",
-        "ctgov_group_code"=>"FG000",
-        "title"=>"Cohort 1",
-        "description"=>"Cohort 1 received..."
+        "result_type"=>"Outcome",
+        "ctgov_group_code" => "OG0000",
+        "title" => "Outcome 1",
+        "description" => "Outcome Group 1 description"
       },
       {
         "nct_id"=>"NCT000001",
-        "result_type"=>"Participant Flow",
-        "ctgov_group_code"=>"FG001",
-        "title"=>"Cohort 2",
-        "description"=>"Cohort 2 received..."
+        "result_type"=>"Outcome",
+        "ctgov_group_code" => "OG0001",
+        "title" => "Outcome 2",
+        "description" => "Outcome Group 2 description"
+      },
+      {
+        "nct_id"=>"NCT000001",
+        "result_type"=>"Outcome",
+        "ctgov_group_code" => "OG0000",
+        "title" => "Outcome 3",
+        "description" => "Outcome Group 3 description"
       }
     ]
     expect(imported).to eq(expected)

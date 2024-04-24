@@ -13,6 +13,33 @@
           "description": "Cohort 2 received..."
         }
       ]
+    },
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "groups": [
+            {
+              "id": "OG0000",
+              "title": "Outcome 1",
+              "description": "Outcome Group 1 description"
+            },
+            {
+              "id": "OG0001",
+              "title": "Outcome 2",
+              "description": "Outcome Group 2 description"
+            }
+          ]
+        },
+        {
+          "groups": [
+            {
+              "id": "OG0000",
+              "title": "Outcome 3",
+              "description": "Outcome Group 3 description"
+            }
+          ]
+        }
+      ]
     }
   }
 }

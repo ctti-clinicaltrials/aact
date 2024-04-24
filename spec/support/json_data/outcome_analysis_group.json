@@ -3,6 +3,18 @@
     "outcomeMeasuresModule": {
       "outcomeMeasures": [
         {
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "CZP",
+              "description": "Certolizumab pegol"
+            },
+            {
+              "id": "OG001",
+              "title": "Placebo",
+              "description": "Placebo"
+            }
+          ],
           "analyses": [
             {
               "groupIds": [
@@ -26,6 +38,18 @@
           ]  
         },
         {
+          "groups": [
+            {
+              "id": "OG002",
+              "title": "CZP",
+              "description": "Certolizumab pegol"
+            },
+            {
+              "id": "OG003",
+              "title": "Placebo",
+              "description": "Placebo"
+            }
+          ],
           "analyses": [
             {
               "groupIds": [
@@ -52,6 +76,28 @@
           ]
         },
         {
+          "groups": [
+            {
+              "id": "OG004",
+              "title": "CZP",
+              "description": "Certolizumab pegol"
+            },
+            {
+              "id": "OG005",
+              "title": "Placebo",
+              "description": "Placebo"
+            },
+            {
+              "id": "OG006",
+              "title": "CZP",
+              "description": "Certolizumab pegol"
+            },
+            {
+              "id": "OG007",
+              "title": "Placebo",
+              "description": "Placebo"
+            }
+          ],
           "analyses": [
             {
               "groupIds": [
@@ -90,6 +136,18 @@
           ]
         },
         {
+          "groups": [
+            {
+              "id": "OG008",
+              "title": "CZP",
+              "description": "Certolizumab pegol"
+            },
+            {
+              "id": "OG009",
+              "title": "Placebo",
+              "description": "Placebo"
+            }
+          ],
           "analyses": [
             {
               "groupIds": [
@@ -115,6 +173,28 @@
           ]
         },
         {
+          "groups": [
+            {
+              "id": "OG010",
+              "title": "CZP",
+              "description": "Certolizumab pegol"
+            },
+            {
+              "id": "OG011",
+              "title": "Placebo",
+              "description": "Placebo"
+            },
+            {
+              "id": "OG012",
+              "title": "CZP",
+              "description": "Certolizumab pegol"
+            },
+            {
+              "id": "OG013",
+              "title": "Placebo",
+              "description": "Placebo"
+            }
+          ],
           "analyses": [
             {
               "groupIds": [
