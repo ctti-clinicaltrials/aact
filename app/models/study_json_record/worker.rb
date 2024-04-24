@@ -143,6 +143,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   end
 
   def flatten(path, data, parent=nil)
+    return [] unless data
     child_key = path.first
     if child_key.nil?
       data.each {|i| append_parent(i, parent) } if parent
@@ -204,6 +205,8 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       end
     end
     save_children(collection)
+  rescue
+    raise "Error processing #{mapping[:table]}"
   end
 
   # remove all the aact data for the given nct_ids
