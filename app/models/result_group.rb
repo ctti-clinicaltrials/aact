@@ -10,17 +10,18 @@ class ResultGroup < StudyRelationship
   has_many :outcome_analyses, :through => :outcome_analysis_groups
 
   add_mapping do
-    #   {
-    #     table: :result_groups,
-    #     root: [:resultsSection, :participantFlowModule, :groups],
-    #     index: [:ctgov_group_code, :result_type], 
-    #     columns: [
-    #       { name: :ctgov_group_code, value: :id },
-    #       { name: :result_type, value: 'Participant Flow' },
-    #       { name: :title, value: :title },
-    #       { name: :description, value: :description },
-    #     ]
-    #   },
+    [
+      {
+        table: :result_groups,
+        root: [:resultsSection, :participantFlowModule, :groups],
+        index: [:ctgov_group_code, :result_type], 
+        columns: [
+          { name: :ctgov_group_code, value: :id },
+          { name: :result_type, value: 'Participant Flow' },
+          { name: :title, value: :title },
+          { name: :description, value: :description },
+        ]
+      },
       {
         table: :result_groups,
         root: [:resultsSection, :adverseEventsModule, :eventGroups],
@@ -32,5 +33,6 @@ class ResultGroup < StudyRelationship
           { name: :description, value: :description }
         ]
       }
+    ]
   end
 end
