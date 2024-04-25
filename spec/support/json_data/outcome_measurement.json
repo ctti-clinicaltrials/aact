@@ -1,0 +1,53 @@
+{
+  "resultsSection": {
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "title": "Absolute Change in Pre-Bronchodilator Forced Expiratory Volume in 1 Second (FEV1)",
+          "description": "FEV1 measures how much air a person can exhale during the first second of a forced breath.\n\nAdjusted means are reported.",
+          "paramType": "MEAN",
+          "dispersionType": "95% Confidence Interval",
+          "unitOfMeasure": "Milliliters (mL)",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo",
+              "description": "Participants received subcutaneous..."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "120"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "title": "Class Title",
+              "categories": [
+                {
+                  "title": "Category Title",
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "12",
+                      "spread": "2",
+                      "lowerLimit": "8",
+                      "upperLimit": "16",
+                      "comment": "Not applicable"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

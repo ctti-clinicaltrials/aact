@@ -23,6 +23,34 @@ class Outcome < StudyRelationship
       ],
       children: [
         {
+          table: :outcome_measurements,
+          root: nil,
+          flatten: [:classes, :categories, :measurements],
+          columns: [
+            { name: :outcome_id, value: nil },
+            { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
+            { name: :ctgov_group_code, value: :groupId },
+            { name: :classification, value: [:$parent, :$parent, :title] },
+            { name: :category, value: [:$parent, :title] },
+            { name: :title, value: [:$parent, :$parent, :$parent, :title] }, # TODO: remove duplication, we already store in parent
+            { name: :description, value: [:$parent, :$parent, :$parent, :description] }, # TODO: remove duplication, we already store in parent
+            { name: :units, value: [:$parent, :$parent, :$parent, :unitOfMeasure] }, # TODO: remove duplication, we already store in parent
+            { name: :param_type, value: [:$parent, :$parent, :$parent, :paramType] }, # TODO: remove duplication, we already store in parent
+            { name: :dispersion_type, value: [:$parent, :$parent, :$parent, :dispersionType] }, # TODO: remove duplication, we already store in parent
+            { name: :param_value, value: :value },
+            { name: :param_value_num, value: :value, convert_to: :float },
+            { name: :dispersion_value, value: :spread },
+            { name: :dispersion_value_num, value: :spread, convert_to: :float },
+            { name: :dispersion_lower_limit_raw, value: :lowerLimit },
+            { name: :dispersion_lower_limit, value: :lowerLimit, convert_to: :float },
+            { name: :dispersion_upper_limit_raw, value: :upperLimit },
+            { name: :dispersion_upper_limit, value: :upperLimit, convert_to: :float },
+            { name: :explanation_of_na, value: :comment },
+            # { name: :denom_units, value: [:$parent, :$parent, :$parent, :denoms, :units] }, # TODO: how do we navigate to that value in the JSON??
+            # { name: :denom_value, value: [:$parent, :$parent, :$parent, :denoms, :counts, match(:groupId), :value] }, # TODO: how do we navigate to that value in the JSON??
+          ]
+        },
+        {
           table: :outcome_analyses,
           root: [:analyses],
           columns: [
