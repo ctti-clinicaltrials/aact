@@ -41,6 +41,10 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     str.try(:downcase)
   end
 
+  def float(str)
+    Float(str) rescue nil
+  end
+
   def self.reset
     StudyRelationship.study_models.each(&:delete_all)
     StudyJsonRecord.where(version: '2').update_all(saved_study_at: nil) # rubocop:disable Rails/SkipsModelValidations
@@ -56,7 +60,10 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       # update the nct_id and parent_id of the children
       collection = []
       collections[association.name].each do |child|
-        parent = child.send(association.inverse_of.name)
+        inverse_name = association.inverse_of&.name
+        next unless inverse_name
+  
+        parent = child.send(inverse_name)
         child.nct_id = parent.nct_id
         child[association.foreign_key] = parent.id
         collection << child
@@ -136,6 +143,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   end
 
   def flatten(path, data, parent=nil)
+    return [] unless data
     child_key = path.first
     if child_key.nil?
       data.each {|i| append_parent(i, parent) } if parent
