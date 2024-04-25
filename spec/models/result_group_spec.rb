@@ -14,20 +14,20 @@ describe ResultGroup do
     imported.each{|x| x.delete("id")}
 
     expected = [
-      # {
-      #   "nct_id"=>"NCT000001",
-      #   "result_type"=>"Participant Flow",
-      #   "ctgov_group_code"=>"FG000",
-      #   "title"=>"Cohort 1",
-      #   "description"=>"Cohort 1 received..."
-      # },
-      # {
-      #   "nct_id"=>"NCT000001",
-      #   "result_type"=>"Participant Flow",
-      #   "ctgov_group_code"=>"FG001",
-      #   "title"=>"Cohort 2",
-      #   "description"=>"Cohort 2 received..."
-      # },
+      {
+        "nct_id"=>"NCT000001",
+        "result_type"=>"Participant Flow",
+        "ctgov_group_code"=>"FG000",
+        "title"=>"Cohort 1",
+        "description"=>"Cohort 1 received..."
+      },
+      {
+        "nct_id"=>"NCT000001",
+        "result_type"=>"Participant Flow",
+        "ctgov_group_code"=>"FG001",
+        "title"=>"Cohort 2",
+        "description"=>"Cohort 2 received..."
+      },
       {
         "nct_id"=>"NCT000001",
         "result_type"=>"Outcome",
