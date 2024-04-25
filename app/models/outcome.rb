@@ -61,6 +61,20 @@ class Outcome < StudyRelationship
               ]
             }  
           ]       
+        },
+        {
+          table: :outcome_counts,
+          root: [:denoms],
+          flatten: [:counts],
+          index: [:ctgov_group_code, :result_type],
+          columns: [
+            { name: :outcome_id, value: nil },
+            { name: :result_group_id, value: reference(:result_groups)[nil, 'Outcome'] },
+            { name: :ctgov_group_code, value: :id },
+            { name: :scope, value: 'Measure' },
+            { name: :units, value: 'Participants' },
+            { name: :count, value: :counts },
+          ]
         }
       ]
     }
