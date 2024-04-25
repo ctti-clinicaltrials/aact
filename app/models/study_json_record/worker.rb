@@ -145,8 +145,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   def flatten(path, data, parent=nil)
     return [] unless data
     child_key = path.first
+    result = []
     if child_key.nil?
-      data.each {|i| append_parent(i, parent) } if parent
+      data.each { |i| append_parent(i, parent) } if parent
       return data
     else
       result = data.map do |item|
@@ -158,7 +159,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       return result.flatten
     end
   end
-
+  
   def process_mapping(mapping, records)
     model = mapping[:table].to_s.classify.constantize # get the model from the table name
     root = mapping[:root].map(&:to_s) if mapping[:root] # normalize root path to array of strings

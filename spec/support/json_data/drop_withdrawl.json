@@ -1,0 +1,86 @@
+{
+  "resultsSection": {
+    "participantFlowModule": {
+      "groups": [
+        {
+          "id": "FG000",
+          "title": "Sunitinib",
+          "description": "Sunitinib 37.5 mg was orally administered..."
+        }
+      ],
+      "periods": [
+        {
+          "title": "Overall Study",
+          "dropWithdraws": [
+            {
+              "type": "Objective progression or relapse",
+              "comment": "Participants discontinued due to disease progression.",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "8",
+                  "comment": "Participants discontinued due to disease progression.",
+                  "numUnits": 8
+                }
+              ]
+            },
+            {
+              "type": "Withdrawal by Subject",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "1"
+                }
+              ]
+            },
+            {
+              "type": "Adverse Event",
+              "comment": "Two participants had adverse events.",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "2",
+                  "comment": "Two participants had adverse events.",
+                  "numUnits": 2
+                }
+              ]
+            },
+            {
+              "type": "Sponsor Decision",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "1",
+                  "numUnits": 1
+                }
+              ]
+            },
+            {
+              "type": "Met study discontinuation criteria",
+              "comment": "Met predefined criteria for discontinuation.",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "4",
+                  "comment": "Met predefined criteria for discontinuation."
+                }
+              ]
+            },
+            {
+              "type": "Protocol Deviation",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "3",
+                  "comment": "Three instances of protocol deviation.",
+                  "numUnits": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "hasResults": true
+  }
+}
