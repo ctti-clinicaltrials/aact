@@ -148,18 +148,16 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     result = []
     if child_key.nil?
       data.each { |i| append_parent(i, parent) } if parent
-      result = data
+      return data
     else
       result = data.map do |item|
-        children = item[child_key.to_s] || []
+        children = item.delete(child_key.to_s)
         res = flatten(path[1..-1], children, item)
-        append_parent(res.first, parent) if parent && !res.empty?
+        append_parent(res.first, parent) if parent
         res
-      end.flatten
+      end
+      return result.flatten
     end
-    result
-  rescue => e
-    raise
   end
   
   def process_mapping(mapping, records)
