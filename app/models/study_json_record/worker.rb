@@ -205,6 +205,8 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       end
     end
     save_children(collection)
+  rescue
+    raise "Error processing #{mapping[:table]}"
   end
 
   # remove all the aact data for the given nct_ids

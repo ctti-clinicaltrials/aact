@@ -13,6 +13,18 @@ class ResultGroup < StudyRelationship
     [
       {
         table: :result_groups,
+        root: [:resultsSection, :outcomeMeasuresModule, :outcomeMeasures],
+        flatten: [:groups],
+        index: [:ctgov_group_code, :result_type],
+        columns: [
+          { name: :ctgov_group_code, value: :id },
+          { name: :result_type, value: 'Outcome' },
+          { name: :title, value: :title },
+          { name: :description, value: :description },
+        ]
+      },
+      {
+        table: :result_groups,
         root: [:resultsSection, :participantFlowModule, :groups],
         index: [:ctgov_group_code, :result_type], 
         columns: [
