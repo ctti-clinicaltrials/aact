@@ -7,6 +7,7 @@ class Intervention < StudyRelationship
     {
       table: :interventions,
       root: [:protocolSection, :armsInterventionsModule, :interventions],
+      requires: [:design_groups],
       columns: [
         { name: :intervention_type, value: :type },
         { name: :name, value: :name },
@@ -18,6 +19,13 @@ class Intervention < StudyRelationship
           root: [:otherNames],
           columns: [
             { name: :name, value: nil }
+          ]
+        },
+        {
+          table: :design_group_interventions,
+          root: [:armGroupLabels],
+          columns: [
+            { name: :design_group_id, value: reference(:design_groups)[nil] },
           ]
         }
       ]
