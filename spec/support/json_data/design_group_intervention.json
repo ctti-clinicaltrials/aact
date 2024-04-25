@@ -1,0 +1,26 @@
+{
+  "protocolSection": {
+    "armsInterventionsModule": {
+      "armGroups": [
+        {
+          "label": "Arm 1",
+          "type": "EXPERIMENTAL",
+          "description": "Arm 1 description",
+          "interventionNames": [
+            "Intervention 1"
+          ]
+        }
+      ],
+      "interventions": [
+        {
+          "type": "DRUG",
+          "name": "Intervention 1",
+          "description": "Intervention 1 description",
+          "armGroupLabels": [
+            "Arm 1"
+          ]
+        }
+      ]
+    }
+  }
+}

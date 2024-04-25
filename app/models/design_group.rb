@@ -6,6 +6,7 @@ class DesignGroup < StudyRelationship
     {
       table: :design_groups,
       root: [:protocolSection, :armsInterventionsModule, :armGroups],
+      index: [:title],
       columns: [
         { name: :group_type, value: :type },
         { name: :title, value: :label },

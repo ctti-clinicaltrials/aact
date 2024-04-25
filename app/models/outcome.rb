@@ -7,6 +7,7 @@ class Outcome < StudyRelationship
     {
       table: :outcomes,
       root: [:resultsSection, :outcomeMeasuresModule, :outcomeMeasures],
+      requires: :result_groups,
       columns: [
         { name: :outcome_type, value: :type },
         { name: :title, value: :title },
@@ -48,7 +49,18 @@ class Outcome < StudyRelationship
             { name: :estimate_description, value: :estimateComment },
             { name: :groups_description, value: :groupDescription },
             { name: :other_analysis_description, value: :otherAnalysisDescription }
-          ]
+          ],
+          children: [
+            {
+              table: :outcome_analysis_groups,
+              root: [:groupIds],
+              columns: [
+                { name: :outcome_analysis_id, value: nil },
+                { name: :result_group_id, value: reference(:result_groups)[nil, 'Outcome'] },
+                { name: :ctgov_group_code, value: nil }
+              ]
+            }  
+          ]       
         }
       ]
     }
