@@ -223,13 +223,22 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   MAPPING = []
+  
+  def self.next_id
+    return 1 if MAPPING.length == 0
+    MAPPING.map{|m| m[:id]}.max + 1
+  end
 
   def self.add_mapping
     entry = yield
     case entry
     when Array
-      MAPPING.concat(entry)
+      entry.each do |e| 
+        e[:id] = next_id
+        MAPPING << e
+      end
     when Hash
+      entry[:id] = next_id
       MAPPING << entry
     end
   end
@@ -254,13 +263,16 @@ class StudyRelationship < ActiveRecord::Base
       next unless m[:requires]
       dependency = m[:requires].is_a?(Array) ? m[:requires] : [m[:requires]]
       dependency.each do |d|
-        in_degrees[d] ||= 0
-        in_degrees[d] += 1
+        nodes = MAPPING.select{|m| m[:table] == d }
+        nodes.each do |m|
+          in_degrees[m[:id]] ||= 0
+          in_degrees[m[:id]] += 1
+        end
       end
     end
 
     # 2. initialize the queue with nodes that have no dependencies
-    queue = mapping.select{|m| in_degrees[m[:table]].nil? }
+    queue = mapping.select{|m| in_degrees[m[:id]].nil? }
 
     # 3. perform the topological sort
     sorted = []
@@ -270,8 +282,8 @@ class StudyRelationship < ActiveRecord::Base
       next if node[:requires].nil?
       dependency = node[:requires].is_a?(Array) ? node[:requires] : [node[:requires]]
       mapping.select{|m| dependency.include?(m[:table]) }.each do |m|
-        in_degrees[m[:table]] -= 1
-        queue << m if in_degrees[m[:table]] == 0
+        in_degrees[m[:id]] -= 1
+        queue << m if in_degrees[m[:id]] == 0
       end
     end
 
