@@ -1,27 +1,84 @@
 {
+  "protocolSection": {},
   "resultsSection": {
     "participantFlowModule": {},
     "baselineCharacteristicsModule": {
-      "populationDescription": "Baseline data was not collected for Part 2, as no participants were enrolled in Part 2.",
+      "typeUnitsAnalyzed": "joints",
       "groups": [
         {
           "id": "BG000",
-          "title": "Part 1:GSK2879552 1mg QD",
-          "description": "Participants received GSK2879552 1 mg orally QD in fasted condition with approximately 200 mL of water."
+          "title": "Safety Population",
+          "description": "All subjects enrolled into the study"
         },
         {
           "id": "BG001",
-          "title": "Part 1: GSK2879552 2mg QD",
-          "description": "Participants received GSK2879552 2 mg orally once daily in fasted condition with approximately 200 mL of water."
+          "title": "Control Group",
+          "description": "Subjects not receiving the treatment"
         }
       ],
-      "denoms": [],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "294"
+            },
+            {
+              "groupId": "BG001",
+              "value": "200"
+            }
+          ]
+        },
+        {
+          "units": "joints",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "309"
+            },
+            {
+              "groupId": "BG001",
+              "value": "210"
+            }
+          ]
+        }
+      ],
       "measures": [
         {
           "title": "Age, Continuous",
           "paramType": "MEAN",
           "dispersionType": "STANDARD_DEVIATION",
-          "unitOfMeasure": "Years",
+          "unitOfMeasure": "years",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "294"
+                },
+                {
+                  "groupId": "BG001",
+                  "value": "200"
+                }
+              ]
+            },
+            {
+              "units": "joints",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "309"
+                },
+                {
+                  "groupId": "BG001",
+                  "value": "210"
+                }
+              ]
+            }
+          ],
           "classes": [
             {
               "categories": [
@@ -29,14 +86,13 @@
                   "measurements": [
                     {
                       "groupId": "BG000",
-                      "value": "68.0",
-                      "spread": "NA",
-                      "comment": "Standard Deviation could not be calculated as only one participant was analyzed"
+                      "value": "37.10",
+                      "spread": "16.60"
                     },
                     {
                       "groupId": "BG001",
-                      "value": "73.5",
-                      "spread": "2.12"
+                      "value": "35.10",
+                      "spread": "15.60"
                     }
                   ]
                 }
@@ -48,6 +104,35 @@
           "title": "Sex: Female, Male",
           "paramType": "COUNT_OF_PARTICIPANTS",
           "unitOfMeasure": "Participants",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "294"
+                },
+                {
+                  "groupId": "BG001",
+                  "value": "200"
+                }
+              ]
+            },
+            {
+              "units": "joints",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "309"
+                },
+                {
+                  "groupId": "BG001",
+                  "value": "210"
+                }
+              ]
+            }
+          ],
           "classes": [
             {
               "categories": [
@@ -56,11 +141,11 @@
                   "measurements": [
                     {
                       "groupId": "BG000",
-                      "value": "0"
+                      "value": "147"
                     },
                     {
                       "groupId": "BG001",
-                      "value": "0"
+                      "value": "100"
                     }
                   ]
                 },
@@ -69,11 +154,11 @@
                   "measurements": [
                     {
                       "groupId": "BG000",
-                      "value": "1"
+                      "value": "147"
                     },
                     {
                       "groupId": "BG001",
-                      "value": "2"
+                      "value": "100"
                     }
                   ]
                 }
@@ -86,5 +171,8 @@
     "outcomeMeasuresModule": {},
     "adverseEventsModule": {},
     "moreInfoModule": {}
-  }
+  },
+  "documentSection": {},
+  "derivedSection": {},
+  "hasResults": true
 }
