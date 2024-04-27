@@ -2,11 +2,17 @@ require 'rails_helper'
 
 describe 'BaselineMeasurement and ResultGroup' do
   NCT_ID = 'NCT000001'.freeze
+  GROUP_RESOULTS_COUNT = 2
+  JSON_MEASUREMENTS_COUNT = 6
+  
 
   before do
     # load the json and paths to main sections
     content = JSON.parse(File.read('spec/support/json_data/baseline_measurements.json'))
     @result_groups = content['resultsSection']['baselineCharacteristicsModule']['groups']
+    @measures = content['resultsSection']['baselineCharacteristicsModule']['measures']
+
+
     # Create a brand new JSON record
     StudyJsonRecord.create(nct_id: NCT_ID, version: '2', content: content)
     # Import the new JSON record
@@ -16,8 +22,13 @@ describe 'BaselineMeasurement and ResultGroup' do
 
 
   describe 'ResultGroup' do
+
+  it 'has the correct number of groups in the JSON file' do
+    expect(@result_groups.count).to eq(GROUP_RESOULTS_COUNT)
+  end
+  
     it 'creates the correct number of ResultGroup records', schema: :v2 do
-      expect(ResultGroup.count).to eq(2)
+      expect(ResultGroup.count).to eq(GROUP_RESOULTS_COUNT)
     end
 
     it 'imports the correct ResultGroup data', schema: :v2 do
@@ -29,9 +40,22 @@ describe 'BaselineMeasurement and ResultGroup' do
 
   describe 'BaselineMeasurement' do
 
-    it 'creates the correct number of BaselineMeasurement records', schema: :v2 do
-      expect(BaselineMeasurement.count).to eq(2)
+    it 'has the correct number of measurements in the JSON file' do
+      measurement_count = @measures.sum do |measure|
+        measure['classes'].sum do |class_object|
+          class_object['categories'].sum do |category|
+            category['measurements'].count
+          end
+        end
+      end
+      expect(measurement_count).to eq(JSON_MEASUREMENTS_COUNT)
     end
+
+
+    it 'creates the correct number of BaselineMeasurement records', schema: :v2 do
+      expect(BaselineMeasurement.count).to eq(JSON_MEASUREMENTS_COUNT)
+    end
+
 
     it 'imports the correct BaselineMeasurement data', schema: :v2 do
       # expected = expected_baseline_count_data.sort_by { |record| [record['ctgov_group_code']] }
@@ -46,76 +70,42 @@ describe 'BaselineMeasurement and ResultGroup' do
 
 
 
-    private
+
+  private
+
 
   def expected_baseline_measurement_data
-    [ 
-      {
-        'nct_id' => NCT_ID,
-        "title"=>"Age, Continuous",
-        "param_type"=>"MEAN",
-
-        "dispersion_type"=>"STANDARD_DEVIATION",
-        "dispersion_value"=>nil,
-        "dispersion_value_num"=>nil,
-        "dispersion_lower_limit"=>nil,
-        "dispersion_upper_limit"=>nil,
-
-        "units"=>"Years",
-
-
-
-        "population_description"=>nil,
-        "result_group_id"=>nil,
-        
-        "calculate_percentage"=>nil,
-        "category"=>nil,
-        "classification"=>nil,
-        "ctgov_group_code"=>nil,
-        "description"=>nil,
-        
-        
-        "explanation_of_na"=>nil,
-        "number_analyzed"=>nil,
-        "number_analyzed_units"=>nil,
-        
-        "param_value"=>nil,
-        "param_value_num"=>nil,
-        "population_description"=>nil,
-        
-      },
-      {
-        'nct_id' => NCT_ID,
-        "title"=>"Sex: Female, Male",
-        "param_type"=>"COUNT_OF_PARTICIPANTS",
-
-        "dispersion_type"=>nil,
-        "dispersion_value"=>nil,
-        "dispersion_value_num"=>nil,
-        "dispersion_lower_limit"=>nil,
-        "dispersion_upper_limit"=>nil,
-
-        "units"=>"Participants",
-
-        
-
-        "population_description"=>nil,
-        "result_group_id"=>nil,
-        
-        "calculate_percentage"=>nil,
-        "category"=>nil,
-        "classification"=>nil,
-        "ctgov_group_code"=>nil,
-        "description"=>nil,
-        "explanation_of_na"=>nil,
-        "number_analyzed"=>nil,
-        "number_analyzed_units"=>nil,
-        
-        "param_value"=>nil,
-        "param_value_num"=>nil,
-        "population_description"=>nil,
-      }
-    ]
+    @measures.flat_map do |measure|
+      measure['classes'].flat_map do |class_object|
+        class_object['categories'].flat_map do |category|
+          category['measurements'].map do |measurement|
+            {
+              'nct_id' => NCT_ID,
+              'result_group_id' => ResultGroup.where(ctgov_group_code: measurement['groupId']).pluck(:id).first,
+              'ctgov_group_code' => measurement['groupId'],
+              'title' => measure['title'],
+              'param_type' => measure['paramType'],
+              'units' => measure['unitOfMeasure'],
+              'description' => nil,
+              'dispersion_type' => measure['dispersionType'],
+              "dispersion_value" => measurement['spread'],
+              "dispersion_value_num" => nil,
+              "dispersion_lower_limit" => nil,
+              "dispersion_upper_limit" => nil,
+              "calculate_percentage" => nil,
+              "category" => nil,
+              "classification" => nil,
+              "explanation_of_na" => nil,
+              "number_analyzed" => nil,
+              "number_analyzed_units" => nil,
+              "param_value" => nil,
+              "param_value_num" => nil,
+              "population_description" => nil,
+            }
+          end
+        end
+      end
+    end
   end
 
   def expected_result_group_data
@@ -131,7 +121,6 @@ describe 'BaselineMeasurement and ResultGroup' do
   end
 
   def import_and_sort(model)
-    model.all.map { |x| x.attributes.except('id') }.sort_by { |record| [record['ctgov_group_code']] }
+    model.all.map { |x| x.attributes.except('id') }
   end
-
 end
