@@ -31,7 +31,7 @@ class Outcome < StudyRelationship
             { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
             { name: :ctgov_group_code, value: [:groupId] },
             { name: :scope, value: 'Measure' },
-            { name: :units, value: 'Participants' },
+            { name: :units, value: [:$parent, :units] },
             { name: :count, value: [:value] },
           ]
         },
