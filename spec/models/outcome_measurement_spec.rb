@@ -3,6 +3,26 @@ require 'rails_helper'
 describe OutcomeMeasurement do
   it "should create an instance of OutcomeMeasurement", schema: :v2 do
     expected_data = [
+      {
+        nct_id: 'NCT000001',
+        ctgov_group_code: 'OG000',
+        classification: 'Class Title',
+        category: 'Category Title',
+        title: 'Absolute Change in Pre-Bronchodilator Forced Expiratory Volume in 1 Second (FEV1)',
+        description: "FEV1 measures how much air a person can exhale during the first second of a forced breath.\n\nAdjusted means are reported.", 
+        units: "Milliliters (mL)",
+        param_type: "MEAN",
+        dispersion_type: "95% Confidence Interval",
+        param_value: "12",
+        param_value_num: BigDecimal(12),
+        dispersion_value: "2",
+        dispersion_value_num: BigDecimal(2),
+        dispersion_lower_limit: BigDecimal(8),
+        dispersion_upper_limit: BigDecimal(16),
+        dispersion_upper_limit_raw:"16",
+        dispersion_lower_limit_raw: "8",
+        explanation_of_na: "Not applicable",
+      }
     ]
     # load the json
     content = JSON.parse(File.read('spec/support/json_data/outcome_measurement.json'))
@@ -12,8 +32,28 @@ describe OutcomeMeasurement do
     StudyJsonRecord::Worker.new.process # import the new json record
 
     # load the database entries
-    imported = OutcomeMeasure.all.map do |x|
+    imported = OutcomeMeasurement.all.map do |x|
       {
+        nct_id: x.nct_id,
+    # outcome_id integer,
+    # result_group_id integer,
+        ctgov_group_code: x.ctgov_group_code,
+        classification: x.classification,
+        category: x.category,
+        title: x.title,
+        description: x.description,
+        units: x.units,
+        param_type: x.param_type,
+        dispersion_type: x.dispersion_type,
+        param_value: x.param_value,
+        param_value_num: x.param_value_num,
+        dispersion_value: x.dispersion_value,
+        dispersion_value_num: x.dispersion_value_num,
+        dispersion_lower_limit: x.dispersion_lower_limit,
+        dispersion_upper_limit: x.dispersion_upper_limit,
+        dispersion_upper_limit_raw: x.dispersion_upper_limit_raw,
+        dispersion_lower_limit_raw: x.dispersion_lower_limit_raw,
+        explanation_of_na: x.explanation_of_na,
       }
     end
   

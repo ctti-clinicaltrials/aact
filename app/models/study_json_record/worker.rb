@@ -111,6 +111,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
       entries = mapping_root.is_a?(Array) ? mapping_root : [mapping_root]
 
+      # flatten the entries if needed
+      entries = flatten(mapping[:flatten].clone, entries) if mapping[:flatten]
+
       entries = entries.select { |e| mapping[:filter].call(e) } if mapping[:filter]
 
       entries.each_with_index do |entry, index|
