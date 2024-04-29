@@ -8,42 +8,42 @@ RSpec.describe OutcomeCount, type: :model do
         "ctgov_group_code" => "OG000",
         "scope" => "Measure",
         "units" => "Participants",
-        "count" => "120"
+        "count" => 120
       },
       {
         "nct_id" => "NCT000001",
         "ctgov_group_code" => "OG000",
         "scope" => "Measure",
         "units" => "Participants",
-        "count" => "158"
+        "count" => 158
       },
       {
         "nct_id" => "NCT000001",
-        "ctgov_group_code" => "OG000",
+        "ctgov_group_code" => "OG001",
         "scope" => "Measure",
         "units" => "Participants",
-        "count" => "159"
+        "count" => 159
       },
       {
         "nct_id" => "NCT000001",
-        "ctgov_group_code" => "OG000",
+        "ctgov_group_code" => "OG002",
         "scope" => "Measure",
         "units" => "Participants",
-        "count" => "96"
+        "count" => 96
       },
       {
         "nct_id" => "NCT000001",
-        "ctgov_group_code" => "OG000",
+        "ctgov_group_code" => "OG003",
         "scope" => "Measure",
         "units" => "Participants",
-        "count" => "20"
+        "count" => 20
       },
       {
         "nct_id" => "NCT000001",
-        "ctgov_group_code" => "OG000",
+        "ctgov_group_code" => "OG004",
         "scope" => "Measure",
         "units" => "Participants",
-        "count" => "243"
+        "count" => 243
       }
     ]
 
@@ -56,7 +56,6 @@ RSpec.describe OutcomeCount, type: :model do
 
     # load the database entries
     imported = OutcomeCount.all.map { |x| x.attributes.except("id", "outcome_id", "result_group_id") }
-    byebug
   
     # Compare the modified imported data with the expected data
     expect(imported).to eq(expected_data)
