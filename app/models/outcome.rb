@@ -19,20 +19,21 @@ class Outcome < StudyRelationship
         { name: :units, value: :unitOfMeasure },
         { name: :units_analyzed, value: :typeUnitsAnalyzed },
         { name: :dispersion_type, value: :dispersionType },
-        { name: :param_type, value: :paramType },
+        { name: :param_type, value: :paramType }
       ],
       children: [
         {
           table: :outcome_counts,
           root: nil,
-          flatten: [:denoms, :counts]
+          requires: :result_groups, # do I need this since the parent has it?
+          flatten: [:denoms, :counts],
           columns: [
             { name: :outcome_id, value: nil },
             { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
             { name: :ctgov_group_code, value: [:groupId] },
             { name: :scope, value: 'Measure' },
             { name: :units, value: [:$parent, :units] },
-            { name: :count, value: [:value] },
+            { name: :count, value: [:value] }
           ]
         },
         {
