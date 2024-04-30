@@ -75,9 +75,19 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
+  def import_all
+    records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+    while records > 0
+      process(5000)
+      records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+    end
+  end
+
   def process(count = 1)
     # load records
     with_search_path('ctgov_v2, support, public') do
+      StudyRelationship.study_models.map{|k| k.reset_column_information }
+
       records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count)
       Rails.logger.debug { "records: #{records.count}" }
 
@@ -96,7 +106,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
-  private
+  # private
 
   def prepare_children(parent, content, children)
     children.each do |mapping|
