@@ -75,9 +75,19 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
+  def import_all
+    records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+    while records > 0
+      process(5000)
+      records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+    end
+  end
+
   def process(count = 1)
     # load records
     with_search_path('ctgov_v2, support, public') do
+      StudyRelationship.study_models.map{|k| k.reset_column_information }
+
       records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count)
       Rails.logger.debug { "records: #{records.count}" }
 
@@ -96,7 +106,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
-  private
+  # private
 
   def prepare_children(parent, content, children)
     children.each do |mapping|
@@ -110,6 +120,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       next if mapping_root.nil? # skip if no root found
 
       entries = mapping_root.is_a?(Array) ? mapping_root : [mapping_root]
+
+      # flatten the entries if needed
+      entries = flatten(mapping[:flatten].clone, entries) if mapping[:flatten]
 
       entries = entries.select { |e| mapping[:filter].call(e) } if mapping[:filter]
 
@@ -145,8 +158,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   def flatten(path, data, parent=nil)
     return [] unless data
     child_key = path.first
+    result = []
     if child_key.nil?
-      data.each {|i| append_parent(i, parent) } if parent
+      data.each { |i| append_parent(i, parent) } if parent
       return data
     else
       result = data.map do |item|
@@ -158,7 +172,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       return result.flatten
     end
   end
-
+  
   def process_mapping(mapping, records)
     model = mapping[:table].to_s.classify.constantize # get the model from the table name
     root = mapping[:root].map(&:to_s) if mapping[:root] # normalize root path to array of strings

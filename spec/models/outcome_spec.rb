@@ -16,7 +16,21 @@ describe Outcome do
         "anticipated_posting_date" => Date.parse("2024-08-01"),
         "anticipated_posting_month_year" =>  "2024-08",
         "units_analyzed" => "encounters"
-      }
+      },
+      {
+        "nct_id"=>"NCT000001",
+        "outcome_type" => "Secondary",
+        "title" => "Number of Chewing Cycles Per Bolus",
+        "param_type" => "Mean",
+        "time_frame" => "Baseline (single timepoint only)",
+        "description" => "Using surface electromyography (sEMG) of the masseter muscle, we will count the number of muscle contraction spikes (i.e. chewing cycles) seen for chewing activity for a single comfortable bite of each bolus type.",
+        "units" => "number of chewing cycles",
+        "dispersion_type" => "Standard Deviation",
+        "population" => "Data for 3 additional participants could not be analyzed due to poor electromyography signal quality.",
+        "anticipated_posting_date" => Date.parse("2024-08-01"),
+        "anticipated_posting_month_year" =>  "2024-08",
+        "units_analyzed" => "encounters"
+    }
     ]
 
     # load the json

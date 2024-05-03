@@ -1,37 +1,22 @@
 class DropWithdrawal < StudyRelationship
   belongs_to :result_group
 
-  def self.create_all_from(opts)
-    import(self.nested_pop_create(opts.merge(:name=>'drop_withdraw_reason')))
-  end
-
-  def self.nested_pop_create(opts)
-    name=opts[:name]
-    all=opts[:xml].xpath("//#{name}_list").xpath(name)
-    col=[]
-    xml=all.pop
-    while xml
-      opts[:reason]=xml.xpath('title').text
-      opts[:period]=xml.parent.parent.xpath('title').text
-      groups=xml.xpath("participants_list").xpath('participants')
-      group=groups.pop
-      while group
-        col << create_from(opts.merge(:xml=>group))
-        group=groups.pop
-      end
-      xml=all.pop
-    end
-    col.flatten
-  end
-
-  def attribs
+  add_mapping do
     {
-      :result_group => get_group(opts[:groups]),
-      :ctgov_group_code => gid,
-      :count => get_attribute('count').to_i,
-      :reason => get_opt(:reason),
-      :period => get_opt(:period),
+      table: :drop_withdrawals,
+      root: [:resultsSection, :participantFlowModule, :periods],
+      flatten: [:dropWithdraws, :reasons],
+      requires: :result_groups,
+      columns: [
+        { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Participant Flow'] },
+        { name: :ctgov_group_code, value: :groupId },
+        { name: :period, value: [:$parent, :$parent, :title] },
+        { name: :reason, value: [:$parent, :type] },
+        { name: :count, value: :numSubjects },
+        { name: :drop_withdraw_comment, value: [:$parent, :comment] },
+        { name: :reason_comment, value: :comment },
+        { name: :count_units, value: :numUnits }
+      ]
     }
   end
-
 end
