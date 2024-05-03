@@ -2,13 +2,14 @@ require 'rails_helper'
 
 describe 'BaselineMeasurement and ResultGroup' do
   NCT_ID = 'NCT000001'.freeze
-  GROUP_RESOULTS_COUNT = 2
-  JSON_MEASUREMENTS_COUNT = 6
+  GROUP_RESOULTS_COUNT = 1
+  JSON_MEASUREMENTS_COUNT = 5
   
 
   before do
     # load the json and paths to main sections
-    content = JSON.parse(File.read('spec/support/json_data/baseline_measurements.json'))
+    content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_multiple.json'))
+    # content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_participants.json'))
     @result_groups = content['resultsSection']['baselineCharacteristicsModule']['groups']
     @measures = content['resultsSection']['baselineCharacteristicsModule']['measures']
 
@@ -36,7 +37,6 @@ describe 'BaselineMeasurement and ResultGroup' do
       expect(import_and_sort(ResultGroup)).to eq(expected)
     end
   end
-
 
   describe 'BaselineMeasurement' do
 
@@ -79,28 +79,46 @@ describe 'BaselineMeasurement and ResultGroup' do
       measure['classes'].flat_map do |class_object|
         class_object['categories'].flat_map do |category|
           category['measurements'].map do |measurement|
+            denom_units_selected = measure['denomUnitsSelected']
+            denoms = measure['denoms']
+            matching_denom_value = nil
+            denoms.each do |denom|
+              if denom['units'] == denom_units_selected
+                matching_denom_value = denom['counts'][0]['value']
+                break
+              end
+            end
+
             {
-              'nct_id' => NCT_ID,
-              'result_group_id' => ResultGroup.where(ctgov_group_code: measurement['groupId']).pluck(:id).first,
-              'ctgov_group_code' => measurement['groupId'],
-              'title' => measure['title'],
-              'param_type' => measure['paramType'],
-              'units' => measure['unitOfMeasure'],
-              'description' => nil,
-              'dispersion_type' => measure['dispersionType'],
-              "dispersion_value" => measurement['spread'],
-              "dispersion_value_num" => nil,
-              "dispersion_lower_limit" => nil,
-              "dispersion_upper_limit" => nil,
-              "calculate_percentage" => nil,
-              "category" => nil,
-              "classification" => nil,
-              "explanation_of_na" => nil,
-              "number_analyzed" => nil,
-              "number_analyzed_units" => nil,
-              "param_value" => nil,
-              "param_value_num" => nil,
-              "population_description" => nil,
+              nct_id: NCT_ID,
+              result_group_id: ResultGroup.where(ctgov_group_code: measurement['groupId']).pluck(:id).first,
+              ctgov_group_code: measurement['groupId'],
+
+              classification: class_object['title'],
+              category: category['title'],
+
+              title: measure['title'],
+              description: measure['description'],
+              units: measure['unitOfMeasure'],
+              population_description: measure['populationDescription'],
+
+              param_type: measure['paramType'],
+              param_value: measurement['value'],
+              param_value_num: measurement['value'].nil? ? nil : BigDecimal(measurement['value']),
+            
+              dispersion_type: measure['dispersionType'],
+              dispersion_value: measurement['spread'],
+              dispersion_value_num: measurement['spread'].nil? ? nil : BigDecimal(measurement['spread']),
+              dispersion_lower_limit: measurement['lowerLimit'],
+              dispersion_upper_limit: measurement['upperLimit'],
+
+              explanation_of_na: measurement['comment'],
+
+              calculate_percentage: measure['calculatePct'],
+              number_analyzed: matching_denom_value.nil? ? nil : matching_denom_value.to_i,
+              number_analyzed_units: denom_units_selected,
+              
+              
             }
           end
         end
@@ -111,16 +129,17 @@ describe 'BaselineMeasurement and ResultGroup' do
   def expected_result_group_data
     @result_groups.map do |record|
       {
-        'nct_id' => NCT_ID,
-        'ctgov_group_code' => record['id'],
-        'result_type' => 'Baseline',
-        'title' => record['title'],
-        'description' => record['description']
+        nct_id: NCT_ID,
+        ctgov_group_code: record['id'],
+        result_type: 'Baseline',
+        title: record['title'],
+        description: record['description']
       }
     end
   end
 
   def import_and_sort(model)
-    model.all.map { |x| x.attributes.except('id') }
+    model.all.map { |x| x.attributes.except('id').symbolize_keys }
   end
+
 end
