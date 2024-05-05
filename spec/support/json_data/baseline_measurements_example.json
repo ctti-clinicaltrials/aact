@@ -1,0 +1,265 @@
+{
+  "protocolSection": {},
+  "resultsSection": {
+    "participantFlowModule": {},
+    "baselineCharacteristicsModule": {
+      "populationDescription": "The Baseline Participants are based on the Intent-to-Treat (ITT) analysis set. The safety data for the adverse events section will be based on the Safety Set which has 219 participants in the Paclitaxel-coated arm and 68 in the Bare balloon arm.",
+      "typeUnitsAnalyzed": "lesions",
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Paclitaxel-coated Balloon",
+          "description": "Subjects with de novo occluded/stenotic or re-occluded/restenotic lesions will be randomly assigned to treatment with a Paclitaxel-coated balloon or bare balloon.\n\nCVI Paclitaxel-coated Percutaneous Transluminal Angioplasty Balloon Catheter"
+        },
+        {
+          "id": "BG001",
+          "title": "Bare Balloon",
+          "description": "Subjects with de novo occluded/stenotic or re-occluded/restenotic lesions will be randomly assigned to treatment with a Paclitaxel-coated balloon or bare balloon.\n\nBare Percutaneous Transluminal Angioplasty Balloon Catheter"
+        },
+        {
+          "id": "BG002",
+          "title": "Total",
+          "description": "Total of all reporting groups"
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "222"
+            },
+            {
+              "groupId": "BG001",
+              "value": "72"
+            },
+            {
+              "groupId": "BG002",
+              "value": "294"
+            }
+          ]
+        },
+        {
+          "units": "lesions",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "254"
+            },
+            {
+              "groupId": "BG001",
+              "value": "79"
+            },
+            {
+              "groupId": "BG002",
+              "value": "333"
+            }
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "title": "Rutherford Clinical Category",
+          "description": "The Rutherford-Becker Clinical Categories (RCC) are a classification system of chronic limb ischemia ranging from 0 (asymptomatic; no hemodynamically significant occlusive disease) to 6 (major tissue loss, extending above transmetatarsal level, functional foot no longer salvageable). Lower categories represent better clinical status.",
+          "populationDescription": "The Rutherford Clinical Category assessment was missing for 1 Paclitaxel-coated Balloon patient and for 1 Bare Balloon patient.",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "221"
+                },
+                {
+                  "groupId": "BG001",
+                  "value": "71"
+                },
+                {
+                  "groupId": "BG002",
+                  "value": "292"
+                }
+              ]
+            },
+            {
+              "units": "lesions",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "254"
+                },
+                {
+                  "groupId": "BG001",
+                  "value": "79"
+                },
+                {
+                  "groupId": "BG002",
+                  "value": "333"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "title": "Rutherford Clinical Category 2",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "34"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "15"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "49"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Rutherford Clinical Category 3",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "183"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "55"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "238"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Rutherford Clinical Category 4",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "4"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "5"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Lesion type",
+          "paramType": "COUNT_OF_UNITS",
+          "unitOfMeasure": "lesions",
+          "denomUnitsSelected": "lesions",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "222"
+                },
+                {
+                  "groupId": "BG001",
+                  "value": "72"
+                },
+                {
+                  "groupId": "BG002",
+                  "value": "294"
+                }
+              ]
+            },
+            {
+              "units": "lesions",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "254"
+                },
+                {
+                  "groupId": "BG001",
+                  "value": "79"
+                },
+                {
+                  "groupId": "BG002",
+                  "value": "333"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "title": "De novo",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "234"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "71"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "305"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Restonotic",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "20"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "8"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "28"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {},
+    "adverseEventsModule": {},
+    "moreInfoModule": {}
+  },
+  "derivedSection": {},
+  "hasResults": true
+}

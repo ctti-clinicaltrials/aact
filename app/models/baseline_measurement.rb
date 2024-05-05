@@ -11,7 +11,7 @@ class BaselineMeasurement < StudyRelationship
         table: :baseline_measurements,
         root: [:resultsSection, :baselineCharacteristicsModule],
         flatten: [:measures, :classes, :categories, :measurements],
-        requires: :result_groups, # TODO: review with Ramiro
+        requires: :result_groups,
         columns: [
           { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Baseline'] },
           { name: :ctgov_group_code, value: :groupId },

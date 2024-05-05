@@ -6,8 +6,11 @@ describe 'BaselineMeasurement and ResultGroup' do
 
   before do
     # load the json and paths to main sections
-    content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_multiple.json'))
+    # content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_multiple.json'))
+    # content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_single.json'))
     # content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_participants.json'))
+    content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_example.json'))
+
     @result_groups = content['resultsSection']['baselineCharacteristicsModule']['groups']
     @measures = content['resultsSection']['baselineCharacteristicsModule']['measures']
     @denoms = content['resultsSection']['baselineCharacteristicsModule']['denoms']
@@ -60,8 +63,8 @@ describe 'BaselineMeasurement and ResultGroup' do
       # expected = expected_baseline_count_data.sort_by { |record| [record['ctgov_group_code']] }
       expected = expected_baseline_measurement_data
       imported = import_and_sort(BaselineMeasurement)
-      puts "imported: #{imported}"
-      puts "expected: #{expected}"
+      # puts "imported: #{imported}"
+      # puts "expected: #{expected}"
       # byebug
       expect(imported).to eq(expected)
     end
