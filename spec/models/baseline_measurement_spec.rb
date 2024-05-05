@@ -110,11 +110,11 @@ describe 'BaselineMeasurement and ResultGroup' do
 
               param_type: measure['paramType'],
               param_value: measurement['value'],
-              param_value_num: measurement['value'].nil? ? nil : BigDecimal(measurement['value']),
+              param_value_num: begin BigDecimal(measurement['value']) rescue nil end,
             
               dispersion_type: measure['dispersionType'],
               dispersion_value: measurement['spread'],
-              dispersion_value_num: measurement['spread'].nil? ? nil : BigDecimal(measurement['spread']),
+              dispersion_value_num: begin BigDecimal(measurement['spread']) rescue nil end,
               dispersion_lower_limit: measurement['lowerLimit'],
               dispersion_upper_limit: measurement['upperLimit'],
 
