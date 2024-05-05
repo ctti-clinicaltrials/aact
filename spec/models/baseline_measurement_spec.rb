@@ -10,6 +10,7 @@ describe 'BaselineMeasurement and ResultGroup' do
     # content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_participants.json'))
     @result_groups = content['resultsSection']['baselineCharacteristicsModule']['groups']
     @measures = content['resultsSection']['baselineCharacteristicsModule']['measures']
+    @denoms = content['resultsSection']['baselineCharacteristicsModule']['denoms']
 
 
     # Create a brand new JSON record
@@ -29,6 +30,15 @@ describe 'BaselineMeasurement and ResultGroup' do
     it 'imports the correct ResultGroup data', schema: :v2 do
       expected = expected_result_group_data.sort_by { |record| [record['ctgov_group_code']] }
       expect(import_and_sort(ResultGroup)).to eq(expected)
+    end
+  end
+
+
+  describe 'BaselineCount' do
+
+    it 'creates the same number of BaselineCount records as counts in the JSON file', schema: :v2 do
+      counts = @denoms.flat_map { |denom| denom['counts'] }
+      expect(BaselineCount.count).to eq(counts.count)
     end
   end
 
