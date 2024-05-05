@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'BaselineMeasurement and ResultGroup' do
   NCT_ID = 'NCT000001'.freeze
-  GROUP_RESOULTS_COUNT = 1
-  JSON_MEASUREMENTS_COUNT = 5
   
 
   before do
@@ -24,12 +22,8 @@ describe 'BaselineMeasurement and ResultGroup' do
 
   describe 'ResultGroup' do
 
-  it 'has the correct number of groups in the JSON file' do
-    expect(@result_groups.count).to eq(GROUP_RESOULTS_COUNT)
-  end
-  
-    it 'creates the correct number of ResultGroup records', schema: :v2 do
-      expect(ResultGroup.count).to eq(GROUP_RESOULTS_COUNT)
+    it 'creates the same number of ResultGroup records as groups in the JSON file', schema: :v2 do
+      expect(ResultGroup.count).to eq(@result_groups.count)
     end
 
     it 'imports the correct ResultGroup data', schema: :v2 do
@@ -40,7 +34,7 @@ describe 'BaselineMeasurement and ResultGroup' do
 
   describe 'BaselineMeasurement' do
 
-    it 'has the correct number of measurements in the JSON file' do
+    it 'creates the same number of BaselineMeasurement records as measurements in the JSON file', schema: :v2 do
       measurement_count = @measures.sum do |measure|
         measure['classes'].sum do |class_object|
           class_object['categories'].sum do |category|
@@ -48,12 +42,7 @@ describe 'BaselineMeasurement and ResultGroup' do
           end
         end
       end
-      expect(measurement_count).to eq(JSON_MEASUREMENTS_COUNT)
-    end
-
-
-    it 'creates the correct number of BaselineMeasurement records', schema: :v2 do
-      expect(BaselineMeasurement.count).to eq(JSON_MEASUREMENTS_COUNT)
+      expect(BaselineMeasurement.count).to eq(measurement_count)
     end
 
 
