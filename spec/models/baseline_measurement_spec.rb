@@ -77,8 +77,12 @@ describe 'BaselineMeasurement and ResultGroup' do
             else
               denoms.each do |denom|
                 if denom['units'] == denom_units_selected
-                  matching_denom_value = denom['counts'][0]['value']
-                  break
+                  denom['counts'].each do |count|
+                    if count['groupId'] == measurement['groupId']
+                      matching_denom_value = count['value']
+                      break
+                    end
+                  end
                 end
               end
             end
