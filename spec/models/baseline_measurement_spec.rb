@@ -82,12 +82,18 @@ describe 'BaselineMeasurement and ResultGroup' do
             denom_units_selected = measure['denomUnitsSelected']
             denoms = measure['denoms']
             matching_denom_value = nil
-            denoms.each do |denom|
-              if denom['units'] == denom_units_selected
-                matching_denom_value = denom['counts'][0]['value']
-                break
+            if denom_units_selected.nil?
+              baseline_count = BaselineCount.find_by(ctgov_group_code: measurement['groupId'])
+              matching_denom_value = baseline_count&.count
+            else
+              denoms.each do |denom|
+                if denom['units'] == denom_units_selected
+                  matching_denom_value = denom['counts'][0]['value']
+                  break
+                end
               end
             end
+            
 
             {
               nct_id: NCT_ID,

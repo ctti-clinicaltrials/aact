@@ -11,7 +11,7 @@ class BaselineMeasurement < StudyRelationship
         table: :baseline_measurements,
         root: [:resultsSection, :baselineCharacteristicsModule],
         flatten: [:measures, :classes, :categories, :measurements],
-        requires: :result_groups,
+        requires: [:result_groups, :baseline_counts], # TODO: review with Ramiro
         columns: [
           { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Baseline'] },
           { name: :ctgov_group_code, value: :groupId },
@@ -40,28 +40,45 @@ class BaselineMeasurement < StudyRelationship
           # TODO: find example to test
           { name: :dispersion_lower_limit, value: :lowerLimit }, # measurement.lowerLimit 
           { name: :dispersion_upper_limit, value: :upperLimit }, # measurement.upperLimit
-          
           { name: :explanation_of_na, value: :comment}, # measurement.comment
 
-          { name: :number_analyzed,
-            value: [:$parent, :$parent, :$parent],
-            convert_to: ->(val) {
-              denom_units_selected = val['denomUnitsSelected']
-              denoms = val['denoms']
-              matching_denom_value = nil
-              denoms.each do | denom |
-                if denom['units'] == denom_units_selected
-                  matching_denom_value = denom['counts'][0]['value']
-                  break
-                end
-              end
-              matching_denom_value
-            }
-          },
-
+          { name: :number_analyzed, value: nil, convert_to: ->(val) { BaselineMeasurement.number_analyzed(val) }},
+          # TODO: handle nil value for "participants only" case
           { name: :number_analyzed_units, value: [:$parent, :$parent, :$parent, :denomUnitsSelected] }
         ]
       }
+    end
 
+
+    private
+
+    # TODO: Classes might have their own counts - need to find the example
+    def self.number_analyzed(measurement)
+      number_analyzed = nil
+      group_id = measurement['groupId']
+      denom_units = measurement['$parent']['$parent']['$parent']['denomUnitsSelected']
+
+      # TODO: optimize this
+      if denom_units.nil?
+        baseline_count = BaselineCount.find_by(ctgov_group_code: group_id)
+        return baseline_count&.count
+      end
+
+      denoms = measurement['$parent']['$parent']['$parent']['denoms']
+
+      denoms.each do |denom|
+        if denom['units'] == denom_units
+          if denom['counts'].present?
+            denom['counts'].each do |count|
+              if count['groupId'] == group_id
+                number_analyzed = count['value']
+                break
+              end
+            end
+            
+          end
+        end
+      end
+      number_analyzed
     end
 end
