@@ -11,7 +11,7 @@ class BaselineMeasurement < StudyRelationship
         table: :baseline_measurements,
         root: [:resultsSection, :baselineCharacteristicsModule],
         flatten: [:measures, :classes, :categories, :measurements],
-        requires: [:result_groups, :baseline_counts], # TODO: review with Ramiro
+        requires: :result_groups, # TODO: review with Ramiro
         columns: [
           { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Baseline'] },
           { name: :ctgov_group_code, value: :groupId },
@@ -27,16 +27,16 @@ class BaselineMeasurement < StudyRelationship
           # TODO: find example to test
           { name: :calculate_percentage, value: [:$parent, :$parent, :$parent, :calculatePct] }, # measure.calculatePct optional
 
-          # TODO: humanize values (ex. COUNT_OF_PARTICIPANTS" to "Count of Participants")
+          # TODO: Use Enumns to humanize values (ex. COUNT_OF_PARTICIPANTS" to "Count of Participants")
           { name: :param_type, value: [:$parent, :$parent, :$parent, :paramType] }, # measure.paramType required
           { name: :param_value, value: :value }, # measurement.value
           { name: :param_value_num, value: :value, convert_to: :float }, # measurement.value
 
 
-          # TODO: humanize values (ex. "STANDARD_DEVIATION" to "Standard Deviation")
+          # TODO: Use Enumns to humanize values (ex. "STANDARD_DEVIATION" to "Standard Deviation")
           { name: :dispersion_type, value: [:$parent, :$parent, :$parent, :dispersionType] }, # measure.dispersionType required
           { name: :dispersion_value, value: :spread }, # measurement.spread
-          { name: :dispersion_value_num, value: :spread, convert_to: :float },
+          { name: :dispersion_value_num, Pvalue: :spread, convert_to: :float },
           # TODO: find example to test
           { name: :dispersion_lower_limit, value: :lowerLimit }, # measurement.lowerLimit 
           { name: :dispersion_upper_limit, value: :upperLimit }, # measurement.upperLimit
