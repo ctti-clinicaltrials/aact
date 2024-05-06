@@ -13,7 +13,7 @@ class BaselineMeasurement < StudyRelationship
         flatten: [:measures, :classes, :categories, :measurements],
         requires: :result_groups,
         columns: [
-          { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Baseline'] },
+          { name: :result_group_id, value: reference(:result_groups)[:groupId, "Baseline"] },
           { name: :ctgov_group_code, value: :groupId },
 
           { name: :classification, value: [:$parent, :$parent, :title] }, # class.title - optional if 1+ class
@@ -55,8 +55,8 @@ class BaselineMeasurement < StudyRelationship
     # TODO: Classes might have their own counts - need to find the example
     def self.number_analyzed(measurement)
       number_analyzed = nil
-      group_id = measurement['groupId']
-      denom_units = measurement['$parent']['$parent']['$parent']['denomUnitsSelected']
+      group_id = measurement["groupId"]
+      denom_units = measurement["$parent"]["$parent"]["$parent"]["denomUnitsSelected"]
 
       # TODO: optimize this
       if denom_units.nil?
@@ -64,14 +64,14 @@ class BaselineMeasurement < StudyRelationship
         return baseline_count&.count
       end
 
-      denoms = measurement['$parent']['$parent']['$parent']['denoms']
+      denoms = measurement["$parent"]["$parent"]["$parent"]["denoms"]
 
       denoms.each do |denom|
-        if denom['units'] == denom_units
-          if denom['counts'].present?
-            denom['counts'].each do |count|
-              if count['groupId'] == group_id
-                number_analyzed = count['value']
+        if denom["units"] == denom_units
+          if denom["counts"].present?
+            denom["counts"].each do |count|
+              if count["groupId"] == group_id
+                number_analyzed = count["value"]
                 break
               end
             end
