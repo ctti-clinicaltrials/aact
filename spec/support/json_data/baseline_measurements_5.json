@@ -1,0 +1,234 @@
+{
+  "protocolSection": {},
+  "resultsSection": {
+    "participantFlowModule": {},
+    "baselineCharacteristicsModule": {
+      "populationDescription": "Safety Population: all enrolled participants that received any parotid saline irrigation used to determine parotid filling volume during Stage I screening.",
+      "typeUnitsAnalyzed": "parotid glands",
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Overall Study",
+          "description": "Safety Population: all enrolled participants that received any parotid saline irrigation used to determine parotid filling volume during Stage I screening."
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "11"
+            }
+          ]
+        },
+        {
+          "units": "parotid glands",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "22"
+            }
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "title": "Sex: Female, Male",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "11"
+                }
+              ]
+            },
+            {
+              "units": "parotid glands",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "22"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "Female",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "11"
+                    }
+                  ]
+                },
+                {
+                  "title": "Male",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Parotid Fill Volume",
+          "description": "Fill volumes were determined by injecting saline using a syringe into the parotid. Injection was terminated when the parotid volume was full or a maximum of 1 mL was injected.",
+          "populationDescription": "Two participants in the Safety population were never randomized. These two participants were thus entered in the table as \"not randomized\"",
+          "paramType": "MEDIAN",
+          "dispersionType": "FULL_RANGE",
+          "unitOfMeasure": "mL/min",
+          "denomUnitsSelected": "parotid glands",
+          "classes": [
+            {
+              "title": "Parotid randomized to dexamethasone irrigation",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "9"
+                    }
+                  ]
+                },
+                {
+                  "units": "parotid glands",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "9"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "1.0",
+                      "lowerLimit": "0.6",
+                      "upperLimit": "1.0"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Parotid randomized to placebo irrigation",
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "9"
+                    }
+                  ]
+                },
+                {
+                  "units": "parotid glands",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "9"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "1.0",
+                      "lowerLimit": "0.7",
+                      "upperLimit": "1.0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Saliva Flow",
+          "populationDescription": "Two participants in the safety population were not randomized and thus their saliva flow was not recorded at their baseline randomization visit.",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "mL/min",
+          "denomUnitsSelected": "parotid glands",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "9"
+                }
+              ]
+            },
+            {
+              "units": "parotid glands",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "9"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "title": "Parotid randomized to dexamethasone irrigation",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0.21250",
+                      "spread": "0.158850"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Parotid randomized to placebo irrigation",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0.19096",
+                      "spread": "0.136399"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {},
+    "adverseEventsModule": {},
+    "moreInfoModule": {}
+  },
+  "documentSection": {},
+  "derivedSection": {},
+  "hasResults": true
+}

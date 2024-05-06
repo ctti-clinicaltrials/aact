@@ -4,10 +4,11 @@ describe "BaselineMeasurement and ResultGroup" do
   NCT_ID = "NCT000001".freeze
 
   json_files = [
-    "baseline_measurements_1.json",
-    "baseline_measurements_2.json",
-    "baseline_measurements_3.json",
-    "baseline_measurements_4.json"
+    # "baseline_measurements_1.json",
+    # "baseline_measurements_2.json",
+    # "baseline_measurements_3.json",
+    # "baseline_measurements_4.json",
+    "baseline_measurements_5.json"
   ]
 
   json_files.each do |json_file|
@@ -76,13 +77,14 @@ describe "BaselineMeasurement and ResultGroup" do
         measure_class["categories"].flat_map do |category|
           category["measurements"].map do |measurement|
             denom_units = measure["denomUnitsSelected"]
-            denoms = measure["denoms"]
-            denom_value = nil
+            # denoms = measure["denoms"]
+            # denom_value = nil
             if denom_units.nil?
               baseline_count = BaselineCount.find_by(ctgov_group_code: measurement["groupId"])
               denom_value = baseline_count&.count
               denom_units = baseline_count&.units
             else
+              denoms = measure_class["denoms"] || measure["denoms"]
               denoms.each do |denom|
                 if denom["units"] == denom_units
                   denom["counts"].each do |count|

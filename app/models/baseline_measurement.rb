@@ -54,33 +54,39 @@ class BaselineMeasurement < StudyRelationship
 
     private
 
-    # TODO: Classes might have their own counts - need to find the example
+   
     def self.number_analyzed(measurement)
-      number_analyzed = nil
       group_id = measurement["groupId"]
       denom_units = measurement["$parent"]["$parent"]["$parent"]["denomUnitsSelected"]
 
-      # TODO: optimize this
+      # If denom_units is not present, check at the top level
       if denom_units.nil?
         baseline_count = BaselineCount.find_by(ctgov_group_code: group_id)
         return baseline_count&.count
       end
 
-      denoms = measurement["$parent"]["$parent"]["$parent"]["denoms"]
+      # Check at the class level
+      class_denoms = measurement["$parent"]["$parent"]["denoms"]
+      number_analyzed = find_number_analyzed_in_denoms(class_denoms, group_id, denom_units)
+      return number_analyzed unless number_analyzed.nil?
+      # byebug
+
+      
+      measure_denoms = measurement["$parent"]["$parent"]["$parent"]["denoms"]
+      number_analyzed = find_number_analyzed_in_denoms(measure_denoms, group_id, denom_units)
+      number_analyzed
+    end
+
+    def self.find_number_analyzed_in_denoms(denoms, group_id, denom_units)
+      return nil if denoms.nil?
 
       denoms.each do |denom|
-        if denom["units"] == denom_units
-          if denom["counts"].present?
-            denom["counts"].each do |count|
-              if count["groupId"] == group_id
-                number_analyzed = count["value"]
-                break
-              end
-            end
-            
+        if denom["units"] == denom_units && denom["counts"].present?
+          denom["counts"].each do |count|
+            return count["value"] if count["groupId"] == group_id
           end
         end
       end
-      number_analyzed
+      nil
     end
 end
