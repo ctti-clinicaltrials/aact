@@ -118,8 +118,8 @@ describe "BaselineMeasurement and ResultGroup" do
               dispersion_type: measure["dispersionType"],
               dispersion_value: measurement["spread"],
               dispersion_value_num: begin BigDecimal(measurement["spread"]) rescue nil end,
-              dispersion_lower_limit: measurement["lowerLimit"],
-              dispersion_upper_limit: measurement["upperLimit"],
+              dispersion_lower_limit: begin BigDecimal(measurement["lowerLimit"]) rescue nil end,
+              dispersion_upper_limit: begin BigDecimal(measurement["upperLimit"]) rescue nil end,
 
               explanation_of_na: measurement["comment"],
 

@@ -38,8 +38,8 @@ class BaselineMeasurement < StudyRelationship
           { name: :dispersion_value, value: :spread }, # measurement.spread
           { name: :dispersion_value_num, value: :spread, convert_to: :float },
           # TODO: find example to test
-          { name: :dispersion_lower_limit, value: :lowerLimit }, # measurement.lowerLimit 
-          { name: :dispersion_upper_limit, value: :upperLimit }, # measurement.upperLimit
+          { name: :dispersion_lower_limit, value: :lowerLimit, convert_to: :float  }, # measurement.lowerLimit 
+          { name: :dispersion_upper_limit, value: :upperLimit, convert_to: :float  }, # measurement.upperLimit
           { name: :explanation_of_na, value: :comment}, # measurement.comment
 
           { name: :number_analyzed, value: nil, convert_to: ->(val) { BaselineMeasurement.number_analyzed(val) }},
