@@ -2,75 +2,69 @@ require 'rails_helper'
 
 describe 'BaselineMeasurement and ResultGroup' do
   NCT_ID = 'NCT000001'.freeze
-  
 
-  before do
-    # load the json and paths to main sections
-    # content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_multiple.json'))
-    # content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_single.json'))
-    # content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_participants.json'))
-    content = JSON.parse(File.read('spec/support/json_data/baseline_measurements_example.json'))
+  json_files = [
+    'baseline_measurements_1.json',
+    'baseline_measurements_2.json',
+    'baseline_measurements_3.json',
+    'baseline_measurements_4.json'
+  ]
 
-    @result_groups = content['resultsSection']['baselineCharacteristicsModule']['groups']
-    @measures = content['resultsSection']['baselineCharacteristicsModule']['measures']
-    @denoms = content['resultsSection']['baselineCharacteristicsModule']['denoms']
+  json_files.each do |json_file|
+    context "When importing data from #{json_file}" do
+      
+      let(:content) { JSON.parse(File.read("spec/support/json_data/#{json_file}")) }
 
+      before do
+        @result_groups = content['resultsSection']['baselineCharacteristicsModule']['groups']
+        @measures = content['resultsSection']['baselineCharacteristicsModule']['measures']
+        @denoms = content['resultsSection']['baselineCharacteristicsModule']['denoms']
 
-    # Create a brand new JSON record
-    StudyJsonRecord.create(nct_id: NCT_ID, version: '2', content: content)
-    # Import the new JSON record
-    StudyJsonRecord::Worker.new.process
-  end
+        StudyJsonRecord.create(nct_id: NCT_ID, version: '2', content: content)
+        StudyJsonRecord::Worker.new.process
+      end
 
+      describe 'ResultGroup' do
+        it 'creates the correct number of records', schema: :v2 do
+          expect(ResultGroup.count).to eq(@result_groups.count)
+        end
 
-
-  describe 'ResultGroup' do
-
-    it 'creates the same number of ResultGroup records as groups in the JSON file', schema: :v2 do
-      expect(ResultGroup.count).to eq(@result_groups.count)
-    end
-
-    it 'imports the correct ResultGroup data', schema: :v2 do
-      expected = expected_result_group_data.sort_by { |record| [record['ctgov_group_code']] }
-      expect(import_and_sort(ResultGroup)).to eq(expected)
-    end
-  end
-
-
-  describe 'BaselineCount' do
-
-    it 'creates the same number of BaselineCount records as counts in the JSON file', schema: :v2 do
-      counts = @denoms.flat_map { |denom| denom['counts'] }
-      expect(BaselineCount.count).to eq(counts.count)
-    end
-  end
-
-  describe 'BaselineMeasurement' do
-
-    it 'creates the same number of BaselineMeasurement records as measurements in the JSON file', schema: :v2 do
-      measurement_count = @measures.sum do |measure|
-        measure['classes'].sum do |class_object|
-          class_object['categories'].sum do |category|
-            category['measurements'].count
-          end
+        it 'imports the data correctly', schema: :v2 do
+          expected = expected_result_group_data.sort_by { |record| [record['ctgov_group_code']] }
+          expect(import_and_sort(ResultGroup)).to eq(expected)
         end
       end
-      expect(BaselineMeasurement.count).to eq(measurement_count)
-    end
 
 
-    it 'imports the correct BaselineMeasurement data', schema: :v2 do
-      # expected = expected_baseline_count_data.sort_by { |record| [record['ctgov_group_code']] }
-      expected = expected_baseline_measurement_data
-      imported = import_and_sort(BaselineMeasurement)
-      # puts "imported: #{imported}"
-      # puts "expected: #{expected}"
-      # byebug
-      expect(imported).to eq(expected)
+      describe 'BaselineCount' do
+        it 'creates the correct number of records', schema: :v2 do
+          counts = @denoms.flat_map { |denom| denom['counts'] }
+          expect(BaselineCount.count).to eq(counts.count)
+        end
+      end
+
+      describe 'BaselineMeasurement' do
+        it 'imports the data correctly', schema: :v2 do
+          measurement_count = @measures.sum do |measure|
+            measure['classes'].sum do |class_object|
+              class_object['categories'].sum do |category|
+                category['measurements'].count
+              end
+            end
+          end
+          expect(BaselineMeasurement.count).to eq(measurement_count)
+        end
+
+        it 'imports the correct BaselineMeasurement data', schema: :v2 do
+          expected = expected_baseline_measurement_data
+          imported = import_and_sort(BaselineMeasurement)
+          # puts "imported: #{imported}"
+          # puts "expected: #{expected}"
+          expect(imported).to eq(expected)
+        end
+      end
     end
   end
-
-
 
 
   private
