@@ -81,6 +81,7 @@ describe "BaselineMeasurement and ResultGroup" do
             if denom_units.nil?
               baseline_count = BaselineCount.find_by(ctgov_group_code: measurement["groupId"])
               denom_value = baseline_count&.count
+              denom_units = baseline_count&.units
             else
               denoms.each do |denom|
                 if denom["units"] == denom_units

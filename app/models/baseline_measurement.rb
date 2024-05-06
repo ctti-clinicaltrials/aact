@@ -24,7 +24,7 @@ class BaselineMeasurement < StudyRelationship
           { name: :units, value: [:$parent, :$parent, :$parent, :unitOfMeasure] }, # measure.unitOfMeasure required
           { name: :population_description, value: [:$parent, :$parent, :$parent, :populationDescription] }, # measure.populationDescription optional
 
-          # TODO: find example to test
+          # TODO: find example to test - new versio returns bool not string
           { name: :calculate_percentage, value: [:$parent, :$parent, :$parent, :calculatePct] }, # measure.calculatePct optional
 
           # TODO: Use Enumns to humanize values (ex. COUNT_OF_PARTICIPANTS" to "Count of Participants")
@@ -43,8 +43,10 @@ class BaselineMeasurement < StudyRelationship
           { name: :explanation_of_na, value: :comment}, # measurement.comment
 
           { name: :number_analyzed, value: nil, convert_to: ->(val) { BaselineMeasurement.number_analyzed(val) }},
-          # TODO: handle nil value for "participants only" case
-          { name: :number_analyzed_units, value: [:$parent, :$parent, :$parent, :denomUnitsSelected] }
+          { name: :number_analyzed_units,
+            value: [:$parent, :$parent, :$parent, :denomUnitsSelected],
+            convert_to: ->(val) { val.nil? ? "Participants" : val } # TODO: avoid hardcoding
+          }
         ]
       }
     end
