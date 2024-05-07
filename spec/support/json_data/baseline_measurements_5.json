@@ -38,6 +38,7 @@
           "paramType": "COUNT_OF_PARTICIPANTS",
           "unitOfMeasure": "Participants",
           "denomUnitsSelected": "Participants",
+          "calculatePct": false,
           "denoms": [
             {
               "units": "Participants",

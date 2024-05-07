@@ -4,10 +4,10 @@ describe "BaselineMeasurement and ResultGroup" do
   NCT_ID = "NCT000001".freeze
 
   json_files = [
-    # "baseline_measurements_1.json",
-    # "baseline_measurements_2.json",
-    # "baseline_measurements_3.json",
-    # "baseline_measurements_4.json",
+    "baseline_measurements_1.json",
+    "baseline_measurements_2.json",
+    "baseline_measurements_3.json",
+    "baseline_measurements_4.json",
     "baseline_measurements_5.json"
   ]
 
@@ -123,7 +123,7 @@ describe "BaselineMeasurement and ResultGroup" do
 
               explanation_of_na: measurement["comment"],
 
-              calculate_percentage: measure["calculatePct"],
+              calculate_percentage: measure["calculatePct"].nil? ? nil : (measure["calculatePct"] == false ? "No" : "Yes"),
               number_analyzed: denom_value.nil? ? nil : denom_value.to_i,
               number_analyzed_units: denom_units,
             }

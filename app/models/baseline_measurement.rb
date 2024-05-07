@@ -2,10 +2,6 @@ class BaselineMeasurement < StudyRelationship
 
   belongs_to :result_group
 
-
-  # populationDescription - studies.baseline_population
-  # typeUnitsAnalyzed - studies.baseline_type_units_analyzed
-
   add_mapping do
       {
         table: :baseline_measurements,
@@ -24,20 +20,20 @@ class BaselineMeasurement < StudyRelationship
           { name: :units, value: [:$parent, :$parent, :$parent, :unitOfMeasure] }, # measure.unitOfMeasure required
           { name: :population_description, value: [:$parent, :$parent, :$parent, :populationDescription] }, # measure.populationDescription optional
 
-          # TODO: find example to test - new versio returns bool not string
-          { name: :calculate_percentage, value: [:$parent, :$parent, :$parent, :calculatePct] }, # measure.calculatePct optional
+          { name: :calculate_percentage,
+            value: [:$parent, :$parent, :$parent, :calculatePct],
+            convert_to: ->(val) { val.nil? ? nil : (val == false ? "No" : "Yes") }
+          }, # measure.calculatePct optional
 
           # TODO: Use Enumns to humanize values (ex. COUNT_OF_PARTICIPANTS" to "Count of Participants")
           { name: :param_type, value: [:$parent, :$parent, :$parent, :paramType] }, # measure.paramType required
           { name: :param_value, value: :value }, # measurement.value
           { name: :param_value_num, value: :value, convert_to: :float }, # measurement.value
 
-
           # TODO: Use Enumns to humanize values (ex. "STANDARD_DEVIATION" to "Standard Deviation")
           { name: :dispersion_type, value: [:$parent, :$parent, :$parent, :dispersionType] }, # measure.dispersionType required
           { name: :dispersion_value, value: :spread }, # measurement.spread
           { name: :dispersion_value_num, value: :spread, convert_to: :float },
-          # TODO: find example to test
           { name: :dispersion_lower_limit, value: :lowerLimit, convert_to: :float  }, # measurement.lowerLimit 
           { name: :dispersion_upper_limit, value: :upperLimit, convert_to: :float  }, # measurement.upperLimit
           { name: :explanation_of_na, value: :comment}, # measurement.comment
