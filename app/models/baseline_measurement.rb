@@ -47,42 +47,29 @@ class BaselineMeasurement < StudyRelationship
       }
     end
 
-
     private
 
-   
     def self.number_analyzed(measurement)
       group_id = measurement["groupId"]
       denom_units = measurement["$parent"]["$parent"]["$parent"]["denomUnitsSelected"]
 
       # If denom_units is not present, check at the top level
+      # TODO: Find a way to avoid accessing Database
       if denom_units.nil?
         baseline_count = BaselineCount.find_by(ctgov_group_code: group_id)
         return baseline_count&.count
       end
 
-      # Check at the class level
-      class_denoms = measurement["$parent"]["$parent"]["denoms"]
-      number_analyzed = find_number_analyzed_in_denoms(class_denoms, group_id, denom_units)
-      return number_analyzed unless number_analyzed.nil?
-      # byebug
+      # check class denoms or measure denoms
+      denoms = measurement["$parent"]["$parent"]["denoms"] || measurement["$parent"]["$parent"]["$parent"]["denoms"]
+      raise "Error: class or measure denoms is nil" if denoms.nil?
 
-      
-      measure_denoms = measurement["$parent"]["$parent"]["$parent"]["denoms"]
-      number_analyzed = find_number_analyzed_in_denoms(measure_denoms, group_id, denom_units)
-      number_analyzed
-    end
-
-    def self.find_number_analyzed_in_denoms(denoms, group_id, denom_units)
-      return nil if denoms.nil?
-
-      denoms.each do |denom|
-        if denom["units"] == denom_units && denom["counts"].present?
-          denom["counts"].each do |count|
+      denoms.find do |denom|
+        if denom["units"] == denom_units
+          denom["counts"].find do |count|
             return count["value"] if count["groupId"] == group_id
           end
         end
       end
-      nil
     end
 end

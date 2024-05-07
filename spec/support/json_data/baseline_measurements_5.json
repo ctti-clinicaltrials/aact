@@ -76,7 +76,9 @@
                   "measurements": [
                     {
                       "groupId": "BG000",
-                      "value": "0"
+                      "value": "NA",
+                      "spread": "NA",
+                      "comment": "There are no male participants."
                     }
                   ]
                 }

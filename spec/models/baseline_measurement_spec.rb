@@ -77,27 +77,22 @@ describe "BaselineMeasurement and ResultGroup" do
         measure_class["categories"].flat_map do |category|
           category["measurements"].map do |measurement|
             denom_units = measure["denomUnitsSelected"]
-            # denoms = measure["denoms"]
-            # denom_value = nil
+
             if denom_units.nil?
               baseline_count = BaselineCount.find_by(ctgov_group_code: measurement["groupId"])
               denom_value = baseline_count&.count
               denom_units = baseline_count&.units
             else
               denoms = measure_class["denoms"] || measure["denoms"]
-              denoms.each do |denom|
+              denoms.find do |denom|
                 if denom["units"] == denom_units
-                  denom["counts"].each do |count|
-                    if count["groupId"] == measurement["groupId"]
-                      denom_value = count["value"]
-                      break
-                    end
+                  denom["counts"].find do |count|
+                    denom_value = count["value"] if count["groupId"] == measurement["groupId"]
                   end
                 end
               end
             end
             
-
             {
               nct_id: NCT_ID,
               result_group_id: ResultGroup.where(ctgov_group_code: measurement["groupId"]).pluck(:id).first,
@@ -124,7 +119,7 @@ describe "BaselineMeasurement and ResultGroup" do
               explanation_of_na: measurement["comment"],
 
               calculate_percentage: measure["calculatePct"].nil? ? nil : (measure["calculatePct"] == false ? "No" : "Yes"),
-              number_analyzed: denom_value.nil? ? nil : denom_value.to_i,
+              number_analyzed: denom_value.nil? ? nil : denom_value.to_i, # to avoid possible nil to 0 conversion
               number_analyzed_units: denom_units,
             }
           end
