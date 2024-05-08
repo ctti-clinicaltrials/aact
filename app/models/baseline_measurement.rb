@@ -7,7 +7,7 @@ class BaselineMeasurement < StudyRelationship
         table: :baseline_measurements,
         root: [:resultsSection, :baselineCharacteristicsModule],
         flatten: [:measures, :classes, :categories, :measurements],
-        requires: :result_groups,
+        requires: [:result_groups, :baseline_counts],
         columns: [
           { name: :result_group_id, value: reference(:result_groups)[:groupId, "Baseline"] },
           { name: :ctgov_group_code, value: :groupId },
@@ -52,7 +52,8 @@ class BaselineMeasurement < StudyRelationship
     def self.number_analyzed(measurement)
       group_id = measurement["groupId"]
       denom_units = measurement["$parent"]["$parent"]["$parent"]["denomUnitsSelected"]
-
+      # byebug
+      puts "measurement: #{measurement}"
       # If denom_units is not present, check at the top level
       # TODO: Find a way to avoid accessing Database
       if denom_units.nil?
