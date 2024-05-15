@@ -71,19 +71,22 @@ describe "BaselineMeasurement and ResultGroup" do
   private
 
 
+  # TODO: Add test for this method
   def expected_baseline_measurement_data
     @measures.flat_map do |measure|
       measure["classes"].flat_map do |measure_class|
         measure_class["categories"].flat_map do |category|
           category["measurements"].map do |measurement|
-            denom_units = measure["denomUnitsSelected"]
 
-            if denom_units.nil?
-              baseline_count = BaselineCount.find_by(ctgov_group_code: measurement["groupId"])
-              denom_value = baseline_count&.count
-              denom_units = baseline_count&.units
+            group_id = measurement["groupId"]
+            denom_units = measure["denomUnitsSelected"] || BaselineMeasurement::PARTICIPANTS
+            denoms = measure_class["denoms"] || measure["denoms"]
+
+            if denoms.nil?
+              denom = @denoms.find { |denom| denom["units"] == denom_units }
+              group = denom["counts"].find { |count| count["groupId"] == group_id }
+              denom_value = group["value"]
             else
-              denoms = measure_class["denoms"] || measure["denoms"]
               denoms.find do |denom|
                 if denom["units"] == denom_units
                   denom["counts"].find do |count|
@@ -95,8 +98,8 @@ describe "BaselineMeasurement and ResultGroup" do
             
             {
               nct_id: NCT_ID,
-              result_group_id: ResultGroup.where(ctgov_group_code: measurement["groupId"]).pluck(:id).first,
-              ctgov_group_code: measurement["groupId"],
+              result_group_id: ResultGroup.where(ctgov_group_code: group_id).pluck(:id).first,
+              ctgov_group_code: group_id,
 
               classification: measure_class["title"],
               category: category["title"],
