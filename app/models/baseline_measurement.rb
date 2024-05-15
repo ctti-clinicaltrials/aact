@@ -51,19 +51,21 @@ class BaselineMeasurement < StudyRelationship
 
     def self.number_analyzed(measurement)
       group_id = measurement["groupId"]
-      denom_units = measurement["$parent"]["$parent"]["$parent"]["denomUnitsSelected"]
-      # byebug
-      puts "measurement: #{measurement}"
-      # If denom_units is not present, check at the top level
-      # TODO: Find a way to avoid accessing Database
-      if denom_units.nil?
-        baseline_count = BaselineCount.find_by(ctgov_group_code: group_id)
-        return baseline_count&.count
-      end
+
+      denom_units = measurement.dig("$parent", "$parent", "$parent", "denomUnitsSelected") || "Participants"
 
       # check class denoms or measure denoms
-      denoms = measurement["$parent"]["$parent"]["denoms"] || measurement["$parent"]["$parent"]["$parent"]["denoms"]
-      raise "Error: class or measure denoms is nil" if denoms.nil?
+      class_denoms = measurement.dig("$parent", "$parent", "denoms")
+      measure_denoms = measurement.dig("$parent", "$parent", "$parent", "denoms")
+      denoms = class_denoms || measure_denoms
+
+
+      if denoms.nil?
+        # TODO: Find a way to avoid accessing Database
+        overall_count = BaselineCount.find_by(ctgov_group_code: group_id, units: denom_units)
+        raise "Error: Number Analyzed is Nil" if overall_count.nil?
+        return overall_count&.count
+      end
 
       denoms.find do |denom|
         if denom["units"] == denom_units
