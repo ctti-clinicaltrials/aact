@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe "BaselineMeasurement and ResultGroup" do
-  NCT_ID = "NCT000001".freeze
+describe "BaselineMeasurement and Baseline ResultGroup" do
+  NCT_ID = "NCT000001"
 
   json_files = [
     "baseline_measurements_1.json",
@@ -45,7 +45,7 @@ describe "BaselineMeasurement and ResultGroup" do
       end
 
       describe "BaselineMeasurement" do
-        it "imports the data correctly", schema: :v2 do
+        it "creates the correct number of records", schema: :v2 do
           measurement_count = @measures.sum do |measure|
             measure["classes"].sum do |measure_class|
               measure_class["categories"].sum do |category|
@@ -56,11 +56,9 @@ describe "BaselineMeasurement and ResultGroup" do
           expect(BaselineMeasurement.count).to eq(measurement_count)
         end
 
-        it "imports the correct BaselineMeasurement data", schema: :v2 do
+        it "imports the data correctly", schema: :v2 do
           expected = expected_baseline_measurement_data
           imported = import_and_sort(BaselineMeasurement)
-          # puts "imported: #{imported}"
-          # puts "expected: #{expected}"
           expect(imported).to eq(expected)
         end
       end
@@ -146,5 +144,4 @@ describe "BaselineMeasurement and ResultGroup" do
   def import_and_sort(model)
     model.all.map { |x| x.attributes.except("id").symbolize_keys }
   end
-
 end
