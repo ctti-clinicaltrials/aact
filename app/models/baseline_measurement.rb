@@ -1,4 +1,6 @@
 class BaselineMeasurement < StudyRelationship
+  
+  PARTICIPANTS = "Participants"
 
   belongs_to :result_group
 
@@ -41,7 +43,7 @@ class BaselineMeasurement < StudyRelationship
           { name: :number_analyzed, value: nil, convert_to: ->(val) { BaselineMeasurement.number_analyzed(val) }},
           { name: :number_analyzed_units,
             value: [:$parent, :$parent, :$parent, :denomUnitsSelected],
-            convert_to: ->(val) { val.nil? ? "Participants" : val } # TODO: avoid hardcoding
+            convert_to: ->(val) { val.nil? ? PARTICIPANTS : val } # TODO: avoid hardcoding
           }
         ]
       }
@@ -52,7 +54,7 @@ class BaselineMeasurement < StudyRelationship
     def self.number_analyzed(measurement)
       group_id = measurement["groupId"]
 
-      denom_units = measurement.dig("$parent", "$parent", "$parent", "denomUnitsSelected") || "Participants"
+      denom_units = measurement.dig("$parent", "$parent", "$parent", "denomUnitsSelected") || PARTICIPANTS
 
       # check class denoms or measure denoms
       class_denoms = measurement.dig("$parent", "$parent", "denoms")
