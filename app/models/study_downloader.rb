@@ -2,7 +2,10 @@ class StudyDownloader
     def self.download_recently_updated
       ActiveRecord::Base.logger.silence do
         find_studies_to_update.each do |nct_id|
-          record = StudyJsonRecord.create(nct_id: nct_id, content: {}, version: '2')
+          record = StudyJsonRecord.find_by(nct_id: nct_id, version: '2')
+          if record.nil?
+            record = StudyJsonRecord.create(nct_id: nct_id, content: {}, version: '2')
+          end
           puts "\nDownloading: #{nct_id}"
           update_from_apiV2(record, nct_id)
         end

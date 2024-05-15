@@ -39,22 +39,32 @@ class VersionComparator
   def self.check(nct_id)
     ActiveRecord::Base.logger.level = Logger::ERROR
 
-    # StudyDownloader.download([nct_id], '1')
-    # StudyDownloader.download([nct_id], '2')
+    puts "downloading version: 1"
+    StudyDownloader.download([nct_id], '1')
+    puts "downloading version: 2"
+    StudyDownloader.download([nct_id], '2')
 
     # version 1
+    puts "importing version: 1"
     record = StudyJsonRecord.find_by(nct_id: nct_id, version: "1")
-    record = StudyDownloader.download([nct_id], '1') unless record
-    record.preprocess
-    v1 = record.data_collection
+    # record = StudyDownloader.download([nct_id], '1') unless record
+    record.create_or_update_study
 
     # version 2
+    puts "importing version: 2"
     record = StudyJsonRecord.find_by(nct_id: nct_id, version: "2")
-    record = StudyDownloader.download([nct_id], '2') unless record
-    processor = StudyJsonRecord::ProcessorV2.new(record.content)
-    v2 = processor.parsed_data
+    # record = StudyDownloader.download([nct_id], '2') unless record
+    StudyJsonRecord::Worker.new.process_study(nct_id)
 
-    compare(v1, v2)
+    bad = {}
+    StudyRelationship.study_models.each do |model|
+      v1 = ActiveRecord::Base.connection.execute("SELECT COUNT(*) FROM ctgov.#{model.table_name} WHERE nct_id='#{nct_id}'").to_a[0]['count']
+      v2 = ActiveRecord::Base.connection.execute("SELECT COUNT(*) FROM ctgov_v2.#{model.table_name} WHERE nct_id='#{nct_id}'").to_a[0]['count']
+      if v1 != v2
+        bad[model.table_name] = { expected: v1, actual: v2 }
+      end
+    end
+    return bad
   end
 
   def self.full_check(model, filename=nil)
