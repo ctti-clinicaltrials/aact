@@ -1,0 +1,147 @@
+{
+  "resultsSection": {
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "title": "Absolute Change in Pre-Bronchodilator Forced Expiratory Volume in 1 Second (FEV1)",
+          "description": "FEV1 measures how much air a person can exhale during the first second of a forced breath.\n\nAdjusted means are reported.",
+          "paramType": "MEAN",
+          "dispersionType": "95% Confidence Interval",
+          "unitOfMeasure": "Milliliters (mL)",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo",
+              "description": "Participants received subcutaneous..."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "120"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "title": "Class Title",
+              "categories": [
+                {
+                  "title": "Category Title",
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "12",
+                      "spread": "2",
+                      "lowerLimit": "8",
+                      "upperLimit": "16",
+                      "comment": "Not applicable"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "SECONDARY",
+          "title": "Percentage of Subjects With Treatment-Emergent Adverse Events (TEAEs) During the Study",
+          "description": "An Adverse Event (AE) is any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product...",
+          "populationDescription": "The SS consisted of all subjects who received at least 1 dose of study treatment.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "percentage of subjects",
+          "timeFrame": "From Baseline up to the End of Safety Follow-up Extension Period (up to Week 156)",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo (SS)",
+              "description": "Matching placebo to certolizumab pegol (CZP) injections were administered every 2 weeks from Week 0 onwards. Subjects formed the Safety Set (SS)."
+            },
+            {
+              "id": "OG001",
+              "title": "CZP 200 mg Q2W (SS)",
+              "description": "Certolizumab pegol (CZP) 400 mg subcutaneous (sc) on Weeks 0, 2 and 4, followed by 200 mg CZP sc every 2 weeks (Q2W) from Week 6 onwards. Subjects formed the SS."
+            },
+            {
+              "id": "OG002",
+              "title": "Placebo->OL CZP (SS)",
+              "description": "Subset of subjects from the Placebo group, who discontinued the CZP double-blind treatment and entered the open-label CZP treatment. The subjects were included in the SS for safety analysis."
+            },
+            {
+              "id": "OG003",
+              "title": "CZP->OL CZP (SS)",
+              "description": "Subset of subjects from the CZP 200 mg Q2W group, who discontinued the CZP double-blind treatment and entered the CZP open-label treatment. The subjects were included in the SS for safety analysis."
+            },
+            {
+              "id": "OG004",
+              "title": "SFE OL CZP 200 mg Q2W (SS)",
+              "description": "Subjects who completed Double-Blind Period received CZP 200 mg at Week 52, 54 and 56 to maintain the blinding and who completed the Week 52 Visit on placebo treatment received loading doses of CZP 400 mg at these visits..."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "158"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "159"
+                },
+                {
+                  "groupId": "OG002",
+                  "value": "96"
+                },
+                {
+                  "groupId": "OG003",
+                  "value": "20"
+                },
+                {
+                  "groupId": "OG004",
+                  "value": "243"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "63.9"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "75.5"
+                    },
+                    {
+                      "groupId": "OG002",
+                      "value": "59.4"
+                    },
+                    {
+                      "groupId": "OG003",
+                      "value": "65.0"
+                    },
+                    {
+                      "groupId": "OG004",
+                      "value": "61.3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -75,6 +75,14 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
+  def import_all
+    records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+    while records > 0
+      process(5000)
+      records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+    end
+  end
+
   def process_study(nct_id)
     process(1, StudyJsonRecord.where(nct_id: nct_id, version: '2'))
   end
@@ -83,6 +91,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     # load records
     with_search_path('ctgov_v2, support, public') do
       records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count) if records.nil?
+      
       Rails.logger.debug { "records: #{records.count}" }
 
       remove_study_data(records.map(&:nct_id))
@@ -100,7 +109,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
-  private
+  # private
 
   def prepare_children(parent, content, children)
     children.each do |mapping|
