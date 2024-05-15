@@ -75,10 +75,14 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
-  def process(count = 1)
+  def process_study(nct_id)
+    process(1, StudyJsonRecord.where(nct_id: nct_id, version: '2'))
+  end
+
+  def process(count = 1, records = nil)
     # load records
     with_search_path('ctgov_v2, support, public') do
-      records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count)
+      records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count) if records.nil?
       Rails.logger.debug { "records: #{records.count}" }
 
       remove_study_data(records.map(&:nct_id))
