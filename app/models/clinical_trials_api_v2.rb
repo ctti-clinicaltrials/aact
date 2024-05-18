@@ -3,6 +3,7 @@ class ClinicalTrialsApiV2
   
   BASE_URL_V2 = 'https://clinicaltrials.gov/api/v2/'
 
+  # TODO: double check potential // issue in the url
 
   #Studies/Related to clinical trial studies
 
@@ -60,6 +61,7 @@ class ClinicalTrialsApiV2
 
   # get all the studies from ctgov
   def self.all(days_back: nil)
+    puts "getting all studies from v2 api..."
     offset = 1
     items = []
 
@@ -85,8 +87,9 @@ class ClinicalTrialsApiV2
 
       studies.each do |rec|
         items << {
+          # TODO: review the key names - not the same as for v1
           nct_id: rec["protocolSection"]["identificationModule"]["nctId"],
-          posted: rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
+          # posted: rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
           updated: rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
         }
       end
