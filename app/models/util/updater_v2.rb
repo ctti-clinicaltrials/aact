@@ -11,7 +11,7 @@ module Util
       current_studies = Hash[result.map { |record| [record['nct_id'], record['last_update_posted_date']] }]
       studies_to_update = api_studies.select do |api_study|
         current_study_update_date = current_studies[api_study[:nct_id]]
-        current_study_update_date.nil? || Date.parse(api_study[:updated]) > current_study_update_date
+        current_study_update_date.nil? || Date.parse(api_study[:updated]) > Date.parse(current_study_update_date)
       end.map { |study| study[:nct_id] }
 
       # TODO: add time calculations to see how effiecient Set are
@@ -23,6 +23,25 @@ module Util
     rescue => e
       puts "An error occurred: #{e.message}"
     end
-  end
 
+
+    def update_study(nct_id)
+      stime = Time.now
+      record = StudyDownloader.download([nct_id]) # StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
+    #   changed = record.update_from_api unless ENV['STUDY_SECTIONS'] # what's the purpose of this condition?
+      if record.blank? || record.content.blank?
+        record.destroy
+      else
+        StudyJsonRecord::Worker.new.process # record.create_or_update_study
+      end
+
+    Time.now - stime
+    rescue => e
+      # Airbrake.notify(e) # is it working in local env?
+      puts "An error occurred: #{e.message}"
+    end
+
+
+    # TODO: current remove study method works with ctgov schema, not ctgov_v2
+  end
 end

@@ -1,7 +1,7 @@
 class ClinicalTrialsApiV2
   # based on api: https://clinicaltrials.gov/data-about-studies/learn-about-api
   
-  BASE_URL_V2 = 'https://clinicaltrials.gov/api/v2/'
+  BASE_URL_V2 = 'https://clinicaltrials.gov/api/v2'
 
   # TODO: double check potential // issue in the url
 
@@ -68,7 +68,7 @@ class ClinicalTrialsApiV2
     page_token = nil
 
     loop do
-      url = "#{BASE_URL_V2}studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000"
+      url = "#{BASE_URL_V2}/studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000"
       url += "&pageToken=#{page_token}" if page_token
 
       attempts = 0

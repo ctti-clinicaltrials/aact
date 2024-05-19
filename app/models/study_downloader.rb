@@ -47,6 +47,7 @@ class StudyDownloader
       end
     end
 
+    # similar to the current_study_differences method defined in Util::UpdaterV2
     # return the studies that are not found in the database and the studies that were updated after we updated them
     def self.find_studies_to_update
       # get a list of all studies from clinicaltrials.gov
