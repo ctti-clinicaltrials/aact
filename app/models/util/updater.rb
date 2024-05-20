@@ -2,6 +2,7 @@
 
 module Util
   class Updater
+    include SchemaSwitcher
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :full_featured, :schema, :search_days_back
 
     # days_back:     number of days
@@ -127,6 +128,7 @@ module Util
       @load_event.update({ status: 'error'}) 
       # set the load event problems to the exception message
       @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
+      puts "EXECUTE ERROR: #{e.message}"
     end
 
     def current_study_differences
@@ -212,11 +214,25 @@ module Util
 
     def remove_study(id)
       stime = Time.now
-      study = Study.find_by(nct_id: id)
-      study.remove_study_data if study
+
+      if self.class == Util::UpdaterV2
+        with_v2_schema do
+          study = Study.find_by(nct_id: id)
+          # byebug
+          study.remove_study_data if study
+          record = StudyJsonRecord.find_by(nct_id: id, version: '2')
+        end
+
+      else
+        study = Study.find_by(nct_id: id)
+        # byebug
+        study.remove_study_data if study
+        record = StudyJsonRecord.find_by(nct_id: id, version: '1')
+      end
+
+      record.destroy if record
+
       Time.now - stime
-      record = StudyJsonRecord.find_by(nct_id: id)
-      record.destroy
     end
 
     def load_study(study_id)
