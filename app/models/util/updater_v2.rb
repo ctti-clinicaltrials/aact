@@ -29,6 +29,12 @@ module Util
       @load_event.log("2/11 updated studies")
 
 
+      # 3. add constraints
+      log("v2: adding constraints...")
+      db_mgr.add_constraints
+      @load_event.log("3/11 added constraints")
+
+
     end
 
 
