@@ -8,6 +8,24 @@ module Util
       @type = (params[:event_type] || "incremental")
       @schema = params[:schema] || "ctgov_v2"
     end
+
+
+    def execute
+      log("EXECUTE V2 started")
+
+      @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: '', problems: '' })
+
+      ActiveRecord::Base.logger = nil # why are we disabling logger here?
+
+      # 1. remove constraings
+      log("v2 removing constraints...")
+      db_mgr.remove_constraints
+      @load_event.log("1/11 removed constraints")
+
+
+    end
+
+
     def current_study_differences
       api_studies = ClinicalTrialsApiV2.all
       result = ActiveRecord::Base.connection.execute("SELECT nct_id, last_update_posted_date FROM ctgov_v2.studies")
@@ -48,6 +66,11 @@ module Util
 
 
     private
+
+    def db_mgr
+      # do we need to create new instance of DbManager every time?
+      Util::DbManager.new(event: @load_event, schema: @schema)
+    end
 
     def log(msg)
       puts "#{Time.zone.now}: #{msg}"
