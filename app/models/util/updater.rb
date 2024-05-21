@@ -214,25 +214,11 @@ module Util
 
     def remove_study(id)
       stime = Time.now
-
-      if self.class == Util::UpdaterV2
-        with_v2_schema do
-          study = Study.find_by(nct_id: id)
-          # byebug
-          study.remove_study_data if study
-          record = StudyJsonRecord.find_by(nct_id: id, version: '2')
-        end
-
-      else
-        study = Study.find_by(nct_id: id)
-        # byebug
-        study.remove_study_data if study
-        record = StudyJsonRecord.find_by(nct_id: id, version: '1')
-      end
-
-      record.destroy if record
-
+      study = Study.find_by(nct_id: id)
+      study.remove_study_data if study
       Time.now - stime
+      record = StudyJsonRecord.find_by(nct_id: id)
+      record.destroy
     end
 
     def load_study(study_id)
