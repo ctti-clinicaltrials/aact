@@ -3,31 +3,36 @@
 require 'open3'
 module Util
   class DbManager
-    attr_accessor :con, :public_con, :public_alt_con, :event, :migration_object, :fm
+    attr_accessor :con, :public_con, :public_alt_con, :event, :schema, :migration_object, :fm
 
     def initialize(params={})
       # 'event' keeps track of what happened during a single load event & then saves to LoadEvent table in the admin db, so we have a log
       # of all load events that have occurred.  If an event is passed in, use it; otherwise, create a new one.
       @event = params[:event]
+      @schema = params[:schema] || "ctgov"
       @fm = Util::FileManager.new
+      # TODO: update after discontinuing support for ctgov
+      
     end
 
     ##### connection management #####
 
     def public_connection
       connection = PublicBase.connection
-      connection.schema_search_path = 'ctgov'
+      connection.schema_search_path = @schema
       connection
     end
 
     def staging_connection
       connection = PublicBase.connection
-      connection.schema_search_path = 'ctgov'
+      connection.schema_search_path = @schema
       connection
     end
 
     def connection
-      Study.connection
+      con = Study.connection
+      con.schema_search_path = @schema
+      con
     end
 
     ###### export/import methods ######
@@ -66,7 +71,7 @@ module Util
     # 3. restore teh db from file
     # 4. verify the study count (permissions are not granted again to prevent bad data from being used)
     # 5. grant connection permissions again
-    def restore_database(connection, filename, schema = 'ctgov')
+    def restore_database(connection, filename, schema = @schema)
       config = connection.instance_variable_get('@config')
       host = config[:host]
       port = config[:port]
@@ -81,12 +86,12 @@ module Util
       # recreate schema
       log "  dropping in #{host}:#{port}/#{database} schema..."
       begin
-        connection.execute("DROP SCHEMA #{schema} CASCADE;")
+        connection.execute("DROP SCHEMA #{@schema} CASCADE;")
       rescue ActiveRecord::StatementInvalid => e
         log(e.message)
       end
-      connection.execute("CREATE SCHEMA #{schema};")
-      connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
+      connection.execute("CREATE SCHEMA #{@schema};")
+      connection.execute("GRANT USAGE ON SCHEMA #{@schema} TO read_only;")
 
       # restore database
       log "  restoring to #{host}:#{port}/#{database} schema..."
@@ -103,8 +108,8 @@ module Util
 
       # allow users to access database again
       connection.execute("ALTER DATABASE #{database} CONNECTION LIMIT 200;")
-      connection.execute("GRANT USAGE ON SCHEMA #{schema} TO read_only;")
-      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA #{schema} TO READ_ONLY;")
+      connection.execute("GRANT USAGE ON SCHEMA #{@schema} TO read_only;")
+      connection.execute("GRANT SELECT ON ALL TABLES IN SCHEMA #{@schema} TO READ_ONLY;")
 
       true
     end
