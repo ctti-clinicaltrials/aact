@@ -1,8 +1,13 @@
 module Util
-  class UpdaterV2 < Updater
-    
-    # TODO: when all logic is moved to UpdaterV2, refactor this method - to many responsibilities
-    # TODO: add tests for refactored method
+  class UpdaterV2
+
+    attr_reader :params, :schema
+
+    def initialize(params = {})
+      @params = params # #<Rake::TaskArguments schema: ctgov_v2>
+      @type = (params[:event_type] || "incremental")
+      @schema = params[:schema] || "ctgov_v2"
+    end
     def current_study_differences
       api_studies = ClinicalTrialsApiV2.all
       result = ActiveRecord::Base.connection.execute("SELECT nct_id, last_update_posted_date FROM ctgov_v2.studies")
@@ -42,6 +47,11 @@ module Util
     end
 
 
-    # TODO: current remove study method works with ctgov schema, not ctgov_v2
+    private
+
+    def log(msg)
+      puts "#{Time.zone.now}: #{msg}"
+    end
+
   end
 end
