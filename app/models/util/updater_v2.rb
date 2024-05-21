@@ -33,10 +33,10 @@ module Util
 
 
     def update_studies
-      studies, to_update, to_remove = current_study_differences
+
+      to_update = StudyDownloader.download_recently_updated
 
       log("updating #{to_update.length} studies")
-      log("removing #{to_remove.length} studies")
 
       # update studies
       total = to_update.length
@@ -51,7 +51,9 @@ module Util
       end
       time = Time.now - stime
       puts "Time: #{time} avg: #{time / total}"
+    end
 
+    def remove_studies
       # remove studies
       raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count
       total = to_remove.length
@@ -64,30 +66,6 @@ module Util
         remaining = (total - idx - 1) * avg_time
         puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
       end
-    end
-
-
-    def current_study_differences
-      api_studies = ClinicalTrialsApiV2.all
-      result = ActiveRecord::Base.connection.execute("SELECT nct_id, last_update_posted_date FROM ctgov_v2.studies")
-      puts "aact study count: #{result.count}"
-      puts "clinical trials study count: #{api_studies.count}"
-      current_studies = Hash[result.map { |record| [record['nct_id'], record['last_update_posted_date']] }]
-      puts "current studies: #{current_studies.take(10)}"
-      puts "api studies: #{api_studies.take(10)}"
-      studies_to_update = api_studies.select do |api_study|
-        current_study_update_date = current_studies[api_study[:nct_id]]
-        current_study_update_date.nil? || Date.parse(api_study[:updated]) > Date.parse(current_study_update_date)
-      end.map { |study| study[:nct_id] }
-
-      # TODO: add time calculations to see how effiecient Set are
-      studies_to_remove = current_studies.keys.to_set - api_studies.map { |study| study[:nct_id] }.to_set
-      puts "update: #{studies_to_update.take(10)}"
-      puts "remove: #{studies_to_remove.take(10)}"
-      puts "result: #{result.take(10)}"
-      return [api_studies.to_a, studies_to_update.to_a, studies_to_remove.to_a]
-    rescue => e
-      puts "An error occurred: #{e.message}"
     end
 
 

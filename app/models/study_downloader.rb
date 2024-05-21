@@ -1,12 +1,11 @@
 class StudyDownloader
     def self.download_recently_updated
-      ActiveRecord::Base.logger.silence do
+      # ActiveRecord::Base.logger.silence do # silence method error
         find_studies_to_update.each do |nct_id|
           record = StudyJsonRecord.create(nct_id: nct_id, content: {}, version: '2')
           puts "\nDownloading: #{nct_id}"
           update_from_apiV2(record, nct_id)
         end
-      end
     end
 
     def self.download(nct_ids, version='2')
@@ -47,7 +46,6 @@ class StudyDownloader
       end
     end
 
-    # similar to the current_study_differences method defined in Util::UpdaterV2
     # return the studies that are not found in the database and the studies that were updated after we updated them
     def self.find_studies_to_update
       # get a list of all studies from clinicaltrials.gov
