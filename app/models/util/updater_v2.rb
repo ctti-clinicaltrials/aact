@@ -63,6 +63,13 @@ module Util
       log("#{@schema}: run sanity checks...")
       @load_event.run_sanity_checks(@schema)
       @load_event.log("8/11 ran sanity checks")
+
+    rescue => e
+      # set the load event status to "error"
+      @load_event.update({ status: 'error'}) 
+      # set the load event problems to the exception message
+      @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
+      puts "EXECUTE ERROR: #{e.message}"
     end
 
 

@@ -128,7 +128,6 @@ module Util
       @load_event.update({ status: 'error'}) 
       # set the load event problems to the exception message
       @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
-      puts "EXECUTE ERROR: #{e.message}"
     end
 
     def current_study_differences
