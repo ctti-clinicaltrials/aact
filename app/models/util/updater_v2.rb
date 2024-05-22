@@ -35,6 +35,14 @@ module Util
       @load_event.log("3/11 added constraints")
 
 
+      # 4. comparing the counts from CT.gov to our database
+      log("v2: comparing counts...")
+      @load_event.log("4/11 skipped verification")
+
+
+      # 5. run study searches
+      log("v2: execute study search...")
+      @load_event.log("5/11 skipped study searches")
     end
 
 
