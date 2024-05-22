@@ -13,7 +13,7 @@ module Util
     def execute
       log("#{@schema}: EXECUTE started")
 
-      @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: '', problems: '' })
+      @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: "#{@schema}", problems: '' })
 
       ActiveRecord::Base.logger = nil # why are we disabling logger here?
 
@@ -57,6 +57,12 @@ module Util
       MeshHeading.populate_from_file
       set_downcase_terms
       @load_event.log("7/11 populated mesh terms")
+
+
+      # 8. run sanity checks
+      log("#{@schema}: run sanity checks...")
+      @load_event.run_sanity_checks(@schema)
+      @load_event.log("8/11 ran sanity checks")
     end
 
 
