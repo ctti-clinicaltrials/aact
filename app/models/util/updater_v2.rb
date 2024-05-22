@@ -43,6 +43,12 @@ module Util
       # 5. run study searches
       log("v2: execute study search...")
       @load_event.log("5/11 skipped study searches")
+
+
+      # 6. update calculated values
+      log("v2: update calculated values...")
+      CalculatedValue.populate(@schema)
+      @load_event.log("6/11 updated calculated values")
     end
 
 
