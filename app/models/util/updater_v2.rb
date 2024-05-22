@@ -11,44 +11,52 @@ module Util
 
 
     def execute
-      log("EXECUTE V2 started")
+      log("#{@schema}: EXECUTE started")
 
       @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: '', problems: '' })
 
       ActiveRecord::Base.logger = nil # why are we disabling logger here?
 
       # 1. remove constraings
-      log("v2: removing constraints...")
+      log("#{@schema}: removing constraints...")
       db_mgr.remove_constraints
       @load_event.log("1/11 removed constraints")
 
 
       # 2. update studies
-      log("v2: updating studies...")
+      log("#{@schema}: updating studies...")
       update_studies
       @load_event.log("2/11 updated studies")
 
 
       # 3. add constraints
-      log("v2: adding constraints...")
+      log("#{@schema}: adding constraints...")
       db_mgr.add_constraints
       @load_event.log("3/11 added constraints")
 
 
       # 4. comparing the counts from CT.gov to our database
-      log("v2: comparing counts...")
+      log("#{@schema}: comparing counts...")
       @load_event.log("4/11 skipped verification")
 
 
       # 5. run study searches
-      log("v2: execute study search...")
+      log("#{@schema}: execute study search...")
       @load_event.log("5/11 skipped study searches")
 
 
       # 6. update calculated values
-      log("v2: update calculated values...")
+      log("#{@schema}: update calculated values...")
       CalculatedValue.populate(@schema)
       @load_event.log("6/11 updated calculated values")
+
+
+      # 7. populate the meshterms and meshheadings
+      log("#{@schema}: update mesh terms and headings...")
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
+      set_downcase_terms
+      @load_event.log("7/11 populated mesh terms")
     end
 
 
@@ -128,6 +136,17 @@ module Util
 
     def log(msg)
       puts "#{Time.zone.now}: #{msg}"
+    end
+
+    def set_downcase_terms
+      log('setting downcase mesh terms...')
+      con=ActiveRecord::Base.connection
+      con.execute("SET search_path TO #{@schema}")
+      #  save a lowercase version of MeSH terms so they can be found without worrying about case
+      con.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term);")
+      con.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term);")
+      con.execute("UPDATE keywords SET downcase_name=lower(name);")
+      con.execute("UPDATE conditions SET downcase_name=lower(name);")
     end
 
     def htime(seconds)
