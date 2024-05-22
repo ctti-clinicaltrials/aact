@@ -77,8 +77,7 @@ module Util
 
     def update_study(nct_id)
       stime = Time.now
-      record = StudyDownloader.download([nct_id]) # StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
-    #   changed = record.update_from_api unless ENV['STUDY_SECTIONS'] # what's the purpose of this condition?
+      record = StudyJsonRecord.find_by(nct_id: nct_id, version: 2) || StudyJsonRecord.create(nct_id: nct_id, version: 2, content: {})
       if record.blank? || record.content.blank?
         record.destroy
       else
@@ -87,7 +86,7 @@ module Util
 
     Time.now - stime
     rescue => e
-      # Airbrake.notify(e) # is it working in local env?
+      Airbrake.notify(e)
       puts "An error occurred: #{e.message}"
     end
 
