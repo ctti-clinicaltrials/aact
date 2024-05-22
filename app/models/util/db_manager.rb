@@ -55,7 +55,7 @@ module Util
         --exclude-table ar_internal_metadata \
         --exclude-table schema_migrations \
         --exclude-table study_records \
-        --schema 'ctgov'  \
+        --schema '#{@schema}'  \
         -f #{dump_file_location} \
         #{database} \
       "
@@ -233,6 +233,7 @@ module Util
       end
     end
 
+    # TODO: why do we use connection object to remove constraints and migration to add?
     def remove_constraints
       foreign_key_constraints.each do |constraint|
         table = constraint[:child_table]
