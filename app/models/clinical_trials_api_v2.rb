@@ -60,8 +60,7 @@ class ClinicalTrialsApiV2
   end
 
   # get all the studies from ctgov
-  def self.all(days_back: nil)
-    puts "getting all studies from v2 api..."
+  def self.all(limit: 100, days_back: nil)
     offset = 1
     items = []
 
@@ -92,13 +91,16 @@ class ClinicalTrialsApiV2
           # posted: rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
           updated: rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
         }
+        break if items.size >= limit
       end
 
-      puts "items: #{items.length}"
+      # puts "api studies: #{items.length}"
+      break if items.size >= limit || page_token.nil?
 
       page_token = json_response["nextPageToken"]
       break if page_token.nil?
     end
+    puts "api v2 studies: #{items.length}"
     return items
   end
 
