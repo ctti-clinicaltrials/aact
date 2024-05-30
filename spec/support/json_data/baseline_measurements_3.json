@@ -1,0 +1,224 @@
+{
+  "protocolSection": {},
+  "resultsSection": {
+    "participantFlowModule": {},
+    "baselineCharacteristicsModule": {
+      "typeUnitsAnalyzed": "joints",
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Safety Population",
+          "description": "All subjects enrolled into the study"
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "294"
+            }
+          ]
+        },
+        {
+          "units": "joints",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "309"
+            }
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "title": "Height",
+          "populationDescription": "Includes all data available for this particular measure (retrospective data)",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "cm",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "289"
+                }
+              ]
+            },
+            {
+              "units": "joints",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "309"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "171.19",
+                      "spread": "11.449"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Weight",
+          "populationDescription": "Includes all data available for this particular measure (retrospective data)",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "pounds (lb)",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "288"
+                }
+              ]
+            },
+            {
+              "units": "joints",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "309"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "177.33",
+                      "spread": "46.045"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Body Mass Index",
+          "populationDescription": "Includes all data available for this particular measure (retrospective data)",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "kg/m^2",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "287"
+                }
+              ]
+            },
+            {
+              "units": "joints",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "309"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "27.39",
+                      "spread": "7.060"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Ethnicity",
+          "populationDescription": "Includes all data available for this particular measure (retrospective data)",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "257"
+                }
+              ]
+            },
+            {
+              "units": "joints",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "309"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "Hispanic/Latino",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "15"
+                    }
+                  ]
+                },
+                {
+                  "title": "Not Hispanic/Latino",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "242"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {},
+    "adverseEventsModule": {},
+    "moreInfoModule": {}
+  },
+  "documentSection": {},
+  "derivedSection": {},
+  "hasResults": true
+}

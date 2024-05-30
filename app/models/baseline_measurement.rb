@@ -1,91 +1,82 @@
 class BaselineMeasurement < StudyRelationship
+  
+  PARTICIPANTS = "Participants"
+  CLASS_PATH = ["$parent", "$parent"]
+  MEASURE_PATH = ["$parent", "$parent", "$parent"]
 
   belongs_to :result_group
 
-  def self.create_all_from(opts={})
+  add_mapping do
+      {
+        table: :baseline_measurements,
+        root: [:resultsSection, :baselineCharacteristicsModule],
+        flatten: [:measures, :classes, :categories, :measurements],
+        requires: [:result_groups, :baseline_counts],
+        columns: [
+          { name: :result_group_id, value: reference(:result_groups)[:groupId, "Baseline"] },
+          { name: :ctgov_group_code, value: :groupId },
 
-    return [] if opts[:xml].xpath('//baseline').blank?
-    original_xml=opts[:xml]
-    opts[:xml]=opts[:xml].xpath('//baseline')
-    opts[:result_type]='Baseline'
-    opts[:groups]=ResultGroup.create_group_set(opts)
-    col=[]
-    all=opts[:xml].xpath("measure_list").xpath('measure')
-    measure=all.pop
-    while measure
-      opts[:description]=measure.xpath('description').text
-      opts[:title]=measure.xpath('title').text
-      opts[:units]=measure.xpath('units').text
-      opts[:param]=measure.xpath('param').text
-      opts[:dispersion]=measure.xpath('dispersion').text
-      classifications=measure.xpath("class_list").xpath('class')
-      a_class=classifications.pop
-      while a_class
-        opts[:classification]=a_class.xpath('title').text
-        opts[:class]=a_class
-        col << self.nested_pop_create(opts)
-        a_class=classifications.pop
-      end
-      measure=all.pop
+          { name: :classification, value: [*CLASS_PATH, :title] }, # class.title - optional if 1+ class
+          { name: :category, value: [:$parent, :title] }, # category.title - optional if 1+ category
+          
+          { name: :title, value: [*MEASURE_PATH, :title] }, # measure.title required
+          { name: :description, value: [*MEASURE_PATH, :description] }, # measure.description optional
+          { name: :units, value: [*MEASURE_PATH, :unitOfMeasure] }, # measure.unitOfMeasure required
+          { name: :population_description, value: [*MEASURE_PATH, :populationDescription] }, # measure.populationDescription optional
+
+          { name: :calculate_percentage,
+            value: [*MEASURE_PATH, :calculatePct],
+            convert_to: ->(val) { val.nil? ? nil : (val == false ? "No" : "Yes") }
+          }, # measure.calculatePct optional
+
+          # TODO: Use Enumns to humanize values (ex. COUNT_OF_PARTICIPANTS" to "Count of Participants")
+          { name: :param_type, value: [*MEASURE_PATH, :paramType] }, # measure.paramType required
+          { name: :param_value, value: :value }, # measurement.value
+          { name: :param_value_num, value: :value, convert_to: :float }, # measurement.value
+
+          # TODO: Use Enumns to humanize values (ex. "STANDARD_DEVIATION" to "Standard Deviation")
+          { name: :dispersion_type, value: [*MEASURE_PATH, :dispersionType] }, # measure.dispersionType required
+          { name: :dispersion_value, value: :spread }, # measurement.spread
+          { name: :dispersion_value_num, value: :spread, convert_to: :float },
+          { name: :dispersion_lower_limit, value: :lowerLimit, convert_to: :float  }, # measurement.lowerLimit 
+          { name: :dispersion_upper_limit, value: :upperLimit, convert_to: :float  }, # measurement.upperLimit
+          { name: :explanation_of_na, value: :comment}, # measurement.comment
+
+          { name: :number_analyzed, value: nil, convert_to: ->(val) { BaselineMeasurement.number_analyzed(val) }},
+          { name: :number_analyzed_units,
+            value: [*MEASURE_PATH, :denomUnitsSelected],
+            convert_to: ->(val) { val.nil? ? PARTICIPANTS : val } # TODO: avoid hardcoding
+          }
+        ]
+      }
     end
-    opts[:xml]=original_xml
-    BaselineCount.create_all_from(opts)
-    col.flatten.each{|x|x.save!}
-  end
 
-  def self.nested_pop_create(opts)
-    all=opts[:class].xpath("category_list").xpath('category')
-    col=[]
-    cat=all.pop
-    while cat
-      opts[:category]=cat.xpath('title').text
-      opts[:xml]=cat
-      measurements=cat.xpath("measurement_list").xpath('measurement')
-      measurement=measurements.pop
-      while measurement
-        opts[:xml]=measurement
-        opts[:param_value]=measurement.attribute('value').try(:value)
-        if opts[:param_value] == 'NA'
-          opts[:param_value_num]=nil
-        else
-          opts[:param_value_num]=opts[:param_value]
-        end
-        opts[:dispersion_value]=measurement.attribute('spread').try(:value)
-        if opts[:dispersion_value] == 'NA'
-          opts[:dispersion_value_num]=''
-        else
-          opts[:dispersion_value_num]=opts[:dispersion_value]
-        end
-        opts[:lower_limit]=measurement.attribute('lower_limit').try(:value)
-        opts[:upper_limit]=measurement.attribute('upper_limit').try(:value)
+    private
 
-        col << create_from(opts)
-        measurement=measurements.pop
+    def self.number_analyzed(measurement)
+      group_id = measurement["groupId"]
+
+      denom_units = measurement.dig(*MEASURE_PATH, "denomUnitsSelected") || PARTICIPANTS
+
+      # check class denoms or measure denoms
+      class_denoms = measurement.dig(*CLASS_PATH, "denoms")
+      measure_denoms = measurement.dig(*MEASURE_PATH, "denoms")
+      denoms = class_denoms || measure_denoms
+
+
+      if denoms.nil?
+        # TODO: Find a way to avoid accessing Database
+        overall_count = BaselineCount.find_by(ctgov_group_code: group_id, units: denom_units)
+        raise "Error: Number Analyzed is Nil for #{denom_units} unit in #{group_id} group" if overall_count.nil?
+        return overall_count&.count
       end
-      cat=all.pop
+
+      denoms.find do |denom|
+        if denom["units"] == denom_units
+          denom["counts"].find do |count|
+            return count["value"] if count["groupId"] == group_id
+          end
+        end
+      end
     end
-    col
-  end
-
-  def attribs
-    {
-      :result_group           => get_group(opts[:groups]),
-      :classification         => get_opt('classification'),
-      :category               => get_opt(:category),
-      :ctgov_group_code       => gid,
-      :title                  => get_opt(:title),
-      :description            => get_opt(:description),
-      :units                  => get_opt(:units),
-      :param_type             => get_opt(:param),
-      :param_value            => get_opt('param_value'),
-      :param_value_num        => get_opt('param_value_num'),
-      :dispersion_type        => get_opt(:dispersion),
-      :dispersion_value       => get_opt('dispersion_value'),
-      :dispersion_value_num   => get_opt('dispersion_value_num'),
-      :dispersion_lower_limit => get_opt('lower_limit'),
-      :dispersion_upper_limit => get_opt('upper_limit'),
-      :explanation_of_na      => xml.text,
-    }
-  end
-
 end
