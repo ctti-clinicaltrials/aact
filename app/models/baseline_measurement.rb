@@ -67,7 +67,9 @@ class BaselineMeasurement < StudyRelationship
       if denoms.nil?
         # TODO: Find a way to avoid accessing Database
         overall_count = BaselineCount.find_by(ctgov_group_code: group_id, units: denom_units)
-        raise "Error: Number Analyzed is Nil for #{denom_units} unit in #{group_id} group" if overall_count.nil?
+        if overall_count.nil? && !group_id.nil?
+          raise "Error: Number Analyzed is Nil for #{denom_units} unit in #{group_id} group" 
+        end
         return overall_count&.count
       end
 
