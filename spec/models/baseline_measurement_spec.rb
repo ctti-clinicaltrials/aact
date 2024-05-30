@@ -9,6 +9,8 @@ describe "BaselineMeasurement and Baseline ResultGroup" do
     "baseline_measurements_3.json",
     "baseline_measurements_4.json",
     "baseline_measurements_5.json"
+    "baseline_measurements_5.json",
+    "baseline_measurements_6.json"
   ]
 
   json_files.each do |json_file|

@@ -1,0 +1,128 @@
+{
+  "protocolSection": {},
+  "resultsSection": {
+    "participantFlowModule": {},
+    "baselineCharacteristicsModule": {
+      "populationDescription": "The outcome is reported for subjects who received the Magna Mitral, Model 7000TFX device where data is available.",
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Magna Mitral 23",
+          "description": "Clinical Evaluation of the size 23 mm Carpentier-Edwards PERIMOUNT Magna Mitral Bioprosthesis, Model 7000TFX"
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "12"
+            }
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "title": "Age, Continuous",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "years",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "12"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "67.5",
+                      "spread": "14.0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sex: Female, Male",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "12"
+                    }
+                  ]
+                }
+              ],
+              "categories": [
+                {
+                  "title": "Female",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "12"
+                    }
+                  ]
+                },
+                {
+                  "title": "Male",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Race and Ethnicity Not Collected",
+          "populationDescription": "Race and Ethnicity were not collected from any participant.",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "denoms": [
+                {
+                  "units": "Participants",
+                  "counts": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {},
+    "adverseEventsModule": {},
+    "moreInfoModule": {}
+  },
+  "documentSection": {},
+  "derivedSection": {},
+  "hasResults": true
+}
