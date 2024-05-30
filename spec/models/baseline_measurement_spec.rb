@@ -8,7 +8,6 @@ describe "BaselineMeasurement and Baseline ResultGroup" do
     "baseline_measurements_2.json",
     "baseline_measurements_3.json",
     "baseline_measurements_4.json",
-    "baseline_measurements_5.json"
     "baseline_measurements_5.json",
     "baseline_measurements_6.json"
   ]
@@ -70,67 +69,6 @@ describe "BaselineMeasurement and Baseline ResultGroup" do
 
   private
 
-
-  # TODO: Add test for this method
-  def expected_baseline_measurement_data
-    @measures.flat_map do |measure|
-      measure["classes"].flat_map do |measure_class|
-        measure_class["categories"].flat_map do |category|
-          category["measurements"].map do |measurement|
-
-            group_id = measurement["groupId"]
-            denom_units = measure["denomUnitsSelected"] || BaselineMeasurement::PARTICIPANTS
-            denoms = measure_class["denoms"] || measure["denoms"]
-
-            if denoms.nil?
-              denom = @denoms.find { |denom| denom["units"] == denom_units }
-              group = denom["counts"].find { |count| count["groupId"] == group_id }
-              denom_value = group["value"]
-            else
-              denoms.find do |denom|
-                if denom["units"] == denom_units
-                  denom["counts"].find do |count|
-                    denom_value = count["value"] if count["groupId"] == measurement["groupId"]
-                  end
-                end
-              end
-            end
-            
-            {
-              nct_id: NCT_ID,
-              result_group_id: ResultGroup.where(ctgov_group_code: group_id).pluck(:id).first,
-              ctgov_group_code: group_id,
-
-              classification: measure_class["title"],
-              category: category["title"],
-
-              title: measure["title"],
-              description: measure["description"],
-              units: measure["unitOfMeasure"],
-              population_description: measure["populationDescription"],
-
-              param_type: measure["paramType"],
-              param_value: measurement["value"],
-              param_value_num: begin BigDecimal(measurement["value"]) rescue nil end,
-            
-              dispersion_type: measure["dispersionType"],
-              dispersion_value: measurement["spread"],
-              dispersion_value_num: begin BigDecimal(measurement["spread"]) rescue nil end,
-              dispersion_lower_limit: begin BigDecimal(measurement["lowerLimit"]) rescue nil end,
-              dispersion_upper_limit: begin BigDecimal(measurement["upperLimit"]) rescue nil end,
-
-              explanation_of_na: measurement["comment"],
-
-              calculate_percentage: measure["calculatePct"].nil? ? nil : (measure["calculatePct"] == false ? "No" : "Yes"),
-              number_analyzed: denom_value.nil? ? nil : denom_value.to_i, # to avoid possible nil to 0 conversion
-              number_analyzed_units: denom_units,
-            }
-          end
-        end
-      end
-    end
-  end
-
   def expected_result_group_data
     @result_groups.map do |record|
       {
@@ -145,5 +83,103 @@ describe "BaselineMeasurement and Baseline ResultGroup" do
 
   def import_and_sort(model)
     model.all.map { |x| x.attributes.except("id").symbolize_keys }
+  end
+
+def expected_baseline_measurement_data
+    results = []
+    @measures.each do |measure|
+      base_result = {
+        nct_id: NCT_ID,
+        result_group_id: nil,
+        ctgov_group_code: nil,
+        classification: nil,
+        category: nil,
+        title: measure["title"],
+        description: measure["description"],
+        units: measure["unitOfMeasure"],
+        population_description: measure["populationDescription"],
+        param_type: measure["paramType"],
+        param_value: nil,
+        param_value_num: nil,
+        dispersion_type: measure["dispersionType"],
+        dispersion_value: nil,
+        dispersion_value_num: nil,
+        dispersion_lower_limit: nil,
+        dispersion_upper_limit: nil,
+        explanation_of_na: nil,
+        calculate_percentage: measure["calculatePct"].nil? ? nil : (measure["calculatePct"] == false ? "No" : "Yes"),
+        number_analyzed: nil,
+        number_analyzed_units: BaselineMeasurement::PARTICIPANTS
+      }
+
+      if measure["classes"].nil? || measure["classes"].empty?
+        # If no classes, still add a base measure entry
+        results << base_result
+      else
+        measure["classes"].each do |measure_class|
+          class_result = base_result.merge(classification: measure_class["title"])
+
+          if measure_class["categories"].nil? || measure_class["categories"].empty?
+            # If no categories, still add a class-level entry
+            results << class_result
+          else
+            measure_class["categories"].each do |category|
+              category_result = class_result.merge(category: category["title"])
+
+              if category["measurements"].nil? || category["measurements"].empty?
+                # If no measurements, still add a category-level entry
+                results << category_result
+              else
+                category["measurements"].each do |measurement|
+
+                  measurement_result = category_result.dup
+
+                  group_id = measurement["groupId"]
+                  denom_unit = measure["denomUnitsSelected"] || BaselineMeasurement::PARTICIPANTS
+                  denoms = measure_class["denoms"] || measure["denoms"]
+                  
+                  denom_unit_value = find_denom_value(denoms, group_id, denom_unit)
+                  
+                  measurement_result.merge!({
+                    result_group_id: ResultGroup.where(ctgov_group_code: group_id).pluck(:id).first,
+                    ctgov_group_code: group_id,
+                    param_value: measurement["value"],
+                    param_value_num: begin BigDecimal(measurement["value"]) rescue nil end,
+                    dispersion_value: measurement["spread"],
+                    dispersion_value_num: begin BigDecimal(measurement["spread"]) rescue nil end,
+                    dispersion_lower_limit: begin BigDecimal(measurement["lowerLimit"]) rescue nil end,
+                    dispersion_upper_limit: begin BigDecimal(measurement["upperLimit"]) rescue nil end,
+                    explanation_of_na: measurement["comment"],
+                    number_analyzed: denom_unit_value.nil? ? nil : denom_unit_value.to_i,
+                    number_analyzed_units: denom_unit
+                  })
+                  results << measurement_result
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+    results
+  end
+
+  def find_denom_value(denoms, group_id, denom_unit)
+    # byebug
+    denom_value = nil
+    if denoms.nil?
+      denom = @denoms.find { |denom| denom["units"] == denom_unit }
+      group = denom["counts"].find { |count| count["groupId"] == group_id }
+      denom_value = group["value"]
+    else
+      denoms.find do |denom|
+        if denom["units"] == denom_unit
+          denom["counts"].find do |count|
+            denom_value = count["value"] if count["groupId"] == group_id
+          end
+        end
+      end
+    end
+    denom_value
   end
 end
