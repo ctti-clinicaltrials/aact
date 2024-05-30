@@ -35,7 +35,8 @@ class StudyDownloader
         attempts += 1
         print ".".green
         content = ClinicalTrialsApiV2.study(nct_id)
-        record.update(content: content, download_date: Time.now)
+        record.update(content: content)
+
         return record
       rescue Faraday::ConnectionFailed
         return false if attempts > 5

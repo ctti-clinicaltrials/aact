@@ -9,7 +9,7 @@ RSpec.describe StudyDownloader do
       nct_id = 'NCT12345678'
 
       expect(ClinicalTrialsApiV2).to receive(:study).with(nct_id).and_return({ some: 'data' })
-      expect(record).to receive(:update).with(content: { some: 'data' }, version: "2")
+      expect(record).to receive(:update).with(content: { some: 'data' })
 
       StudyDownloader.update_from_apiV2(record, nct_id)
     end
