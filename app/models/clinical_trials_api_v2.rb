@@ -1,7 +1,7 @@
 class ClinicalTrialsApiV2
   # based on api: https://clinicaltrials.gov/data-about-studies/learn-about-api
   
-  BASE_URL_V2 = 'https://clinicaltrials.gov/api/v2'
+  BASE_URL_V2 = 'https://clinicaltrials.gov/api/v2/'
 
   # TODO: double check potential // issue in the url
 
@@ -88,7 +88,7 @@ class ClinicalTrialsApiV2
         items << {
           # TODO: review the key names - not the same as for v1
           nct_id: rec["protocolSection"]["identificationModule"]["nctId"],
-          # posted: rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
+          posted: rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
           updated: rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
         }
         break if items.size >= limit
