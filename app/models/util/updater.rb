@@ -2,6 +2,7 @@
 
 module Util
   class Updater
+    include SchemaSwitcher
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :full_featured, :schema, :search_days_back
 
     # days_back:     number of days

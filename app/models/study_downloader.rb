@@ -1,14 +1,10 @@
 class StudyDownloader
     def self.download_recently_updated
-      ActiveRecord::Base.logger.silence do
-        find_studies_to_update.each do |nct_id|
-          record = StudyJsonRecord.find_by(nct_id: nct_id, version: '2')
-          if record.nil?
-            record = StudyJsonRecord.create(nct_id: nct_id, content: {}, version: '2')
-          end
-          puts "\nDownloading: #{nct_id}"
-          update_from_apiV2(record, nct_id)
-        end
+      # ActiveRecord::Base.logger.silence do # silence method error
+      find_studies_to_update.each do |nct_id|
+        record = StudyJsonRecord.find_or_create_by(nct_id: nct_id, version: '2') { |r| r.content = {} }
+        puts "\nDownloading: #{nct_id}"
+        update_from_apiV2(record, nct_id)
       end
     end
 
@@ -39,7 +35,7 @@ class StudyDownloader
         attempts += 1
         print ".".green
         content = ClinicalTrialsApiV2.study(nct_id)
-        record.update(content: content, version: "2")
+        record.update(content: content, download_date: Time.now)
         return record
       rescue Faraday::ConnectionFailed
         return false if attempts > 5
@@ -53,7 +49,7 @@ class StudyDownloader
     # return the studies that are not found in the database and the studies that were updated after we updated them
     def self.find_studies_to_update
       # get a list of all studies from clinicaltrials.gov
-      studies = ClinicalTrialsApiV2.all 
+      studies = ClinicalTrialsApiV2.all
 
       # find all the studies that were updated at clinicaltrials.gov after we updated them
       current = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]

@@ -3,6 +3,7 @@ class ClinicalTrialsApiV2
   
   BASE_URL_V2 = 'https://clinicaltrials.gov/api/v2/'
 
+  # TODO: double check potential // issue in the url
 
   #Studies/Related to clinical trial studies
 
@@ -59,14 +60,14 @@ class ClinicalTrialsApiV2
   end
 
   # get all the studies from ctgov
-  def self.all(days_back: nil)
+  def self.all(limit: 100000, days_back: nil)
     offset = 1
     items = []
 
     page_token = nil
 
     loop do
-      url = "#{BASE_URL_V2}studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000"
+      url = "#{BASE_URL_V2}/studies?fields=NCTId%2CStudyFirstSubmitDate%2CLastUpdatePostDate&pageSize=1000"
       url += "&pageToken=#{page_token}" if page_token
 
       attempts = 0
@@ -85,17 +86,21 @@ class ClinicalTrialsApiV2
 
       studies.each do |rec|
         items << {
+          # TODO: review the key names - not the same as for v1
           nct_id: rec["protocolSection"]["identificationModule"]["nctId"],
           posted: rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
           updated: rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
         }
+        break if items.size >= limit
       end
 
-      puts "items: #{items.length}"
+      # puts "api studies: #{items.length}"
+      break if items.size >= limit || page_token.nil?
 
       page_token = json_response["nextPageToken"]
       break if page_token.nil?
     end
+    puts "api v2 studies: #{items.length}"
     return items
   end
 

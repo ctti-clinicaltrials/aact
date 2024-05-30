@@ -158,20 +158,47 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
+  def add_missing_keys(item, keys)
+    return item if keys.empty?
+
+    key = keys.first
+    remaining_keys = keys.drop(1)
+
+    unless item.key?(key.to_s)
+      item[key.to_s] = remaining_keys.empty? ? [{}] : [add_missing_keys({}, remaining_keys)]
+      puts "🛑 data after adding new key to item: #{item}"
+    end
+
+    item
+  end
+
   def flatten(path, data, parent=nil)
     return [] unless data
     child_key = path.first
     result = []
+    if !child_key.nil? && !data.first.key?(child_key.to_s) && path == [:categories, :measurements]
+      puts "🛑 #{path} found in path but not in data}"
+      data.each do |item|
+        add_missing_keys(item, path)
+      end
+    end
+
+
     if child_key.nil?
       data.each { |i| append_parent(i, parent) } if parent
       return data
     else
-      result = data.map do |item|
-        children = item.delete(child_key.to_s)
+    result = data.map do |item|
+      children = item.delete(child_key.to_s)
+      if children.nil? || children.empty?
+        append_parent(item, parent) if parent
+        item
+      else
         res = flatten(path[1..-1], children, item)
         append_parent(res.first, parent) if parent
         res
       end
+    end
       return result.flatten
     end
   end

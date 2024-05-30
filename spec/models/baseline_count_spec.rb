@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'BaselineCount and ResultGroup' do
 
-  NCT_ID = 'NCT000001'.freeze
+  NCT_ID = 'NCT000001'
 
   before do
     # load the json and paths to main sections
