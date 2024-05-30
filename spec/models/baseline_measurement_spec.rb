@@ -48,9 +48,17 @@ describe "BaselineMeasurement and Baseline ResultGroup" do
       describe "BaselineMeasurement" do
         it "creates the correct number of records", schema: :v2 do
           measurement_count = @measures.sum do |measure|
-            measure["classes"].sum do |measure_class|
-              measure_class["categories"].sum do |category|
-                category["measurements"].count
+            if measure["classes"].nil? || measure["classes"].empty?
+              1 # Add one "empty" measurement per group
+            else
+              measure["classes"].sum do |measure_class|
+                if measure_class["categories"].nil? || measure_class["categories"].empty?
+                  1 # Add one "empty" measurement per class
+                else
+                  measure_class["categories"].sum do |category|
+                    category["measurements"].empty? ? 1 : category["measurements"].count
+                  end
+                end
               end
             end
           end
