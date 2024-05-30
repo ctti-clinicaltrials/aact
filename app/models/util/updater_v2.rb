@@ -1,5 +1,6 @@
 module Util
   class UpdaterV2
+    include SchemaSwitcher
 
     attr_reader :params, :schema
 
@@ -11,6 +12,8 @@ module Util
 
 
     def execute
+      with_search_path('ctgov_v2, support, public') do
+
       log("#{@schema}: EXECUTE started")
 
       @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: "#{@schema}", problems: '' })
@@ -64,6 +67,7 @@ module Util
       @load_event.run_sanity_checks(@schema)
       @load_event.log("8/11 ran sanity checks")
 
+      end
     rescue => e
       # set the load event status to "error"
       @load_event.update({ status: 'error'}) 
