@@ -173,21 +173,10 @@ def expected_baseline_measurement_data
   end
 
   def find_denom_value(denoms, group_id, denom_unit)
-    # byebug
-    denom_value = nil
-    if denoms.nil?
-      denom = @denoms.find { |denom| denom["units"] == denom_unit }
-      group = denom["counts"].find { |count| count["groupId"] == group_id }
-      denom_value = group["value"]
-    else
-      denoms.find do |denom|
-        if denom["units"] == denom_unit
-          denom["counts"].find do |count|
-            denom_value = count["value"] if count["groupId"] == group_id
-          end
-        end
-      end
-    end
-    denom_value
+    denoms ||= @denoms
+
+    denom = denoms.find { |d| d["units"] == denom_unit }
+    group = denom&.fetch("counts", [])&.find { |count| count["groupId"] == group_id }
+    group["value"]
   end
 end
