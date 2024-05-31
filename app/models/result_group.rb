@@ -1,13 +1,13 @@
 class ResultGroup < StudyRelationship
 
-  has_many :reported_events, autosave: true
-  has_many :milestones, autosave: true
-  has_many :drop_withdrawals, autosave: true
-  has_many :baseline_counts, autosave: true
-  has_many :baseline_measures, autosave: true
-  has_many :outcome_counts, autosave: true
-  has_many :outcome_measurements, autosave: true
-  has_many :outcome_analysis_groups, inverse_of: :result_group, autosave: true
+  has_many :reported_events
+  has_many :milestones
+  has_many :drop_withdrawals
+  has_many :baseline_counts
+  has_many :baseline_measures
+  has_many :outcome_counts
+  has_many :outcome_measurements
+  has_many :outcome_analysis_groups, inverse_of: :result_group
   has_many :outcome_analyses, :through => :outcome_analysis_groups
 
   add_mapping do
