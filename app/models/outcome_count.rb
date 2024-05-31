@@ -1,4 +1,4 @@
 class OutcomeCount < StudyRelationship
-  belongs_to :outcome, autosave: true
-  belongs_to :result_group, autosave: true
+  belongs_to :outcome
+  belongs_to :result_group
 end

@@ -1,10 +1,10 @@
 class StudyDownloader
     def self.download_recently_updated
-      # ActiveRecord::Base.logger.silence do # silence method error
-      find_studies_to_update.each do |nct_id|
-        record = StudyJsonRecord.find_or_create_by(nct_id: nct_id, version: '2') { |r| r.content = {} }
-        puts "\nDownloading: #{nct_id}"
-        update_from_apiV2(record, nct_id)
+      silence_active_record do
+        find_studies_to_update.each do |nct_id|
+          record = StudyJsonRecord.find_or_create_by(nct_id: nct_id, version: '2') { |r| r.content = {} }
+          update_from_apiV2(record, nct_id)
+        end
       end
     end
 

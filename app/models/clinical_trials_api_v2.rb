@@ -60,7 +60,7 @@ class ClinicalTrialsApiV2
   end
 
   # get all the studies from ctgov
-  def self.all(limit: 100000, days_back: nil)
+  def self.all(limit: 1_000_000, days_back: nil)
     offset = 1
     items = []
 
@@ -91,16 +91,15 @@ class ClinicalTrialsApiV2
           posted: rec["protocolSection"]["statusModule"]["studyFirstSubmitDate"],
           updated: rec["protocolSection"]["statusModule"]["lastUpdatePostDateStruct"]["date"]
         }
-        break if items.size >= limit
       end
 
-      # puts "api studies: #{items.length}"
-      break if items.size >= limit || page_token.nil?
+      print "\rapi studies found: #{items.length}"
+      break if items.size >= limit
 
       page_token = json_response["nextPageToken"]
       break if page_token.nil?
     end
-    puts "api v2 studies: #{items.length}"
+    print "\rapi v2 studies found: #{items.length}\n"
     return items
   end
 

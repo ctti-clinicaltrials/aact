@@ -1,4 +1,4 @@
 class FacilityContact < StudyRelationship
-  belongs_to :facility, autosave: true
+  belongs_to :facility
 
 end
