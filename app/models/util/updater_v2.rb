@@ -11,6 +11,33 @@ module Util
     end
 
 
+    def run_main_loop
+      loop do
+        now = TZInfo::Timezone.get('America/New_York').now
+        if Support::LoadEvent.where('created_at > ?',now.beginning_of_day).count == 0
+          execute
+        else
+          ActiveRecord::Base.logger = nil
+          db_mgr.remove_constraints
+          update_old_studies
+        end
+      end
+    end
+
+
+    def update_old_studies(count=100)
+      with_v2_schema do
+        studies = Study.order(updated_at: :asc).limit(count)
+        puts "refreshing #{studies.count} ctgov_v2 studies"
+        studies.each do |study|
+          puts "refresh #{study.nct_id} #{study.updated_at}"
+          update_study(study.nct_id)
+        end
+      end
+    end
+
+
+
     def execute
       with_search_path('ctgov_v2, support, public') do
 
@@ -120,7 +147,7 @@ module Util
       if record.blank? || record.content.blank?
         record.destroy
       else
-        StudyJsonRecord::Worker.new.process # record.create_or_update_study
+        StudyJsonRecord::Worker.new.process_study(nct_id)
       end
 
     Time.now - stime
