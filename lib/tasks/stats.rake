@@ -10,27 +10,77 @@ namespace :stats do
 
   desc 'compare'
   task :compare => :environment do
+    `rm -rf comprisons`
+    `mkdir comparisons`
     StudyRelationship.study_models.each do |model|
       sql = <<-SQL
         SELECT
-        nct_id
+        original.nct_id
         FROM (
           SELECT
           nct_id,
           COUNT(*) AS count
-          FROM ctgov.#{table_name}
+          FROM ctgov.#{model.table_name}
+          GROUP BY nct_id
         ) AS original
-        JOIN (
+        LEFT JOIN (
           SELECT
           nct_id,
           COUNT(*) AS count
-          FROM ctgov_v2.#{table_name}
+          FROM ctgov_v2.#{model.table_name}
+          GROUP BY nct_id
         ) AS future ON future.nct_id = original.nct_id
-        WHERE orignal.count != future.count
+        WHERE original.count != future.count OR future.count IS NULL
       SQL
 
       results = ActiveRecord::Base.connection.execute(sql)
+      CSV.open("comparisons/#{model.table_name}.csv", "w") do |csv|
+        # Write the header row (if your query has headers)
+        csv << results.fields
+      
+        # Write each row from the query results
+        results.each do |row|
+          csv << row.values
+        end
+      end
       puts results.to_a
+    end
+  end
+
+  desc 'find missing studies'
+  task :missing => :environment do
+    sql = <<-SQL
+      SELECT
+      SJR.nct_id
+      FROM study_json_records SJR
+      LEFT JOIN ctgov_v2.studies S ON S.nct_id = SJR.nct_id
+      WHERE S.nct_id IS NULL
+    SQL
+    results = ActiveRecord::Base.connection.execute(sql)
+    results.each do |result|
+      puts result['nct_id']
+    end
+  end
+
+  desc 'compare studies'
+  task :compare_studies, [:nct_id] => :environment do |t, args|
+    StudyRelationship.study_models.each do |model|
+      sql = <<-SQL
+        SELECT
+        COUNT(*)
+        FROM ctgov.#{model.table_name}
+        WHERE nct_id = #{args[:nct_id]}
+      SQL
+      original = ActiveRecord::Base.connection.execute(sql).to_a[0][0]
+
+      sql = <<-SQL
+        SELECT
+        COUNT(*)
+        FROM ctgov.#{model.table_name}
+        WHERE nct_id = #{args[:nct_id]}
+      SQL
+      future = ActiveRecord::Base.connection.execute(sql).to_a[0][0]
+      puts "#{model.table_name}: #{original} vs #{future}"
     end
   end
 end
