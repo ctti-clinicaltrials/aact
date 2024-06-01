@@ -9,6 +9,13 @@ namespace :db do
   end
 
   desc 'process study json records'
+  task :import_study, [:nct_id] => :environment do |t, args|
+    worker = StudyJsonRecord::Worker.new
+    records = StudyJsonRecord.where(nct_id: args[:nct_id], version: '2')
+    worker.process(1, records)
+  end
+
+  desc 'process study json records'
   task :import, [:schema] => :environment do |t, args|
     with_search_path(args[:schema]) do
       StudyJsonRecord::Worker.new.import_all(5000)

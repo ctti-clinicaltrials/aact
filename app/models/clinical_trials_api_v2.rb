@@ -93,13 +93,13 @@ class ClinicalTrialsApiV2
         }
       end
 
-      print "\rapi studies found: #{items.length}"
+      print "\rstudies found: #{items.length}"
       break if items.size >= limit
 
       page_token = json_response["nextPageToken"]
       break if page_token.nil?
     end
-    print "\rapi v2 studies found: #{items.length}\n"
+    print "\rstudies found: #{items.length}\n"
     return items
   end
 
