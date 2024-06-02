@@ -43,7 +43,7 @@ namespace :stats do
           csv << row.values
         end
       end
-      puts results.to_a
+      puts "#{model.table_name} #{results.count} differences"
     end
   end
 
