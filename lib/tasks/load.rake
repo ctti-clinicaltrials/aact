@@ -127,12 +127,4 @@ namespace :db do
       db.add_indexes
     end
   end
-
-  desc 'remove constraints from the database'
-  task :remove_constraints, [:schema] => :environment do |t, args|
-    with_search_path(args[:schema]) do
-      db = Util::DbManager.new(schema: args[:schema])
-      db.remove_constraints
-    end
-  end
 end
