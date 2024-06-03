@@ -52,7 +52,7 @@ class StudyRelationship < ActiveRecord::Base
 
   def self.study_models
     return @models if @models
-    @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
+    @models = (connection.tables - blacklist).sort.map{|k| k.singularize.camelize.constantize }
   end
 
   def self.remove_all_data

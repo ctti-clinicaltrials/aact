@@ -57,10 +57,11 @@ module Util
         db_mgr.remove_constraints
         @load_event.log("1/11 removed constraints")
 
-
         # 2. update studies
         log("#{@schema}: updating studies...")
-        update_studies
+        StudyDownloader.download_recently_updated
+        worker = StudyJsonRecord::Worker.new
+        worker.import_all
         @load_event.log("2/11 updated studies")
 
 
