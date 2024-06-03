@@ -13,8 +13,8 @@ module Util
 
     def run_main_loop
       loop do
-        now = TZInfo::Timezone.get('America/New_York').now
-        if Support::LoadEvent.where('created_at > ?',now.beginning_of_day).count == 0
+        now = TZInfo::Timezone.get("America/New_York").now
+        if Support::LoadEvent.where("created_at > ? AND description LIKE ?", now.beginning_of_day, "#{@schema}%").count == 0
           execute
         else
           ActiveRecord::Base.logger = nil
@@ -43,7 +43,12 @@ module Util
 
         log("#{@schema}: EXECUTE started")
 
-        @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: "#{@schema}", problems: '' })
+        @load_event = Support::LoadEvent.create({
+          event_type: @type,
+          status: "running",
+          description: "#{@schema}",
+          problems: "" 
+        })
 
         ActiveRecord::Base.logger = nil # why are we disabling logger here?
 
@@ -94,7 +99,8 @@ module Util
         @load_event.run_sanity_checks(@schema)
         @load_event.log("8/11 ran sanity checks")
 
-        if load_even.sanity_checks.count == 0
+        # TODO: sanity checks return error - load_event -> problems
+        if @load_even.sanity_checks.count == 0
           puts "SANITY CHECKS PASSED"
            # 9. take snapshot
 
@@ -138,6 +144,7 @@ module Util
       puts "Time: #{time} avg: #{time / total}"
     end
 
+    # TODO: Not called anywhere - verify that correct schema is being used
     def remove_studies
       # remove studies
       raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count
