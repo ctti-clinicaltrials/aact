@@ -43,7 +43,7 @@ namespace :stats do
           csv << row.values
         end
       end
-      puts results.to_a
+      puts "#{model.table_name} #{results.count} differences"
     end
   end
 
@@ -69,18 +69,33 @@ namespace :stats do
         SELECT
         COUNT(*)
         FROM ctgov.#{model.table_name}
-        WHERE nct_id = #{args[:nct_id]}
+        WHERE nct_id = '#{args[:nct_id]}'
       SQL
-      original = ActiveRecord::Base.connection.execute(sql).to_a[0][0]
+      original = ActiveRecord::Base.connection.execute(sql).to_a.first.dig('count')
 
       sql = <<-SQL
         SELECT
         COUNT(*)
-        FROM ctgov.#{model.table_name}
-        WHERE nct_id = #{args[:nct_id]}
+        FROM ctgov_v2.#{model.table_name}
+        WHERE nct_id = '#{args[:nct_id]}'
       SQL
-      future = ActiveRecord::Base.connection.execute(sql).to_a[0][0]
-      puts "#{model.table_name}: #{original} vs #{future}"
+      future = ActiveRecord::Base.connection.execute(sql).to_a.first.dig('count')
+      if original != future
+        puts "#{model.table_name}: #{original} vs #{future}"
+      end
+    end
+  end
+
+  desc 'show indexes and foreign keys'
+  task :indexes, [:schema] => :environment do |t, args|
+    with_search_path(args[:schema]) do
+      StudyRelationship.study_models.each do |model|
+        puts model.table_name.blue
+        #model.connection.indexes(model.table_name)
+        model.connection.foreign_keys(model.table_name).each do |fk|
+          puts "  #{fk.column} -> #{fk.to_table}.#{fk.primary_key}"
+        end
+      end
     end
   end
 end
