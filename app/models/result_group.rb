@@ -16,6 +16,7 @@ class ResultGroup < StudyRelationship
         table: :result_groups,
         root: [:resultsSection, :baselineCharacteristicsModule, :groups],
         index: [:ctgov_group_code, :result_type], 
+        unique: true,
         columns: [
           { name: :ctgov_group_code, value: :id },
           { name: :result_type, value: 'Baseline' },
@@ -28,6 +29,7 @@ class ResultGroup < StudyRelationship
         root: [:resultsSection, :outcomeMeasuresModule, :outcomeMeasures],
         flatten: [:groups],
         index: [:ctgov_group_code, :result_type],
+        unique: true,
         columns: [
           { name: :ctgov_group_code, value: :id },
           { name: :result_type, value: 'Outcome' },
@@ -39,6 +41,7 @@ class ResultGroup < StudyRelationship
         table: :result_groups,
         root: [:resultsSection, :participantFlowModule, :groups],
         index: [:ctgov_group_code, :result_type], 
+        unique: true,
         columns: [
           { name: :ctgov_group_code, value: :id },
           { name: :result_type, value: 'Participant Flow' },
@@ -50,6 +53,7 @@ class ResultGroup < StudyRelationship
         table: :result_groups,
         root: [:resultsSection, :adverseEventsModule, :eventGroups],
         index: [:ctgov_group_code, :result_type],
+        unique: true,
         columns: [
           { name: :ctgov_group_code, value: :id },
           { name: :result_type, value: 'Reported Event' },

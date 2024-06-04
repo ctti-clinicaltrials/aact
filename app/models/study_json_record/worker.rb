@@ -245,6 +245,11 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       end
     end
 
+    # remove duplicates
+    if mapping[:unique]
+      collection = collection.uniq{|k| k.attributes }
+    end
+
     # import models
     print "\r   #{mapping[:table]} - #{collection.count}"
     model.import(collection)
