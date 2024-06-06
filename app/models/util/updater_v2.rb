@@ -101,9 +101,12 @@ module Util
         @load_event.log("8/11 ran sanity checks")
 
         # TODO: sanity checks return error - load_event -> problems
-        if @load_even.sanity_checks.count == 0
+        if @load_event.sanity_checks.count == 0
           puts "SANITY CHECKS PASSED"
-           # 9. take snapshot
+          # 9. take snapshot
+          log("#{@schema}: take snapshot...")
+          take_snapshot
+          @load_event.log("9/11 db snapshot created")
 
            # 10. refresh public db
 
@@ -221,6 +224,16 @@ module Util
       minutes = seconds / 60
       seconds -= minutes * 60
       "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
+    end
+
+    def take_snapshot
+      log('dumping database...')
+      filename = db_mgr.dump_database
+
+      log('creating zipfile of database...')
+      Util::FileManager.new.save_static_copy(filename, @schema)
+      rescue StandardError => e
+        @load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
 
   end
