@@ -109,6 +109,9 @@ module Util
           @load_event.log("9/11 db snapshot created")
 
            # 10. refresh public db
+          log("#{@schema}: refresh public db...")
+          db_mgr.refresh_public_db
+          @load_event.log("10/11 refreshed public db")
 
            # 10. create flat files
         end
