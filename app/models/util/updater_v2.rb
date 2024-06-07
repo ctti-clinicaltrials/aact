@@ -39,7 +39,6 @@ module Util
 
 
     def execute
-      with_search_path('ctgov_v2, support, public') do
 
         log("#{@schema}: EXECUTE started")
 
@@ -100,27 +99,33 @@ module Util
         @load_event.run_sanity_checks(@schema)
         @load_event.log("8/11 ran sanity checks")
 
-        # TODO: sanity checks return error - load_event -> problems
+        
         if @load_event.sanity_checks.count == 0
           puts "SANITY CHECKS PASSED"
           # 9. take snapshot
           log("#{@schema}: take snapshot...")
-          take_snapshot
-          @load_event.log("9/11 db snapshot created")
+          with_v2_schema do
+            take_snapshot
+            @load_event.log("9/11 db snapshot created")
+          end
 
-           # 10. refresh public db
+          # 10. refresh public db
           log("#{@schema}: refresh public db...")
           db_mgr.refresh_public_db
           @load_event.log("10/11 refreshed public db")
 
-           # 10. create flat files
+          # 11. create flat files
+          log("#{@schema}: creating flat files...")
+          with_v2_schema do
+            create_flat_files
+            @load_event.log("11/11 created flat files")
+          end
         end
 
         # 11. change the state of the load event from “running” to “complete”
         @load_event.update({ status: "complete", completed_at: Time.now})
 
         # 12. import study records
-      end
     rescue => e
       # set the load event status to "error"
       @load_event.update({ status: 'error'}) 
@@ -237,6 +242,11 @@ module Util
       Util::FileManager.new.save_static_copy(filename, @schema)
       rescue StandardError => e
         @load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
+    end
+
+    def create_flat_files
+      log('exporting tables as flat files...')
+      Util::TableExporter.new([],'ctgov_v2').run(delimiter: '|')
     end
 
   end
