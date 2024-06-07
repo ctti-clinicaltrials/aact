@@ -40,92 +40,92 @@ module Util
 
     def execute
 
-        log("#{@schema}: EXECUTE started")
+      log("#{@schema}: EXECUTE started")
 
-        @load_event = Support::LoadEvent.create({
-          event_type: @type,
-          status: "running",
-          description: "#{@schema}",
-          problems: "" 
-        })
+      @load_event = Support::LoadEvent.create({
+        event_type: @type,
+        status: "running",
+        description: "#{@schema}",
+        problems: "" 
+      })
 
-        ActiveRecord::Base.logger = nil # why are we disabling logger here?
+      ActiveRecord::Base.logger = nil # why are we disabling logger here?
 
-        # 1. remove constraings
-        log("#{@schema}: removing constraints...")
-        db_mgr.remove_constraints
-        @load_event.log("1/11 removed constraints")
+      # 1. remove constraings
+      log("#{@schema}: removing constraints...")
+      db_mgr.remove_constraints
+      @load_event.log("1/11 removed constraints")
 
-        # 2. update studies
-        log("#{@schema}: updating studies...")
-        StudyDownloader.download_recently_updated
-        worker = StudyJsonRecord::Worker.new
-        worker.import_all
-        @load_event.log("2/11 updated studies")
-
-
-        # 3. add constraints
-        log("#{@schema}: adding constraints...")
-        db_mgr.add_constraints
-        @load_event.log("3/11 added constraints")
+      # 2. update studies
+      log("#{@schema}: updating studies...")
+      StudyDownloader.download_recently_updated
+      worker = StudyJsonRecord::Worker.new
+      worker.import_all
+      @load_event.log("2/11 updated studies")
 
 
-        # 4. comparing the counts from CT.gov to our database
-        log("#{@schema}: comparing counts...")
-        @load_event.log("4/11 skipped verification")
+      # 3. add constraints
+      log("#{@schema}: adding constraints...")
+      db_mgr.add_constraints
+      @load_event.log("3/11 added constraints")
 
 
-        # 5. run study searches
-        log("#{@schema}: execute study search...")
-        @load_event.log("5/11 skipped study searches")
+      # 4. comparing the counts from CT.gov to our database
+      log("#{@schema}: comparing counts...")
+      @load_event.log("4/11 skipped verification")
 
 
-        # 6. update calculated values
-        log("#{@schema}: update calculated values...")
-        CalculatedValue.populate(@schema)
-        @load_event.log("6/11 updated calculated values")
+      # 5. run study searches
+      log("#{@schema}: execute study search...")
+      @load_event.log("5/11 skipped study searches")
 
 
-        # 7. populate the meshterms and meshheadings
-        log("#{@schema}: update mesh terms and headings...")
-        MeshTerm.populate_from_file
-        MeshHeading.populate_from_file
-        set_downcase_terms
-        @load_event.log("7/11 populated mesh terms")
+      # 6. update calculated values
+      log("#{@schema}: update calculated values...")
+      CalculatedValue.populate(@schema)
+      @load_event.log("6/11 updated calculated values")
 
 
-        # 8. run sanity checks
-        log("#{@schema}: run sanity checks...")
-        @load_event.run_sanity_checks(@schema)
-        @load_event.log("8/11 ran sanity checks")
+      # 7. populate the meshterms and meshheadings
+      log("#{@schema}: update mesh terms and headings...")
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
+      set_downcase_terms
+      @load_event.log("7/11 populated mesh terms")
 
-        
-        if @load_event.sanity_checks.count == 0
-          puts "SANITY CHECKS PASSED"
-          # 9. take snapshot
-          log("#{@schema}: take snapshot...")
-          with_v2_schema do
-            take_snapshot
-            @load_event.log("9/11 db snapshot created")
-          end
 
-          # 10. refresh public db
-          log("#{@schema}: refresh public db...")
-          db_mgr.refresh_public_db
-          @load_event.log("10/11 refreshed public db")
+      # 8. run sanity checks
+      log("#{@schema}: run sanity checks...")
+      @load_event.run_sanity_checks(@schema)
+      @load_event.log("8/11 ran sanity checks")
 
-          # 11. create flat files
-          log("#{@schema}: creating flat files...")
-          with_v2_schema do
-            create_flat_files
-            @load_event.log("11/11 created flat files")
-          end
+      
+      if @load_event.sanity_checks.count == 0
+        puts "SANITY CHECKS PASSED"
+        # 9. take snapshot
+        log("#{@schema}: take snapshot...")
+        with_v2_schema do
+          take_snapshot
+          @load_event.log("9/11 db snapshot created")
         end
 
-        # 11. change the state of the load event from “running” to “complete”
-        @load_event.update({ status: "complete", completed_at: Time.now})
+        # 10. refresh public db
+        log("#{@schema}: refresh public db...")
+        db_mgr.refresh_public_db
+        @load_event.log("10/11 refreshed public db")
 
-        # 12. import study records
+        # 11. create flat files
+        log("#{@schema}: creating flat files...")
+        with_v2_schema do
+          create_flat_files
+          @load_event.log("11/11 created flat files")
+        end
+      end
+
+      # 11. change the state of the load event from “running” to “complete”
+      @load_event.update({ status: "complete", completed_at: Time.now})
+
+      # 12. import study records
     rescue => e
       # set the load event status to "error"
       @load_event.update({ status: 'error'}) 
