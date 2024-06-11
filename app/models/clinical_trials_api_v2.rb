@@ -60,6 +60,7 @@ class ClinicalTrialsApiV2
   end
 
   # get all the studies from ctgov
+
   def self.all(limit: 1_000_000, days_back: nil)
     offset = 1
     items = []

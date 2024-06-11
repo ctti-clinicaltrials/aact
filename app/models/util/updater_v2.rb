@@ -11,12 +11,43 @@ module Util
     end
 
 
+    def run_main_loop
+      loop do
+        now = TZInfo::Timezone.get("America/New_York").now
+        if Support::LoadEvent.where("created_at > ? AND description LIKE ?", now.beginning_of_day, "#{@schema}%").count == 0
+          execute
+        else
+          ActiveRecord::Base.logger = nil
+          db_mgr.remove_constraints
+          update_old_studies
+        end
+      end
+    end
+
+
+    def update_old_studies(count=100)
+      with_v2_schema do
+        studies = Study.order(updated_at: :asc).limit(count)
+        puts "refreshing #{studies.count} ctgov_v2 studies"
+        studies.each do |study|
+          puts "refresh #{study.nct_id} #{study.updated_at}"
+          update_study(study.nct_id)
+        end
+      end
+    end
+
+
+
     def execute
-      with_search_path('ctgov_v2, support, public') do
 
       log("#{@schema}: EXECUTE started")
 
-      @load_event = Support::LoadEvent.create({ event_type: @type, status: 'running', description: "#{@schema}", problems: '' })
+      @load_event = Support::LoadEvent.create({
+        event_type: @type,
+        status: "running",
+        description: "#{@schema}",
+        problems: "" 
+      })
 
       ActiveRecord::Base.logger = nil # why are we disabling logger here?
 
@@ -25,10 +56,8 @@ module Util
       db_mgr.remove_constraints
       @load_event.log("1/11 removed constraints")
 
-
       # 2. update studies
       log("#{@schema}: updating studies...")
-      #update_studies
       StudyDownloader.download_recently_updated
       worker = StudyJsonRecord::Worker.new
       worker.import_all
@@ -70,7 +99,33 @@ module Util
       @load_event.run_sanity_checks(@schema)
       @load_event.log("8/11 ran sanity checks")
 
+      
+      if @load_event.sanity_checks.count == 0
+        puts "SANITY CHECKS PASSED"
+        # 9. take snapshot
+        log("#{@schema}: take snapshot...")
+        with_v2_schema do
+          take_snapshot
+          @load_event.log("9/11 db snapshot created")
+        end
+
+        # 10. refresh public db
+        log("#{@schema}: refresh public db...")
+        db_mgr.refresh_public_db
+        @load_event.log("10/11 refreshed public db")
+
+        # 11. create flat files
+        log("#{@schema}: creating flat files...")
+        with_v2_schema do
+          create_flat_files
+          @load_event.log("11/11 created flat files")
+        end
       end
+
+      # 11. change the state of the load event from “running” to “complete”
+      @load_event.update({ status: "complete", completed_at: Time.now})
+
+      # 12. import study records
     rescue => e
       # set the load event status to "error"
       @load_event.update({ status: 'error'}) 
@@ -101,6 +156,7 @@ module Util
       puts "Time: #{time} avg: #{time / total}"
     end
 
+    # TODO: Not called anywhere - verify that correct schema is being used
     def remove_studies
       # remove studies
       raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count
@@ -123,7 +179,7 @@ module Util
       if record.blank? || record.content.blank?
         record.destroy
       else
-        StudyJsonRecord::Worker.new.process # record.create_or_update_study
+        StudyJsonRecord::Worker.new.process_study(nct_id)
       end
 
     Time.now - stime
@@ -176,6 +232,21 @@ module Util
       minutes = seconds / 60
       seconds -= minutes * 60
       "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
+    end
+
+    def take_snapshot
+      log('dumping database...')
+      filename = db_mgr.dump_database
+
+      log('creating zipfile of database...')
+      Util::FileManager.new.save_static_copy(filename, @schema)
+      rescue StandardError => e
+        @load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
+    end
+
+    def create_flat_files
+      log('exporting tables as flat files...')
+      Util::TableExporter.new([],'ctgov_v2').run(delimiter: '|')
     end
 
   end

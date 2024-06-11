@@ -5,7 +5,7 @@ module Util
     def initialize(tables=[],schema='')
       @schema = schema
       @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
-      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export.zip"
+      @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export_#{schema}.zip"
       @table_names  = tables
       create_temp_dir_if_none_exists!
     end
@@ -43,7 +43,8 @@ module Util
     # exports table to csv file using delimter
     def export_table(table, file, delimiter)
       connection  = ActiveRecord::Base.connection.raw_connection
-      connection.copy_data("copy #{table} to STDOUT with delimiter '#{delimiter}' csv header") do
+      schema_table = "#{@schema}.#{table}"
+      connection.copy_data("copy #{schema_table} to STDOUT with delimiter '#{delimiter}' csv header") do
         while row = connection.get_copy_data
           # convert all \n to ~.  Then when you write to the file, convert last ~ back to \n
           # to prevent it from concatenating all rows into one big long string
