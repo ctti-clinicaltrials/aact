@@ -5,7 +5,7 @@ describe Util::TableExporter do
   include SchemaSwitcher
 
   describe '#run' do
-    let(:table_exporter) { Util::TableExporter.new([],'ctgov_v2') }
+    let!(:table_exporter) { Util::TableExporter.new([],'ctgov_v2') }
     let(:zipfile_name)   { table_exporter.zipfile_name }
 
     before do
@@ -20,11 +20,6 @@ describe Util::TableExporter do
       db.add_indexes
       db.add_constraints
       expect(Study.count).to eq(1)
-    end
-
-    after do
-      puts "deleting #{zipfile_name}"
-      File.delete(zipfile_name) if File.exist?(zipfile_name)
     end
 
     context 'export tables' do
@@ -61,9 +56,8 @@ describe Util::TableExporter do
       end
 
       it 'should have content in each csv' do
-        
         with_v2_schema do
-          table_exporter.run
+          table_exporter.run # run takes care of removing temp files
           expect(FileRecord.count).to eq(1)
         end
       end
