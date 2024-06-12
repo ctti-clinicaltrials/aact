@@ -3,7 +3,7 @@ require "rails_helper"
 describe ProvidedDocument do
   include SchemaSwitcher
 
-  NCT_ID = "NCT03064438"
+  let(:nct_id) { "NCT03064438" }
   json_files = ["provided_document.json"]
 
   json_files.each do |json_file|
@@ -13,8 +13,8 @@ describe ProvidedDocument do
       let(:expected_data) { get_expected_data(large_docs) }
 
       before do
-        StudyJsonRecord.create(nct_id: NCT_ID, version: "2", content: content)
-        StudyJsonRecord::Worker.new.process_study(NCT_ID)
+        StudyJsonRecord.create(nct_id: nct_id, version: "2", content: content)
+        StudyJsonRecord::Worker.new.process_study(nct_id)
       end
 
       describe "Data Import and Mapping" do
@@ -28,7 +28,7 @@ describe ProvidedDocument do
   end
 
   context "Document URLs" do
-    let(:nct_id) { NCT_ID }
+    # let(:nct_id) { nct_id }
     let(:filename) { "SAP_001.pdf" }
     let(:expected_url) { "https://ClinicalTrials.gov/ProvidedDocs/38/NCT03064438/SAP_001.pdf" }
 
@@ -49,13 +49,13 @@ describe ProvidedDocument do
     return [] unless documents
     documents.map do |document|
       {
-        nct_id: NCT_ID,
+        nct_id: nct_id,
         document_type: document["label"],
         has_protocol: document["hasProtocol"],
         has_icf: document["hasIcf"],
         has_sap: document["hasSap"],
         document_date: Date.parse(document["date"]),
-        url: ProvidedDocument.build_document_url(NCT_ID, document["filename"])
+        url: ProvidedDocument.build_document_url(nct_id, document["filename"])
       }
     end
   end
