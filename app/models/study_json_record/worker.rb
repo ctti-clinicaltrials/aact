@@ -151,6 +151,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   end
 
   def append_parent(hash, value)
+    return unless hash
     if hash['$parent']
       append_parent(hash['$parent'], value)
     else
@@ -173,6 +174,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   end
 
   def flatten(path, data, parent=nil)
+    # puts "🛑🛑🛑🛑 FLATTEN #{path} - #{data} - #{parent} 🛑🛑🛑🛑"
     return [] unless data
     child_key = path.first
     result = []
@@ -195,6 +197,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         item
       else
         res = flatten(path[1..-1], children, item)
+        if res.first.nil?
+          byebug
+        end
         append_parent(res.first, parent) if parent
         res
       end

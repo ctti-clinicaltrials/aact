@@ -379,4 +379,16 @@ class StudyRelationship < ActiveRecord::Base
       end
     end
   end
+
+  def self.swhere(opts={}, version='1')
+    table_name = self.table_name.gsub(/ctgov_v2.|ctgov./, '')
+    case version
+    when '1'
+      self.table_name = "ctgov.#{table_name}"
+      where(opts)
+    when '2'
+      self.table_name = "ctgov_v2.#{table_name}"
+      where(opts)
+    end
+  end
 end
