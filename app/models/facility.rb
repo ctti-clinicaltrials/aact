@@ -1,6 +1,6 @@
 class Facility < StudyRelationship
-  has_many :facility_contacts, autosave: true
-  has_many :facility_investigators, autosave: true
+  has_many :facility_contacts
+  has_many :facility_investigators
 
   add_mapping do
     {

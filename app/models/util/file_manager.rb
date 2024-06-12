@@ -116,7 +116,7 @@ module Util
     end
 
     # package files for archival purposes
-    def save_static_copy(dump_filename)
+    def save_static_copy(dump_filename, schema_name = "ctgov")
       # gather files into a directory
       documentation_files.each do |url, filename|
         `wget "#{url}" -q -O #{dump_directory}/#{filename}`
@@ -124,8 +124,8 @@ module Util
 
       # generate the filename
       date_stamp = Time.zone.now.strftime('%Y%m%d')
-      zip_file_name = "#{dump_directory}/#{date_stamp}_clinical_trials.zip"
 
+      zip_file_name = "#{dump_directory}/#{date_stamp}_clinical_trials_#{schema_name}.zip"
       # zip files
       File.delete(zip_file_name) if File.exist?(zip_file_name)
       `zip -j #{zip_file_name} #{documentation_files.values.map { |k| "#{dump_directory}/#{k}" }.join(' ')} #{dump_filename}`

@@ -50,7 +50,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     StudyJsonRecord.where(version: '2').update_all(saved_study_at: nil) # rubocop:disable Rails/SkipsModelValidations
   end
 
-  def save_children(parents)
+  def save_children(parents, indent="  ")
     return unless parents.first
 
     klass = parents.first.class
@@ -70,16 +70,20 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       end
       next if collection.empty?
 
+      print "#{indent}   ↳ #{collection.first.class.table_name} - #{collection.count}"
       collection.first.class.import(collection)
-      save_children(collection)
+      puts "\r✅#{indent} ↳ #{collection.first.class.table_name} - #{collection.count}"
+      save_children(collection,"  #{indent}")
     end
   end
 
-  def import_all
-    records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
-    while records > 0
-      process(5000)
+  def import_all(batch_size=5000)
+    silence_active_record do
       records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+      while records > 0
+        process(batch_size)
+        records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+      end
     end
   end
 
@@ -94,6 +98,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       
       Rails.logger.debug { "records: #{records.count}" }
 
+      puts "removing records: #{records.count}".red
       remove_study_data(records.map(&:nct_id))
 
       @collections = Hash.new { |h, k| h[k] = [] }
@@ -131,7 +136,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
       entries.each_with_index do |entry, index|
         values = mapping[:columns].map do |column|
-          [column[:name], get_value(column, entry, index)]
+          [column[:name], get_value(column, entry, index, nct_id)]
         end
         row = model.new(values.to_h)
         row.nct_id = nct_id
@@ -167,7 +172,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
     unless item.key?(key.to_s)
       item[key.to_s] = remaining_keys.empty? ? [{}] : [add_missing_keys({}, remaining_keys)]
-      puts "🛑 data after adding new key to item: #{item}"
+      # puts "🛑 data after adding new key to item: #{item}"
     end
 
     item
@@ -179,7 +184,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     child_key = path.first
     result = []
     if !child_key.nil? && !data.first.key?(child_key.to_s) && path == [:categories, :measurements]
-      puts "🛑 #{path} found in path but not in data}"
+      # puts "🛑 #{path} found in path but not in data}"
       data.each do |item|
         add_missing_keys(item, path)
       end
@@ -193,8 +198,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     result = data.map do |item|
       children = item.delete(child_key.to_s)
       if children.nil? || children.empty?
-        append_parent(item, parent) if parent
-        item
+        nil
       else
         res = flatten(path[1..-1], children, item)
         if res.first.nil?
@@ -204,11 +208,12 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         res
       end
     end
-      return result.flatten
+      return result.compact.flatten
     end
   end
   
   def process_mapping(mapping, records)
+    print "   #{mapping[:table]}"
     model = mapping[:table].to_s.classify.constantize # get the model from the table name
     root = mapping[:root].map(&:to_s) if mapping[:root] # normalize root path to array of strings
     collection = [] # this array will collect all the models to be imported
@@ -234,7 +239,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       # performing the mapping on the json objects
       entries.each_with_index do |entry, index|
         values = mapping[:columns].map do |column|
-          [column[:name], get_value(column, entry, index)]
+          [column[:name], get_value(column, entry, index, nct_id)]
         end
         row = model.new(values.to_h)
         row.nct_id = nct_id
@@ -244,8 +249,15 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       end
     end
 
+    # remove duplicates
+    if mapping[:unique]
+      collection = collection.uniq{|k| k.attributes }
+    end
+
     # import models
+    print "\r   #{mapping[:table]} - #{collection.count}"
     model.import(collection)
+    puts "\r✅ #{mapping[:table]} - #{collection.count}"
     if mapping[:index]
       index = [:nct_id] + mapping[:index]
       collection.each do |row|
@@ -266,12 +278,12 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   end
 
   # call a converter method or proc to convert the value
-  def convert_value(column, value)
+  def convert_value(column, value, nct_id = nil)
     case column[:convert_to]
     when Symbol
       send(column[:convert_to], value)
     when Proc
-      column[:convert_to].call(value)
+      column[:convert_to].arity == 1 ? column[:convert_to].call(value) : column[:convert_to].call(value, nct_id)
     else
       value
     end
@@ -279,7 +291,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
   # column - describes where to get the value & how to convert the value before saving
   # root - the json object to search for the value
-  def get_value(column, root, index = nil)
+  def get_value(column, root, index = nil, nct_id = nil)
     # get value from json
     case column[:value]
     when Array # deep level in hierarchy
@@ -298,7 +310,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       value = column[:value]
     end
 
-    convert_value(column, value)
+    convert_value(column, value, nct_id)
   rescue StandardError
     Rails.logger.debug { "Error getting #{column[:value]} from #{root}" }
     raise $ERROR_INFO

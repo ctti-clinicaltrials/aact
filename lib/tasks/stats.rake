@@ -35,6 +35,7 @@ namespace :stats do
 
       results = ActiveRecord::Base.connection.execute(sql)
       next if results.count == 0
+
       CSV.open("comparisons/#{model.table_name}.csv", "w") do |csv|
         # Write the header row (if your query has headers)
         csv << results.fields
