@@ -60,6 +60,7 @@ namespace :db do
     end
   end
 
+
   desc "Load the AACT database from ClinicalTrials.gov"
   task :run, [:schema] => :environment do |t, args|
     if args[:schema] == 'ctgov_v2'
