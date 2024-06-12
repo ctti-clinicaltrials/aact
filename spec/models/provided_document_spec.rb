@@ -1,14 +1,13 @@
-require 'rails_helper'
-import SchemaSwitcher
+require "rails_helper"
+
 
 describe ProvidedDocument do
-  
+  include SchemaSwitcher
 
   NCT_ID = "NCT03064438"
   BASE_URL = "https://ClinicalTrials.gov/ProvidedDocs/"
 
   json_files = [
-    # TODO: use full study data
     "provided_document.json"
   ]
 
@@ -16,6 +15,8 @@ describe ProvidedDocument do
     context "When importing data from #{json_file}" do
       
       let(:content) { JSON.parse(File.read("spec/support/json_data/#{json_file}")) }
+      let(:large_docs) { content["documentSection"]["largeDocumentModule"]["largeDocs"] }
+      let(:expected_data) { get_expected_data(large_docs) }
 
       # byebug
       before do
@@ -24,14 +25,13 @@ describe ProvidedDocument do
         StudyJsonRecord::Worker.new.process_study(NCT_ID)
       end
 
-      describe 'ProvidedDocument' do
-        it 'study should have expected provided_document info' do
-          puts "expected_data: #{expected_data}"
-          puts "import(ProvidedDocument): #{import(ProvidedDocument)}"
-          expect(expected_data).to eq(import(ProvidedDocument))
+      describe "Data Import and Mapping" do
+        subject { import(ProvidedDocument) }
+
+        it "correctly maps data from JSON to model attributes" do
+          expect(subject).to eq(expected_data)
         end
       end
-      
     end
   end
 
@@ -39,12 +39,9 @@ describe ProvidedDocument do
 
   private
 
-  def expected_data
-    # byebug
-    return unless @large_docs
-    
-
-    @large_docs.map do |document|
+  def get_expected_data(documents)
+    return [] unless documents
+    documents.map do |document|
       {
         nct_id: NCT_ID,
         document_type: document["label"], 
