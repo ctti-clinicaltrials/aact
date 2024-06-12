@@ -5,7 +5,6 @@ describe ProvidedDocument do
   include SchemaSwitcher
 
   NCT_ID = "NCT03064438"
-  BASE_URL = "https://ClinicalTrials.gov/ProvidedDocs/"
 
   json_files = [
     "provided_document.json"
@@ -32,6 +31,18 @@ describe ProvidedDocument do
           expect(subject).to eq(expected_data)
         end
       end
+
+
+      describe ".build_document_url" do
+        let(:nct_id) { NCT_ID }
+        let(:filename) { "SAP_001.pdf" }
+        let(:expected_url) { "https://ClinicalTrials.gov/ProvidedDocs/38/NCT03064438/SAP_001.pdf" }
+
+        it "constructs the document URL correctly" do
+          subject { ProvidedDocument.build_document_url(nct_id, filename) }
+          expect(subject).to eq(expected_url)
+        end
+      end
     end
   end
 
@@ -49,7 +60,8 @@ describe ProvidedDocument do
         has_icf: document["hasIcf"], 
         has_sap: document["hasSap"], 
         document_date: Date.parse(document["date"]),
-        url: "#{BASE_URL}#{NCT_ID[-2..-1]}/#{NCT_ID}/#{document["filename"]}"
+        # url: "#{BASE_URL}#{NCT_ID[-2..-1]}/#{NCT_ID}/#{document["filename"]}"
+        url: ProvidedDocument.build_document_url(NCT_ID, document["filename"])
       }
     end
   end
