@@ -15,12 +15,16 @@ class StudyDownloader
     end
 
     def self.download(nct_ids, version='2')
+      puts "Downloading #{nct_ids.length} studies".green
+      i = 0
       nct_ids.each do |nct_id|
         case version
         when '2'
           record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
-          update_from_apiV2(record, nct_id) 
-          return record
+          update_from_apiV2(record, nct_id)
+          i += 1
+          print "\rdownloading #{nct_ids.length} studies: #{(i / nct_ids.length.to_f * 100).round(2)}%"
+          # return record
         when '1'
           record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
           record.update_from_api
@@ -29,8 +33,9 @@ class StudyDownloader
         else
           raise "Unknown version: #{version}"
         end
-        puts "Study id: #{record.id}, study nct_id: #{record.nct_id}, version: #{record.version}"
+        # puts "Study id: #{record.id}, study nct_id: #{record.nct_id}, version: #{record.version}"
       end
+      print "\rdownloading #{nct_ids.length} studies: 100%\n"
     end
 
     def self.update_from_apiV2(record, nct_id)
