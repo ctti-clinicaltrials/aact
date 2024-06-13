@@ -2,40 +2,33 @@ class StudyDownloader
   def self.download_recently_updated
     silence_active_record do
       list = find_studies_to_update
-      i = 0
-      print "downloading #{list.length} studies: 0%"
-      list.each do |nct_id|
+      total = list.length
+      print "downloading #{total} studies".green
+      list.each_with_index do |nct_id, index|
         record = StudyJsonRecord.find_or_create_by(nct_id: nct_id, version: '2') { |r| r.content = {} }
         update_from_apiV2(record, nct_id)
-        i += 1
-        print "\rdownloading #{list.length} studies: #{(i / list.length.to_f * 100).round(2)}%"
+        print_progress(index + 1, total, "downloading")
       end
-      print "\rdownloading #{list.length} studies: 100%\n"
     end
   end
 
   def self.download(nct_ids, version='2')
-    puts "Downloading #{nct_ids.length} studies".green
-    i = 0
-    nct_ids.each do |nct_id|
+    total = nct_ids.length
+    puts "Downloading #{total} studies".green
+    nct_ids.each_with_index do |nct_id, index|
       case version
       when '2'
         record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
         update_from_apiV2(record, nct_id)
-        i += 1
-        print "\rdownloading #{nct_ids.length} studies: #{(i / nct_ids.length.to_f * 100).round(2)}%"
-        # return record
       when '1'
         record = StudyJsonRecord.find_by(nct_id: nct_id, version: version) || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: version)
         record.update_from_api
         record.reload
-        return record
       else
         raise "Unknown version: #{version}"
       end
-      # puts "Study id: #{record.id}, study nct_id: #{record.nct_id}, version: #{record.version}"
+      print_progress(index + 1, total, "downloading")
     end
-    print "\rdownloading #{nct_ids.length} studies: 100%\n"
   end
 
   def self.update_from_apiV2(record, nct_id)
@@ -79,6 +72,20 @@ class StudyDownloader
       imported = Study.pluck(:nct_id)
       removing = imported - studies.map{|k| k[:nct_id]}
       puts "removing #{removing.length} studies from imported".red
+    end
+  end
+
+
+  private
+
+  def self.print_progress(current, total, message_prefix="downloading")
+    progress = (current.to_f / total * 100).round(2)
+    formatted_progress = '%.2f' % progress  # Ensures two decimal places
+    # extra spaces to ensure that the previous print is overwritten
+    if current == total
+      puts "\r#{message_prefix} #{total} studies: 100%    "
+    else
+      print "\r#{message_prefix} #{total} studies: #{formatted_progress}%    "
     end
   end
 end
