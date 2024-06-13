@@ -19,20 +19,20 @@ module Util
         else
           ActiveRecord::Base.logger = nil
           db_mgr.remove_constraints
-          update_old_studies
+          update_current_studies
         end
       end
     end
 
 
-    def update_old_studies(count=100)
+    def update_current_studies(count=1000)
       with_v2_schema do
-        studies = Study.order(updated_at: :asc).limit(count)
-        puts "refreshing #{studies.count} ctgov_v2 studies"
-        studies.each do |study|
-          puts "refresh #{study.nct_id} #{study.updated_at}"
-          update_study(study.nct_id)
-        end
+        list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
+        StudyDownloader.download(list)
+        puts "refreshing #{list.count} ctgov_v2 studies"
+
+        worker = StudyJsonRecord::Worker.new
+        worker.import_all
       end
     end
 
