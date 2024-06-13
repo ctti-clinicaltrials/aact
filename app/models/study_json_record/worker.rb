@@ -198,14 +198,12 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     result = data.map do |item|
       children = item.delete(child_key.to_s)
       if children.nil? || children.empty?
-        # nil
-        append_parent(item, parent) if parent
-        item
+        nil
       else
         res = flatten(path[1..-1], children, item)
-        if res.first.nil?
-          byebug
-        end
+        # if res.first.nil?
+        #   byebug
+        # end
         append_parent(res.first, parent) if parent
         res
       end
