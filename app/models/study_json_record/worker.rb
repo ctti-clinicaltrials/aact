@@ -80,6 +80,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   def import_all(batch_size=5000)
     silence_active_record do
       records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+      puts "worker: total records to process: #{records}".green
       while records > 0
         process(batch_size)
         records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
@@ -201,9 +202,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         nil
       else
         res = flatten(path[1..-1], children, item)
-        if res.first.nil?
-          byebug
-        end
+        # if res.first.nil?
+        #   byebug
+        # end
         append_parent(res.first, parent) if parent
         res
       end
