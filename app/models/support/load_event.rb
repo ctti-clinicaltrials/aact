@@ -108,7 +108,7 @@ module Support
     end
 
     def log(msg)
-      stamped_message = "\n#{Time.zone.now} #{msg}"
+      stamped_message = "#{Time.zone.now} #{msg}"
       self.description << stamped_message
       save!
       $stdout.puts stamped_message

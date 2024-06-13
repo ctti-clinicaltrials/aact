@@ -29,8 +29,6 @@ module Util
       with_v2_schema do
         list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
         StudyDownloader.download(list)
-        puts "refreshing #{list.count} ctgov_v2 studies"
-
         worker = StudyJsonRecord::Worker.new
         worker.import_all
       end
@@ -101,7 +99,6 @@ module Util
 
       
       if @load_event.sanity_checks.count == 0
-        puts "SANITY CHECKS PASSED"
         # 9. take snapshot
         log("#{@schema}: take snapshot...")
         with_v2_schema do
@@ -211,7 +208,7 @@ module Util
     end
 
     def log(msg)
-      puts "#{Time.zone.now}: #{msg}"
+      puts "\n#{Time.zone.now}: #{msg}"
     end
 
     def set_downcase_terms
