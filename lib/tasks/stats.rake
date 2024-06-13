@@ -34,6 +34,8 @@ namespace :stats do
       SQL
 
       results = ActiveRecord::Base.connection.execute(sql)
+      next if results.count == 0
+
       CSV.open("comparisons/#{model.table_name}.csv", "w") do |csv|
         # Write the header row (if your query has headers)
         csv << results.fields
@@ -84,5 +86,53 @@ namespace :stats do
         puts "#{model.table_name}: #{original} vs #{future}"
       end
     end
+  end
+
+  desc 'compare model for one study'
+  task :compare_model, [:nct_id, :model] => :environment do |t, args|
+    model = args[:model].classify.constantize
+    v1 = model.where(nct_id: args[:nct_id])
+  end
+
+  desc 'compare unique'
+  task :compare_unique => :environment do
+    StudyRelationship.study_models.each do |model|
+      # for each model itereate through the columns and check number of unique values
+      model.attribute_names.each do |attribute|
+        sql = <<-SQL
+          SELECT
+          COUNT(DISTINCT #{attribute})
+          FROM ctgov.#{model.table_name}
+        SQL
+        original = ActiveRecord::Base.connection.execute(sql).to_a.first.dig('count')
+
+        sql = <<-SQL
+          SELECT
+          COUNT(DISTINCT #{attribute})
+          FROM ctgov_v2.#{model.table_name}
+        SQL
+        future = ActiveRecord::Base.connection.execute(sql).to_a.first.dig('count')
+        if original > future
+          puts "#{model.table_name}.#{attribute}: #{original} vs #{future}".red
+        elsif original < future
+          puts "#{model.table_name}.#{attribute}: #{original} vs #{future}".green
+        end
+      end
+    end
+  end
+
+  desc 'compare values'
+  task :compare_values, [:model, :column] => :environment do |t, args|
+    sql = <<-SQL
+      SELECT
+      #{args[:model]}.#{args[:column]}
+      FROM ctgov.#{args[:model]}
+      EXCEPT
+      SELECT
+      #{args[:model]}.#{args[:column]}
+      FROM ctgov_v2.#{args[:model]}
+    SQL
+    out = ActiveRecord::Base.connection.execute(sql).to_a
+    puts out.inspect
   end
 end
