@@ -88,18 +88,4 @@ class StudyDownloader
       print "\r#{message_prefix} #{total} studies: #{formatted_progress}%    "
     end
   end
-
-
-  private
-
-  def self.print_progress(current, total, message_prefix="downloading")
-    progress = (current.to_f / total * 100).round(2)
-    formatted_progress = '%.2f' % progress  # Ensures two decimal places
-    # extra spaces to ensure that the previous print is overwritten
-    if current == total
-      puts "\r#{message_prefix} #{total} studies: 100%    "
-    else
-      print "\r#{message_prefix} #{total} studies: #{formatted_progress}%    "
-    end
-  end
 end
