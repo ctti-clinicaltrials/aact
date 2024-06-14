@@ -70,9 +70,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       end
       next if collection.empty?
 
-      print "#{indent}   ↳ #{collection.first.class.table_name} - #{collection.count}"
+      print "#{indent}   ↳ #{collection.first.class.table_name} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
       collection.first.class.import(collection)
-      puts "\r✅#{indent} ↳ #{collection.first.class.table_name} - #{collection.count}"
+      puts "\r✅#{indent} ↳ #{collection.first.class.table_name} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
       save_children(collection,"  #{indent}")
     end
   end
@@ -99,7 +99,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       
       Rails.logger.debug { "records: #{records.count}" }
 
-      puts "removing records: #{records.count}".red
+      puts "removing records: #{records.count}".red unless ENV['RAILS_ENV'] == 'test'
       remove_study_data(records.map(&:nct_id))
 
       @collections = Hash.new { |h, k| h[k] = [] }
@@ -214,7 +214,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   end
   
   def process_mapping(mapping, records)
-    print "   #{mapping[:table]}"
+    print "   #{mapping[:table]}" unless ENV['RAILS_ENV'] == 'test'
     model = mapping[:table].to_s.classify.constantize # get the model from the table name
     root = mapping[:root].map(&:to_s) if mapping[:root] # normalize root path to array of strings
     collection = [] # this array will collect all the models to be imported
@@ -256,9 +256,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
 
     # import models
-    print "\r   #{mapping[:table]} - #{collection.count}"
+    print "\r   #{mapping[:table]} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
     model.import(collection)
-    puts "\r✅ #{mapping[:table]} - #{collection.count}"
+    puts "\r✅ #{mapping[:table]} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
     if mapping[:index]
       index = [:nct_id] + mapping[:index]
       collection.each do |row|

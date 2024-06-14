@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "BaselineMeasurement and Baseline ResultGroup" do
-  NCT_ID = "NCT000001"
+  let(:nct_id) { "NCT000001" }
 
   json_files = [
     "baseline_measurements_1.json",
@@ -22,7 +22,7 @@ describe "BaselineMeasurement and Baseline ResultGroup" do
         @measures = content["resultsSection"]["baselineCharacteristicsModule"]["measures"]
         @denoms = content["resultsSection"]["baselineCharacteristicsModule"]["denoms"]
 
-        StudyJsonRecord.create(nct_id: NCT_ID, version: "2", content: content)
+        StudyJsonRecord.create(nct_id: nct_id, version: "2", content: content)
         StudyJsonRecord::Worker.new.process
       end
 
@@ -80,7 +80,7 @@ describe "BaselineMeasurement and Baseline ResultGroup" do
   def expected_result_group_data
     @result_groups.map do |record|
       {
-        nct_id: NCT_ID,
+        nct_id: nct_id,
         ctgov_group_code: record["id"],
         result_type: "Baseline",
         title: record["title"],
@@ -97,7 +97,7 @@ def expected_baseline_measurement_data
     results = []
     @measures.each do |measure|
       base_result = {
-        nct_id: NCT_ID,
+        nct_id: nct_id,
         result_group_id: nil,
         ctgov_group_code: nil,
         classification: nil,
