@@ -201,9 +201,6 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         nil
       else
         res = flatten(path[1..-1], children, item)
-        if res.first.nil?
-          byebug
-        end
         append_parent(res.first, parent) if parent
         res
       end
