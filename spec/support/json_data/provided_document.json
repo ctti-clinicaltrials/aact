@@ -1,0 +1,35 @@
+{
+  "protocolSection": {},
+  "resultsSection": {},
+  "documentSection": {
+    "largeDocumentModule": {
+      "largeDocs": [
+        {
+          "typeAbbrev": "Prot",
+          "hasProtocol": true,
+          "hasSap": false,
+          "hasIcf": false,
+          "label": "Study Protocol",
+          "date": "2017-08-05",
+          "uploadDate": "2021-08-13T11:54",
+          "filename": "Prot_000.pdf",
+          "size": 642802
+        },
+        {
+          "typeAbbrev": "SAP",
+          "hasProtocol": false,
+          "hasSap": true,
+          "hasIcf": false,
+          "label": "Statistical Analysis Plan",
+          "date": "2018-05-11",
+          "uploadDate": "2021-08-13T11:56",
+          "filename": "SAP_001.pdf",
+          "size": 7296067
+        }
+      ]
+    }
+  },
+  "annotationSection": {},
+  "derivedSection": {},
+  "hasResults": true
+}

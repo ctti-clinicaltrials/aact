@@ -1,1 +1,810 @@
-{"Rank":1,"Study":{"DerivedSection":{"MiscInfoModule":{"VersionHolder":"November 22, 2022"},"ConditionBrowseModule":{"ConditionMeshList":{"ConditionMesh":[{"ConditionMeshId":"D000003680","ConditionMeshTerm":"Deglutition Disorders"}]},"ConditionAncestorList":{"ConditionAncestor":[{"ConditionAncestorId":"D000004935","ConditionAncestorTerm":"Esophageal Diseases"},{"ConditionAncestorId":"D000005767","ConditionAncestorTerm":"Gastrointestinal Diseases"},{"ConditionAncestorId":"D000004066","ConditionAncestorTerm":"Digestive System Diseases"},{"ConditionAncestorId":"D000010608","ConditionAncestorTerm":"Pharyngeal Diseases"},{"ConditionAncestorId":"D000010038","ConditionAncestorTerm":"Otorhinolaryngologic Diseases"}]},"ConditionBrowseLeafList":{"ConditionBrowseLeaf":[{"ConditionBrowseLeafId":"M6034","ConditionBrowseLeafName":"Deglutition Disorders","ConditionBrowseLeafAsFound":"Dysphagia","ConditionBrowseLeafRelevance":"high"},{"ConditionBrowseLeafId":"M7237","ConditionBrowseLeafName":"Esophageal Diseases","ConditionBrowseLeafRelevance":"low"},{"ConditionBrowseLeafId":"M8035","ConditionBrowseLeafName":"Gastrointestinal Diseases","ConditionBrowseLeafRelevance":"low"},{"ConditionBrowseLeafId":"M6407","ConditionBrowseLeafName":"Digestive System Diseases","ConditionBrowseLeafRelevance":"low"},{"ConditionBrowseLeafId":"M12667","ConditionBrowseLeafName":"Pharyngeal Diseases","ConditionBrowseLeafRelevance":"low"},{"ConditionBrowseLeafId":"M12113","ConditionBrowseLeafName":"Otorhinolaryngologic Diseases","ConditionBrowseLeafRelevance":"low"}]},"ConditionBrowseBranchList":{"ConditionBrowseBranch":[{"ConditionBrowseBranchName":"Digestive System Diseases","ConditionBrowseBranchAbbrev":"BC06"},{"ConditionBrowseBranchName":"Ear, Nose, and Throat Diseases","ConditionBrowseBranchAbbrev":"BC09"},{"ConditionBrowseBranchName":"All Conditions","ConditionBrowseBranchAbbrev":"All"},{"ConditionBrowseBranchName":"Mouth and Tooth Diseases","ConditionBrowseBranchAbbrev":"BC07"}]}}},"ResultsSection":{"MoreInfoModule":{"PointOfContact":{"PointOfContactEMail":"catriona.steele@uhn.ca","PointOfContactPhone":"4165973422","PointOfContactTitle":"Catriona Steele","PointOfContactPhoneExt":"7802","PointOfContactOrganization":"University Health Network"},"CertainAgreement":{"AgreementPISponsorEmployee":"Yes"}},"AdverseEventsModule":{"EventGroupList":{"EventGroup":[{"EventGroupId":"EG000","EventGroupTitle":"Healthy Participants","EventGroupDescription":"Healthy adults with no history of difficulties with chewing or swallowing.","EventGroupOtherNumAtRisk":"18","EventGroupDeathsNumAtRisk":"18","EventGroupOtherNumAffected":"1","EventGroupSeriousNumAtRisk":"18","EventGroupDeathsNumAffected":"0","EventGroupSeriousNumAffected":"0"}]},"OtherEventList":{"OtherEvent":[{"OtherEventTerm":"Digestive complaints","OtherEventNotes":"Complaints of abdominal discomfort and diarrhea","OtherEventStatsList":{"OtherEventStats":[{"OtherEventStatsGroupId":"EG000","OtherEventStatsNumAtRisk":"18","OtherEventStatsNumEvents":"1","OtherEventStatsNumAffected":"1"}]},"OtherEventOrganSystem":"Gastrointestinal disorders","OtherEventAssessmentType":"Non-systematic Assessment"}]},"EventsTimeFrame":"48 hours following data collection","EventsDescription":"Participants to contact the study team and report any health complaints experienced after data collection, such as gastrointestinal discomfort","EventsFrequencyThreshold":"0"},"OutcomeMeasuresModule":{"OutcomeMeasureList":{"OutcomeMeasure":[{"OutcomeClassList":{"OutcomeClass":[{"OutcomeCategoryList":{"OutcomeCategory":[{"OutcomeMeasurementList":{"OutcomeMeasurement":[{"OutcomeMeasurementValue":"22","OutcomeMeasurementSpread":"11","OutcomeMeasurementGroupId":"OG000"},{"OutcomeMeasurementValue":"15","OutcomeMeasurementSpread":"6","OutcomeMeasurementGroupId":"OG001"},{"OutcomeMeasurementValue":"15","OutcomeMeasurementSpread":"4","OutcomeMeasurementGroupId":"OG002"},{"OutcomeMeasurementValue":"28","OutcomeMeasurementSpread":"13","OutcomeMeasurementGroupId":"OG003"},{"OutcomeMeasurementValue":"6","OutcomeMeasurementSpread":"3","OutcomeMeasurementGroupId":"OG004"},{"OutcomeMeasurementValue":"11","OutcomeMeasurementSpread":"4","OutcomeMeasurementGroupId":"OG005"}]}}]}}]},"OutcomeDenomList":{"OutcomeDenom":[{"OutcomeDenomUnits":"Participants","OutcomeDenomCountList":{"OutcomeDenomCount":[{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG000"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG001"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG002"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG003"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG004"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG005"}]}}]},"OutcomeGroupList":{"OutcomeGroup":[{"OutcomeGroupId":"OG000","OutcomeGroupTitle":"Healthy Participants: Carrot","OutcomeGroupDescription":"Healthy adults with no history of difficulties with chewing or swallowing who were asked to chew and swallow a baby carrot."},{"OutcomeGroupId":"OG001","OutcomeGroupTitle":"Healthy Participants: Cracker","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single comfortable bite of a Carr's Table Water Cracker."},{"OutcomeGroupId":"OG002","OutcomeGroupTitle":"Healthy Participants: Cracker With Barium Paste","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single comfortable bite of a Carr's Table Water Cracker smeared with barium paste."},{"OutcomeGroupId":"OG003","OutcomeGroupTitle":"Healthy Participants: Gummy Candy","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a round, dome-shaped gummy candy (Squish Vegan Red Rose)."},{"OutcomeGroupId":"OG004","OutcomeGroupTitle":"Healthy Participants: Minced and Moist Barium Stimulus","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single bolus of a minced and moist consistency barium stimulus."},{"OutcomeGroupId":"OG005","OutcomeGroupTitle":"Healthy Participants: Soft and Bite-sized Barium Stimulus","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single bolus of a soft-and-bite-sized barium food stimulus."}]},"OutcomeMeasureType":"Primary","OutcomeMeasureTitle":"Number of Chewing Cycles Per Bolus","OutcomeMeasureParamType":"Mean","OutcomeMeasureTimeFrame":"Baseline (single timepoint only)","OutcomeMeasureDescription":"Using surface electromyography (sEMG) of the masseter muscle, we will count the number of muscle contraction spikes (i.e. chewing cycles) seen for chewing activity for a single comfortable bite of each bolus type.","OutcomeMeasureUnitOfMeasure":"number of chewing cycles","OutcomeMeasureDispersionType":"Standard Deviation","OutcomeMeasureReportingStatus":"Posted","OutcomeMeasurePopulationDescription":"Data for 3 additional participants could not be analyzed due to poor electromyography signal quality."},{"OutcomeClassList":{"OutcomeClass":[{"OutcomeCategoryList":{"OutcomeCategory":[{"OutcomeMeasurementList":{"OutcomeMeasurement":[{"OutcomeMeasurementValue":"14.7","OutcomeMeasurementSpread":"5.4","OutcomeMeasurementGroupId":"OG000"},{"OutcomeMeasurementValue":"13","OutcomeMeasurementSpread":"4.3","OutcomeMeasurementGroupId":"OG001"},{"OutcomeMeasurementValue":"12.4","OutcomeMeasurementSpread":"2.7","OutcomeMeasurementGroupId":"OG002"},{"OutcomeMeasurementValue":"25.1","OutcomeMeasurementSpread":"10.5","OutcomeMeasurementGroupId":"OG003"},{"OutcomeMeasurementValue":"5.8","OutcomeMeasurementSpread":"2.6","OutcomeMeasurementGroupId":"OG004"},{"OutcomeMeasurementValue":"9.9","OutcomeMeasurementSpread":"2.3","OutcomeMeasurementGroupId":"OG005"}]}}]}}]},"OutcomeDenomList":{"OutcomeDenom":[{"OutcomeDenomUnits":"Participants","OutcomeDenomCountList":{"OutcomeDenomCount":[{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG000"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG001"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG002"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG003"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG004"},{"OutcomeDenomCountValue":"14","OutcomeDenomCountGroupId":"OG005"}]}}]},"OutcomeGroupList":{"OutcomeGroup":[{"OutcomeGroupId":"OG000","OutcomeGroupTitle":"Healthy Participants: Carrot","OutcomeGroupDescription":"Healthy adults with no history of difficulties with chewing or swallowing who were asked to chew and swallow a baby carrot."},{"OutcomeGroupId":"OG001","OutcomeGroupTitle":"Healthy Participants: Cracker","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single comfortable bite of a Carr's Table Water Cracker."},{"OutcomeGroupId":"OG002","OutcomeGroupTitle":"Healthy Participants: Cracker With Barium Paste","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single comfortable bite of a Carr's Table Water Cracker smeared with barium paste."},{"OutcomeGroupId":"OG003","OutcomeGroupTitle":"Healthy Participants: Gummy Candy","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a round, dome-shaped gummy candy (Squish Vegan Red Rose)."},{"OutcomeGroupId":"OG004","OutcomeGroupTitle":"Healthy Participants: Minced and Moist Barium Stimulus","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single bolus of a minced and moist consistency barium stimulus."},{"OutcomeGroupId":"OG005","OutcomeGroupTitle":"Healthy Participants: Soft and Bite-sized Barium Stimulus","OutcomeGroupDescription":"Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single bolus of a soft-and-bite-sized barium food stimulus."}]},"OutcomeMeasureType":"Primary","OutcomeMeasureTitle":"Total Chewing Duration Per Bolus","OutcomeMeasureParamType":"Mean","OutcomeMeasureTimeFrame":"Baseline (single timepoint only)","OutcomeMeasureDescription":"Using surface electromyography (sEMG) of the masseter muscle, we will count the total duration of chewing activity for a single comfortable bite of each bolus type.","OutcomeMeasureUnitOfMeasure":"seconds","OutcomeMeasureDispersionType":"Standard Deviation","OutcomeMeasureReportingStatus":"Posted","OutcomeMeasurePopulationDescription":"Data for 3 additional participants could not be analyzed due to poor EMG signal quality."}]}},"ParticipantFlowModule":{"FlowGroupList":{"FlowGroup":[{"FlowGroupId":"FG000","FlowGroupTitle":"Healthy Participants","FlowGroupDescription":"Healthy adults with no history of difficulties with chewing or swallowing."}]},"FlowPeriodList":{"FlowPeriod":[{"FlowPeriodTitle":"Overall Study","FlowMilestoneList":{"FlowMilestone":[{"FlowMilestoneType":"STARTED","FlowAchievementList":{"FlowAchievement":[{"FlowAchievementGroupId":"FG000","FlowAchievementNumSubjects":"20"}]}},{"FlowMilestoneType":"COMPLETED","FlowAchievementList":{"FlowAchievement":[{"FlowAchievementGroupId":"FG000","FlowAchievementNumSubjects":"17"}]}},{"FlowMilestoneType":"NOT COMPLETED","FlowAchievementList":{"FlowAchievement":[{"FlowAchievementGroupId":"FG000","FlowAchievementNumSubjects":"3"}]}}]},"FlowDropWithdrawList":{"FlowDropWithdraw":[{"FlowReasonList":{"FlowReason":[{"FlowReasonGroupId":"FG000","FlowReasonNumSubjects":"1"}]},"FlowDropWithdrawType":"Adverse Event"},{"FlowReasonList":{"FlowReason":[{"FlowReasonGroupId":"FG000","FlowReasonNumSubjects":"2"}]},"FlowDropWithdrawType":"COVID-19 Pandemic"}]}}]}},"BaselineCharacteristicsModule":{"BaselineDenomList":{"BaselineDenom":[{"BaselineDenomUnits":"Participants","BaselineDenomCountList":{"BaselineDenomCount":[{"BaselineDenomCountValue":"17","BaselineDenomCountGroupId":"BG000"}]}}]},"BaselineGroupList":{"BaselineGroup":[{"BaselineGroupId":"BG000","BaselineGroupTitle":"Healthy Participants","BaselineGroupDescription":"Healthy adults with no history of difficulties with chewing or swallowing."}]},"BaselineMeasureList":{"BaselineMeasure":[{"BaselineClassList":{"BaselineClass":[{"BaselineCategoryList":{"BaselineCategory":[{"BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"26","BaselineMeasurementGroupId":"BG000","BaselineMeasurementLowerLimit":"22","BaselineMeasurementUpperLimit":"54"}]}}]}}]},"BaselineMeasureTitle":"Age, Continuous","BaselineMeasureParamType":"Median","BaselineMeasureUnitOfMeasure":"years","BaselineMeasureDispersionType":"Full Range"},{"BaselineClassList":{"BaselineClass":[{"BaselineCategoryList":{"BaselineCategory":[{"BaselineCategoryTitle":"Female","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"10","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"Male","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"7","BaselineMeasurementGroupId":"BG000"}]}}]}}]},"BaselineMeasureTitle":"Sex: Female, Male","BaselineMeasureParamType":"Count of Participants","BaselineMeasureUnitOfMeasure":"Participants"},{"BaselineClassList":{"BaselineClass":[{"BaselineCategoryList":{"BaselineCategory":[{"BaselineCategoryTitle":"Hispanic or Latino","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"0","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"Not Hispanic or Latino","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"17","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"Unknown or Not Reported","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"0","BaselineMeasurementGroupId":"BG000"}]}}]}}]},"BaselineMeasureTitle":"Ethnicity (NIH/OMB)","BaselineMeasureParamType":"Count of Participants","BaselineMeasureUnitOfMeasure":"Participants"},{"BaselineClassList":{"BaselineClass":[{"BaselineCategoryList":{"BaselineCategory":[{"BaselineCategoryTitle":"American Indian or Alaska Native","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"0","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"Asian","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"4","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"Native Hawaiian or Other Pacific Islander","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"0","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"Black or African American","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"2","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"White","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"11","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"More than one race","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"0","BaselineMeasurementGroupId":"BG000"}]}},{"BaselineCategoryTitle":"Unknown or Not Reported","BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"0","BaselineMeasurementGroupId":"BG000"}]}}]}}]},"BaselineMeasureTitle":"Race (NIH/OMB)","BaselineMeasureParamType":"Count of Participants","BaselineMeasureUnitOfMeasure":"Participants"},{"BaselineClassList":{"BaselineClass":[{"BaselineClassTitle":"Canada","BaselineCategoryList":{"BaselineCategory":[{"BaselineMeasurementList":{"BaselineMeasurement":[{"BaselineMeasurementValue":"17","BaselineMeasurementGroupId":"BG000"}]}}]}}]},"BaselineMeasureTitle":"Region of Enrollment","BaselineMeasureParamType":"Number","BaselineMeasureUnitOfMeasure":"participants"}]}}},"DocumentSection":{"LargeDocumentModule":{"LargeDocList":{"LargeDoc":[{"LargeDocDate":"January 7, 2020","LargeDocLabel":"Study Protocol and Statistical Analysis Plan","LargeDocHasICF":"No","LargeDocHasSAP":"Yes","LargeDocFilename":"Prot_SAP_000.pdf","LargeDocTypeAbbrev":"Prot_SAP","LargeDocUploadDate":"10/27/2022 10:03","LargeDocHasProtocol":"Yes"}]}}},"ProtocolSection":{"DesignModule":{"StudyType":"Observational","DesignInfo":{"DesignTimePerspectiveList":{"DesignTimePerspective":["Prospective"]},"DesignObservationalModelList":{"DesignObservationalModel":["Cohort"]}},"EnrollmentInfo":{"EnrollmentType":"Actual","EnrollmentCount":"20"},"PatientRegistry":"No"},"StatusModule":{"OverallStatus":"Completed","StartDateStruct":{"StartDate":"September 13, 2019","StartDateType":"Actual"},"ExpandedAccessInfo":{"HasExpandedAccess":"No"},"StatusVerifiedDate":"October 2022","CompletionDateStruct":{"CompletionDate":"December 20, 2020","CompletionDateType":"Actual"},"LastUpdateSubmitDate":"October 27, 2022","StudyFirstSubmitDate":"October 21, 2022","ResultsFirstSubmitDate":"October 27, 2022","StudyFirstSubmitQCDate":"October 21, 2022","LastUpdatePostDateStruct":{"LastUpdatePostDate":"November 21, 2022","LastUpdatePostDateType":"Actual"},"ResultsFirstSubmitQCDate":"October 27, 2022","StudyFirstPostDateStruct":{"StudyFirstPostDate":"October 26, 2022","StudyFirstPostDateType":"Actual"},"ResultsFirstPostDateStruct":{"ResultsFirstPostDate":"November 21, 2022","ResultsFirstPostDateType":"Actual"},"PrimaryCompletionDateStruct":{"PrimaryCompletionDate":"December 20, 2020","PrimaryCompletionDateType":"Actual"}},"OutcomesModule":{"PrimaryOutcomeList":{"PrimaryOutcome":[{"PrimaryOutcomeMeasure":"Number of Chewing Cycles Per Bolus","PrimaryOutcomeTimeFrame":"Baseline (single timepoint only)","PrimaryOutcomeDescription":"Using surface electromyography (sEMG) of the masseter muscle, we will count the number of muscle contraction spikes (i.e. chewing cycles) seen for chewing activity for a single comfortable bite of each bolus type."},{"PrimaryOutcomeMeasure":"Total Chewing Duration Per Bolus","PrimaryOutcomeTimeFrame":"Baseline (single timepoint only)","PrimaryOutcomeDescription":"Using surface electromyography (sEMG) of the masseter muscle, we will count the total duration of chewing activity for a single comfortable bite of each bolus type."}]}},"OversightModule":{"OversightHasDMC":"No","IsFDARegulatedDrug":"No","IsFDARegulatedDevice":"No"},"ConditionsModule":{"ConditionList":{"Condition":["Dysphagia"]}},"DescriptionModule":{"BriefSummary":"Food texture modification is commonly used as an intervention for people with dysphagia (swallowing impairment). However, the field currently lacks a proper understanding of how this intervention works. The overall goal of this project was to collect measurements of food bolus transit through the oropharynx (i.e., mouth and throat) during chewing, oral processing and swallowing.","DetailedDescription":"Aim: To explore chewing and oral processing behaviors across solid foods of different consistencies (minced and moist, soft \u0026 bite-sized, regular).\n\nHealthy adult participants will be asked to swallow foods representative of the \"minced and moist\", \"soft and bite-sized\" and \"regular\" consistency levels of the International Dysphagia Diet Standardisation Initiative.\n\nWe will measure the number of chews taken per bolus and the overall duration of chewing to understand differences across consistencies."},"EligibilityModule":{"Gender":"All","MaximumAge":"60 Years","MinimumAge":"18 Years","StdAgeList":{"StdAge":["Adult"]},"SamplingMethod":"Non-Probability Sample","StudyPopulation":"Healthy adult volunteers with no history of swallowing difficulty","HealthyVolunteers":"Accepts Healthy Volunteers","EligibilityCriteria":"Inclusion Criteria:\n\nHealthy adults under age 60\n\nExclusion Criteria:\n\nprior history of swallowing, motor speech, gastro-esophageal or neurological difficulties, chronic sinusitis or taste disturbance.\nhistory of surgery to the speech or swallowing apparatus (other than routine tonsillectomy or adenoidectomy)\nType 1 Diabetes\nCurrent use of dentures\ncognitive communication difficulties that may hinder comprehension of the study documents or instructions\nknown allergies to medical adhesive\nknown allergies to ingredients of the food products used in the experiment ."},"IdentificationModule":{"NCTId":"NCT05594173","Acronym":"NIH_HVX6","BriefTitle":"Chewing and Oral Processing of Solid Food","Organization":{"OrgClass":"OTHER","OrgFullName":"University Health Network, Toronto"},"OfficialTitle":"Chewing and Oral Processing of Solid Food in Healthy Swallowing","OrgStudyIdInfo":{"OrgStudyId":"15-9431.10"},"SecondaryIdInfoList":{"SecondaryIdInfo":[{"SecondaryId":"R01DC011020","SecondaryIdLink":"https://reporter.nih.gov/quickSearch/R01DC011020","SecondaryIdType":"U.S. NIH Grant/Contract"}]}},"ArmsInterventionsModule":{"InterventionList":{"Intervention":[{"InterventionName":"Food texture modification","InterventionType":"Other","InterventionDescription":"Food prepared in three different consistencies: minced and moist, soft and bite-sized and regular, as defined by the International Dysphagia Diet Standardisation Initiative"}]}},"ContactsLocationsModule":{"LocationList":{"Location":[{"LocationZip":"M5G 2A2","LocationCity":"Toronto","LocationState":"Ontario","LocationCountry":"Canada","LocationFacility":"Toronto Rehabilitation Institute - University Health Network"}]},"OverallOfficialList":{"OverallOfficial":[{"OverallOfficialName":"Catriona M Steele, PhD","OverallOfficialRole":"Principal Investigator","OverallOfficialAffiliation":"University Health Network, Toronto"}]}},"SponsorCollaboratorsModule":{"LeadSponsor":{"LeadSponsorName":"University Health Network, Toronto","LeadSponsorClass":"OTHER"},"CollaboratorList":{"Collaborator":[{"CollaboratorName":"National Institute on Deafness and Other Communication Disorders (NIDCD)","CollaboratorClass":"NIH"}]},"ResponsibleParty":{"ResponsiblePartyType":"Sponsor"}}}}}
+{
+  "protocolSection": {
+    "identificationModule": {
+      "nctId": "NCT05594173",
+      "orgStudyIdInfo": {
+        "id": "15-9431.10"
+      },
+      "secondaryIdInfos": [
+        {
+          "id": "R01DC011020",
+          "type": "NIH",
+          "link": "https://reporter.nih.gov/quickSearch/R01DC011020"
+        }
+      ],
+      "organization": {
+        "fullName": "University Health Network, Toronto",
+        "class": "OTHER"
+      },
+      "briefTitle": "Chewing and Oral Processing of Solid Food",
+      "officialTitle": "Chewing and Oral Processing of Solid Food in Healthy Swallowing",
+      "acronym": "NIH_HVX6"
+    },
+    "statusModule": {
+      "statusVerifiedDate": "2022-10",
+      "overallStatus": "COMPLETED",
+      "expandedAccessInfo": {
+        "hasExpandedAccess": false
+      },
+      "startDateStruct": {
+        "date": "2019-09-13",
+        "type": "ACTUAL"
+      },
+      "primaryCompletionDateStruct": {
+        "date": "2020-12-20",
+        "type": "ACTUAL"
+      },
+      "completionDateStruct": {
+        "date": "2020-12-20",
+        "type": "ACTUAL"
+      },
+      "studyFirstSubmitDate": "2022-10-21",
+      "studyFirstSubmitQcDate": "2022-10-21",
+      "studyFirstPostDateStruct": {
+        "date": "2022-10-26",
+        "type": "ACTUAL"
+      },
+      "resultsFirstSubmitDate": "2022-10-27",
+      "resultsFirstSubmitQcDate": "2022-10-27",
+      "resultsFirstPostDateStruct": {
+        "date": "2022-11-21",
+        "type": "ACTUAL"
+      },
+      "lastUpdateSubmitDate": "2022-10-27",
+      "lastUpdatePostDateStruct": {
+        "date": "2022-11-21",
+        "type": "ACTUAL"
+      }
+    },
+    "sponsorCollaboratorsModule": {
+      "responsibleParty": {
+        "type": "SPONSOR"
+      },
+      "leadSponsor": {
+        "name": "University Health Network, Toronto",
+        "class": "OTHER"
+      },
+      "collaborators": [
+        {
+          "name": "National Institute on Deafness and Other Communication Disorders (NIDCD)",
+          "class": "NIH"
+        }
+      ]
+    },
+    "oversightModule": {
+      "oversightHasDmc": false,
+      "isFdaRegulatedDrug": false,
+      "isFdaRegulatedDevice": false
+    },
+    "descriptionModule": {
+      "briefSummary": "Food texture modification is commonly used as an intervention for people with dysphagia (swallowing impairment). However, the field currently lacks a proper understanding of how this intervention works. The overall goal of this project was to collect measurements of food bolus transit through the oropharynx (i.e., mouth and throat) during chewing, oral processing and swallowing.",
+      "detailedDescription": "Aim: To explore chewing and oral processing behaviors across solid foods of different consistencies (minced and moist, soft \\& bite-sized, regular).\n\nHealthy adult participants will be asked to swallow foods representative of the \"minced and moist\", \"soft and bite-sized\" and \"regular\" consistency levels of the International Dysphagia Diet Standardisation Initiative.\n\nWe will measure the number of chews taken per bolus and the overall duration of chewing to understand differences across consistencies."
+    },
+    "conditionsModule": {
+      "conditions": [
+        "Dysphagia"
+      ]
+    },
+    "designModule": {
+      "studyType": "OBSERVATIONAL",
+      "patientRegistry": false,
+      "designInfo": {
+        "observationalModel": "COHORT",
+        "timePerspective": "PROSPECTIVE"
+      },
+      "enrollmentInfo": {
+        "count": 20,
+        "type": "ACTUAL"
+      }
+    },
+    "armsInterventionsModule": {
+      "interventions": [
+        {
+          "type": "OTHER",
+          "name": "Food texture modification",
+          "description": "Food prepared in three different consistencies: minced and moist, soft and bite-sized and regular, as defined by the International Dysphagia Diet Standardisation Initiative"
+        }
+      ]
+    },
+    "outcomesModule": {
+      "primaryOutcomes": [
+        {
+          "measure": "Number of Chewing Cycles Per Bolus",
+          "description": "Using surface electromyography (sEMG) of the masseter muscle, we will count the number of muscle contraction spikes (i.e. chewing cycles) seen for chewing activity for a single comfortable bite of each bolus type.",
+          "timeFrame": "Baseline (single timepoint only)"
+        },
+        {
+          "measure": "Total Chewing Duration Per Bolus",
+          "description": "Using surface electromyography (sEMG) of the masseter muscle, we will count the total duration of chewing activity for a single comfortable bite of each bolus type.",
+          "timeFrame": "Baseline (single timepoint only)"
+        }
+      ]
+    },
+    "eligibilityModule": {
+      "eligibilityCriteria": "Inclusion Criteria:\n\n* Healthy adults under age 60\n\nExclusion Criteria:\n\n* prior history of swallowing, motor speech, gastro-esophageal or neurological difficulties, chronic sinusitis or taste disturbance.\n* history of surgery to the speech or swallowing apparatus (other than routine tonsillectomy or adenoidectomy)\n* Type 1 Diabetes\n* Current use of dentures\n* cognitive communication difficulties that may hinder comprehension of the study documents or instructions\n* known allergies to medical adhesive\n* known allergies to ingredients of the food products used in the experiment .",
+      "healthyVolunteers": true,
+      "sex": "ALL",
+      "minimumAge": "18 Years",
+      "maximumAge": "60 Years",
+      "stdAges": [
+        "ADULT"
+      ],
+      "studyPopulation": "Healthy adult volunteers with no history of swallowing difficulty",
+      "samplingMethod": "NON_PROBABILITY_SAMPLE"
+    },
+    "contactsLocationsModule": {
+      "overallOfficials": [
+        {
+          "name": "Catriona M Steele, PhD",
+          "affiliation": "University Health Network, Toronto",
+          "role": "PRINCIPAL_INVESTIGATOR"
+        }
+      ],
+      "locations": [
+        {
+          "facility": "Toronto Rehabilitation Institute - University Health Network",
+          "city": "Toronto",
+          "state": "Ontario",
+          "zip": "M5G 2A2",
+          "country": "Canada",
+          "geoPoint": {
+            "lat": 43.70011,
+            "lon": -79.4163
+          }
+        }
+      ]
+    }
+  },
+  "resultsSection": {
+    "participantFlowModule": {
+      "groups": [
+        {
+          "id": "FG000",
+          "title": "Healthy Participants",
+          "description": "Healthy adults with no history of difficulties with chewing or swallowing."
+        }
+      ],
+      "periods": [
+        {
+          "title": "Overall Study",
+          "milestones": [
+            {
+              "type": "STARTED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "20"
+                }
+              ]
+            },
+            {
+              "type": "COMPLETED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "17"
+                }
+              ]
+            },
+            {
+              "type": "NOT COMPLETED",
+              "achievements": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "3"
+                }
+              ]
+            }
+          ],
+          "dropWithdraws": [
+            {
+              "type": "Adverse Event",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "1"
+                }
+              ]
+            },
+            {
+              "type": "COVID-19 Pandemic",
+              "reasons": [
+                {
+                  "groupId": "FG000",
+                  "numSubjects": "2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "baselineCharacteristicsModule": {
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Healthy Participants",
+          "description": "Healthy adults with no history of difficulties with chewing or swallowing."
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "17"
+            }
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "title": "Age, Continuous",
+          "paramType": "MEDIAN",
+          "dispersionType": "FULL_RANGE",
+          "unitOfMeasure": "years",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "26",
+                      "lowerLimit": "22",
+                      "upperLimit": "54"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sex: Female, Male",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "Female",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "10"
+                    }
+                  ]
+                },
+                {
+                  "title": "Male",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "7"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Ethnicity (NIH/OMB)",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "Hispanic or Latino",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "title": "Not Hispanic or Latino",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "17"
+                    }
+                  ]
+                },
+                {
+                  "title": "Unknown or Not Reported",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Race (NIH/OMB)",
+          "paramType": "COUNT_OF_PARTICIPANTS",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "categories": [
+                {
+                  "title": "American Indian or Alaska Native",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "title": "Asian",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "4"
+                    }
+                  ]
+                },
+                {
+                  "title": "Native Hawaiian or Other Pacific Islander",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "title": "Black or African American",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "2"
+                    }
+                  ]
+                },
+                {
+                  "title": "White",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "11"
+                    }
+                  ]
+                },
+                {
+                  "title": "More than one race",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "title": "Unknown or Not Reported",
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Region of Enrollment",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "participants",
+          "classes": [
+            {
+              "title": "Canada",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "17"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "type": "PRIMARY",
+          "title": "Number of Chewing Cycles Per Bolus",
+          "description": "Using surface electromyography (sEMG) of the masseter muscle, we will count the number of muscle contraction spikes (i.e. chewing cycles) seen for chewing activity for a single comfortable bite of each bolus type.",
+          "populationDescription": "Data for 3 additional participants could not be analyzed due to poor electromyography signal quality.",
+          "reportingStatus": "POSTED",
+          "paramType": "MEAN",
+          "dispersionType": "Standard Deviation",
+          "unitOfMeasure": "number of chewing cycles",
+          "timeFrame": "Baseline (single timepoint only)",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Healthy Participants: Carrot",
+              "description": "Healthy adults with no history of difficulties with chewing or swallowing who were asked to chew and swallow a baby carrot."
+            },
+            {
+              "id": "OG001",
+              "title": "Healthy Participants: Cracker",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single comfortable bite of a Carr's Table Water Cracker."
+            },
+            {
+              "id": "OG002",
+              "title": "Healthy Participants: Cracker With Barium Paste",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single comfortable bite of a Carr's Table Water Cracker smeared with barium paste."
+            },
+            {
+              "id": "OG003",
+              "title": "Healthy Participants: Gummy Candy",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a round, dome-shaped gummy candy (Squish Vegan Red Rose)."
+            },
+            {
+              "id": "OG004",
+              "title": "Healthy Participants: Minced and Moist Barium Stimulus",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single bolus of a minced and moist consistency barium stimulus."
+            },
+            {
+              "id": "OG005",
+              "title": "Healthy Participants: Soft and Bite-sized Barium Stimulus",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single bolus of a soft-and-bite-sized barium food stimulus."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG002",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG003",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG004",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG005",
+                  "value": "14"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "22",
+                      "spread": "11"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "15",
+                      "spread": "6"
+                    },
+                    {
+                      "groupId": "OG002",
+                      "value": "15",
+                      "spread": "4"
+                    },
+                    {
+                      "groupId": "OG003",
+                      "value": "28",
+                      "spread": "13"
+                    },
+                    {
+                      "groupId": "OG004",
+                      "value": "6",
+                      "spread": "3"
+                    },
+                    {
+                      "groupId": "OG005",
+                      "value": "11",
+                      "spread": "4"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "PRIMARY",
+          "title": "Total Chewing Duration Per Bolus",
+          "description": "Using surface electromyography (sEMG) of the masseter muscle, we will count the total duration of chewing activity for a single comfortable bite of each bolus type.",
+          "populationDescription": "Data for 3 additional participants could not be analyzed due to poor EMG signal quality.",
+          "reportingStatus": "POSTED",
+          "paramType": "MEAN",
+          "dispersionType": "Standard Deviation",
+          "unitOfMeasure": "seconds",
+          "timeFrame": "Baseline (single timepoint only)",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Healthy Participants: Carrot",
+              "description": "Healthy adults with no history of difficulties with chewing or swallowing who were asked to chew and swallow a baby carrot."
+            },
+            {
+              "id": "OG001",
+              "title": "Healthy Participants: Cracker",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single comfortable bite of a Carr's Table Water Cracker."
+            },
+            {
+              "id": "OG002",
+              "title": "Healthy Participants: Cracker With Barium Paste",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single comfortable bite of a Carr's Table Water Cracker smeared with barium paste."
+            },
+            {
+              "id": "OG003",
+              "title": "Healthy Participants: Gummy Candy",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a round, dome-shaped gummy candy (Squish Vegan Red Rose)."
+            },
+            {
+              "id": "OG004",
+              "title": "Healthy Participants: Minced and Moist Barium Stimulus",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single bolus of a minced and moist consistency barium stimulus."
+            },
+            {
+              "id": "OG005",
+              "title": "Healthy Participants: Soft and Bite-sized Barium Stimulus",
+              "description": "Healthy adults with no history of chewing or swallowing difficulties who were asked to chew and swallow a single bolus of a soft-and-bite-sized barium food stimulus."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG002",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG003",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG004",
+                  "value": "14"
+                },
+                {
+                  "groupId": "OG005",
+                  "value": "14"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "14.7",
+                      "spread": "5.4"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "13",
+                      "spread": "4.3"
+                    },
+                    {
+                      "groupId": "OG002",
+                      "value": "12.4",
+                      "spread": "2.7"
+                    },
+                    {
+                      "groupId": "OG003",
+                      "value": "25.1",
+                      "spread": "10.5"
+                    },
+                    {
+                      "groupId": "OG004",
+                      "value": "5.8",
+                      "spread": "2.6"
+                    },
+                    {
+                      "groupId": "OG005",
+                      "value": "9.9",
+                      "spread": "2.3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "adverseEventsModule": {
+      "frequencyThreshold": "0",
+      "timeFrame": "48 hours following data collection",
+      "description": "Participants to contact the study team and report any health complaints experienced after data collection, such as gastrointestinal discomfort",
+      "eventGroups": [
+        {
+          "id": "EG000",
+          "title": "Healthy Participants",
+          "description": "Healthy adults with no history of difficulties with chewing or swallowing.",
+          "deathsNumAffected": 0,
+          "deathsNumAtRisk": 18,
+          "seriousNumAffected": 0,
+          "seriousNumAtRisk": 18,
+          "otherNumAffected": 1,
+          "otherNumAtRisk": 18
+        }
+      ],
+      "otherEvents": [
+        {
+          "term": "Digestive complaints",
+          "organSystem": "Gastrointestinal disorders",
+          "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+          "notes": "Complaints of abdominal discomfort and diarrhea",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numEvents": 1,
+              "numAffected": 1,
+              "numAtRisk": 18
+            }
+          ]
+        }
+      ]
+    },
+    "moreInfoModule": {
+      "certainAgreement": {
+        "piSponsorEmployee": true
+      },
+      "pointOfContact": {
+        "title": "Catriona Steele",
+        "organization": "University Health Network",
+        "email": "catriona.steele@uhn.ca",
+        "phone": "4165973422",
+        "phoneExt": "7802"
+      }
+    }
+  },
+  "documentSection": {
+    "largeDocumentModule": {
+      "largeDocs": [
+        {
+          "typeAbbrev": "Prot_SAP",
+          "hasProtocol": true,
+          "hasSap": true,
+          "hasIcf": false,
+          "label": "Study Protocol and Statistical Analysis Plan",
+          "date": "2020-01-07",
+          "uploadDate": "2022-10-27T10:03",
+          "filename": "Prot_SAP_000.pdf",
+          "size": 594549
+        }
+      ]
+    }
+  },
+  "derivedSection": {
+    "miscInfoModule": {
+      "versionHolder": "2024-06-10"
+    },
+    "conditionBrowseModule": {
+      "meshes": [
+        {
+          "id": "D000003680",
+          "term": "Deglutition Disorders"
+        }
+      ],
+      "ancestors": [
+        {
+          "id": "D000004935",
+          "term": "Esophageal Diseases"
+        },
+        {
+          "id": "D000005767",
+          "term": "Gastrointestinal Diseases"
+        },
+        {
+          "id": "D000004066",
+          "term": "Digestive System Diseases"
+        },
+        {
+          "id": "D000010608",
+          "term": "Pharyngeal Diseases"
+        },
+        {
+          "id": "D000010038",
+          "term": "Otorhinolaryngologic Diseases"
+        }
+      ],
+      "browseLeaves": [
+        {
+          "id": "M6882",
+          "name": "Deglutition Disorders",
+          "asFound": "Dysphagia",
+          "relevance": "HIGH"
+        },
+        {
+          "id": "M8085",
+          "name": "Esophageal Diseases",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M8883",
+          "name": "Gastrointestinal Diseases",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M7255",
+          "name": "Digestive System Diseases",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M13515",
+          "name": "Pharyngeal Diseases",
+          "relevance": "LOW"
+        },
+        {
+          "id": "M12961",
+          "name": "Otorhinolaryngologic Diseases",
+          "relevance": "LOW"
+        }
+      ],
+      "browseBranches": [
+        {
+          "abbrev": "BC06",
+          "name": "Digestive System Diseases"
+        },
+        {
+          "abbrev": "BC09",
+          "name": "Ear, Nose, and Throat Diseases"
+        },
+        {
+          "abbrev": "All",
+          "name": "All Conditions"
+        },
+        {
+          "abbrev": "BC07",
+          "name": "Mouth and Tooth Diseases"
+        }
+      ]
+    }
+  },
+  "hasResults": true
+}
