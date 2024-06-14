@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe BackgroundJob::DbQuery, type: :model do
   before do
     stub_request(:put, /https:\/\/aact-dev.nyc3.digitaloceanspaces.com\/.*/).to_return(:status => 200, :body => '', :headers => {})
+    # TODO: Review based on transition ctgov -> ctgov_v2 approach
+    ActiveRecord::Base.connection.schema_search_path = 'ctgov, support, public'
   end
 
   context '#process' do
