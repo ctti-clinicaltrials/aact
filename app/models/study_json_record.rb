@@ -424,7 +424,7 @@ class StudyJsonRecord < Support::SupportBase
             dispersion_value = measurement['BaselineMeasurementSpread']
             ctgov_group_code =  measurement['BaselineMeasurementGroupId']
             denoms = @results_section.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
-            denom = denoms.find {|k| k['BaselineDenomUnits'] == measure['BaselineDenomUnitsSelected'] }
+            denom = denoms.find {|k| k['BaselineDemonUnits'] == measure['BaselineDenomUnitsSelected'] }
             counts = denom.dig('BaselineDenomCountList', 'BaselineDenomCount')
             count = counts.find {|k| k['BaselineDenomCountGroupId'] == ctgov_group_code}
             collection[:measurements] << {
