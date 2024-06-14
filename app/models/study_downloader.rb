@@ -87,5 +87,19 @@ class StudyDownloader
     else
       print "\r#{message_prefix} #{total} studies: #{formatted_progress}%    "
     end
+
+    def self.find_studies_to_remove
+      studies = ClinicalTrialsApiV2.all
+
+      with_search_path('ctgov_v2, support, public') do
+        json = StudyJsonRecord.where(version: '2').pluck(:nct_id)
+        removing = json - studies.map{|k| k[:nct_id]}
+        puts "removing #{removing.length} studies from study_json_records".red
+
+        imported = Study.pluck(:nct_id)
+        removing = imported - studies.map{|k| k[:nct_id]}
+        puts "removing #{removing.length} studies from imported".red
+      end
+    end
   end
 end
