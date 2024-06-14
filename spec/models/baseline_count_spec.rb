@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 describe 'BaselineCount and ResultGroup' do
-
-  NCT_ID = 'NCT000001'
+  let(:nct_id) { "NCT000001" }
 
   before do
     # load the json and paths to main sections
@@ -12,7 +11,7 @@ describe 'BaselineCount and ResultGroup' do
 
     
     # Create a brand new JSON record
-    StudyJsonRecord.create(nct_id: NCT_ID, version: '2', content: content)
+    StudyJsonRecord.create(nct_id: nct_id, version: '2', content: content)
     # Import the new JSON record
     StudyJsonRecord::Worker.new.process
   end
@@ -42,7 +41,7 @@ describe 'BaselineCount and ResultGroup' do
   def expected_baseline_count_data
     @denoms['counts'].map do |record|
       {
-        'nct_id' => NCT_ID,
+        'nct_id' => nct_id,
         'result_group_id' => ResultGroup.where(ctgov_group_code: record['groupId']).pluck(:id).first,
         'ctgov_group_code' => record['groupId'],
         'units' => @denoms['units'],
@@ -55,7 +54,7 @@ describe 'BaselineCount and ResultGroup' do
   def expected_result_group_data
     @result_groups.map do |record|
       {
-        'nct_id' => NCT_ID,
+        'nct_id' => nct_id,
         'ctgov_group_code' => record['id'],
         'result_type' => 'Baseline',
         'title' => record['title'],
