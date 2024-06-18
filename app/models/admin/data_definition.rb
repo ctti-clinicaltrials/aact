@@ -1,6 +1,7 @@
 require 'active_support/all'
 module Admin
   class DataDefinition < Admin::AdminBase
+    self.table_name='data_definitions'
 
     def self.populate(data=Util::FileManager.new.default_data_definitions)
       begin

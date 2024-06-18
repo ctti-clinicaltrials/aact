@@ -2,6 +2,7 @@
 
 module Util
   class Updater
+    include SchemaSwitcher
     attr_reader :params, :load_event, :client, :study_counts, :days_back, :full_featured, :schema, :search_days_back
 
     # days_back:     number of days
@@ -196,7 +197,7 @@ module Util
     def update_study(nct_id)
       begin
         stime = Time.now
-        record = StudyJsonRecord.find_by(nct_id: nct_id) || StudyJsonRecord.create(nct_id: nct_id, content: {})
+        record = StudyJsonRecord.find_by(nct_id: nct_id, version: '1') || StudyJsonRecord.create(nct_id: nct_id, content: {}, version: '1')
         changed = record.update_from_api unless ENV['STUDY_SECTIONS']
 
         if record.blank? || record.content.blank?

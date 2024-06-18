@@ -1,0 +1,119 @@
+{
+  "resultsSection": {
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "title": "Absolute Change in Pre-Bronchodilator Forced Expiratory Volume in 1 Second (FEV1)",
+          "description": "FEV1 measures how much air a person can exhale during the first second of a forced breath.\n\nAdjusted means are reported.",
+          "paramType": "MEAN",
+          "dispersionType": "95% Confidence Interval",
+          "unitOfMeasure": "Milliliters (mL)",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo",
+              "description": "Participants received subcutaneous..."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "120"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "title": "Class Title",
+              "categories": [
+                {
+                  "title": "Category Title",
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "12",
+                      "spread": "2",
+                      "lowerLimit": "8",
+                      "upperLimit": "16",
+                      "comment": "Not applicable"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "PRIMARY",
+          "title": "Overall Response Rate (ORR): Percentage of Participants With Overall Response (OR) at Week 26",
+          "description": "ORR was defined as the percentage of participants who achieved complete response (CR) or partial response (PR) in accordance with the revised response criteria for malignant lymphoma (Cheson 2007)...",
+          "populationDescription": "ITT population included all participants who were randomized.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "dispersionType": "95% Confidence Interval",
+          "unitOfMeasure": "percentage of participants",
+          "timeFrame": "Week 26",
+          "groups": [
+            {
+              "id": "OG001",
+              "title": "Rituximab-EU",
+              "description": "Participants received Rituximab-EU intravenous (IV) infusion at a dose of 375 milligrams per meter square (mg/m\\^2) on Day 1, 8, 15, and 22. The maximum dose that could be infused in 1 day was 1125 mg."
+            },
+            {
+              "id": "OG002",
+              "title": "PF-05280586",
+              "description": "Participants received PF-05280586 IV infusion at a dose of 375 mg/m\\^2 on Day 1, 8, 15, and 22. The maximum dose that could be infused in 1 day was 1125 mg."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG001",
+                  "value": "198"
+                },
+                {
+                  "groupId": "OG002",
+                  "value": "196"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "title": "Class Title 0G001 and 0G002",
+              "categories": [
+                {
+                  "title": "Category Title 0G001 and 0G002",
+                  "measurements": [
+                    {
+                      "groupId": "OG001",
+                      "value": "70.7",
+                      "spread": "4",
+                      "lowerLimit": "63.8",
+                      "upperLimit": "76.9",
+                      "comment": "Comment 0G001"
+                    },
+                    {
+                      "groupId": "OG002",
+                      "value": "75.5",
+                      "spread": "6",
+                      "lowerLimit": "68.9",
+                      "upperLimit": "81.4",
+                      "comment": "Comment 0G002"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

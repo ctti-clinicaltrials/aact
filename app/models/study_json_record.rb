@@ -9,16 +9,16 @@ class StudyJsonRecord < Support::SupportBase
   # 1. remove all study data if study exists
   # 2. import all the study data
   def create_or_update_study
-    puts "#{nct_id}"
+    puts "#{nct_id}" if ENV['VERBOSE']
     study = Study.find_by(nct_id: nct_id)
     if study
       study.remove_study_data 
     else
-      puts "  not-found"
+      puts "  not-found" if ENV['VERBOSE']
     end
     s = Time.now
     build_study
-    puts "  insert-study #{Time.now - s}"
+    puts "  insert-study #{Time.now - s}" if ENV['VERBOSE']
   end
 
   # Make an API call to update the json
@@ -48,6 +48,7 @@ class StudyJsonRecord < Support::SupportBase
         return update content: data, download_date: Time.now
       end
     rescue => e
+      puts e.message
       Airbrake.notify(e)
     end
   end
@@ -423,7 +424,7 @@ class StudyJsonRecord < Support::SupportBase
             dispersion_value = measurement['BaselineMeasurementSpread']
             ctgov_group_code =  measurement['BaselineMeasurementGroupId']
             denoms = @results_section.dig('BaselineCharacteristicsModule', 'BaselineDenomList', 'BaselineDenom')
-            denom = denoms.find {|k| k['BaselineDemonUnits'] == measurement ['BaselineDenomUnitsSelected'] }
+            denom = denoms.find {|k| k['BaselineDemonUnits'] == measure['BaselineDenomUnitsSelected'] }
             counts = denom.dig('BaselineDenomCountList', 'BaselineDenomCount')
             count = counts.find {|k| k['BaselineDenomCountGroupId'] == ctgov_group_code}
             collection[:measurements] << {
@@ -1068,7 +1069,6 @@ class StudyJsonRecord < Support::SupportBase
     collection
   end
 
-
   def reported_event_totals_data
     return [] unless @adverse_events_module
 
@@ -1597,5 +1597,27 @@ class StudyJsonRecord < Support::SupportBase
 
     hash_array.each{ |h| h[key] = value }
     hash_array
+  end
+
+  def self.mark_all_as_processed
+    update_all(saved_study_at: Time.now, updated_at: Time.now - 10.minutes)
+  end
+
+  def self.load_from_file(filename)
+    content = JSON.parse(File.read(filename))
+    nct_id = content.dig('protocolSection', 'identificationModule', 'nctId')
+    record = find_by(nct_id: nct_id, version: 'v2')
+    if record
+      create(nct_id: nct_id, content: content)
+    else
+      record.update(nct_id: nct_id, content: content)
+    end
+  end
+
+  def self.import_and_compare(nct_id)
+    record = StudyDownloader.download([nct_id], '1')
+    record.create_or_update_study
+    StudyDownloader.download([nct_id], '2')
+    StudyJsonRecord::Worker.new.process_study(nct_id)
   end
 end

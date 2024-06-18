@@ -1,6 +1,19 @@
 require 'active_support/all'
 
 class StudyRelationship < ActiveRecord::Base
+  class Reference
+    attr_accessor :table, :index
+
+    def initialize(table)
+      @table = table
+    end
+
+    def [](*args)
+      @index = args
+      self
+    end
+  end
+
   self.abstract_class = true;
   attr_accessor :xml, :opts
   belongs_to :study, :foreign_key=> 'nct_id'
@@ -39,7 +52,7 @@ class StudyRelationship < ActiveRecord::Base
 
   def self.study_models
     return @models if @models
-    @models = (connection.tables - blacklist).map{|k| k.singularize.camelize.constantize }
+    @models = (connection.tables - blacklist).sort.map{|k| k.singularize.camelize.constantize }
   end
 
   def self.remove_all_data
@@ -209,4 +222,173 @@ class StudyRelationship < ActiveRecord::Base
     get('phone')
   end
 
+  MAPPING = []
+  
+  def self.next_id
+    return 1 if MAPPING.length == 0
+    MAPPING.map{|m| m[:id]}.max + 1
+  end
+
+  def self.add_mapping
+    entry = yield
+    case entry
+    when Array
+      entry.each do |e| 
+        e[:id] = next_id
+        MAPPING << e
+      end
+    when Hash
+      entry[:id] = next_id
+      MAPPING << entry
+    end
+  end
+
+  def self.whitelist
+    []
+  end
+
+  def self.mapping
+    if whitelist.empty?
+      MAPPING
+    else
+      MAPPING.select{|m| whitelist.include?(m[:table]) }
+    end
+  end
+
+  # perform topological sort on the mappings
+  def self.sorted_mapping
+    # 1. calculate the in-degrees of all nodes
+    in_degrees = {}
+    mapping.each do |m|
+      next unless m[:requires]
+      dependency = m[:requires].is_a?(Array) ? m[:requires] : [m[:requires]]
+      dependency.each do |d|
+        nodes = MAPPING.select{|m| m[:table] == d }
+        nodes.each do |m|
+          in_degrees[m[:id]] ||= 0
+          in_degrees[m[:id]] += 1
+        end
+      end
+    end
+
+    # 2. initialize the queue with nodes that have no dependencies
+    queue = mapping.select{|m| in_degrees[m[:id]].nil? }
+
+    # 3. perform the topological sort
+    sorted = []
+    while queue.any?
+      node = queue.shift
+      sorted << node
+      next if node[:requires].nil?
+      dependency = node[:requires].is_a?(Array) ? node[:requires] : [node[:requires]]
+      mapping.select{|m| dependency.include?(m[:table]) }.each do |m|
+        in_degrees[m[:id]] -= 1
+        queue << m if in_degrees[m[:id]] == 0
+      end
+    end
+
+    if sorted.length != mapping.length
+      raise "Cycle detected in the mappings"
+    end
+
+    sorted.reverse
+  end
+
+  def self.reference(table)
+    StudyRelationship::Reference.new(table)
+  end
+
+  def self.load_mappings
+    study_models.each do |model|
+      model.class
+    end
+    required_mappings = study_models.map{|k| k.name.underscore.to_sym }
+    missing = required_mappings - MAPPING.map{|m| m[:table]}
+    missing.each do |m|
+      # puts "🛑 Missing mapping for #{m}"
+    end
+  end
+
+  # removes relative references to $parent and generates the absolute path
+  def self.collapse_path(path)
+    i = 0
+    while i < path.length
+      if path[i] == :$parent
+        path.delete_at(i)
+        path.delete_at(i-1)
+        i -= 1
+      else
+        i += 1
+      end
+    end
+    return path
+  end
+
+  def self.update_data_definitions
+    data_definitions = Hash.new{|h,k| h[k] = {} }
+    
+    MAPPING.each do |mapping|
+      # normalize the root path
+      root_path = []
+      if mapping[:root].is_a?(Symbol)
+        root_path << mapping[:root]
+      elsif mapping[:root].is_a?(Array)
+        root_path += mapping[:root]
+      end
+
+      # add the flatten parth
+      if mapping[:flatten]
+        root_path += mapping[:flatten]
+      end
+
+      mapping[:columns].each do |column|
+        column_path = nil
+        case column[:value]
+        when Symbol
+          column_path = [column[:value]]
+        when Array
+          column_path = column[:value]
+        when nil
+          column_path = []
+        end
+        source = column_path ? collapse_path(root_path + column_path) : nil
+        
+        if data_definitions[mapping[:table]][column[:name]]
+          s = data_definitions[mapping[:table]][column[:name]][:source]
+          data_definitions[mapping[:table]][column[:name]][:source] = s + " or " + source&.join(".") if source
+        else
+          data_definitions[mapping[:table]][column[:name]] = { 
+            table_name: mapping[:table], 
+            column_name: column[:name], 
+            data_type: mapping[:table].to_s.classify.constantize.type_for_attribute(column[:name]).type,
+            db_section: (root_path.first || 'protocol').to_s.gsub(/Section/,''),
+            source: source&.join(".")
+          }
+        end
+      end
+    end
+
+    data_definitions.each do |table_name, columns|
+      columns.each do |column_name, data|
+        definition = Admin::DataDefinition.find_by(table_name: table_name, column_name: column_name)
+        if definition
+          definition.update(data)
+        else
+          Admin::DataDefinition.create(data)
+        end
+      end
+    end
+  end
+
+  def self.swhere(opts={}, version='1')
+    table_name = self.table_name.gsub(/ctgov_v2.|ctgov./, '')
+    case version
+    when '1'
+      self.table_name = "ctgov.#{table_name}"
+      where(opts)
+    when '2'
+      self.table_name = "ctgov_v2.#{table_name}"
+      where(opts)
+    end
+  end
 end

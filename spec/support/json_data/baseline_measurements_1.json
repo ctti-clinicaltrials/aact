@@ -1,0 +1,87 @@
+{
+  "protocolSection": {},
+  "resultsSection": {
+    "participantFlowModule": {},
+    "baselineCharacteristicsModule": {
+      "typeUnitsAnalyzed": "joints",
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Safety Population",
+          "description": "All subjects enrolled into the study"
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "294"
+            }
+          ]
+        },
+        {
+          "units": "joints",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "309"
+            }
+          ]
+        }
+      ],
+      "measures": [
+        {
+          "title": "Height",
+          "populationDescription": "Includes all data available for this particular measure (retrospective data)",
+          "paramType": "MEAN",
+          "dispersionType": "STANDARD_DEVIATION",
+          "unitOfMeasure": "cm",
+          "denomUnitsSelected": "Participants",
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "289"
+                }
+              ]
+            },
+            {
+              "units": "joints",
+              "counts": [
+                {
+                  "groupId": "BG000",
+                  "value": "309"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "171.19",
+                      "spread": "11.449"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {},
+    "adverseEventsModule": {},
+    "moreInfoModule": {}
+  },
+  "documentSection": {},
+  "derivedSection": {},
+  "hasResults": true
+}

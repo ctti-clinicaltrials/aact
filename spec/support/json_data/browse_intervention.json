@@ -1,0 +1,32 @@
+{
+    "derivedSection": {
+    "interventionBrowseModule": {
+        "meshes": [
+        {
+            "id": "D000003520",
+            "term": "Cyclophosphamide"
+        }
+        ],
+        "ancestors": [
+        {
+            "id": "D000007166",
+            "term": "Immunosuppressive Agents"
+        }
+        ],
+        "browseLeaves": [
+        {
+            "id": "M6417",
+            "name": "Cyclophosphamide",
+            "asFound": "One",
+            "relevance": "HIGH"
+        }
+        ],
+        "browseBranches": [
+            {
+              "abbrev": "Infe",
+              "name": "Anti-Infective Agents"
+            }
+        ]
+    }
+    }
+}

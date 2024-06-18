@@ -1,0 +1,18 @@
+{
+  "protocolSection": {
+    "armsInterventionsModule": {
+      "armGroups": [
+        {
+          "label": "Electroacupuncture plus pelvic floor muscle training",
+          "type": "EXPERIMENTAL",
+          "description": "experimental description"
+        },
+        {
+          "label": "Sham electroacupuncture plus pelvic floor muscle training",
+          "type": "SHAM_COMPARATOR",
+          "description": "sham description"
+        }
+      ]
+    }
+  }
+}

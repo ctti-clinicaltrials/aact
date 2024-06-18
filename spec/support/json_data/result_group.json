@@ -1,0 +1,45 @@
+{
+  "resultsSection": {
+    "participantFlowModule": {
+      "groups": [
+        {
+          "id": "FG000",
+          "title": "Cohort 1",
+          "description": "Cohort 1 received..."
+        },
+        {
+          "id": "FG001",
+          "title": "Cohort 2",
+          "description": "Cohort 2 received..."
+        }
+      ]
+    },
+    "outcomeMeasuresModule": {
+      "outcomeMeasures": [
+        {
+          "groups": [
+            {
+              "id": "OG0000",
+              "title": "Outcome 1",
+              "description": "Outcome Group 1 description"
+            },
+            {
+              "id": "OG0001",
+              "title": "Outcome 2",
+              "description": "Outcome Group 2 description"
+            }
+          ]
+        },
+        {
+          "groups": [
+            {
+              "id": "OG0000",
+              "title": "Outcome 3",
+              "description": "Outcome Group 3 description"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

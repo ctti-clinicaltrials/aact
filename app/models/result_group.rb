@@ -1,37 +1,66 @@
 class ResultGroup < StudyRelationship
 
-  has_many :reported_events, autosave: true
-  has_many :milestones, autosave: true
-  has_many :drop_withdrawals, autosave: true
-  has_many :baseline_measures, autosave: true
-  has_many :outcome_counts, autosave: true
-  has_many :outcome_measurements, autosave: true
-  has_many :outcome_analysis_groups, inverse_of: :result_group, autosave: true
+  has_many :reported_events
+  has_many :milestones
+  has_many :drop_withdrawals
+  has_many :baseline_counts
+  has_many :baseline_measures
+  has_many :outcome_counts
+  has_many :outcome_measurements
+  has_many :outcome_analysis_groups, inverse_of: :result_group
   has_many :outcome_analyses, :through => :outcome_analysis_groups
 
-  def self.create_group_set(opts)
-    group_xmls=opts[:xml].xpath("group_list").xpath('group')
-    groups=[]
-    group=group_xmls.pop
-    while group
-      if !group.blank?
-        opts[:group]=group
-        groups << create_group_from(opts)
-      end
-      group=group_xmls.pop
-    end
-    groups
+  add_mapping do
+    [
+      {
+        table: :result_groups,
+        root: [:resultsSection, :baselineCharacteristicsModule, :groups],
+        index: [:ctgov_group_code, :result_type], 
+        unique: true,
+        columns: [
+          { name: :ctgov_group_code, value: :id },
+          { name: :result_type, value: 'Baseline' },
+          { name: :title, value: :title },
+          { name: :description, value: :description },
+        ]
+      },
+      {
+        table: :result_groups,
+        root: [:resultsSection, :outcomeMeasuresModule, :outcomeMeasures],
+        flatten: [:groups],
+        index: [:ctgov_group_code, :result_type],
+        unique: true,
+        columns: [
+          { name: :ctgov_group_code, value: :id },
+          { name: :result_type, value: 'Outcome' },
+          { name: :title, value: :title },
+          { name: :description, value: :description },
+        ]
+      },
+      {
+        table: :result_groups,
+        root: [:resultsSection, :participantFlowModule, :groups],
+        index: [:ctgov_group_code, :result_type], 
+        unique: true,
+        columns: [
+          { name: :ctgov_group_code, value: :id },
+          { name: :result_type, value: 'Participant Flow' },
+          { name: :title, value: :title },
+          { name: :description, value: :description },
+        ]
+      },
+      {
+        table: :result_groups,
+        root: [:resultsSection, :adverseEventsModule, :eventGroups],
+        index: [:ctgov_group_code, :result_type],
+        unique: true,
+        columns: [
+          { name: :ctgov_group_code, value: :id },
+          { name: :result_type, value: 'Reported Event' },
+          { name: :title, value: :title },
+          { name: :description, value: :description }
+        ]
+      }
+    ]
   end
-
-  def self.create_group_from(opts)
-    xml=opts[:group]
-    create({
-      :nct_id           => opts[:nct_id],
-      :ctgov_group_code => xml.attribute('group_id'),
-      :result_type      => opts[:result_type],
-      :title            => xml.xpath('title').text,
-      :description      => xml.xpath('description').text,
-    })
-  end
-
 end

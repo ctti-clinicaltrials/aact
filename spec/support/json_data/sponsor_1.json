@@ -1,0 +1,28 @@
+{
+  "protocolSection": {
+    "sponsorCollaboratorsModule": {
+      "leadSponsor": {
+        "name": "Arbelaez, Ana Maria",
+        "class": "INDIV"
+      },
+      "collaborators": [
+        {
+          "name": "Washington University School of Medicine",
+          "class": "OTHER"
+        },
+        {
+          "name": "National Institutes of Health (NIH)",
+          "class": "NIH"
+        },
+        {
+         "name": "Novo Nordisk A/S",
+          "class": "INDUSTRY"
+        },
+        {
+          "name": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+          "class": "NIH"
+        }
+      ]  
+    }
+  }
+}

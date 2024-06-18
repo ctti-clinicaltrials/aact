@@ -8,6 +8,35 @@ require 'csv'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+def silence_active_record
+  original_logger = ActiveRecord::Base.logger
+  ActiveRecord::Base.logger = nil
+  yield
+ensure
+  ActiveRecord::Base.logger = original_logger
+end
+
+def with_search_path(schema)
+  original_search_path = ActiveRecord::Base.connection.schema_search_path
+  ActiveRecord::Base.connection.schema_search_path = schema
+  StudyRelationship.study_models.each do |model|
+    model.reset_column_information
+  end
+  yield
+ensure
+  ActiveRecord::Base.connection.schema_search_path = original_search_path
+  StudyRelationship.study_models.each do |model|
+    model.reset_column_information
+  end
+end
+
+def set_search_path(schema)
+  ActiveRecord::Base.connection.schema_search_path = schema
+  StudyRelationship.study_models.each do |model|
+    model.reset_column_information
+  end
+end
+
 module AACT
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -42,6 +71,8 @@ module AACT
     
     #Also create directory: /aact-files (either at system root or in home directory) and set AACT_STATIC_FILE_DIR to that directory.
     #Under it, create sub directories:  documentation, logs, tmp
+    config.autoload_paths += %W(#{config.root}/lib)
+
 
     #CORS
     cors_origins = '*'

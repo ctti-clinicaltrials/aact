@@ -1,0 +1,35 @@
+{
+  "resultsSection": {
+    "baselineCharacteristicsModule": {
+      "populationDescription": "Baseline data was not collected for Part 2, as no participants were enrolled in Part 2.",
+      "groups": [
+        {
+          "id": "BG000",
+          "title": "Part 1:GSK2879552 1mg QD",
+          "description": "Participants received GSK2879552 1 mg orally QD in fasted condition with approximately 200 mL of water."
+        },
+        {
+          "id": "BG001",
+          "title": "Part 1: GSK2879552 2mg QD",
+          "description": "Participants received GSK2879552 2 mg orally once daily in fasted condition with approximately 200 mL of water."
+        }
+      ],
+      "denoms": [
+        {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "1"
+            },
+            {
+              "groupId": "BG001",
+              "value": "2"
+            }
+          ]
+        }
+      ],
+      "measures": []
+    }
+  }
+}

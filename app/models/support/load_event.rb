@@ -108,7 +108,7 @@ module Support
     end
 
     def log(msg)
-      stamped_message = "\n#{Time.zone.now} #{msg}"
+      stamped_message = "#{Time.zone.now} #{msg}"
       self.description << stamped_message
       save!
       $stdout.puts stamped_message
@@ -117,16 +117,16 @@ module Support
 
     # find all the duplicated entries in tables which should have only
     # one row per study
-    def check_for_duplicates
+    def check_for_duplicates(schema)
       SINGLE_STUDY_TABLES.each do |table_name|
         results = ActiveRecord::Base.connection.execute(
           "SELECT nct_id, count(*)
-          FROM #{table_name}
+          FROM #{schema}.#{table_name}
           GROUP BY nct_id
           HAVING COUNT(*) > 1"
         )
-
         results.values.each do |row|
+          puts 'check_for_duplicates: row: ' + row.to_s
           sanity_checks.create(
             table_name: table_name,
             nct_id: row.first,
@@ -138,10 +138,10 @@ module Support
     end
 
     # find all the studies which are orphaned
-    def check_for_orphans
+    def check_for_orphans(schema)
       PARENT_CHILD.each do |parent, children|
         children.each do |child|
-          query = orphan_check_sql(parent, child)
+          query = orphan_check_sql(schema, parent, child)
           ActiveRecord::Base.connection.execute(query).each do |orphan|
             sanity_checks.create(
               nct_id: orphan['nct_id'],
@@ -154,17 +154,17 @@ module Support
       end
     end
 
-    def orphan_check_sql(parent, child)
+    def orphan_check_sql(schema, parent, child)
       "SELECT  distinct l.nct_id
-        FROM    #{child} l
-      LEFT JOIN #{parent} r
+        FROM    #{schema}.#{child} l
+      LEFT JOIN #{schema}.#{parent} r
           ON  r.nct_id = l.nct_id
         WHERE  r.nct_id IS NULL "
     end
 
-    def run_sanity_checks
-      check_for_orphans
-      check_for_duplicates
+    def run_sanity_checks(schema)
+      check_for_orphans(schema)
+      check_for_duplicates(schema)
     end
 
     class AlreadyCompletedError < StandardError; end

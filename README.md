@@ -235,3 +235,17 @@ Treat dev as the main branch. Only branch off of master if you need to do a hotf
 6.  Merge PR to master  
 7.  Deploy master to production  
 8.  Bring changes into dev (once things stabilize)  
+
+## API V2 Comparison Tool
+
+When finishing a model, run the comparison using the following command:
+
+`rake compare:v2_model[<NCTID>,<model>]``
+
+for example:
+```bash
+  rake compare:v2_model[NCT06225401,study]
+  rake compare:v2_model[NCT06225401,design]
+```
+
+This tool will tell you where there is a mismatch between version 1 and version 2 of the api

@@ -1,0 +1,92 @@
+{
+  "resultsSection": {
+    "adverseEventsModule": {
+      "frequencyThreshold": "0",
+      "timeFrame": "Patients who do not withdraw consent will be followed for survival after end of treatment on a monthly to bi-monthly basis or until death, whichever occurs first. Patients removed from study for unacceptable adverse events will be followed for life every 6 months, unless they withdraw consent.",
+      "description": "Arm D and Arm E did not enrolled any patients",
+      "eventGroups": [
+        {
+          "id": "EG000",
+          "title": "Arm A: VELCADE, CYCLOPHOSPHAMIDE, & G-CSF",
+          "description": "VELCADE at 1.3 mg/m2 IVP on days 1, 4, 8 and 11 in combination with high-dose cyclophosphamide at 2.0 g/m2 on day 4. G-CSF is given for ten (+/- two) consecutive days starting on day 9 at a dose of 10 micrograms/kg/day. Pheresis will commence once ANC of 1.5 is reached.\n\nbortezomib (Velcade): 1.3 mg/m2 IVP on days 1, 4, 8 and 11\n\ncyclophosphamide: 2.0 g/m2 (day 4 for Arm A and day 1 for Arm C)\n\nG-CSF: given for ten (+/- two) consecutive days starting on day 9 at a dose of 10 micrograms/kg/day (start on day 2 for Arm C and start on Day 1 for Arm D)",
+          "deathsNumAffected": 0,
+          "deathsNumAtRisk": 20,
+          "seriousNumAffected": 0,
+          "seriousNumAtRisk": 20,
+          "otherNumAffected": 8,
+          "otherNumAtRisk": 20
+        },
+        {
+          "id": "EG001",
+          "title": "Arm B: VELCADE & G-CSF",
+          "description": "VELCADE at 1.3 mg/m2 IVP on days 1, 4, 8 and 11. G-CSF is given for ten (+/- two) consecutive days starting on day 9 at a dose of 10 micrograms/kg/day. Day 12 start pheresis collection\n\nbortezomib (Velcade): 1.3 mg/m2 IVP on days 1, 4, 8 and 11\n\nG-CSF: given for ten (+/- two) consecutive days starting on day 9 at a dose of 10 micrograms/kg/day (start on day 2 for Arm C and start on Day 1 for Arm D)",
+          "deathsNumAffected": 0,
+          "deathsNumAtRisk": 4,
+          "seriousNumAffected": 0,
+          "seriousNumAtRisk": 4,
+          "otherNumAffected": 4,
+          "otherNumAtRisk": 4
+        }
+      ],
+      "seriousEvents": [
+        {
+          "term": "Febrile Neutropenia",
+          "organSystem": "Blood and lymphatic system disorders",
+          "sourceVocabulary": "MedDRA 21.0",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numEvents": 5,
+              "numAffected": 0,
+              "numAtRisk": 20
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 0,
+              "numAtRisk": 4
+            }
+          ]
+        }
+      ],
+      "otherEvents": [
+        {
+          "term": "Hypocalcemia",
+          "organSystem": "Metabolism and nutrition disorders",
+          "sourceVocabulary": "MedDRA 21.0",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 1,
+              "numAtRisk": 20
+            },
+            {
+              "groupId": "EG001",
+              "numEvents": 5,
+              "numAffected": 2,
+              "numAtRisk": 4
+            }
+          ]
+        },
+        {
+          "term": "back pain",
+          "organSystem": "Musculoskeletal and connective tissue disorders",
+          "assessmentType": "SYSTEMATIC_ASSESSMENT",
+          "stats": [
+            {
+              "groupId": "EG000",
+              "numAffected": 1,
+              "numAtRisk": 20
+            },
+            {
+              "groupId": "EG001",
+              "numAffected": 1,
+              "numAtRisk": 4
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
