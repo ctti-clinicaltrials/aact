@@ -162,7 +162,7 @@ module Support
         WHERE  r.nct_id IS NULL "
     end
 
-    def run_sanity_checks(schema)
+    def run_sanity_checks(schema = 'ctgov')
       check_for_orphans(schema)
       check_for_duplicates(schema)
     end
