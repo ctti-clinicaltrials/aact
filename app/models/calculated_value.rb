@@ -7,7 +7,7 @@ end
 class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
-  def self.populate(schema)
+  def self.populate(schema = 'ctgov')
     con=ActiveRecord::Base.connection
     con.execute("SET search_path TO #{schema}")
     con.execute('TRUNCATE table calculated_values CASCADE')
