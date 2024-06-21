@@ -101,10 +101,8 @@ module Util
       if @load_event.sanity_checks.count == 0
         # 9. take snapshot
         log("#{@schema}: take snapshot...")
-        with_v2_schema do
-          take_snapshot
-          @load_event.log("9/11 db snapshot created")
-        end
+        take_snapshot
+        @load_event.log("9/11 db snapshot created")
 
         # 10. refresh public db
         log("#{@schema}: refresh public db...")
@@ -113,16 +111,15 @@ module Util
 
         # 11. create flat files
         log("#{@schema}: creating flat files...")
-        with_v2_schema do
-          create_flat_files
-          @load_event.log("11/11 created flat files")
-        end
+        create_flat_files
+        @load_event.log("11/11 created flat files")
+        puts "completed creating flat files..."
       end
 
       # 11. change the state of the load event from “running” to “complete”
       @load_event.update({ status: "complete", completed_at: Time.now})
 
-      # 12. import study records
+      log("#{@schema}: EXECUTE completed")
     rescue => e
       # set the load event status to "error"
       @load_event.update({ status: 'error'}) 
