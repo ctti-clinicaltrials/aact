@@ -62,6 +62,8 @@ namespace :db do
 
 
   desc "Load the AACT database from ClinicalTrials.gov"
+
+  # TODO: remove or refactor after finalizing the UpdaterV2
   # task :run, [:schema] => :environment do |t, args|
   #   if args[:schema] == 'ctgov_v2'
   #     Util::UpdaterV2.new(args).run_main_loop

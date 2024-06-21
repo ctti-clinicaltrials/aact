@@ -47,7 +47,7 @@ module Util
         problems: "" 
       })
 
-      ActiveRecord::Base.logger = nil # why are we disabling logger here?
+      ActiveRecord::Base.logger = nil
 
       # 1. remove constraings
       log("#{@schema}: removing constraints...")
@@ -86,9 +86,9 @@ module Util
 
       # 7. populate the meshterms and meshheadings
       log("#{@schema}: update mesh terms and headings...")
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
-      set_downcase_terms
+      # MeshTerm.populate_from_file
+      # MeshHeading.populate_from_file
+      # set_downcase_terms
       @load_event.log("7/11 populated mesh terms")
 
 
