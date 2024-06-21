@@ -5,9 +5,9 @@ module Util
     attr_reader :params, :schema
 
     def initialize(params = {})
-      @params = params # #<Rake::TaskArguments schema: ctgov_v2>
+      @params = params
       @type = (params[:event_type] || "incremental")
-      @schema = params[:schema] || "ctgov_v2"
+      @schema = params[:schema] || "ctgov"
     end
 
 
@@ -171,7 +171,7 @@ module Util
 
     def create_flat_files
       log('exporting tables as flat files...')
-      Util::TableExporter.new([],'ctgov_v2').run(delimiter: '|')
+      Util::TableExporter.new([], @schema).run(delimiter: '|')
     end
 
   end
