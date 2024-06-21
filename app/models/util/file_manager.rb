@@ -131,7 +131,12 @@ module Util
       `zip -j #{zip_file_name} #{documentation_files.values.map { |k| "#{dump_directory}/#{k}" }.join(' ')} #{dump_filename}`
 
       # upload file to the cloud
-      FileRecord.post('snapshot', zip_file_name)
+      ActiveRecord::Base.connection_pool.with_connection do |conn|
+        # puts ActiveRecord::Base.connection_pool.stat
+        # have to set the search path explicitly because support is not avaliable
+        conn.execute("SET search_path TO #{schema_name}, support, public")
+        FileRecord.post('snapshot', zip_file_name)
+      end
       File.delete(zip_file_name) if File.exist?(zip_file_name)
     end
   end

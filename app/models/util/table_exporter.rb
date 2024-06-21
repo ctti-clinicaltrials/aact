@@ -2,7 +2,7 @@ module Util
   class TableExporter
     attr_reader :zipfile_name, :table_names
 
-    def initialize(tables=[],schema='')
+    def initialize(tables=[],schema='ctgov')
       @schema = schema
       @temp_dir     = "#{Util::FileManager.new.dump_directory}/export"
       @zipfile_name = "#{@temp_dir}/#{Time.zone.now.strftime('%Y%m%d')}_export_#{schema}.zip"
@@ -19,8 +19,12 @@ module Util
         else
           system("zip -j -q #{@zipfile_name} #{@temp_dir}/*.txt")
         end
-
-        FileRecord.post('pipefiles', @zipfile_name)
+        
+        # no need to set search path here but still will use with_connection
+        ActiveRecord::Base.connection_pool.with_connection do |conn|
+          # conn.execute("SET search_path TO #{@schema}, support, public")
+          FileRecord.post('pipefiles', @zipfile_name)
+        end
         File.delete(@zipfile_name) if File.exist?(@zipfile_name)
       ensure
         cleanup_tempfiles!
@@ -42,14 +46,18 @@ module Util
 
     # exports table to csv file using delimter
     def export_table(table, file, delimiter)
-      connection  = ActiveRecord::Base.connection.raw_connection
-      schema_table = "#{@schema}.#{table}"
-      connection.copy_data("copy #{schema_table} to STDOUT with delimiter '#{delimiter}' csv header") do
-        while row = connection.get_copy_data
-          # convert all \n to ~.  Then when you write to the file, convert last ~ back to \n
-          # to prevent it from concatenating all rows into one big long string
-          fixed_row=row.gsub(/\"\"/, '').gsub(/\n\s/, '~').gsub(/\n/, '~')
-          file.write(fixed_row.gsub(/\~$/,"\n"))
+      # to make sure each export runs in its own connection
+      ActiveRecord::Base.connection_pool.with_connection do |conn|
+        # connection  = ActiveRecord::Base.connection.raw_connection
+        connection = conn.raw_connection
+        schema_table = "#{@schema}.#{table}"
+        connection.copy_data("copy #{schema_table} to STDOUT with delimiter '#{delimiter}' csv header") do
+          while row = connection.get_copy_data
+            # convert all \n to ~.  Then when you write to the file, convert last ~ back to \n
+            # to prevent it from concatenating all rows into one big long string
+            fixed_row=row.gsub(/\"\"/, '').gsub(/\n\s/, '~').gsub(/\n/, '~')
+            file.write(fixed_row.gsub(/\~$/,"\n"))
+          end
         end
       end
     end

@@ -20,6 +20,7 @@ module Util
       end
       @days_back = (params[:days_back] || 4)
       @study_counts = { should_add: 0, should_change: 0, processed: 0, count_down: 0 }
+      @schema = params[:schema] || 'ctgov'
       self
     end
 
@@ -215,9 +216,9 @@ module Util
       stime = Time.now
       study = Study.find_by(nct_id: id)
       study.remove_study_data if study
-      Time.now - stime
-      record = StudyJsonRecord.find_by(nct_id: id)
+      record = StudyJsonRecord.find_by(nct_id: id, version: '1')
       record.destroy
+      Time.now - stime
     end
 
     def load_study(study_id)
