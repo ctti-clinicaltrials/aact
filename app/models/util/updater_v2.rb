@@ -200,8 +200,8 @@ module Util
     private
 
     def db_mgr
-      # do we need to create new instance of DbManager every time?
-      Util::DbManager.new(event: @load_event, schema: @schema)
+      # makes it "singleton-like" inside the class
+      @db_mgr ||= Util::DbManager.new(event: @load_event, schema: @schema)
     end
 
     def log(msg)
