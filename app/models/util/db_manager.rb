@@ -6,6 +6,7 @@ module Util
     attr_accessor :con, :public_con, :public_alt_con, :event, :schema, :migration_object, :fm
 
     def initialize(params={})
+      puts "DbManager: initialize".red
       # 'event' keeps track of what happened during a single load event & then saves to LoadEvent table in the admin db, so we have a log
       # of all load events that have occurred.  If an event is passed in, use it; otherwise, create a new one.
       @event = params[:event]
@@ -20,21 +21,23 @@ module Util
     def public_connection
       connection = PublicBase.connection
       connection.schema_search_path = @schema
+      puts "public connection: #{connection.schema_search_path}"
       connection
     end
 
     def staging_connection
       connection = PublicBase.connection
       connection.schema_search_path = @schema
+      puts "staging connection: #{connection.schema_search_path}"
       connection
     end
 
     def connection
-      
-      # con = Study.connection
-      # con.schema_search_path = @schema
-      # con
-      Study.connection
+      puts "Study connection: #{Study.connection.schema_search_path}"
+      con = Study.connection
+      update_search_path(con, @schema)
+      puts "Updated Study connection: #{Study.connection.schema_search_path}"
+      con
     end
 
     ###### export/import methods ######
@@ -103,11 +106,8 @@ module Util
 
       # verify that the database was correctly restored
       log "  verifying #{host}:#{port}/#{database} schema..."
-      # byebug
-
       study_count = connection.execute('select count(*) from studies;').first['count'].to_i
       # ActiveRecord::Base.connection.schema_search_path is ctgov for some reason
-      Study.set_schema(@schema)
       if study_count != Study.count
         raise "SOMETHING WENT WRONG! PROBLEM IN PRODUCTION DATABASE: #{host}:#{port}/#{database}.  Study count is #{study_count}. Should be #{Study.count}"
       end
@@ -170,9 +170,6 @@ module Util
     # 1. try restoring to staging db
     # 2. if successful restore to public db
     def refresh_public_db
-      puts "public connection: #{public_connection.schema_search_path}"
-      puts "db connection: #{ActiveRecord::Base.connection.schema_search_path}"
-      # byebug
       restore_database(public_connection, fm.pg_dump_file)
     end
 
@@ -310,6 +307,15 @@ module Util
           is_unique: entry.unique,
         }
       end
+    end
+
+
+    private
+
+    # Sets the schema search path dynamically
+    def update_search_path(connection, schema)
+      additional_schemas = 'support, public'
+      connection.schema_search_path = [schema, additional_schemas].join(", ")
     end
   end
 end
