@@ -16,13 +16,14 @@ development:
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact
-  admin:
-    <<: *default
-    host: localhost
-    port: 5432
-    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
-    database: aact_admin
+    # TODO: move admin db develoment to separate branch until it's ready
+  # admin:
+  #   <<: *default
+  #   host: localhost
+  #   port: 5432
+  #   username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+  #   password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+  #   database: aact_admin
   public:
     <<: *default
     host: localhost
@@ -30,6 +31,8 @@ development:
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_public
+
+  # TODO: remove staging db related code from dev branch - not using
   staging:
     <<: *default
     host: localhost
@@ -72,13 +75,13 @@ production:
     host:  <%= ENV.fetch('AACT_HOST', 'localhost') %>
     port:  <%= ENV.fetch('AACT_PORT', 5432) %>
     database: <%= ENV.fetch('AACT_BACK_DATABASE_NAME', 'aact') %>
-  admin:
-    <<: *default
-    username: <%= ENV.fetch("AACT_ADMIN_USERNAME", 'aact') %>
-    password: <%= ENV.fetch("AACT_ADMIN_PASSWORD", '') %>
-    host:  <%= ENV.fetch('AACT_ADMINHOST', 'localhost') %>
-    port:  <%= ENV.fetch('AACT_ADMINPORT', 5432) %>
-    database: <%= ENV.fetch('AACT_ADMIN_DATABASE_NAME', 'aact') %>
+  # admin:
+  #   <<: *default
+  #   username: <%= ENV.fetch("AACT_ADMIN_USERNAME", 'aact') %>
+  #   password: <%= ENV.fetch("AACT_ADMIN_PASSWORD", '') %>
+  #   host:  <%= ENV.fetch('AACT_ADMINHOST', 'localhost') %>
+  #   port:  <%= ENV.fetch('AACT_ADMINPORT', 5432) %>
+  #   database: <%= ENV.fetch('AACT_ADMIN_DATABASE_NAME', 'aact') %>
   public:
     <<: *default
     username: <%= ENV.fetch("AACT_PUBLIC_USERNAME", 'aact') %>
