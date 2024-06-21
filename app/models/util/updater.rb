@@ -216,7 +216,7 @@ module Util
       stime = Time.now
       study = Study.find_by(nct_id: id)
       study.remove_study_data if study
-      record = StudyJsonRecord.find_by(nct_id: id)
+      record = StudyJsonRecord.find_by(nct_id: id, version: '1')
       record.destroy
       Time.now - stime
     end
