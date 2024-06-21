@@ -26,7 +26,8 @@ module Util
 
 
     def update_current_studies(count=1000)
-      with_v2_schema do
+      # TODO: review why setting the search path is necessary
+      with_search_path('ctgov, support, public') do
         list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
         StudyDownloader.download(list)
         worker = StudyJsonRecord::Worker.new
@@ -86,9 +87,9 @@ module Util
 
       # 7. populate the meshterms and meshheadings
       log("#{@schema}: update mesh terms and headings...")
-      # MeshTerm.populate_from_file
-      # MeshHeading.populate_from_file
-      # set_downcase_terms
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
+      set_downcase_terms
       @load_event.log("7/11 populated mesh terms")
 
 

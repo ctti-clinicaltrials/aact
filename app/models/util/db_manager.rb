@@ -21,14 +21,14 @@ module Util
     def public_connection
       connection = PublicBase.connection
       connection.schema_search_path = @schema
-      puts "public connection: #{connection.schema_search_path}"
+      # puts "public connection: #{connection.schema_search_path}"
       connection
     end
 
     def staging_connection
       connection = PublicBase.connection
       connection.schema_search_path = @schema
-      puts "staging connection: #{connection.schema_search_path}"
+      # puts "staging connection: #{connection.schema_search_path}"
       connection
     end
 
@@ -36,7 +36,7 @@ module Util
       puts "Study connection: #{Study.connection.schema_search_path}"
       con = Study.connection
       update_search_path(con, @schema)
-      puts "Updated Study connection: #{Study.connection.schema_search_path}"
+      # puts "Updated Study connection: #{Study.connection.schema_search_path}"
       con
     end
 
