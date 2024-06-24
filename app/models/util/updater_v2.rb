@@ -5,9 +5,9 @@ module Util
     attr_reader :params, :schema
 
     def initialize(params = {})
-      @params = params # #<Rake::TaskArguments schema: ctgov_v2>
+      @params = params
       @type = (params[:event_type] || "incremental")
-      @schema = params[:schema] || "ctgov_v2"
+      @schema = params[:schema] || "ctgov"
     end
 
 
@@ -26,7 +26,8 @@ module Util
 
 
     def update_current_studies(count=1000)
-      with_v2_schema do
+      # TODO: review why setting the search path is necessary
+      with_search_path('ctgov, support, public') do
         list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
         StudyDownloader.download(list)
         worker = StudyJsonRecord::Worker.new
@@ -47,7 +48,7 @@ module Util
         problems: "" 
       })
 
-      ActiveRecord::Base.logger = nil # why are we disabling logger here?
+      ActiveRecord::Base.logger = nil
 
       # 1. remove constraings
       log("#{@schema}: removing constraints...")
@@ -101,10 +102,8 @@ module Util
       if @load_event.sanity_checks.count == 0
         # 9. take snapshot
         log("#{@schema}: take snapshot...")
-        with_v2_schema do
-          take_snapshot
-          @load_event.log("9/11 db snapshot created")
-        end
+        take_snapshot
+        @load_event.log("9/11 db snapshot created")
 
         # 10. refresh public db
         log("#{@schema}: refresh public db...")
@@ -113,16 +112,15 @@ module Util
 
         # 11. create flat files
         log("#{@schema}: creating flat files...")
-        with_v2_schema do
-          create_flat_files
-          @load_event.log("11/11 created flat files")
-        end
+        create_flat_files
+        @load_event.log("11/11 created flat files")
+        puts "completed creating flat files..."
       end
 
       # 11. change the state of the load event from “running” to “complete”
       @load_event.update({ status: "complete", completed_at: Time.now})
 
-      # 12. import study records
+      log("#{@schema}: EXECUTE completed")
     rescue => e
       # set the load event status to "error"
       @load_event.update({ status: 'error'}) 
@@ -131,80 +129,11 @@ module Util
       puts "EXECUTE ERROR: #{e.message}"
     end
 
-
-    def update_studies
-
-      to_update = StudyDownloader.download_recently_updated
-
-      log("updating #{to_update.length} studies")
-
-      # update studies
-      total = to_update.length
-      total_time = 0
-      stime = Time.now
-      to_update.each_with_index do |id, idx|
-        t = update_study(id)
-        total_time += t
-        avg_time = total_time / (idx + 1)
-        remaining = (total - idx - 1) * avg_time
-        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
-      end
-      time = Time.now - stime
-      puts "Time: #{time} avg: #{time / total}"
-    end
-
-    # TODO: Not called anywhere - verify that correct schema is being used
-    def remove_studies
-      # remove studies
-      raise "Removing too many studies #{to_remove.count}" if  Study.count <= to_remove.count
-      total = to_remove.length
-      total_time = 0
-      stime = Time.now
-      to_remove.each_with_index do |id, idx|
-        t = remove_study(id)
-        total_time += t
-        avg_time = total_time / (idx + 1)
-        remaining = (total - idx - 1) * avg_time
-        puts "#{total - idx} #{id} #{t} #{htime(total_time)} #{htime(remaining)}"
-      end
-    end
-
-
-    def update_study(nct_id)
-      stime = Time.now
-      record = StudyJsonRecord.find_by(nct_id: nct_id, version: 2) || StudyJsonRecord.create(nct_id: nct_id, version: 2, content: {})
-      if record.blank? || record.content.blank?
-        record.destroy
-      else
-        StudyJsonRecord::Worker.new.process_study(nct_id)
-      end
-
-    Time.now - stime
-    rescue => e
-      Airbrake.notify(e)
-      puts "An error occurred: #{e.message}"
-    end
-
-
-    # permanently remove study info from ctgov_v2 schema and study_json_records table
-    def remove_study(id)
-      stime = Time.now
-
-      study = Study.find_by(nct_id: id)
-      study.remove_study_data if study
-      
-      record = record = StudyJsonRecord.find_by(nct_id: id, version: '2')
-      record.destroy if record
-
-      return Time.now - stime
-    end
-
-
     private
 
     def db_mgr
-      # do we need to create new instance of DbManager every time?
-      Util::DbManager.new(event: @load_event, schema: @schema)
+      # makes it "singleton-like" inside the class
+      @db_mgr ||= Util::DbManager.new(event: @load_event, schema: @schema)
     end
 
     def log(msg)
@@ -243,7 +172,7 @@ module Util
 
     def create_flat_files
       log('exporting tables as flat files...')
-      Util::TableExporter.new([],'ctgov_v2').run(delimiter: '|')
+      Util::TableExporter.new([], @schema).run(delimiter: '|')
     end
 
   end

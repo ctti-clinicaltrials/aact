@@ -94,7 +94,8 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
   def process(count = 1, records = nil)
     # load records
-    with_search_path('ctgov_v2, support, public') do
+    # TODO: replace hardcoded search path
+    with_search_path('ctgov, support, public') do
       records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count) if records.nil?
       
       Rails.logger.debug { "records: #{records.count}" }

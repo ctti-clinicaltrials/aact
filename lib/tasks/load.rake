@@ -62,21 +62,33 @@ namespace :db do
 
 
   desc "Load the AACT database from ClinicalTrials.gov"
-  task :run, [:schema] => :environment do |t, args|
-    if args[:schema] == 'ctgov_v2'
-      Util::UpdaterV2.new(args).run_main_loop
-    else
-      Util::Updater.new(args).run_main_loop
-    end
+
+  # TODO: remove or refactor after finalizing the UpdaterV2
+  # task :run, [:schema] => :environment do |t, args|
+  #   if args[:schema] == 'ctgov_v2'
+  #     Util::UpdaterV2.new(args).run_main_loop
+  #   else
+  #     Util::Updater.new(args).run_main_loop
+  #   end
+  # end
+
+  # task :execute, [:schema, :search_days_back] => :environment do |t, args|
+  #   if args[:schema] == 'ctgov_v2'
+  #     Util::UpdaterV2.new(args).execute
+  #   else
+  #     Util::Updater.new(args).execute
+  #   end
+  # end
+
+  # Run the UpdaterV2 only with optional schema argument
+  task :run_updater, [:schema] => :environment do |t, args|
+    Util::UpdaterV2.new(args).execute
   end
 
-  task :execute, [:schema, :search_days_back] => :environment do |t, args|
-    if args[:schema] == 'ctgov_v2'
-      Util::UpdaterV2.new(args).execute
-    else
-      Util::Updater.new(args).execute
-    end
+  task :run_main_loop, [:schema] => :environment do |t, args|
+    Util::UpdaterV2.new(args).run_main_loop
   end
+
 
   task :restore_from_file, [:path_to_file, :database] => :environment do |t, args|
     Util::DbManager.new.restore_from_file(args)
