@@ -53,14 +53,20 @@ class StudyDownloader
 
   # return the studies that are not found in the database and the studies that were updated after we updated them
   def self.find_studies_to_update
-    # get a list of all studies from clinicaltrials.gov
-    studies = ClinicalTrialsApiV2.all
+    ctgov_studies = ClinicalTrialsApiV2.all
+    aact_studies = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
+    
+    studies_to_update = ctgov_studies.select do |study|
+      ctgov_updated_date = Date.parse(study[:updated])
+      last_update_date = aact_studies[study[:nct_id]]
+      last_update_date.nil? || last_update_date.to_date <= ctgov_updated_date
+    end.map { |study| study[:nct_id] }
 
-    # find all the studies that were updated at clinicaltrials.gov after we updated them
-    current = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
-    changed = studies.select{|k| current[k[:nct_id]].nil? || current[k[:nct_id]] < DateTime.parse(k[:updated]) }.map{|k| k[:nct_id]}
+    studies_to_update
   end
 
+
+  # TODO: update to use correct schema path
   def self.find_studies_to_remove
     studies = ClinicalTrialsApiV2.all
 
