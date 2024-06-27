@@ -33,7 +33,7 @@ module Util
     end
 
     def connection
-      puts "Study connection: #{Study.connection.schema_search_path}"
+      # puts "Study connection: #{Study.connection.schema_search_path}"
       con = Study.connection
       update_search_path(con, @schema)
       # puts "Updated Study connection: #{Study.connection.schema_search_path}"
