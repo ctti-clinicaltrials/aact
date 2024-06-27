@@ -52,16 +52,22 @@ class StudyDownloader
   end
 
   # return the studies that are not found in the database and the studies that were updated after we updated them
-  # TODO: add error handling
   def self.find_studies_to_update
     begin
       ctgov_studies = ClinicalTrialsApiV2.all
     rescue StandardError => e
+      # TODO: use Airbrake instead of logging to console
       puts "Error fetching studies from ClinicalTrialsApiV2: #{e.message}"
       return []
     end
 
-    aact_studies = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
+    begin
+      aact_studies = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
+    rescue ActiveRecord::StatementInvalid => e
+      # TODO: use Airbrake instead of logging to console
+      puts "Error fetching studies from the local database: #{e.message}"
+      return []
+    end
     
     studies_to_update = ctgov_studies.select do |study|
       ctgov_updated_date = Date.parse(study[:updated])
