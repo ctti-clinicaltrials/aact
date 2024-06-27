@@ -17,13 +17,13 @@ development:
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact
     # TODO: move admin db develoment to separate branch until it's ready
-  # admin:
-  #   <<: *default
-  #   host: localhost
-  #   port: 5432
-  #   username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
-  #   password: <%= ENV.fetch("AACT_PASSWORD", '') %>
-  #   database: aact_admin
+  admin:
+    <<: *default
+    host: localhost
+    port: 5432
+    username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
+    password: <%= ENV.fetch("AACT_PASSWORD", '') %>
+    database: aact_admin
   public:
     <<: *default
     host: localhost
