@@ -56,7 +56,7 @@ class StudyDownloader
     begin
       ctgov_studies = ClinicalTrialsApiV2.all
     rescue StandardError => e
-      # TODO: use Airbrake instead of logging to console
+      # TODO: use Airbrake instead of logging to console?
       puts "Error fetching studies from ClinicalTrialsApiV2: #{e.message}"
       return []
     end
@@ -64,16 +64,28 @@ class StudyDownloader
     begin
       aact_studies = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
     rescue ActiveRecord::StatementInvalid => e
-      # TODO: use Airbrake instead of logging to console
+      # TODO: use Airbrake instead of logging to console?
       puts "Error fetching studies from the local database: #{e.message}"
       return []
     end
-    
-    studies_to_update = ctgov_studies.select do |study|
-      ctgov_updated_date = Date.parse(study[:updated])
-      last_update_date = aact_studies[study[:nct_id]]
-      last_update_date.nil? || last_update_date.to_date <= ctgov_updated_date
-    end.map { |study| study[:nct_id] }
+
+    studies_to_update = []
+
+    ctgov_studies.each do |study|
+      begin
+        ctgov_updated_date = Date.parse(study[:updated])
+        last_update_date = aact_studies[study[:nct_id]]
+
+        if last_update_date.nil? || last_update_date.to_date <= ctgov_updated_date
+          studies_to_update << study[:nct_id]
+        end
+      rescue Date::Error => e
+        # TODO: use Airbrake instead of logging to console?
+        puts "Error parsing date for study #{study[:nct_id]}: #{e.message}"
+      rescue StandardError => e
+        puts "Error processing study #{study[:nct_id]}: #{e.message}"
+      end
+    end
 
     studies_to_update
   end
