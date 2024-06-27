@@ -53,14 +53,45 @@ class StudyDownloader
 
   # return the studies that are not found in the database and the studies that were updated after we updated them
   def self.find_studies_to_update
-    # get a list of all studies from clinicaltrials.gov
-    studies = ClinicalTrialsApiV2.all
+    begin
+      ctgov_studies = ClinicalTrialsApiV2.all
+    rescue StandardError => e
+      # TODO: use Airbrake instead of logging to console?
+      puts "Error fetching studies from ClinicalTrialsApiV2: #{e.message}" if !Rails.env.test?
+      return []
+    end
 
-    # find all the studies that were updated at clinicaltrials.gov after we updated them
-    current = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
-    changed = studies.select{|k| current[k[:nct_id]].nil? || current[k[:nct_id]] < DateTime.parse(k[:updated]) }.map{|k| k[:nct_id]}
+    begin
+      aact_studies = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
+    rescue ActiveRecord::StatementInvalid => e
+      # TODO: use Airbrake instead of logging to console?
+      puts "Error fetching studies from the local database: #{e.message}" if !Rails.env.test?
+      return []
+    end
+
+    studies_to_update = []
+
+    ctgov_studies.each do |study|
+      begin
+        ctgov_updated_date = Date.parse(study[:updated])
+        last_update_date = aact_studies[study[:nct_id]]
+
+        if last_update_date.nil? || last_update_date.to_date <= ctgov_updated_date
+          studies_to_update << study[:nct_id]
+        end
+      rescue Date::Error => e
+        # TODO: use Airbrake instead of logging to console?
+        puts "Error parsing date for study #{study[:nct_id]}: #{e.message}" if !Rails.env.test?
+      rescue StandardError => e
+        puts "Error processing study #{study[:nct_id]}: #{e.message}" if !Rails.env.test?
+      end
+    end
+
+    studies_to_update
   end
 
+
+  # TODO: update to use correct schema path
   def self.find_studies_to_remove
     studies = ClinicalTrialsApiV2.all
 
