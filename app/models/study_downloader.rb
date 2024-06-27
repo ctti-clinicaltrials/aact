@@ -57,7 +57,7 @@ class StudyDownloader
       ctgov_studies = ClinicalTrialsApiV2.all
     rescue StandardError => e
       # TODO: use Airbrake instead of logging to console?
-      puts "Error fetching studies from ClinicalTrialsApiV2: #{e.message}"
+      puts "Error fetching studies from ClinicalTrialsApiV2: #{e.message}" if !Rails.env.test?
       return []
     end
 
@@ -65,7 +65,7 @@ class StudyDownloader
       aact_studies = Hash[StudyJsonRecord.where(version: '2').pluck(:nct_id, :updated_at)]
     rescue ActiveRecord::StatementInvalid => e
       # TODO: use Airbrake instead of logging to console?
-      puts "Error fetching studies from the local database: #{e.message}"
+      puts "Error fetching studies from the local database: #{e.message}" if !Rails.env.test?
       return []
     end
 
@@ -81,9 +81,9 @@ class StudyDownloader
         end
       rescue Date::Error => e
         # TODO: use Airbrake instead of logging to console?
-        puts "Error parsing date for study #{study[:nct_id]}: #{e.message}"
+        puts "Error parsing date for study #{study[:nct_id]}: #{e.message}" if !Rails.env.test?
       rescue StandardError => e
-        puts "Error processing study #{study[:nct_id]}: #{e.message}"
+        puts "Error processing study #{study[:nct_id]}: #{e.message}" if !Rails.env.test?
       end
     end
 
