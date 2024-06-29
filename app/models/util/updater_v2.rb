@@ -66,6 +66,8 @@ module Util
       worker.import_all
       @load_event.log("2/11 updated studies")
 
+      # hardcoded list of studies to update
+      list = ['NCT01596972', 'NCT02987738']
 
       # 3. add constraints
       log("#{@schema}: adding constraints...")
@@ -85,16 +87,12 @@ module Util
 
       # 6. update calculated values
       log("#{@schema}: update calculated values...")
-      start_time = Time.now
-      CalculatedValueLegacy.populate(@schema)
-      end_time = Time.now
-      puts "LEGACY: executed in #{end_time - start_time} seconds\n"
 
       start_time = Time.now
-      CalculatedValue.populate(@schema)
+      CalculatedValue.populate(list)
       end_time = Time.now
+      puts "TOTAL TIME: #{end_time - start_time} seconds\n\n".red
 
-      puts "UPDATED: executed in #{end_time - start_time} seconds\n"
       @load_event.log("6/11 updated calculated values")
 
 
