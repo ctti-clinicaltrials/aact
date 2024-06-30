@@ -31,7 +31,8 @@ class CalculatedValue < ActiveRecord::Base
     [
       :update_were_results_reported,
       :update_facility_info,
-      :update_age_info
+      :update_age_info,
+      :update_months_to_report_results
     ]
   end
 
@@ -45,6 +46,7 @@ class CalculatedValue < ActiveRecord::Base
     end
   end
 
+  # TODO: use has_results api single property instead
   def self.update_were_results_reported(nct_ids)
     reported_nct_ids = Outcome.where(nct_id: nct_ids).distinct.pluck(:nct_id)
     # TODO: is default value false?
@@ -90,6 +92,19 @@ class CalculatedValue < ActiveRecord::Base
         maximum_age_num: age_info[:maximum_age_num],
         maximum_age_unit: age_info[:maximum_age_unit]
       )
+    end
+  end
+
+  def self.update_months_to_report_results(nct_ids)
+    results_dates = Study.with_dates_for_report(nct_ids)
+
+    updates = results_dates.map do |study|
+      months_to_report_results = ((study.results_first_submitted_date - study.primary_completion_date) / 30).to_i
+      { nct_id: study.nct_id, months_to_report_results: months_to_report_results }
+    end
+
+    updates.each do |update|
+      CalculatedValue.where(nct_id: update[:nct_id]).update_all(months_to_report_results: update[:months_to_report_results])
     end
   end
 end
