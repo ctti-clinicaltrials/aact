@@ -29,7 +29,8 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.ruby_methods
     [
-      :update_were_results_reported
+      :update_were_results_reported,
+      :update_facility_info
     ]
   end
 
@@ -37,6 +38,7 @@ class CalculatedValue < ActiveRecord::Base
 
 
   def self.insert_or_update_initial_values(nct_ids)
+    # TODO: consider adding default values for the columns
     nct_ids.each do |nct_id|
       CalculatedValue.find_or_create_by(nct_id: nct_id)
     end
@@ -46,5 +48,23 @@ class CalculatedValue < ActiveRecord::Base
     reported_nct_ids = Outcome.where(nct_id: nct_ids).distinct.pluck(:nct_id)
     # TODO: is default value false?
     CalculatedValue.where(nct_id: reported_nct_ids).update_all(were_results_reported: true)
+  end
+
+  def self.update_facility_info(nct_ids)
+    facility_counts = Facility.facility_counts(nct_ids)
+    # TODO: try to avoid multiple queries to the same table
+    us_facility_ids = Facility.us_facility_nct_ids(nct_ids)
+
+    # TODO: check for studies without facilities
+    # TODO: facilities with no country defined - Null?
+    facility_counts.each do |nct_id, count|
+      has_single_facility = (count == 1)
+      has_us_facility = us_facility_ids.include?(nct_id)
+      CalculatedValue.where(nct_id: nct_id).update_all(
+        number_of_facilities: count,
+        has_single_facility: has_single_facility,
+        has_us_facility: has_us_facility
+        )
+    end
   end
 end
