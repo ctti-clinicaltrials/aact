@@ -33,12 +33,23 @@ class Study < ApplicationRecord
   scope :sponsored_by,    lambda {|agency| joins(:sponsors).where("sponsors.agency LIKE ?", "#{agency}%")}
   scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
   scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :responsible_parties) }
+
   scope :with_dates_for_report, -> (nct_ids) {
     where(nct_id: nct_ids)
     .where.not(primary_completion_date: nil)
     .where.not(results_first_submitted_date: nil)
     .select(:nct_id, :primary_completion_date, :results_first_submitted_date)
   }
+  scope :with_actual_duration, -> (nct_ids) {
+    where(nct_id: nct_ids)
+    .where.not(start_date: nil)
+    .where.not(start_date_type: "ESTIMATED")
+    .where.not(primary_completion_date: nil)
+    .where.not(primary_completion_date_type: "ESTIMATED")
+    .select(:nct_id, :start_date, :start_date_type, :primary_completion_date, :primary_completion_date_type)
+  }
+
+
   self.primary_key = 'nct_id'
 
   has_one  :brief_summary,         :foreign_key => 'nct_id', :dependent => :delete

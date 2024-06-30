@@ -32,7 +32,8 @@ class CalculatedValue < ActiveRecord::Base
       :update_were_results_reported,
       :update_facility_info,
       :update_age_info,
-      :update_months_to_report_results
+      :update_months_to_report_results,
+      :update_actual_duration
     ]
   end
 
@@ -107,4 +108,14 @@ class CalculatedValue < ActiveRecord::Base
       CalculatedValue.where(nct_id: update[:nct_id]).update_all(months_to_report_results: update[:months_to_report_results])
     end
   end
+
+  # TODO: handle default Null values for not completed studies
+  def self.update_actual_duration(nct_ids)
+    studies = Study.with_actual_duration(nct_ids)
+    studies.each do |study|
+      actual_duration = ((study.primary_completion_date - study.start_date) / 30).to_i
+      CalculatedValue.where(nct_id: study.nct_id).update_all(actual_duration: actual_duration)
+    end
+  end
+
 end
