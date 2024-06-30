@@ -33,7 +33,8 @@ class CalculatedValue < ActiveRecord::Base
       :update_facility_info,
       :update_age_info,
       :update_months_to_report_results,
-      :update_actual_duration
+      :update_actual_duration,
+      :update_registered_year
     ]
   end
 
@@ -115,6 +116,14 @@ class CalculatedValue < ActiveRecord::Base
     studies.each do |study|
       actual_duration = ((study.primary_completion_date - study.start_date) / 30).to_i
       CalculatedValue.where(nct_id: study.nct_id).update_all(actual_duration: actual_duration)
+    end
+  end
+
+  def self.update_registered_year(nct_ids)
+    studies = Study.registered_year(nct_ids)
+    studies.each do |study|
+      year = study.study_first_submitted_date.year
+      CalculatedValue.where(nct_id: study.nct_id).update_all(registered_in_calendar_year: year)
     end
   end
 
