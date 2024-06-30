@@ -30,7 +30,8 @@ class CalculatedValue < ActiveRecord::Base
   def self.ruby_methods
     [
       :update_were_results_reported,
-      :update_facility_info
+      :update_facility_info,
+      :update_age_info
     ]
   end
 
@@ -65,6 +66,30 @@ class CalculatedValue < ActiveRecord::Base
         has_single_facility: has_single_facility,
         has_us_facility: has_us_facility
         )
+    end
+  end
+
+  def self.update_age_info(nct_ids)
+    age_values = Eligibility.age_values(nct_ids)
+
+    # TODO: this can be moved to model
+    updates = age_values.map do |eligibility|
+      {
+        nct_id: eligibility.nct_id,
+        minimum_age_num: eligibility.minimum_age_num,
+        minimum_age_unit: eligibility.minimum_age_unit,
+        maximum_age_num: eligibility.maximum_age_num,
+        maximum_age_unit: eligibility.maximum_age_unit
+      }
+    end
+
+    updates.each do |age_info|
+      CalculatedValue.where(nct_id: age_info[:nct_id]).update_all(
+        minimum_age_num: age_info[:minimum_age_num],
+        minimum_age_unit: age_info[:minimum_age_unit],
+        maximum_age_num: age_info[:maximum_age_num],
+        maximum_age_unit: age_info[:maximum_age_unit]
+      )
     end
   end
 end
