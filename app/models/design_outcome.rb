@@ -1,4 +1,17 @@
 class DesignOutcome < StudyRelationship
+  
+  scope :primary_outcomes, -> (nct_ids) {
+    where(nct_id: nct_ids, outcome_type: "primary").group(:nct_id).count
+  }
+
+  scope :secondary_outcomes, -> (nct_ids) {
+    where(nct_id: nct_ids, outcome_type: "secondary").group(:nct_id).count
+  }
+
+  scope :other_outcomes, -> (nct_ids) {
+    where(nct_id: nct_ids, outcome_type: "other").group(:nct_id).count
+  }
+
   add_mapping do
     [
       {

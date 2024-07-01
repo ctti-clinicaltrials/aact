@@ -34,7 +34,9 @@ class CalculatedValue < ActiveRecord::Base
       :update_age_info,
       :update_months_to_report_results,
       :update_actual_duration,
-      :update_registered_year
+      :update_registered_year,
+      :update_outcome_counts,
+      :update_events_counts
     ]
   end
 
@@ -127,4 +129,17 @@ class CalculatedValue < ActiveRecord::Base
     end
   end
 
+  def self.update_outcome_counts(nct_ids)
+    primary_outcomes = DesignOutcome.primary_outcomes(nct_ids)
+    secondary_outcomes = DesignOutcome.secondary_outcomes(nct_ids)
+    other_outcomes = DesignOutcome.other_outcomes(nct_ids)
+
+    nct_ids.each do |nct_id|
+      CalculatedValue.where(nct_id: nct_id).update_all(
+        number_of_primary_outcomes_to_measure: primary_outcomes[nct_id] || 0,
+        number_of_secondary_outcomes_to_measure: secondary_outcomes[nct_id] || 0,
+        number_of_other_outcomes_to_measure: other_outcomes[nct_id] || 0
+      )
+    end
+  end
 end
