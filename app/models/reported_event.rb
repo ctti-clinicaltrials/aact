@@ -1,16 +1,9 @@
 class ReportedEvent < StudyRelationship
   belongs_to :result_group
 
-
-  scope :serious_events_subject_count, -> (nct_ids) {
-    where(nct_id: nct_ids, event_type: 'serious')
-    .group(:nct_id)
-    .sum(:subjects_affected)
-  }
-
-  scope :other_events_subject_count, -> (nct_ids) {
-    where(nct_id: nct_ids, event_type: 'other')
-    .group(:nct_id)
+  scope :events_subject_count, -> (nct_ids) {
+    where(nct_id: nct_ids)
+    .group(:nct_id, :event_type)
     .sum(:subjects_affected)
   }
 
@@ -71,5 +64,16 @@ class ReportedEvent < StudyRelationship
         ]
       }
     ]
+  end
+
+  def self.sum_subjects_by_event_type_for(nct_ids)
+    counts = ReportedEvent.events_subject_count(nct_ids)
+
+    nct_ids.each_with_object({}) do |nct_id, organized_sums|
+      organized_sums[nct_id] = {
+        serious: counts[[nct_id, 'serious']],
+        other: counts[[nct_id, 'other']]
+      }
+    end
   end
 end

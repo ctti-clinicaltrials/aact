@@ -131,7 +131,6 @@ class CalculatedValue < ActiveRecord::Base
 
   def self.update_outcome_counts(nct_ids)
     outcome_counts = DesignOutcome.count_outcomes_by_type_for(nct_ids)
-
     nct_ids.each do |nct_id|
       counts = outcome_counts[nct_id]
       CalculatedValue.where(nct_id: nct_id).update_all(
@@ -143,14 +142,14 @@ class CalculatedValue < ActiveRecord::Base
   end
 
 
-   def self.update_event_subject_counts(nct_ids)
-    serious_events = ReportedEvent.serious_events_subject_count(nct_ids)
-    other_events = ReportedEvent.other_events_subject_count(nct_ids)
-
+  def self.update_event_subject_counts(nct_ids)
+    results = ReportedEvent.sum_subjects_by_event_type_for(nct_ids)
+    
     nct_ids.each do |nct_id|
+      subjects = subjects_sum[nct_id]
       CalculatedValue.where(nct_id: nct_id).update_all(
-        number_of_sae_subjects: serious_events[nct_id],
-        number_of_nsae_subjects: other_events[nct_id]
+        number_of_sae_subjects: subjects[:serious],
+        number_of_nsae_subjects: subjects[:other],
       )
     end
   end
