@@ -43,9 +43,9 @@ class Study < ApplicationRecord
   scope :with_actual_duration, -> (nct_ids) {
     where(nct_id: nct_ids)
     .where.not(start_date: nil)
-    .where.not(start_date_type: "ESTIMATED")
+    .where(start_date_type: [nil, "ACTUAL"])
     .where.not(primary_completion_date: nil)
-    .where.not(primary_completion_date_type: "ESTIMATED")
+    .where(primary_completion_date_type: [nil, "ACTUAL"])
     .select(:nct_id, :start_date, :start_date_type, :primary_completion_date, :primary_completion_date_type)
   }
 
