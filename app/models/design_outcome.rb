@@ -1,15 +1,7 @@
 class DesignOutcome < StudyRelationship
-  
-  scope :primary_outcomes, -> (nct_ids) {
-    where(nct_id: nct_ids, outcome_type: "primary").group(:nct_id).count
-  }
 
-  scope :secondary_outcomes, -> (nct_ids) {
-    where(nct_id: nct_ids, outcome_type: "secondary").group(:nct_id).count
-  }
-
-  scope :other_outcomes, -> (nct_ids) {
-    where(nct_id: nct_ids, outcome_type: "other").group(:nct_id).count
+  scope :outcomes_count_by_type, -> (nct_ids) {
+    where(nct_id: nct_ids).group(:nct_id, :outcome_type).count
   }
 
   add_mapping do
@@ -45,5 +37,17 @@ class DesignOutcome < StudyRelationship
         ]
       }
     ]
+  end
+
+  def self.count_outcomes_by_type_for(nct_ids)
+    counts = DesignOutcome.outcomes_count_by_type(nct_ids)
+
+    nct_ids.each_with_object({}) do |nct_id, organized_counts|
+      organized_counts[nct_id] = {
+        primary: counts[[nct_id, 'primary']],
+        secondary: counts[[nct_id, 'secondary']],
+        other: counts[[nct_id, 'other']]
+      }
+    end
   end
 end
