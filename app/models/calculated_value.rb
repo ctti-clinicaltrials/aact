@@ -36,7 +36,7 @@ class CalculatedValue < ActiveRecord::Base
       :update_actual_duration,
       :update_registered_year,
       :update_outcome_counts,
-      :update_events_counts
+      :update_event_subject_counts
     ]
   end
 
@@ -144,14 +144,15 @@ class CalculatedValue < ActiveRecord::Base
   end
 
 
-   def self.update_events_counts(nct_ids)
-    serious_events = ReportedEvent.serious_events_count(nct_ids)
-    other_events = ReportedEvent.serious_events_count(nct_ids)
+   def self.update_event_subject_counts(nct_ids)
+    serious_events = ReportedEvent.serious_events_subject_count(nct_ids)
+    other_events = ReportedEvent.other_events_subject_count(nct_ids)
+    puts "Serious events: #{serious_events}"
 
     nct_ids.each do |nct_id|
       CalculatedValue.where(nct_id: nct_id).update_all(
-        number_of_sae_subjects: serious_events[nct_id] || 0,
-        number_of_nsae_subjects: other_events[nct_id] || 0
+        number_of_sae_subjects: serious_events[nct_id],
+        number_of_nsae_subjects: other_events[nct_id]
       )
     end
   end

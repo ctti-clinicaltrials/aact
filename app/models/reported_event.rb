@@ -2,12 +2,16 @@ class ReportedEvent < StudyRelationship
   belongs_to :result_group
 
 
-  scope :serious_events_count, -> (nct_ids) {
-    where(nct_id: nct_ids, event_type: 'serious').group(:nct_id).count
+  scope :serious_events_subject_count, -> (nct_ids) {
+    where(nct_id: nct_ids, event_type: 'serious')
+    .group(:nct_id)
+    .sum(:subjects_affected)
   }
 
-  scope :serious_events_count, -> (nct_ids) {
-    where(nct_id: nct_ids, event_type: 'other').group(:nct_id).count
+  scope :other_events_subject_count, -> (nct_ids) {
+    where(nct_id: nct_ids, event_type: 'other')
+    .group(:nct_id)
+    .sum(:subjects_affected)
   }
 
   add_mapping do
