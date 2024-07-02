@@ -55,6 +55,11 @@ class Study < ApplicationRecord
     .select(:nct_id, :study_first_submitted_date)
   }
 
+  scope :study_dates_for_calculations, -> (nct_ids) {
+    where(nct_id: nct_ids)
+    .select(:nct_id, :start_date, :start_date_type, :primary_completion_date, :primary_completion_date_type, :results_first_submitted_date, :study_first_submitted_date)
+  }
+
 
   self.primary_key = 'nct_id'
 
