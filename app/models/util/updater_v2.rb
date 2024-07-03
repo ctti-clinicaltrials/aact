@@ -29,10 +29,18 @@ module Util
       # TODO: review why setting the search path is necessary
       with_search_path('ctgov, support, public') do
         list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
-        StudyDownloader.download(list)
-        worker = StudyJsonRecord::Worker.new
-        worker.import_all
+        studies = StudyDownloader.download(list)
+        # worker = StudyJsonRecord::Worker.new
+        # worker.import_all
+        process(studies)
       end
+    end
+
+
+    def process(studies)
+      worker.process(studies.count, studies)
+      nct_ids = studies.map { |r| r[:nct_id] }
+      CalculatedValue.populate(nct_ids)
     end
 
 
@@ -57,13 +65,9 @@ module Util
 
       # 2. update studies
       log("#{@schema}: updating studies...")
-      StudyDownloader.download_recently_updated
-      worker = StudyJsonRecord::Worker.new
-      worker.import_all
+      studies = StudyDownloader.download_recently_updated
+      process(studies)
       @load_event.log("2/11 updated studies")
-
-      # hardcoded list of studies to update
-      list = ['NCT01596972', 'NCT02987738']
 
       # 3. add constraints
       log("#{@schema}: adding constraints...")
@@ -83,12 +87,6 @@ module Util
 
       # 6. update calculated values
       log("#{@schema}: update calculated values...")
-
-      start_time = Time.now
-      CalculatedValue.populate(list)
-      end_time = Time.now
-      puts "TOTAL TIME: #{end_time - start_time} seconds\n\n".red
-
       @load_event.log("6/11 updated calculated values")
 
 
@@ -137,6 +135,10 @@ module Util
     end
 
     private
+    
+    def worker
+      @worker ||= StudyJsonRecord::Worker.new
+    end
 
     def db_mgr
       # makes it "singleton-like" inside the class
