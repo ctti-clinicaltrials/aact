@@ -14,124 +14,59 @@ module Util
     def run_main_loop
       loop do
         now = TZInfo::Timezone.get("America/New_York").now
-        if Support::LoadEvent.where("created_at > ? AND description LIKE ?", now.beginning_of_day, "#{@schema}%").count == 0
+        if Support::LoadEvent.where("created_at > ?", now.beginning_of_day).count == 0
           execute
         else
           ActiveRecord::Base.logger = nil
-          db_mgr.remove_constraints
           update_current_studies
         end
       end
     end
-
-
-    def update_current_studies(count=1000)
-      # TODO: review why setting the search path is necessary
-      with_search_path('ctgov, support, public') do
-        list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
-        studies = StudyDownloader.download(list)
-        # worker = StudyJsonRecord::Worker.new
-        # worker.import_all
-        process(studies)
-      end
-    end
-
-
-    def process(studies)
-      puts "processing studies: #{studies.count}".green
-      worker.process(studies.count, studies)
-      CalculatedValue.populate_for(studies)
-    end
-
-
+    
 
     def execute
-
-      log("#{@schema}: EXECUTE started")
-
-      @load_event = Support::LoadEvent.create({
-        event_type: @type,
-        status: "running",
-        description: "#{@schema}",
-        problems: "" 
-      })
-
       ActiveRecord::Base.logger = nil
+      @step_count = 0
+      create_load_event
+      log("🚀🚀🚀 Execute Event for #{@schema} schema 🚀🚀🚀", false, true)
 
-      # 1. remove constraings
-      log("#{@schema}: removing constraints...")
-      db_mgr.remove_constraints
-      @load_event.log("1/11 removed constraints")
+      run_step("Remove Contraints") { db_mgr.remove_constraints }
 
-      # 2. update studies
-      log("#{@schema}: updating studies...")
-      studies = StudyDownloader.download_recently_updated
-      process(studies)
-      @load_event.log("2/11 updated studies")
-
-      # 3. add constraints
-      log("#{@schema}: adding constraints...")
-      db_mgr.add_constraints
-      @load_event.log("3/11 added constraints")
-
-
-      # 4. comparing the counts from CT.gov to our database
-      log("#{@schema}: comparing counts...")
-      @load_event.log("4/11 skipped verification")
-
-
-      # 5. run study searches
-      log("#{@schema}: execute study search...")
-      @load_event.log("5/11 skipped study searches")
-
-
-      # 6. update calculated values
-      log("#{@schema}: update calculated values...")
-      @load_event.log("6/11 updated calculated values")
-
-
-      # 7. populate the meshterms and meshheadings
-      log("#{@schema}: update mesh terms and headings...")
-      MeshTerm.populate_from_file
-      MeshHeading.populate_from_file
-      set_downcase_terms
-      @load_event.log("7/11 populated mesh terms")
-
-
-      # 8. run sanity checks
-      log("#{@schema}: run sanity checks...")
-      @load_event.run_sanity_checks(@schema)
-      @load_event.log("8/11 ran sanity checks")
-
-      
-      if @load_event.sanity_checks.count == 0
-        # 9. take snapshot
-        log("#{@schema}: take snapshot...")
-        take_snapshot
-        @load_event.log("9/11 db snapshot created")
-
-        # 10. refresh public db
-        log("#{@schema}: refresh public db...")
-        db_mgr.refresh_public_db
-        @load_event.log("10/11 refreshed public db")
-
-        # 11. create flat files
-        log("#{@schema}: creating flat files...")
-        create_flat_files
-        @load_event.log("11/11 created flat files")
-        puts "completed creating flat files..."
+      run_step("Update Studies") do
+        studies = StudyDownloader.download_recently_updated
+        # TODO: add batch processing if there are too many studies downloaded
+        process(studies)
       end
 
-      # 11. change the state of the load event from “running” to “complete”
-      @load_event.update({ status: "complete", completed_at: Time.now})
+      run_step("Add Constraints") { db_mgr.add_constraints }
+      run_step("Compare Counts", skipped = true)
+      run_step("Study Searches", skipped = true)
 
-      log("#{@schema}: EXECUTE completed")
+      run_step("Update Mesh Terms and Headings") do
+        log("populating mesh terms from file...", false)
+        MeshTerm.populate_from_file
+        log("populating mesh headings from file...", false)
+        MeshHeading.populate_from_file
+        set_downcase_terms
+      end
+
+      run_step("Sanity Checks") { @load_event.run_sanity_checks(@schema) }
+
+      if @load_event.sanity_checks.count == 0
+        run_step("Take DB Snapshot") { take_snapshot }
+        run_step("Refresh Public DB") { db_mgr.refresh_public_db }
+        run_step("Create Flat Files") { create_flat_files }
+        log("🏁🏁🏁 Execute Event Completed 🏁🏁🏁", false)
+        @load_event.update({ status: "complete", completed_at: Time.now})
+      else
+        log("🛑 Execution Stopped: Discrepancies Found During Sanity Checks")
+        @load_event.update({ status: "stopped", completed_at: Time.now})
+      end
+
     rescue => e
-      # set the load event status to "error"
-      @load_event.update({ status: 'error'}) 
-      # set the load event problems to the exception message
+      @load_event.update({ status: "error"}) 
       @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
-      puts "EXECUTE ERROR: #{e.message}"
+      log("⛔ Execute Stopped at Step #{@step_count} because of #{e.message}", log_event = false)
     end
 
     private
@@ -145,12 +80,24 @@ module Util
       @db_mgr ||= Util::DbManager.new(event: @load_event, schema: @schema)
     end
 
-    def log(msg)
-      puts "\n#{Time.zone.now}: #{msg}"
+    def update_current_studies(count=1000)
+      # TODO: review why setting the search path is necessary
+      db_mgr.remove_constraints
+      with_search_path('ctgov, support, public') do
+        list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
+        studies = StudyDownloader.download(list)
+        process(studies)
+      end
+    end
+
+
+    def process(studies)
+      worker.process(studies.count, studies)
+      CalculatedValue.populate_for(studies)
     end
 
     def set_downcase_terms
-      log('setting downcase mesh terms...')
+      log("setting downcase mesh terms...", false)
       con=ActiveRecord::Base.connection
       con.execute("SET search_path TO #{@schema}")
       #  save a lowercase version of MeSH terms so they can be found without worrying about case
@@ -160,29 +107,60 @@ module Util
       con.execute("UPDATE conditions SET downcase_name=lower(name);")
     end
 
-    def htime(seconds)
-      seconds = seconds.to_i
-      hours = seconds / 3600
-      seconds -= hours * 3600
-      minutes = seconds / 60
-      seconds -= minutes * 60
-      "#{hours}:#{'%02i' % minutes}:#{'%02i' % seconds}"
-    end
-
     def take_snapshot
-      log('dumping database...')
+      log("dumping database...", false)
       filename = db_mgr.dump_database
 
-      log('creating zipfile of database...')
+      log("zipping and updloading db dump to cloud...", false)
       Util::FileManager.new.save_static_copy(filename, @schema)
       rescue StandardError => e
         @load_event.add_problem("#{e.message} (#{e.class} #{e.backtrace}")
     end
 
     def create_flat_files
-      log('exporting tables as flat files...')
+      log("working hard on creating flat files...", false)
       Util::TableExporter.new([], @schema).run(delimiter: '|')
     end
 
+    def create_load_event
+      @load_event = Support::LoadEvent.create({
+        event_type: @type,
+        status: "running",
+        description: "🛠️  Execute Load Event for #{@schema} schema\n",
+        problems: "" 
+      })
+    end
+
+
+    def run_step(description, skipped = false)
+      @step_count += 1
+      start_time = Time.zone.now
+      if skipped
+        log("Step #{@step_count}: ⏭️  #{description}")
+        puts "------------------------------------------------------------------"
+      else
+        puts "[#{timestamp}] - Step #{@step_count}: ⏳ #{description}"
+        yield if block_given?
+        end_time = Time.zone.now
+        duration = end_time - start_time
+        log("Step #{@step_count}: ✅ #{description} (#{duration.round(2)} sec)")
+        puts "------------------------------------------------------------------"
+      end
+    end
+
+
+    def log(msg, event_log = true, day_only = false)
+      formatted_message = "[#{timestamp(day_only)}] - #{msg}\n"
+      @load_event.log(msg) if event_log
+      puts formatted_message
+    end
+
+    def timestamp(day_only = false)
+      if day_only
+        Time.zone.now.strftime("%Y-%m-%d")
+      else
+        Time.zone.now.strftime("%I:%M:%S %p")
+      end
+    end
   end
 end

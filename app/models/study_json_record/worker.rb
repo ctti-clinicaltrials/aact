@@ -8,6 +8,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   attr_accessor :collections
 
   def initialize
+    puts "New Worker initialized".red
     @collections = Hash.new { |h, k| h[k] = [] }
   end
 
@@ -80,7 +81,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   def import_all(batch_size=5000)
     silence_active_record do
       records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
-      puts "worker: total records to process: #{records}".green
+      puts "worker has #{records} updated records to process".green
       while records > 0
         process(batch_size)
         records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
@@ -100,7 +101,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       
       Rails.logger.debug { "records: #{records.count}" }
 
-      puts "removing records: #{records.count}".red unless ENV['RAILS_ENV'] == 'test'
+      puts "worker is about to process #{records.count} records".green unless ENV['RAILS_ENV'] == 'test'
       remove_study_data(records.map(&:nct_id))
 
       @collections = Hash.new { |h, k| h[k] = [] }

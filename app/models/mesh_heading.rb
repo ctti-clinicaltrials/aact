@@ -1,6 +1,5 @@
 class MeshHeading < ActiveRecord::Base
   def self.populate_from_file(file_name=Util::FileManager.new.default_mesh_headings)
-    puts "about to populate table of mesh headings..."
     qualifier=''
     heading=''
     File.open(file_name).each_line{|line|
