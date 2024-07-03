@@ -21,20 +21,9 @@ class CalculatedValueLegacy < ActiveRecord::Base
 
     self.sql_methods.each{|method|
       cmd='UPDATE calculated_values '+ CalculatedValue.send(method)
-      # con.execute(cmd)
-      log_execution_time(cmd, method)
+      con.execute(cmd)
     }
 
-  end
-
-  # Method to log execution time of a query
-  def self.log_execution_time(query, method)
-    start_time = Time.now
-    ActiveRecord::Base.connection.execute(query)
-
-    end_time = Time.now
-    duration = end_time - start_time
-    puts "#{method} executed in #{duration} seconds"
   end
 
   def self.sql_methods
