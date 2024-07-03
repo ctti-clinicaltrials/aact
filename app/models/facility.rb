@@ -2,6 +2,22 @@ class Facility < StudyRelationship
   has_many :facility_contacts
   has_many :facility_investigators
 
+  # Scope to return nct_ids with a single facility - currently not used
+  scope :nct_ids_with_single_facility, ->(nct_ids) {
+    where(nct_id: nct_ids).group(:nct_id).having('count(*) = 1').pluck(:nct_id)
+  }
+
+  # Scope to return facility counts for given nct_ids
+  scope :facility_counts, ->(nct_ids) {
+    where(nct_id: nct_ids).group(:nct_id).count
+  }
+
+  # Scope to return nct_ids with facilities in the US
+  scope :us_facility_nct_ids, ->(nct_ids) {
+    where(nct_id: nct_ids, country: us_territories).distinct.pluck(:nct_id)
+  }
+
+
   add_mapping do
     {
       table: :facilities,
@@ -38,5 +54,19 @@ class Facility < StudyRelationship
         }
       ]
     }
+  end
+
+  
+  private
+
+  # TODO: logic from previous implementation - how to optimize?
+  def self.us_territories
+    [
+      'United States', 'Guam', 'Puerto Rico', 'U.S. Virgin Islands',
+      'Virgin Islands (U.S.)', 'Northern Mariana Islands', 'American Samoa',
+      'Midway Atoll', 'Palmyra Atoll', 'Baker Island', 'Howland Island',
+      'Jarvis Island', 'Johnston Atoll', 'Kingman Reef', 'Wake Island',
+      'Navassa Island', 'Serranilla Bank', 'Bajo Nuevo Bank'
+    ]
   end
 end

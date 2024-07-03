@@ -1,6 +1,5 @@
 class MeshTerm < ActiveRecord::Base
   def self.populate_from_file(file_name=Util::FileManager.new.default_mesh_terms)
-    puts "about to populate table of mesh terms..."
     MeshTerm.destroy_all
     File.open(file_name).each_line{|line|
       line_array=line.gsub("\n",'').split(' ')
