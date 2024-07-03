@@ -6,7 +6,7 @@ module Util
     attr_accessor :con, :public_con, :public_alt_con, :event, :schema, :migration_object, :fm
 
     def initialize(params={})
-      puts "New DB Manager initialized".red
+      puts "New DB Manager initialized".red unless Rails.env.test?
       # 'event' keeps track of what happened during a single load event & then saves to LoadEvent table in the admin db, so we have a log
       # of all load events that have occurred.  If an event is passed in, use it; otherwise, create a new one.
       @event = params[:event]

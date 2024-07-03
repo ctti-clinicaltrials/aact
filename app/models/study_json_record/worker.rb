@@ -8,7 +8,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   attr_accessor :collections
 
   def initialize
-    puts "New Worker initialized".red
+    puts "New Worker initialized".red unless Rails.env.test?
     @collections = Hash.new { |h, k| h[k] = [] }
   end
 
@@ -71,9 +71,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       end
       next if collection.empty?
 
-      print "#{indent}   ↳ #{collection.first.class.table_name} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
+      print "#{indent}   ↳ #{collection.first.class.table_name} - #{collection.count}" unless Rails.env.test?
       collection.first.class.import(collection)
-      puts "\r✅#{indent} ↳ #{collection.first.class.table_name} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
+      puts "\r✅#{indent} ↳ #{collection.first.class.table_name} - #{collection.count}" unless Rails.env.test?
       save_children(collection,"  #{indent}")
     end
   end
