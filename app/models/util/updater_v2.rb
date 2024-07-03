@@ -8,22 +8,18 @@ module Util
       @params = params
       @type = (params[:event_type] || "incremental")
       @schema = params[:schema] || "ctgov"
-      @execute_ran = false
     end
 
 
     def run_main_loop
       loop do
         now = TZInfo::Timezone.get("America/New_York").now
-        # if Support::LoadEvent.where("created_at > ? AND description LIKE ?", now.beginning_of_day, "#{@schema}%").count == 0
-        if !@execute_ran  
+        if Support::LoadEvent.where("created_at > ? AND description LIKE ?", now.beginning_of_day, "#{@schema}%").count == 0
           execute
-          @execute_ran = true
         else
           ActiveRecord::Base.logger = nil
           db_mgr.remove_constraints
           update_current_studies
-          @execute_ran = false
         end
       end
     end
@@ -98,9 +94,9 @@ module Util
 
       # 7. populate the meshterms and meshheadings
       log("#{@schema}: update mesh terms and headings...")
-      # MeshTerm.populate_from_file
-      # MeshHeading.populate_from_file
-      # set_downcase_terms
+      MeshTerm.populate_from_file
+      MeshHeading.populate_from_file
+      set_downcase_terms
       @load_event.log("7/11 populated mesh terms")
 
 
@@ -113,17 +109,17 @@ module Util
       if @load_event.sanity_checks.count == 0
         # 9. take snapshot
         log("#{@schema}: take snapshot...")
-        # take_snapshot
+        take_snapshot
         @load_event.log("9/11 db snapshot created")
 
         # 10. refresh public db
         log("#{@schema}: refresh public db...")
-        # db_mgr.refresh_public_db
+        db_mgr.refresh_public_db
         @load_event.log("10/11 refreshed public db")
 
         # 11. create flat files
         log("#{@schema}: creating flat files...")
-        # create_flat_files
+        create_flat_files
         @load_event.log("11/11 created flat files")
         puts "completed creating flat files..."
       end
