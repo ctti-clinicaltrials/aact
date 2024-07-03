@@ -38,9 +38,9 @@ module Util
 
 
     def process(studies)
+      puts "processing studies: #{studies.count}".green
       worker.process(studies.count, studies)
-      nct_ids = studies.map { |r| r[:nct_id] }
-      CalculatedValue.populate(nct_ids)
+      CalculatedValue.populate_for(studies)
     end
 
 

@@ -1,13 +1,14 @@
 class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
-  def self.populate(nct_ids)
+  def self.populate_for(studies)
+    nct_ids = studies.map { |r| r[:nct_id] }
     calculations = initialize_calculations(nct_ids)
     perform_calculations(nct_ids, calculations)
     remove_existing_records(nct_ids)
     insert_calculated_values(calculations)
   end
-  
+
 
   private
 
