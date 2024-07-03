@@ -34,32 +34,10 @@ class Study < ApplicationRecord
   scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
   scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :responsible_parties) }
 
-  scope :with_dates_for_report, -> (nct_ids) {
-    where(nct_id: nct_ids)
-    .where.not(primary_completion_date: nil)
-    .where.not(results_first_submitted_date: nil)
-    .select(:nct_id, :primary_completion_date, :results_first_submitted_date)
-  }
-  scope :with_actual_duration, -> (nct_ids) {
-    where(nct_id: nct_ids)
-    .where.not(start_date: nil)
-    .where(start_date_type: [nil, "ACTUAL"])
-    .where.not(primary_completion_date: nil)
-    .where(primary_completion_date_type: [nil, "ACTUAL"])
-    .select(:nct_id, :start_date, :start_date_type, :primary_completion_date, :primary_completion_date_type)
-  }
-
-  scope :registered_year, -> (nct_id) {
-    where(nct_id: nct_id)
-    .where.not(study_first_submitted_date: nil)
-    .select(:nct_id, :study_first_submitted_date)
-  }
-
   scope :study_dates_for_calculations, -> (nct_ids) {
     where(nct_id: nct_ids)
     .select(:nct_id, :start_date, :start_date_type, :primary_completion_date, :primary_completion_date_type, :results_first_submitted_date, :study_first_submitted_date)
   }
-
 
   self.primary_key = 'nct_id'
 
