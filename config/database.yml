@@ -7,27 +7,22 @@ default: &default
   #  Make sure you've created a database account for the AACT_DB_SUPER_USERNAME (default: aact) with permission to create databases.
   #  Also, add an entry for this user in the .pgpass file in the root directory of the user who run the rails apps so the app knows its password.
   username: <%= ENV.fetch("AACT_DB_SUPER_USERNAME", 'aact') %>
-
+  host: <%= ENV.fetch("HOST", 'localhost') %>
+  port: <%= ENV.fetch("PORT", '5432') %>
 development:
   primary:
     <<: *default
-    host: localhost
-    port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact
     # TODO: move admin db develoment to separate branch until it's ready
   admin:
     <<: *default
-    host: localhost
-    port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_admin
   public:
     <<: *default
-    host: localhost
-    port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_public
@@ -35,8 +30,6 @@ development:
   # TODO: remove staging db related code from dev branch - not using
   staging:
     <<: *default
-    host: localhost
-    port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_staging    
@@ -44,24 +37,18 @@ development:
 test:
   primary:
     <<: *default
-    host: localhost
-    port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_test
     schema_search_path: ctgov,support,public
   admin:
     <<: *default
-    host: localhost
-    port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_admin_test
     schema_search_path: ctgov,support,public
   public:
     <<: *default
-    host: localhost
-    port: 5432
     username: <%= ENV.fetch("AACT_USERNAME", 'aact') %>
     password: <%= ENV.fetch("AACT_PASSWORD", '') %>
     database: aact_public_test
