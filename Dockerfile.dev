@@ -1,20 +1,24 @@
 # Use the official Ruby image
 FROM ruby:2.7.7
 
-# Install necessary packages, including the default PostgreSQL client
-RUN apt-get update -qq && apt-get install -y nodejs telnet nano zip cron graphviz wget lsb-release && \
-    echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
-    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-    apt-get update && \
-    apt-get install -y postgresql-client-14
+# lsb-release is crucial because it provides the necessary information to dynamically fetch the correct PostgreSQL repository based on the distribution
+RUN apt-get update -qq && apt-get install -y lsb-release
+
+# Add PostgreSQL repository dynamically based on the distribution
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+
+# Add PostgreSQL signing key to verify downloads
+RUN wget --no-check-certificate --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+
+# Update package list and install necessary packages - mimic prod server setup
+RUN apt-get update -qq && apt-get install -y nodejs telnet vim zip cron graphviz wget
+
+# prod server has postgres 14 (for some reason, didn't work without specifying the version)
+RUN apt-get update -qq && apt-get install -y postgresql-client-14
 
 # Create and set the working directory
 RUN mkdir /app
 WORKDIR /app
-
-# Create log directory and empty log files before copying project files
-RUN mkdir -p /app/log && \
-    touch /app/log/development.log /app/log/test.log || true
 
 # Copy Gemfile and Gemfile.lock to install dependencies
 COPY Gemfile /app/Gemfile
@@ -24,14 +28,8 @@ COPY Gemfile.lock /app/Gemfile.lock
 RUN gem install bundler -v 1.17.3
 RUN bundle install
 
-# Ensure the log files are created
-RUN touch /app/log/development.log /app/log/test.log
-
 # Copy the entire application code
 COPY . /app
-
-# Expose port 3000
-EXPOSE 3000
 
 # Default command to run the Rails server in development mode
 CMD ["sleep", "infinity"]
