@@ -3,14 +3,14 @@ services:
     image: postgres:14.3
     environment:
       # compose required environment variables
-      POSTGRES_USER: ${AACT_DB_SUPER_USERNAME}
+      POSTGRES_USER: ${AACT_USERNAME}
       POSTGRES_PASSWORD: ${AACT_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
 
-  web:
+  worker:
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -19,12 +19,19 @@ services:
       - RAILS_ENV=development
       - DATABASE_URL=${AACT_CORE_DATABASE_URL}
       - PGPASSWORD=${AACT_PASSWORD}
+      # Enables DatabaseCleaner to clean databases specified by a remote URL in DATABASE_URL,
+      # which is necessary when using containers where the database may not be considered “local.
+      - DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL=true
+
       # other project specific environment variables
+      - HOST=${HOST}
+      - PORT=${PORT}
       - AACT_DB_SUPER_USERNAME=${AACT_DB_SUPER_USERNAME}
+      - AACT_USERNAME=${AACT_USERNAME}
       - AACT_PASSWORD=${AACT_PASSWORD}
       - PUBLIC_DB_USER=${PUBLIC_DB_USER}
       - PUBLIC_DB_PASS=${PUBLIC_DB_PASS}
-      - AACT_USERNAME=${AACT_USERNAME}
+      
       - AACT_ADMIN_USERNAME=${AACT_ADMIN_USERNAME}
       - AACT_ADMIN_PASSWORD=${AACT_ADMIN_PASSWORD}
       - AACT_PUBLIC_USERNAME=${AACT_PUBLIC_USERNAME}
