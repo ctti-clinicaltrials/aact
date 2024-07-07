@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:14.3
+    environment:
+      # compose required environment variables
+      POSTGRES_USER: ${AACT_DB_SUPER_USERNAME}
+      POSTGRES_PASSWORD: ${AACT_PASSWORD}
+      # POSTGRES_USER: "aact"
+      # POSTGRES_PASSWORD: "password"
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      # compose requred environment variables
+      - RAILS_ENV=development
+      - DATABASE_URL=${AACT_CORE_DATABASE_URL}
+      # other project specific environment variables
+      - AACT_DB_SUPER_USERNAME=${AACT_DB_SUPER_USERNAME}
+      - AACT_PASSWORD=${AACT_PASSWORD}
+      - PUBLIC_DB_USER=${PUBLIC_DB_USER}
+      - PUBLIC_DB_PASS=${PUBLIC_DB_PASS}
+      - AACT_USERNAME=${AACT_USERNAME}
+      - AACT_ADMIN_USERNAME=${AACT_ADMIN_USERNAME}
+      - AACT_ADMIN_PASSWORD=${AACT_ADMIN_PASSWORD}
+      - AACT_PUBLIC_USERNAME=${AACT_PUBLIC_USERNAME}
+      - AACT_PUBLIC_PASSWORD=${AACT_PUBLIC_PASSWORD}
+      - DIGITALOCEAN_ACCESS_KEY_ID=${DIGITALOCEAN_ACCESS_KEY_ID}
+      - DIGITALOCEAN_SECRET_ACCESS_KEY=${DIGITALOCEAN_SECRET_ACCESS_KEY}
+      - DIGITALOCEAN_REGION=${DIGITALOCEAN_REGION}
+      - DIGITALOCEAN_BUCKET=${DIGITALOCEAN_BUCKET}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    # ports:
+    #   - "3000:3000"
+    depends_on:
+      - db
+    command: sleep infinity
+
+volumes:
+  db_data:
