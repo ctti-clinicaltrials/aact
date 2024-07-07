@@ -20,6 +20,7 @@ services:
       # compose requred environment variables
       - RAILS_ENV=development
       - DATABASE_URL=${AACT_CORE_DATABASE_URL}
+      - PGPASSWORD=${AACT_PASSWORD}
       # other project specific environment variables
       - AACT_DB_SUPER_USERNAME=${AACT_DB_SUPER_USERNAME}
       - AACT_PASSWORD=${AACT_PASSWORD}
@@ -37,6 +38,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      - ./public/static/tmp:/app/public/static/tmp
     # ports:
     #   - "3000:3000"
     depends_on:
