@@ -1,0 +1,35 @@
+# Use the official Ruby image
+FROM ruby:2.7.7
+
+# Install necessary packages, including the default PostgreSQL client
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client telnet nano zip cron graphviz wget
+
+# Create and set the working directory
+RUN mkdir /app
+WORKDIR /app
+
+# Create log directory and empty log files before copying project files
+RUN mkdir -p /app/log && \
+    touch /app/log/development.log /app/log/test.log || true
+
+# Copy Gemfile and Gemfile.lock to install dependencies
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
+
+# Install the specified version of Bundler and project dependencies
+RUN gem install bundler -v 1.17.3
+RUN bundle install
+
+# Ensure the log files are created
+RUN touch /app/log/development.log /app/log/test.log
+
+# Copy the entire application code
+COPY . /app
+
+
+
+# Expose port 3000
+EXPOSE 3000
+
+# Default command to run the Rails server in development mode
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

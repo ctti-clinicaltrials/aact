@@ -15,6 +15,7 @@ server.env
 /vendor
 /tmp/*
 .env
+.env.dev
 *.secret
 .byebug_history
 data
