@@ -59,6 +59,12 @@ Rails.application.configure do
   config.assets.digest = true
   config.assets.raise_runtime_errors = true
   config.action_mailer.default_url_options = { host: host }
+
+  # Ensure the log directory and development.log file exist
+  log_path = Rails.root.join('log')
+  FileUtils.mkdir_p(log_path) unless File.directory?(log_path)
+  development_log_path = log_path.join('development.log')
+  FileUtils.touch(development_log_path) unless File.exist?(development_log_path)
   config.logger = ActiveSupport::Logger.new(config.paths['log'].first, 1, 50.megabytes)
 
   # Store files locally.

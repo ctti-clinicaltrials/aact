@@ -5,8 +5,6 @@ services:
       # compose required environment variables
       POSTGRES_USER: ${AACT_DB_SUPER_USERNAME}
       POSTGRES_PASSWORD: ${AACT_PASSWORD}
-      # POSTGRES_USER: "aact"
-      # POSTGRES_PASSWORD: "password"
     ports:
       - "5432:5432"
     volumes:
@@ -39,8 +37,6 @@ services:
       - .:/app
       - /app/node_modules
       - ./public/static/tmp:/app/public/static/tmp
-    # ports:
-    #   - "3000:3000"
     depends_on:
       - db
     command: sleep infinity
