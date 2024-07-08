@@ -3,7 +3,6 @@
 # This module is reponsible for applying all the mappings to any StudyJsonRecord objects that need to be updated
 class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   StudyRelationship.load_mappings
-  include SchemaSwitcher
 
   attr_accessor :collections
 
@@ -95,28 +94,25 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
   def process(count = 1, records = nil)
     # load records
-    # TODO: replace hardcoded search path
-    with_search_path('ctgov, support, public') do
-      records = StudyJsonRecord.version_2.needs_processing.limit(count) if records.nil?
-      
-      Rails.logger.debug { "records: #{records.count}" }
+    records = StudyJsonRecord.version_2.needs_processing.limit(count) if records.nil?
+    
+    Rails.logger.debug { "records: #{records.count}" }
 
-      puts "worker is about to process #{records.count} records".green  unless Rails.env.test?
-      remove_study_data(records.map(&:nct_id))
+    puts "worker is about to process #{records.count} records".green  unless Rails.env.test?
+    remove_study_data(records.map(&:nct_id))
 
-      @collections = Hash.new { |h, k| h[k] = [] }
-      @index = Hash.new { |h, k| h[k] = {} }
+    @collections = Hash.new { |h, k| h[k] = [] }
+    @index = Hash.new { |h, k| h[k] = {} }
 
-      # import records data
-      StudyRelationship.sorted_mapping.each do |mapping| # process each mapping instructions
-        process_mapping(mapping, records)
-      end
-
-      # recalculate values for processed records
-      CalculatedValue.populate_for(records)
-      # mark study records as saved
-      StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
+    # import records data
+    StudyRelationship.sorted_mapping.each do |mapping| # process each mapping instructions
+      process_mapping(mapping, records)
     end
+
+    # recalculate values for processed records
+    CalculatedValue.populate_for(records)
+    # mark study records as saved
+    StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end
 
   # private
