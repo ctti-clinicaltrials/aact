@@ -6,6 +6,12 @@ include ActionView::Helpers::DateHelper
 class StudyJsonRecord < Support::SupportBase
   self.table_name = 'support.study_json_records'
 
+  scope :needs_processing, -> {
+    where("updated_at > saved_study_at OR saved_study_at IS NULL")
+  }
+
+  scope :version_2, -> { where(version: "2") }
+
   # 1. remove all study data if study exists
   # 2. import all the study data
   def create_or_update_study
