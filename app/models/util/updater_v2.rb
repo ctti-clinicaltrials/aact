@@ -31,13 +31,8 @@ module Util
       log("🚀🚀🚀 Execute Event for #{@schema} schema 🚀🚀🚀", false, true)
 
       run_step("Remove Contraints") { db_mgr.remove_constraints }
-
-      run_step("Update Studies") do
-        studies = StudyDownloader.download_recently_updated
-        # TODO: add batch processing if there are too many studies downloaded
-        process(studies)
-      end
-
+      run_step("Download Studies") { StudyDownloader.download_recently_updated}
+      run_step("Process Studies") { worker.import_all}
       run_step("Add Constraints") { db_mgr.add_constraints }
       run_step("Compare Counts", skipped = true)
       run_step("Study Searches", skipped = true)

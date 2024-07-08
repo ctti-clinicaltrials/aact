@@ -78,7 +78,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
   end
 
-  def import_all(batch_size=5000)
+  def import_all(batch_size=1000)
     silence_active_record do
       records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
       puts "worker has #{records} updated records to process".green
@@ -101,7 +101,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       
       Rails.logger.debug { "records: #{records.count}" }
 
-      puts "worker is about to process #{records.count} records".green unless ENV['RAILS_ENV'] == 'test'
+      puts "worker is about to process #{records.count} records".green  unless Rails.env.test?
       remove_study_data(records.map(&:nct_id))
 
       @collections = Hash.new { |h, k| h[k] = [] }
@@ -112,6 +112,8 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         process_mapping(mapping, records)
       end
 
+      # recalculate values for processed records
+      CalculatedValue.populate_for(records)
       # mark study records as saved
       StudyJsonRecord.where(version: '2').where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
     end
