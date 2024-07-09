@@ -60,8 +60,9 @@ module Util
 
     rescue => e
       @load_event.update({ status: "error"}) 
-      @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
+      @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" })
       log("⛔ Execute Stopped at Step #{@step_count} because of #{e.message}", log_event = false)
+      Airbrake.notify(e)
     end
 
     private

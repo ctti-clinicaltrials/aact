@@ -2,6 +2,7 @@ class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
   def self.populate_for(studies)
+    return if studies.empty?
     @nct_ids = studies.map { |r| r[:nct_id] }.freeze
     @calculations = initialize_calculations
 
@@ -11,8 +12,9 @@ class CalculatedValue < ActiveRecord::Base
         refresh_calculated_values
       end
     rescue StandardError => e
-      puts "Calculated Error: #{e.message}"
-      raise ActiveRecord::Rollback
+      Rails.logger.error("Unexpected error: #{e.message}")
+      Rails.logger.error(e.backtrace.join("\n"))
+      raise
     end
   end
 
