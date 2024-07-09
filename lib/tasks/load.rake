@@ -62,24 +62,6 @@ namespace :db do
 
 
   desc "Load the AACT database from ClinicalTrials.gov"
-
-  # TODO: remove or refactor after finalizing the UpdaterV2
-  # task :run, [:schema] => :environment do |t, args|
-  #   if args[:schema] == 'ctgov_v2'
-  #     Util::UpdaterV2.new(args).run_main_loop
-  #   else
-  #     Util::Updater.new(args).run_main_loop
-  #   end
-  # end
-
-  # task :execute, [:schema, :search_days_back] => :environment do |t, args|
-  #   if args[:schema] == 'ctgov_v2'
-  #     Util::UpdaterV2.new(args).execute
-  #   else
-  #     Util::Updater.new(args).execute
-  #   end
-  # end
-
   # Run the UpdaterV2 only with optional schema argument
   task :run_updater, [:schema] => :environment do |t, args|
     Util::UpdaterV2.new(args).execute
@@ -87,6 +69,29 @@ namespace :db do
 
   task :run_main_loop, [:schema] => :environment do |t, args|
     Util::UpdaterV2.new(args).run_main_loop
+  end
+
+  desc "Recalculate calculated values for studies in batches"
+  task :recalculate_studies, [] => :environment do
+    batch_size = 5_000
+    total_studies = StudyJsonRecord.version_2.count
+    total_batches = (total_studies / batch_size.to_f).ceil
+    processed_studies = 0
+
+    puts "Starting recalculation for #{total_studies} studies in #{total_batches} batches..."
+
+    (0...total_batches).each do |batch_number|
+      offset = batch_number * batch_size
+      studies = StudyJsonRecord.version_2.offset(offset).limit(batch_size)
+      batch_count = studies.count
+      processed_studies += batch_count
+
+      CalculatedValue.populate_for(studies)
+      percentage_processed = (processed_studies.to_f / total_studies * 100).round(2)
+      print "\r#{percentage_processed}% studies recalculated"
+    end
+
+    puts "\nRecalculation completed for all studies."
   end
 
 
