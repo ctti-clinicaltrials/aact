@@ -45,11 +45,6 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     Float(str) rescue nil
   end
 
-  def self.reset
-    StudyRelationship.study_models.each(&:delete_all)
-    StudyJsonRecord.version_2.update_all(saved_study_at: nil) # rubocop:disable Rails/SkipsModelValidations
-  end
-
   def save_children(parents, indent="  ")
     return unless parents.first
 

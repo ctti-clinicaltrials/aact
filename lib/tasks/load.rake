@@ -71,27 +71,19 @@ namespace :db do
     Util::UpdaterV2.new(args).run_main_loop
   end
 
-  desc "Recalculate calculated values for studies in batches"
-  task :recalculate_studies, [] => :environment do
-    batch_size = 5_000
+  desc "Recalculate calculated values for studies"
+  task :recalculate_studies, [:batch_size] => :environment do |t, args|
+    batch_size = (args[:batch_size] || 5000).to_i
     total_studies = StudyJsonRecord.version_2.count
-    total_batches = (total_studies / batch_size.to_f).ceil
     processed_studies = 0
 
-    puts "Starting recalculation for #{total_studies} studies in #{total_batches} batches..."
-
-    (0...total_batches).each do |batch_number|
-      offset = batch_number * batch_size
-      studies = StudyJsonRecord.version_2.offset(offset).limit(batch_size)
-      batch_count = studies.count
-      processed_studies += batch_count
-
+    StudyJsonRecord.version_2.find_in_batches(batch_size: batch_size) do |studies|
       CalculatedValue.populate_for(studies)
+      processed_studies += studies.size
       percentage_processed = (processed_studies.to_f / total_studies * 100).round(2)
-      print "\r#{percentage_processed}% studies recalculated"
+      print "\r studies recalculated: #{percentage_processed}% ".green
     end
-
-    puts "\nRecalculation completed for all studies."
+    puts " - Completed".green
   end
 
 
