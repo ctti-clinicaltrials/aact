@@ -69,4 +69,32 @@ class ResultGroup < StudyRelationship
       }
     ]
   end
+
+
+  def self.set_outcome_results_group_ids(study_ids)
+    Rails.logger.info "Setting Result Group IDs for Outcome Counts and Measurements"
+
+    outcome_counts_updates = []
+    outcome_counts = OutcomeCount.where(nct_id: study_ids)
+
+    outcome_measurements_updates = []
+    outcome_measurements = OutcomeMeasurement.where(nct_id: study_ids)
+
+    groups = where(nct_id: study_ids, result_type: 'Outcome').index_by do |group|
+      [group.nct_id, group.ctgov_group_code, group.outcome_id]
+    end
+
+    outcome_counts.each do |count|
+      group = groups[[count.nct_id, count.ctgov_group_code, count.outcome_id]]
+      outcome_counts_updates << { id: count.id, result_group_id: group.id } if group
+    end
+
+    outcome_measurements.each do |measurement|
+      group = groups[[measurement.nct_id, measurement.ctgov_group_code, measurement.outcome_id]]
+      outcome_measurements_updates << { id: measurement.id, result_group_id: group.id } if group
+    end
+
+    OutcomeCount.import outcome_counts_updates, on_duplicate_key_update: { conflict_target: [:id], columns: [:result_group_id] }
+    OutcomeMeasurement.import outcome_measurements_updates, on_duplicate_key_update: { conflict_target: [:id], columns: [:result_group_id] }
+  end
 end

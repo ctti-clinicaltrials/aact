@@ -114,9 +114,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
     # recalculate values for processed records
     CalculatedValue.populate_for(records)
-    ids = records.pluck(:nct_id)
-    OutcomeCount.update_result_group_ids(ids)
-    OutcomeMeasurement.update_result_group_ids(ids)
+    ResultGroup.set_outcome_results_group_ids(records.pluck(:nct_id))
     # mark study records as saved
     StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end
