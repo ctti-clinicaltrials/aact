@@ -5,9 +5,9 @@ class ResultGroup < StudyRelationship
   has_many :drop_withdrawals
   has_many :baseline_counts
   has_many :baseline_measures
-  # TODO: do we still need to have counts 
-  has_many :outcome_counts
   has_many :outcome_measurements
+
+  has_one :outcome_counts
   has_many :outcome_analysis_groups, inverse_of: :result_group
   has_many :outcome_analyses, :through => :outcome_analysis_groups
 
