@@ -2,12 +2,13 @@ class Outcome < StudyRelationship
   has_many :outcome_counts, inverse_of: :outcome 
   has_many :outcome_analyses, inverse_of: :outcome
   has_many :outcome_measurements, inverse_of: :outcome
+  has_many :result_groups, inverse_of: :outcome
 
   add_mapping do
     {
       table: :outcomes,
       root: [:resultsSection, :outcomeMeasuresModule, :outcomeMeasures],
-      requires: :result_groups,
+      # requires: :result_groups,
       columns: [
         { name: :outcome_type, value: :type },
         { name: :title, value: :title },
@@ -23,12 +24,27 @@ class Outcome < StudyRelationship
       ],
       children: [
         {
+          table: :result_groups,
+          root: nil,
+          flatten: [:groups],
+          index: [:ctgov_group_code, :result_type, :outcome_id],
+          # unique: true,
+          columns: [
+            # { name: :outcome_id, value: nil },
+            { name: :ctgov_group_code, value: :id },
+            { name: :result_type, value: 'Outcome' },
+            # { name: :result_type, value: nil, convert_to: ->(val) { Outcome.group_info(val) }},
+            { name: :title, value: :title },
+            { name: :description, value: :description }
+          ]
+        },
+        {
           table: :outcome_measurements,
           root: nil,
           flatten: [:classes, :categories, :measurements],
           columns: [
             { name: :outcome_id, value: nil },
-            { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
+            # { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
             { name: :ctgov_group_code, value: :groupId },
             { name: :classification, value: [:$parent, :$parent, :title] },
             { name: :category, value: [:$parent, :title] },
@@ -53,11 +69,11 @@ class Outcome < StudyRelationship
         { 
           table: :outcome_counts,
           root: nil,
-          requires: :result_groups, # do I need this since the parent has it?
+          # requires: :result_groups, # do I need this since the parent has it?
           flatten: [:denoms, :counts],
           columns: [
             { name: :outcome_id, value: nil },
-            { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
+            # { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
             { name: :ctgov_group_code, value: [:groupId] },
             { name: :scope, value: 'Measure' },
             { name: :units, value: [:$parent, :units] },

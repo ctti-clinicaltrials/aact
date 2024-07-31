@@ -13,7 +13,8 @@ class ReportedEvent < StudyRelationship
         table: :reported_events,
         root: [:resultsSection, :adverseEventsModule],
         flatten: [:seriousEvents, :stats],
-        requires: :result_groups,
+        # requires outcomes to be loaded first, otherwise events are being processed twice
+        requires: [:result_groups, :outcomes],
         columns: [
           { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Reported Event'] },
           { name: :event_type, value: 'serious' },

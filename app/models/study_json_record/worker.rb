@@ -52,6 +52,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     return if klass == Study
 
     klass.reflect_on_all_associations(:has_many).each do |association|
+      # byebug if association.name == :result_groups and klass == Outcome
       # update the nct_id and parent_id of the children
       collection = []
       collections[association.name].each do |child|
@@ -59,6 +60,13 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         next unless inverse_name
   
         parent = child.send(inverse_name)
+        # byebug if parent.nct_id.nil? or child.nct_id.nil?
+        if parent.nil?
+          puts "Skipping child because parent is nil"
+          puts "Parrent: #{inverse_name}, child: #{association.name}"
+          # byebug
+          next
+        end
         child.nct_id = parent.nct_id
         child[association.foreign_key] = parent.id
         collection << child
@@ -106,6 +114,8 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
     # recalculate values for processed records
     CalculatedValue.populate_for(records)
+    OutcomeCount.update_result_group_ids(records.pluck(:nct_id))
+    OutcomeMeasurement.update_result_group_ids(records.pluck(:nct_id))
     # mark study records as saved
     StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end
@@ -237,7 +247,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         values = mapping[:columns].map do |column|
           [column[:name], get_value(column, entry, index, nct_id)]
         end
-        row = model.new(values.to_h)
+        row = model.new(values.to_h) # Create Model Instance
         row.nct_id = nct_id
         prepare_children(row, entry, mapping[:children]) if mapping[:children]
         collection << row
@@ -261,6 +271,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         @index[mapping[:table]][row_index] = row.id
       end
     end
+
     save_children(collection)
   rescue
     raise "Error processing #{mapping[:table]}"
