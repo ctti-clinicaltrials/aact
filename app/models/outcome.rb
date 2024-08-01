@@ -8,7 +8,6 @@ class Outcome < StudyRelationship
     {
       table: :outcomes,
       root: [:resultsSection, :outcomeMeasuresModule, :outcomeMeasures],
-      # requires: :result_groups,
       columns: [
         { name: :outcome_type, value: :type },
         { name: :title, value: :title },
@@ -28,12 +27,9 @@ class Outcome < StudyRelationship
           root: nil,
           flatten: [:groups],
           index: [:ctgov_group_code, :result_type, :outcome_id],
-          # unique: true,
           columns: [
-            # { name: :outcome_id, value: nil },
             { name: :ctgov_group_code, value: :id },
             { name: :result_type, value: 'Outcome' },
-            # { name: :result_type, value: nil, convert_to: ->(val) { Outcome.group_info(val) }},
             { name: :title, value: :title },
             { name: :description, value: :description }
           ]
@@ -43,8 +39,7 @@ class Outcome < StudyRelationship
           root: nil,
           flatten: [:classes, :categories, :measurements],
           columns: [
-            { name: :outcome_id, value: nil },
-            # { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
+            # result_group_id is set by ResultGroup.set_outcome_results_group_ids
             { name: :ctgov_group_code, value: :groupId },
             { name: :classification, value: [:$parent, :$parent, :title] },
             { name: :category, value: [:$parent, :title] },
@@ -69,11 +64,9 @@ class Outcome < StudyRelationship
         { 
           table: :outcome_counts,
           root: nil,
-          # requires: :result_groups, # do I need this since the parent has it?
           flatten: [:denoms, :counts],
           columns: [
-            { name: :outcome_id, value: nil },
-            # { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
+            # result_group_id is set by ResultGroup.set_outcome_results_group_ids
             { name: :ctgov_group_code, value: [:groupId] },
             { name: :scope, value: 'Measure' },
             { name: :units, value: [:$parent, :units] },
