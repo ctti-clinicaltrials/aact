@@ -74,10 +74,11 @@ namespace :db do
   desc "Recalculate calculated values for studies"
   task :recalculate_studies, [:batch_size] => :environment do |t, args|
     batch_size = (args[:batch_size] || 5000).to_i
-    total_studies = StudyJsonRecord.version_2.count
+    total_studies = Study.count
+    return if total_studies == 0
     processed_studies = 0
 
-    StudyJsonRecord.version_2.find_in_batches(batch_size: batch_size) do |studies|
+    Study.pluck(:nct_id).each_slice(batch_size) do |studies|
       CalculatedValue.populate_for(studies)
       processed_studies += studies.size
       percentage_processed = (processed_studies.to_f / total_studies * 100).round(2)

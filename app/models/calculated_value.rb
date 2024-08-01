@@ -1,20 +1,14 @@
 class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
-  def self.populate_for(studies)
-    return if studies.empty?
-    @nct_ids = studies.map { |r| r[:nct_id] }.freeze
+  def self.populate_for(nct_ids)
+    return if nct_ids.empty?
+    @nct_ids = nct_ids.freeze
     @calculations = initialize_calculations
 
-    begin
-      ActiveRecord::Base.transaction do
-        perform_calculations
-        refresh_calculated_values
-      end
-    rescue StandardError => e
-      Rails.logger.error("Unexpected error: #{e.message}")
-      Rails.logger.error(e.backtrace.join("\n"))
-      raise
+    ActiveRecord::Base.transaction do
+      perform_calculations
+      refresh_calculated_values
     end
   end
 
