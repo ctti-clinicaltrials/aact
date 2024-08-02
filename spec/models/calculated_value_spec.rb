@@ -1,26 +1,46 @@
 require "rails_helper"
 
 RSpec.describe CalculatedValue, type: :model do
-  let(:studies) { [{ nct_id: "NCT001" }, { nct_id: "NCT002" }] }
+  # let(:studies) { [{ nct_id: "NCT001" }, { nct_id: "NCT002" }] }
+  let(:studies) { ["NCT001", "NCT002"] }
 
   before(:each) do
     # Create mock data for associated models
+    # Study.create!(
+    #   nct_id: "NCT001",
+    #   study_first_submitted_date: Date.today - 1.year,
+    #   start_date: Date.today - 1.year,
+    #   start_date_type: "ACTUAL",
+    #   results_first_submitted_date: Date.today - 5.months,
+    #   primary_completion_date: Date.today - 6.months,
+    #   primary_completion_date_type: "ACTUAL",
+    # )
+    # Study.create!(
+    #   nct_id: "NCT002",
+    #   study_first_submitted_date: Date.today - 2.years,
+    #   start_date: Date.today - 2.years,
+    #   start_date_type: "ACTUAL",
+    #   results_first_submitted_date: Date.today - 8.months,
+    #   primary_completion_date: Date.today - 1.year,
+    #   primary_completion_date_type: "ESTIMATED",
+    # )
+
     Study.create!(
       nct_id: "NCT001",
-      study_first_submitted_date: Date.today - 1.year,
-      start_date: Date.today - 1.year,
+      study_first_submitted_date: Date.new(2022, 1, 1),
+      start_date: Date.new(2022, 1, 1),
       start_date_type: "ACTUAL",
-      results_first_submitted_date: Date.today - 5.months,
-      primary_completion_date: Date.today - 6.months,
+      results_first_submitted_date: Date.new(2022, 11, 1),
+      primary_completion_date: Date.new(2022, 10, 1),
       primary_completion_date_type: "ACTUAL",
     )
     Study.create!(
       nct_id: "NCT002",
-      study_first_submitted_date: Date.today - 2.years,
-      start_date: Date.today - 2.years,
+      study_first_submitted_date: Date.new(2021, 1, 1),
+      start_date: Date.new(2021, 1, 1),
       start_date_type: "ACTUAL",
-      results_first_submitted_date: Date.today - 8.months,
-      primary_completion_date: Date.today - 1.year,
+      results_first_submitted_date: Date.new(2022, 2, 1),
+      primary_completion_date: Date.new(2021, 8, 1),
       primary_completion_date_type: "ESTIMATED",
     )
 
@@ -75,9 +95,9 @@ RSpec.describe CalculatedValue, type: :model do
 
     it "calculates dates correctly" do
       expect(calculations["NCT001"][:months_to_report_results]).to eq(1)
-      expect(calculations["NCT001"][:actual_duration]).to eq(6)
+      expect(calculations["NCT001"][:actual_duration]).to eq(9)
       expect(calculations["NCT002"][:actual_duration]).to eq(nil)
-      expect(calculations["NCT001"][:registered_in_calendar_year]).to eq(Date.today.year - 1)
+      expect(calculations["NCT001"][:registered_in_calendar_year]).to eq(2022)
     end
 
     it "processes outcome design counts correctly" do

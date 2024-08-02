@@ -62,24 +62,6 @@ namespace :db do
 
 
   desc "Load the AACT database from ClinicalTrials.gov"
-
-  # TODO: remove or refactor after finalizing the UpdaterV2
-  # task :run, [:schema] => :environment do |t, args|
-  #   if args[:schema] == 'ctgov_v2'
-  #     Util::UpdaterV2.new(args).run_main_loop
-  #   else
-  #     Util::Updater.new(args).run_main_loop
-  #   end
-  # end
-
-  # task :execute, [:schema, :search_days_back] => :environment do |t, args|
-  #   if args[:schema] == 'ctgov_v2'
-  #     Util::UpdaterV2.new(args).execute
-  #   else
-  #     Util::Updater.new(args).execute
-  #   end
-  # end
-
   # Run the UpdaterV2 only with optional schema argument
   task :run_updater, [:schema] => :environment do |t, args|
     Util::UpdaterV2.new(args).execute
@@ -87,6 +69,22 @@ namespace :db do
 
   task :run_main_loop, [:schema] => :environment do |t, args|
     Util::UpdaterV2.new(args).run_main_loop
+  end
+
+  desc "Recalculate calculated values for studies"
+  task :recalculate_studies, [:batch_size] => :environment do |t, args|
+    batch_size = (args[:batch_size] || 5000).to_i
+    total_studies = Study.count
+    return if total_studies == 0
+    processed_studies = 0
+
+    Study.pluck(:nct_id).each_slice(batch_size) do |studies|
+      CalculatedValue.populate_for(studies)
+      processed_studies += studies.size
+      percentage_processed = (processed_studies.to_f / total_studies * 100).round(2)
+      print "\r studies recalculated: #{percentage_processed}% ".green
+    end
+    puts " - Completed".green
   end
 
 

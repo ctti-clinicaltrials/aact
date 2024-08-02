@@ -31,25 +31,11 @@ module Util
       log("🚀🚀🚀 Execute Event for #{@schema} schema 🚀🚀🚀", false, true)
 
       run_step("Remove Contraints") { db_mgr.remove_constraints }
-
-      run_step("Update Studies") do
-        studies = StudyDownloader.download_recently_updated
-        # TODO: add batch processing if there are too many studies downloaded
-        process(studies)
-      end
-
+      run_step("Download Studies") { StudyDownloader.download_recently_updated}
+      run_step("Process Studies") { worker.import_all}
       run_step("Add Constraints") { db_mgr.add_constraints }
       run_step("Compare Counts", skipped = true)
       run_step("Study Searches", skipped = true)
-
-      run_step("Update Mesh Terms and Headings") do
-        log("populating mesh terms from file...", false)
-        MeshTerm.populate_from_file
-        log("populating mesh headings from file...", false)
-        MeshHeading.populate_from_file
-        set_downcase_terms
-      end
-
       run_step("Sanity Checks") { @load_event.run_sanity_checks(@schema) }
 
       if @load_event.sanity_checks.count == 0
@@ -65,8 +51,9 @@ module Util
 
     rescue => e
       @load_event.update({ status: "error"}) 
-      @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" }) 
+      @load_event.update({ problems: "#{e.message}\n\n#{e.backtrace.join("\n")}" })
       log("⛔ Execute Stopped at Step #{@step_count} because of #{e.message}", log_event = false)
+      Airbrake.notify(e)
     end
 
     private
@@ -86,25 +73,8 @@ module Util
       with_search_path('ctgov, support, public') do
         list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
         studies = StudyDownloader.download(list)
-        process(studies)
+        worker.process(studies.count, studies)
       end
-    end
-
-
-    def process(studies)
-      worker.process(studies.count, studies)
-      CalculatedValue.populate_for(studies)
-    end
-
-    def set_downcase_terms
-      log("setting downcase mesh terms...", false)
-      con=ActiveRecord::Base.connection
-      con.execute("SET search_path TO #{@schema}")
-      #  save a lowercase version of MeSH terms so they can be found without worrying about case
-      con.execute("UPDATE browse_conditions SET downcase_mesh_term=lower(mesh_term);")
-      con.execute("UPDATE browse_interventions SET downcase_mesh_term=lower(mesh_term);")
-      con.execute("UPDATE keywords SET downcase_name=lower(name);")
-      con.execute("UPDATE conditions SET downcase_name=lower(name);")
     end
 
     def take_snapshot

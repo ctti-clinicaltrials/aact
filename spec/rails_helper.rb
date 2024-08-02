@@ -82,15 +82,16 @@ RSpec.configure do |config|
     # DatabaseCleaner[:active_record, { model: Study }].clean
   end
 
+  # TODO: review and implement another way; remove v2 metadata from all tests
   config.before(:each) do |example|
     if example.metadata[:schema] == :v2
-      @original_search_path = ActiveRecord::Base.connection.schema_search_path
-      ActiveRecord::Base.connection.schema_search_path = 'ctgov_v2, support, public'
+      # @original_search_path = ActiveRecord::Base.connection.schema_search_path
+      # ActiveRecord::Base.connection.schema_search_path = 'ctgov_v2, support, public'
     end
   end
 
   config.after(:each) do
-    ActiveRecord::Base.connection.schema_search_path = @original_search_path
+    # ActiveRecord::Base.connection.schema_search_path = @original_search_path
   end
 
 end

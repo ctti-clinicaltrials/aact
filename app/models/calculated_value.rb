@@ -1,18 +1,14 @@
 class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
-  def self.populate_for(studies)
-    @nct_ids = studies.map { |r| r[:nct_id] }.freeze
+  def self.populate_for(nct_ids)
+    return if nct_ids.empty?
+    @nct_ids = nct_ids.freeze
     @calculations = initialize_calculations
 
-    begin
-      ActiveRecord::Base.transaction do
-        perform_calculations
-        refresh_calculated_values
-      end
-    rescue StandardError => e
-      puts "Calculated Error: #{e.message}"
-      raise ActiveRecord::Rollback
+    ActiveRecord::Base.transaction do
+      perform_calculations
+      refresh_calculated_values
     end
   end
 

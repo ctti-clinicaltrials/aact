@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe ProvidedDocument do
-  include SchemaSwitcher
 
   let(:nct_id) { "NCT03064438" }
   json_files = ["provided_document.json"]
@@ -28,7 +27,6 @@ describe ProvidedDocument do
   end
 
   context "Document URLs" do
-    # let(:nct_id) { nct_id }
     let(:filename) { "SAP_001.pdf" }
     let(:expected_url) { "https://ClinicalTrials.gov/ProvidedDocs/38/NCT03064438/SAP_001.pdf" }
 
@@ -61,6 +59,6 @@ describe ProvidedDocument do
   end
 
   def import(model)
-    with_v2_schema { model.all.map { |x| x.attributes.except("id").symbolize_keys } }
+    model.all.map { |x| x.attributes.except("id").symbolize_keys }
   end
 end

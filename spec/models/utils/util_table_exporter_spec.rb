@@ -2,32 +2,23 @@ require 'rails_helper'
 
 describe Util::TableExporter do
 
-  include SchemaSwitcher
-
   describe '#run' do
-    let!(:table_exporter) { Util::TableExporter.new([],'ctgov_v2') }
+    let!(:table_exporter) { Util::TableExporter.new }
     let(:zipfile_name)   { table_exporter.zipfile_name }
 
     before do
-      db = Util::DbManager.new(schema: "ctgov_v2")
-      db.remove_indexes_and_constraints
-      StudyRelationship.remove_all_data
-
       # this study has new line chars embedded in Outcomes.description.  Will verify they don't cause probs in flat files
       record = StudyJsonRecord.create(nct_id: 'NCT05594173', version: 2, content: JSON.parse(File.read('spec/support/json_data/NCT05594173.json')))
       worker = StudyJsonRecord::Worker.new
       worker.process_study('NCT05594173')
-      db.add_indexes
-      db.add_constraints
       expect(Study.count).to eq(1)
     end
 
     context 'export tables' do
       it 'should create all the temp files' do
         table_exporter.create_tempfiles('|')
-        file_count = `ls public/static/tmp/export/*.txt | wc -l`.to_i
+        file_count = Dir.glob('public/static/tmp/export/*.txt').count
         expect(file_count).to eq(StudyRelationship.loadable_tables.count)
-        
       end
 
       it 'should create the correct data for outcomes' do
@@ -55,11 +46,12 @@ describe Util::TableExporter do
         stub_request(:put, /https:\/\/aact-dev.nyc3.digitaloceanspaces.com\/.*/).to_return(:status => 200, :body => '', :headers => {})
       end
 
-      it 'should have content in each csv' do
-        with_v2_schema do
-          table_exporter.run # run takes care of removing temp files
-          expect(FileRecord.count).to eq(1)
-        end
+      it 'creates a file record after running the exporter' do
+        table_exporter.run 
+        expect(FileRecord.count).to eq(1)
+        # run takes care of removing temp files
+        file_count = Dir.glob('public/static/tmp/export/*.txt').count
+        expect(file_count).to eq(0)
       end
     end
   end
