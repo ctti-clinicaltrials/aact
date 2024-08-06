@@ -73,14 +73,8 @@ module Util
       with_search_path('ctgov, support, public') do
         list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
         studies = StudyDownloader.download(list)
-        process(studies)
+        worker.process(studies.count, studies)
       end
-    end
-
-
-    def process(studies)
-      worker.process(studies.count, studies)
-      CalculatedValue.populate_for(studies)
     end
 
     def take_snapshot
