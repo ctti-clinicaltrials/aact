@@ -51,6 +51,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     klass = parents.first.class
     return if klass == Study
 
+
     klass.reflect_on_all_associations(:has_many).each do |association|
       # update the nct_id and parent_id of the children
       collection = []
@@ -108,9 +109,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       process_mapping(mapping, records)
     end
 
-    ResultGroup.set_outcome_results_group_ids(records.pluck(:nct_id))
-    ResultGroup.set_outcome_analysis_group_ids(records.pluck(:nct_id))
-    CalculatedValue.populate_for(records.pluck(:nct_id))
+    nct_ids = records.pluck(:nct_id)
+    ResultGroup.handle_outcome_result_groups_ids(nct_ids)
+    CalculatedValue.populate_for(nct_ids)
     # mark study records as saved
     StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end

@@ -47,7 +47,7 @@ class ResultGroup < StudyRelationship
         root: [:resultsSection, :adverseEventsModule, :eventGroups],
         index: [:ctgov_group_code, :result_type],
         # outcomes should be loaded first to avoid double loading of reported events
-        requires: :outcomes,
+        requires: :outcomes, # TODO: review - this shouldn't be necessary
         unique: true,
         columns: [
           { name: :ctgov_group_code, value: :id },
@@ -59,11 +59,19 @@ class ResultGroup < StudyRelationship
     ]
   end
 
-  def self.set_outcome_analysis_group_ids(nct_ids)
-    Rails.logger.info "Setting Outcome Analysis Group IDs"
-    byebug
-    result_groups = fetch_outcome_groups_for(nct_ids) # composite key: group id
+  def self.handle_outcome_result_groups_ids(nct_ids)
+    Rails.logger.info "Handling Results Group IDs for Outcome Models"
+    result_groups = fetch_outcome_groups_for(nct_ids)
+    set_results_group_ids_for(OutcomeCount, nct_ids, result_groups)
+    set_results_group_ids_for(OutcomeMeasurement, nct_ids, result_groups)
+    set_outcome_analysis_group_ids(nct_ids, result_groups)
+  end
 
+
+  private
+
+  def self.set_outcome_analysis_group_ids(nct_ids, result_groups)
+    Rails.logger.info "Setting Outcome Analysis Group IDs"
     analyses = OutcomeAnalysis.where(nct_id: nct_ids).pluck(:id, :outcome_id).to_h
     groups = OutcomeAnalysisGroup.where(nct_id: nct_ids)
 
@@ -79,20 +87,19 @@ class ResultGroup < StudyRelationship
     bulk_update(OutcomeAnalysisGroup, updates)
   end
 
+  def self.set_results_group_ids_for(model, nct_ids, result_groups)
+    Rails.logger.info "Setting Result Group IDs for #{model}"
 
-  def self.set_outcome_results_group_ids(nct_ids)
-    Rails.logger.info "Setting Result Group IDs for Outcome Counts and Measurements"
+    records = model.where(nct_id: nct_ids).select(:id, :nct_id, :ctgov_group_code, :outcome_id)
+    updates = records.map do |record|
+      key = [record.nct_id, record.ctgov_group_code, record.outcome_id]
+      result_group_id = result_groups[key]&.id
+      { id: record.id, result_group_id: result_group_id } if result_group_id
+    end.compact
 
-    groups = fetch_outcome_groups_for(nct_ids)
-
-    outcome_counts_updates = prepare_updates_for(OutcomeCount, nct_ids, groups)
-    outcome_measurements_updates = prepare_updates_for(OutcomeMeasurement, nct_ids, groups)
-
-    bulk_update(OutcomeCount, outcome_counts_updates)
-    bulk_update(OutcomeMeasurement, outcome_measurements_updates)
+    bulk_update(model, updates)
   end
 
-  private
 
   # TODO: consider adding index for nct_id and result_type
   def self.fetch_outcome_groups_for(nct_ids)
@@ -102,19 +109,6 @@ class ResultGroup < StudyRelationship
       [group.nct_id, group.ctgov_group_code, group.outcome_id]
     end
   end
-
-  def self.prepare_updates_for(model, nct_ids, groups)
-    updates = []
-
-    records = model.where(nct_id: nct_ids)
-    records.each do |record|
-      index = [record.nct_id, record.ctgov_group_code, record.outcome_id]
-      group = groups[index]
-      updates << { id: record.id, result_group_id: group.id } if group
-    end
-    updates
-  end
-
 
   def self.bulk_update(model, updates)
     model.import updates, on_duplicate_key_update: { conflict_target: [:id], columns: [:result_group_id] }
