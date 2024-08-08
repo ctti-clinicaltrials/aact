@@ -1,8 +1,8 @@
 class Outcome < StudyRelationship
-  has_many :outcome_counts#, inverse_of: :outcome 
-  has_many :outcome_analyses#, inverse_of: :outcome
-  has_many :outcome_measurements#, inverse_of: :outcome
-  has_many :result_groups#, inverse_of: :outcome
+  has_many :outcome_counts
+  has_many :outcome_analyses
+  has_many :outcome_measurements
+  has_many :result_groups
 
   add_mapping do
     {

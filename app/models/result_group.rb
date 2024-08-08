@@ -1,17 +1,4 @@
 class ResultGroup < StudyRelationship
-
-  # has_many :reported_events
-  # has_many :milestones
-  # has_many :drop_withdrawals
-  # has_many :baseline_counts
-  # has_many :baseline_measures
-
-  # has_many :outcome_counts
-  # has_many :outcome_measurements
-  # TODO: review analysis_groups
-  # has_many :outcome_analysis_groups#, inverse_of: :result_group
-  # has_many :outcome_analyses, :through => :outcome_analysis_groups
-
   belongs_to :outcome, optional: true
 
   add_mapping do
@@ -20,7 +7,6 @@ class ResultGroup < StudyRelationship
         table: :result_groups,
         root: [:resultsSection, :baselineCharacteristicsModule, :groups],
         index: [:ctgov_group_code, :result_type],
-        # requires: :outcomes, # review this
         unique: true,
         columns: [
           { name: :ctgov_group_code, value: :id },
@@ -33,7 +19,6 @@ class ResultGroup < StudyRelationship
         table: :result_groups,
         root: [:resultsSection, :participantFlowModule, :groups],
         index: [:ctgov_group_code, :result_type], 
-        # requires: :outcomes,  # review this
         unique: true,
         columns: [
           { name: :ctgov_group_code, value: :id },
@@ -71,7 +56,7 @@ class ResultGroup < StudyRelationship
   private
 
   # TODO: add test for private methods
-  
+
   def self.set_outcome_analysis_group_ids(nct_ids, result_groups)
     Rails.logger.info "Setting Outcome Analysis Group IDs"
     analyses = OutcomeAnalysis.where(nct_id: nct_ids).pluck(:id, :outcome_id).to_h

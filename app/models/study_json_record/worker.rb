@@ -60,6 +60,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         next unless inverse_name
   
         parent = child.send(inverse_name)
+        # keeping this temprorary fix until we find a better solution
         if parent.nil?
           puts "Skipping child because parent is nil"
           puts "Parrent: #{inverse_name}, child: #{association.name}"
@@ -96,10 +97,12 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   def process(count = 1, records = nil)
     # load records
     records = StudyJsonRecord.version_2.needs_processing.limit(count) if records.nil?
-    Rails.logger.debug { "records: #{records.count}" }
+    return if records.empty?
+    nct_ids = records.map(&:nct_id)
+    Rails.logger.debug { "records: #{nct_ids.count}" }
 
-    puts "worker is about to process #{records.count} records".green  unless Rails.env.test?
-    remove_study_data(records.map(&:nct_id))
+    puts "worker is about to process #{nct_ids.count} records".green  unless Rails.env.test?
+    remove_study_data(nct_ids)
 
     @collections = Hash.new { |h, k| h[k] = [] }
     @index = Hash.new { |h, k| h[k] = {} }
@@ -108,19 +111,17 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     StudyRelationship.sorted_mapping.each do |mapping| # process each mapping instructions
       process_mapping(mapping, records)
     end
-
-    nct_ids = records.pluck(:nct_id)
+    # byebug
     ResultGroup.handle_outcome_result_groups_ids(nct_ids)
     CalculatedValue.populate_for(nct_ids)
     # mark study records as saved
-    StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
+    StudyJsonRecord.version_2.where(nct_id: nct_ids).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end
 
   # private
 
   def prepare_children(parent, content, children)
     children.each do |mapping|
-      # byebug if mapping[:table] == :outcome_analysis_groups
       nct_id = parent.nct_id
 
       collection = [] # this array will collect all the models to be imported
@@ -243,7 +244,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         values = mapping[:columns].map do |column|
           [column[:name], get_value(column, entry, index, nct_id)]
         end
-        row = model.new(values.to_h) # Create Model Instance
+        row = model.new(values.to_h)
         row.nct_id = nct_id
         prepare_children(row, entry, mapping[:children]) if mapping[:children]
         collection << row
@@ -261,7 +262,6 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     model.import(collection)
     puts "\r✅ #{mapping[:table]} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
     
-    # TODO: review logic inside this block
     if mapping[:index]
       index = [:nct_id] + mapping[:index]
       collection.each do |row|
