@@ -70,6 +70,8 @@ class ResultGroup < StudyRelationship
 
   private
 
+  # TODO: add test for private methods
+  
   def self.set_outcome_analysis_group_ids(nct_ids, result_groups)
     Rails.logger.info "Setting Outcome Analysis Group IDs"
     analyses = OutcomeAnalysis.where(nct_id: nct_ids).pluck(:id, :outcome_id).to_h
