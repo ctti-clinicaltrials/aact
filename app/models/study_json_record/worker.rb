@@ -52,7 +52,6 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     return if klass == Study
 
     klass.reflect_on_all_associations(:has_many).each do |association|
-      # byebug if association.name == :result_groups and klass == Outcome
       # update the nct_id and parent_id of the children
       collection = []
       collections[association.name].each do |child|
@@ -60,11 +59,9 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         next unless inverse_name
   
         parent = child.send(inverse_name)
-        # byebug if parent.nct_id.nil? or child.nct_id.nil?
         if parent.nil?
           puts "Skipping child because parent is nil"
           puts "Parrent: #{inverse_name}, child: #{association.name}"
-          # byebug
           next
         end
         child.nct_id = parent.nct_id
@@ -98,7 +95,6 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   def process(count = 1, records = nil)
     # load records
     records = StudyJsonRecord.version_2.needs_processing.limit(count) if records.nil?
-    
     Rails.logger.debug { "records: #{records.count}" }
 
     puts "worker is about to process #{records.count} records".green  unless Rails.env.test?
@@ -113,6 +109,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     end
 
     ResultGroup.set_outcome_results_group_ids(records.pluck(:nct_id))
+    ResultGroup.set_outcome_analysis_group_ids(records.pluck(:nct_id))
     CalculatedValue.populate_for(records.pluck(:nct_id))
     # mark study records as saved
     StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
@@ -122,12 +119,12 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
   def prepare_children(parent, content, children)
     children.each do |mapping|
+      # byebug if mapping[:table] == :outcome_analysis_groups
       nct_id = parent.nct_id
 
       collection = [] # this array will collect all the models to be imported
       model = mapping[:table].to_s.classify.constantize # get the model from the table name
       root = mapping[:root].map(&:to_s) if mapping[:root] # normalize root path to array of strings
-
       mapping_root = root ? content.dig(*root) : content
       next if mapping_root.nil? # skip if no root found
 
@@ -262,6 +259,8 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     print "\r   #{mapping[:table]} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
     model.import(collection)
     puts "\r✅ #{mapping[:table]} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
+    
+    # TODO: review logic inside this block
     if mapping[:index]
       index = [:nct_id] + mapping[:index]
       collection.each do |row|

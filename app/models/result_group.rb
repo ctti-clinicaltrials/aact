@@ -59,6 +59,26 @@ class ResultGroup < StudyRelationship
     ]
   end
 
+  def self.set_outcome_analysis_group_ids(nct_ids)
+    Rails.logger.info "Setting Outcome Analysis Group IDs"
+    byebug
+    result_groups = fetch_outcome_groups_for(nct_ids) # composite key: group id
+
+    analyses = OutcomeAnalysis.where(nct_id: nct_ids).pluck(:id, :outcome_id).to_h
+    groups = OutcomeAnalysisGroup.where(nct_id: nct_ids)
+
+    updates = groups.map do | group |
+      outcome_id = analyses[group.outcome_analysis_id]
+      next unless outcome_id
+
+      key = [group.nct_id, group.ctgov_group_code, outcome_id]
+      result_group_id = result_groups[key]&.id
+      { id: group.id, result_group_id: result_group_id } if result_group_id
+    end.compact
+
+    bulk_update(OutcomeAnalysisGroup, updates)
+  end
+
 
   def self.set_outcome_results_group_ids(nct_ids)
     Rails.logger.info "Setting Result Group IDs for Outcome Counts and Measurements"
@@ -76,7 +96,9 @@ class ResultGroup < StudyRelationship
 
   # TODO: consider adding index for nct_id and result_type
   def self.fetch_outcome_groups_for(nct_ids)
-    where(nct_id: nct_ids).index_by do |group|
+    where(nct_id: nct_ids, result_type: "Outcome")
+      .select(:id, :nct_id, :ctgov_group_code, :outcome_id)
+      .index_by do |group|
       [group.nct_id, group.ctgov_group_code, group.outcome_id]
     end
   end
