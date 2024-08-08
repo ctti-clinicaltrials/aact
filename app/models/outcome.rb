@@ -24,8 +24,7 @@ class Outcome < StudyRelationship
       children: [
         {
           table: :result_groups,
-          root: nil,
-          flatten: [:groups],
+          root: [:groups],
           index: [:ctgov_group_code, :result_type, :outcome_id],
           columns: [
             { name: :ctgov_group_code, value: :id },
@@ -36,7 +35,8 @@ class Outcome < StudyRelationship
         },
         {
           table: :outcome_measurements,
-          root: nil,
+          # TODO: after removing dup values can update root to [:classes] to reduce object size
+          root: nil, 
           flatten: [:classes, :categories, :measurements],
           columns: [
             # result_group_id is set by ResultGroup.set_outcome_results_group_ids
@@ -63,10 +63,10 @@ class Outcome < StudyRelationship
         },
         { 
           table: :outcome_counts,
-          root: nil,
-          flatten: [:denoms, :counts],
+          root: [:denoms],
+          flatten: [:counts],
           columns: [
-            # result_group_id is set by ResultGroup.set_outcome_results_group_ids
+            # result_group_id is set by ResultGroup.handle_outcome_result_groups_ids
             { name: :ctgov_group_code, value: [:groupId] },
             { name: :scope, value: 'Measure' },
             { name: :units, value: [:$parent, :units] },
@@ -107,9 +107,8 @@ class Outcome < StudyRelationship
               table: :outcome_analysis_groups,
               root: [:groupIds],
               columns: [
-                { name: :outcome_analysis_id, value: nil },
-                { name: :result_group_id, value: reference(:result_groups)[nil, 'Outcome'] },
-                { name: :ctgov_group_code, value: nil }
+                # result_group_id is set by ResultGroup.handle_outcome_result_groups_ids
+                { name: :ctgov_group_code, value: nil } # will be single ctgov_group_code from [:groupIds]
               ]
             }  
           ]       
