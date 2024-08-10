@@ -17,7 +17,7 @@ class MeshHeading < ActiveRecord::Base
           heading = line[4..line.size]
         else
           record = new(qualifier: qualifier.strip, heading: heading.strip, subcategory: line.strip)
-          headings << record if line.size > 1
+          headings << record if line.size > 1 && record.valid?
         end
       end
 
