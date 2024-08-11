@@ -1,0 +1,29 @@
+{
+  "protocolSection": {
+    "identificationModule": {
+      "nctId": "NCT000001",
+      "nctIdAliases": [
+        "NCT000002"
+      ],
+      "orgStudyIdInfo": {
+        "id": "NRG-GY032"
+      },
+      "secondaryIdInfos": [
+        {
+          "id": "NCI-2023-09355",
+          "type": "REGISTRY",
+          "domain": "CTRP"
+        },
+        {
+          "id": "U10CA180868",
+          "type": "NIH",
+          "link": "https://reporter.nih.gov/quickSearch/U10CA180868"
+        }
+      ],
+      "organization": {},
+      "briefTitle": "Tailoring Therapy in ...",
+      "officialTitle": "A Phase II Study of Tailored Adjuvant Therapy..."
+    },
+    "statusModule": {}
+  }
+}
