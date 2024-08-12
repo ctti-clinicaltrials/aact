@@ -22,7 +22,6 @@ module JsonHelper
 
   def load_study_json(nct_id)
     file_name = nct_id
-    puts "Loading JSON file: #{file_name}.json"
     file_path = Rails.root.join("spec", "fixtures", "study", "#{file_name}.json")
 
     raise "File not found: #{file_path}" unless File.exist?(file_path)
@@ -41,7 +40,6 @@ module JsonHelper
 
   def load_expected_data_for(nct_id, model)
     file_name = nct_id
-    puts "Loading JSON file: #{file_name}.json"
     file_path = Rails.root.join("spec", "fixtures", "expected", "#{file_name}.json")
 
     raise "File not found: #{file_path}" unless File.exist?(file_path)
