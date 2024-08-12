@@ -1,0 +1,632 @@
+{
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT06388018",
+          "orgStudyIdInfo": {
+            "id": "NRG-GY032"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "NCI-2023-09355",
+              "type": "REGISTRY",
+              "domain": "CTRP (Clinical Trial Reporting Program)"
+            },
+            {
+              "id": "NRG-GY032",
+              "type": "OTHER",
+              "domain": "NRG Oncology"
+            },
+            {
+              "id": "NRG-GY032",
+              "type": "OTHER",
+              "domain": "CTEP"
+            },
+            {
+              "id": "U10CA180868",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/U10CA180868"
+            }
+          ],
+          "organization": {
+            "fullName": "NRG Oncology",
+            "class": "OTHER"
+          },
+          "briefTitle": "Tailoring Therapy in Post-surgical Patients With Low-risk Endometrial Cancer",
+          "officialTitle": "A Phase II Study of Tailored Adjuvant Therapy in Pole-Mutated and p53-Wildtype/NSMP Early-Stage Endometrial Cancer (RAINBO BLUE &Amp; TAPER)"
+        },
+        "statusModule": {
+          "statusVerifiedDate": "2024-07",
+          "overallStatus": "RECRUITING",
+          "expandedAccessInfo": {
+            "hasExpandedAccess": false
+          },
+          "startDateStruct": {
+            "date": "2025-01-16",
+            "type": "ESTIMATED"
+          },
+          "primaryCompletionDateStruct": {
+            "date": "2027-01-16",
+            "type": "ESTIMATED"
+          },
+          "completionDateStruct": {
+            "date": "2027-01-16",
+            "type": "ESTIMATED"
+          },
+          "studyFirstSubmitDate": "2024-04-24",
+          "studyFirstSubmitQcDate": "2024-04-24",
+          "studyFirstPostDateStruct": {
+            "date": "2024-04-29",
+            "type": "ACTUAL"
+          },
+          "lastUpdateSubmitDate": "2024-07-11",
+          "lastUpdatePostDateStruct": {
+            "date": "2024-07-15",
+            "type": "ACTUAL"
+          }
+        },
+        "sponsorCollaboratorsModule": {
+          "responsibleParty": {
+            "type": "SPONSOR"
+          },
+          "leadSponsor": {
+            "name": "NRG Oncology",
+            "class": "OTHER"
+          },
+          "collaborators": [
+            {
+              "name": "National Cancer Institute (NCI)",
+              "class": "NIH"
+            },
+            {
+              "name": "Canadian Cancer Trials Group (CCTG)",
+              "class": "UNKNOWN"
+            }
+          ]
+        },
+        "oversightModule": {
+          "oversightHasDmc": false,
+          "isFdaRegulatedDrug": false,
+          "isFdaRegulatedDevice": false
+        },
+        "descriptionModule": {
+          "briefSummary": "This phase II trial tests how well tailoring therapy in post-surgery works in patients with low-risk endometrial cancer. The usual approach for patients with low-risk endometrial cancer is treatment with surgery. In this study, tissue that is removed as part of the surgical procedure is analyzed in the pathology laboratory to help guide the doctor to decide whether or not additional treatment such as radiation and or chemotherapy should be recommended.",
+          "detailedDescription": "PRIMARY OBJECTIVE:\n\nI. Estimate the rate of pelvic recurrence at 3 years in patients who are treated with a de-escalated adjuvant treatment directed by tumour molecular status.\n\nSECONDARY OBJECTIVES:\n\nI. Estimate the rate of isolated vaginal recurrence, para-aortic recurrence and distant metastasis at 3 years.\n\nII. Estimate the recurrence-free, endometrial cancer-specific and overall survival.\n\nIII. Describe the impact of molecular classification on patient decisional conflict and fear of recurrence.\n\nTERTIARY OBJECTIVES:\n\nI. Evaluate health economic impact of molecular classification-tailored adjuvant therapy on the cost of treating endometrial cancer.\n\nII. Evaluate quality of life. III. Determine if variability in adjuvant treatment given to patients with endometrial cancer is decreased by molecular classification-tailored adjuvant therapy as compared to recent clinical practice data.\n\nIV. To assess if additional molecular parameters can further refine prognosis within POLE-mutated and p53wt/no specific molecular profile (NSMP) endometrial cancer (EC).\n\nOUTLINE: Patients are assigned to 1 of 2 sub-studies.\n\nSUB-STUDY A: Patients are assigned to 1 of 2 cohorts.\n\nCOHORT A1: Patients with POLE-mutated early-stage EC undergo observation on study.\n\nCOHORT A2: Patients with higher-risk POLE-mutated EC undergo observation or external beam radiation therapy (EBRT) and/or vaginal brachytherapy over 3-5 fractions.\n\nSUB-STUDY B: Patients with p53 wildtype/NSMP ER+ EC undergo observation or vaginal brachytherapy over 3-5 fractions.\n\nAll patients undergo chest x-ray and computed tomography (CT) or magnetic resonance imaging (MRI) or positron emission tomography (PET)/CT scans during screening and as clinically indicated throughout the trial.\n\nAfter completion of study treatment, patients are followed up at 3 and 6 months, then every 6 months for 3 years, and then every year."
+        },
+        "conditionsModule": {
+          "conditions": [
+            "Stage I Uterine Corpus Endometrial Stromal Sarcoma AJCC v8",
+            "Stage II Uterine Corpus Endometrial Stromal Sarcoma AJCC v8",
+            "Stage III Uterine Corpus Endometrial Stromal Sarcoma AJCC v8"
+          ]
+        },
+        "designModule": {
+          "studyType": "INTERVENTIONAL",
+          "phases": [
+            "PHASE2"
+          ],
+          "designInfo": {
+            "allocation": "NON_RANDOMIZED",
+            "interventionModel": "PARALLEL",
+            "primaryPurpose": "TREATMENT",
+            "maskingInfo": {
+              "masking": "NONE"
+            }
+          },
+          "enrollmentInfo": {
+            "count": 325,
+            "type": "ESTIMATED"
+          }
+        },
+        "armsInterventionsModule": {
+          "armGroups": [
+            {
+              "label": "Cohort A1",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Patients with POLE-mutated early-stage EC undergo observation on study. Patients undergo chest x-ray and CT or MRI or PET/CT scans during screening and as clinically indicated throughout the trial.",
+              "interventionNames": [
+                "Other: Clinical Observation",
+                "Procedure: Computed Tomography",
+                "Procedure: Magnetic Resonance Imaging",
+                "Procedure: Positron Emission Tomography",
+                "Other: Questionnaire Administration",
+                "Procedure: X-Ray Imaging"
+              ]
+            },
+            {
+              "label": "Cohort A2",
+              "type": "EXPERIMENTAL",
+              "description": "Patients with higher-risk POLE-mutated EC undergo observation or EBRT and/or vaginal brachytherapy over 3-5 fractions. Patients undergo chest x-ray and CT or MRI or PET/CT scans during screening and as clinically indicated throughout the trial.",
+              "interventionNames": [
+                "Other: Clinical Observation",
+                "Procedure: Computed Tomography",
+                "Radiation: External Beam Radiation Therapy",
+                "Procedure: High-Dose-Rate Vaginal Brachytherapy",
+                "Procedure: Magnetic Resonance Imaging",
+                "Procedure: Positron Emission Tomography",
+                "Other: Questionnaire Administration",
+                "Procedure: X-Ray Imaging"
+              ]
+            },
+            {
+              "label": "Sub-study B",
+              "type": "ACTIVE_COMPARATOR",
+              "description": "Patients with p53 wildtype/NSMP ER+ EC undergo observation or vaginal brachytherapy over 3-5 fractions. Patients undergo chest x-ray and CT or MRI or PET/CT scans during screening and as clinically indicated throughout the trial.",
+              "interventionNames": [
+                "Other: Clinical Observation",
+                "Procedure: Computed Tomography",
+                "Procedure: High-Dose-Rate Vaginal Brachytherapy",
+                "Procedure: Magnetic Resonance Imaging",
+                "Procedure: Positron Emission Tomography",
+                "Other: Questionnaire Administration",
+                "Procedure: X-Ray Imaging"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "OTHER",
+              "name": "Clinical Observation",
+              "description": "Undergo observation",
+              "armGroupLabels": [
+                "Cohort A1",
+                "Cohort A2",
+                "Sub-study B"
+              ],
+              "otherNames": [
+                "observation"
+              ]
+            },
+            {
+              "type": "PROCEDURE",
+              "name": "Computed Tomography",
+              "description": "Undergo CT or PET/CT",
+              "armGroupLabels": [
+                "Cohort A1",
+                "Cohort A2",
+                "Sub-study B"
+              ],
+              "otherNames": [
+                "CAT",
+                "CAT Scan",
+                "Computed Axial Tomography",
+                "Computerized Axial Tomography",
+                "Computerized axial tomography (procedure)",
+                "Computerized Tomography",
+                "Computerized Tomography (CT) scan",
+                "CT",
+                "CT Scan",
+                "tomography"
+              ]
+            },
+            {
+              "type": "RADIATION",
+              "name": "External Beam Radiation Therapy",
+              "description": "Undergo EBRT",
+              "armGroupLabels": [
+                "Cohort A2"
+              ],
+              "otherNames": [
+                "Definitive Radiation Therapy",
+                "EBRT",
+                "External Beam Radiation",
+                "External Beam Radiotherapy",
+                "External Beam Radiotherapy (conventional)",
+                "External Beam RT",
+                "external radiation",
+                "External Radiation Therapy",
+                "external-beam radiation",
+                "Radiation, External Beam",
+                "Teleradiotherapy",
+                "Teletherapy",
+                "Teletherapy Radiation"
+              ]
+            },
+            {
+              "type": "PROCEDURE",
+              "name": "High-Dose-Rate Vaginal Brachytherapy",
+              "description": "Undergo vaginal brachytherapy",
+              "armGroupLabels": [
+                "Cohort A2",
+                "Sub-study B"
+              ],
+              "otherNames": [
+                "HDR-IVB",
+                "High-Dose-Rate Intra-Vaginal Brachytherapy"
+              ]
+            },
+            {
+              "type": "PROCEDURE",
+              "name": "Magnetic Resonance Imaging",
+              "description": "Undergo MRI",
+              "armGroupLabels": [
+                "Cohort A1",
+                "Cohort A2",
+                "Sub-study B"
+              ],
+              "otherNames": [
+                "Magnetic Resonance",
+                "Magnetic Resonance Imaging (MRI)",
+                "Magnetic resonance imaging (procedure)",
+                "Magnetic Resonance Imaging Scan",
+                "Medical Imaging, Magnetic Resonance / Nuclear Magnetic Resonance",
+                "MR",
+                "MR Imaging",
+                "MRI",
+                "MRI Scan",
+                "MRIs",
+                "NMR Imaging",
+                "NMRI",
+                "Nuclear Magnetic Resonance Imaging",
+                "sMRI",
+                "Structural MRI"
+              ]
+            },
+            {
+              "type": "PROCEDURE",
+              "name": "Positron Emission Tomography",
+              "description": "Undergo PET/CT",
+              "armGroupLabels": [
+                "Cohort A1",
+                "Cohort A2",
+                "Sub-study B"
+              ],
+              "otherNames": [
+                "Medical Imaging, Positron Emission Tomography",
+                "PET",
+                "PET Scan",
+                "Positron emission tomography (procedure)",
+                "Positron Emission Tomography Scan",
+                "Positron-Emission Tomography",
+                "proton magnetic resonance spectroscopic imaging",
+                "PT"
+              ]
+            },
+            {
+              "type": "OTHER",
+              "name": "Questionnaire Administration",
+              "description": "Ancillary studies",
+              "armGroupLabels": [
+                "Cohort A1",
+                "Cohort A2",
+                "Sub-study B"
+              ]
+            },
+            {
+              "type": "PROCEDURE",
+              "name": "X-Ray Imaging",
+              "description": "Undergo x-ray imaging",
+              "armGroupLabels": [
+                "Cohort A1",
+                "Cohort A2",
+                "Sub-study B"
+              ],
+              "otherNames": [
+                "Conventional X-Ray",
+                "Diagnostic Radiology",
+                "Medical Imaging, X-Ray",
+                "Plain film radiographs",
+                "Radiographic Imaging",
+                "Radiographic imaging procedure (procedure)",
+                "Radiography",
+                "RG",
+                "Static X-Ray",
+                "X-Ray"
+              ]
+            }
+          ]
+        },
+        "outcomesModule": {
+          "primaryOutcomes": [
+            {
+              "measure": "Time to pelvic recurrence",
+              "description": "Will include disease recurrence in the vagina, post-operative bed and pelvic lymph nodes. Histological evidence of recurrence in the vagina will be required. For pelvic nodal recurrence, the suspicious lymph node(s) should measure \\>= 10 mm in short axis and be confirmed with at least 2 methods (e.g. histological and radiological; or 2 different imaging modalities such as computed tomography and fludeoxyglucose F 18 positron emission tomography or magnetic resonance imaging; or evidence of lymph node growth on 2 imaging exams at least 2 months apart). All recurrences will be reviewed by a central adjudication committee. Distant metastasis and death in absence of pelvic failure will be considered competing risk events in the analysis of this endpoint. Subjects without any of the listed events (i.e. events of interest or competing risks events) are censored at the date of the most recent follow-up examination.",
+              "timeFrame": "Time from enrollment to the time of recurrent disease within the pelvis (including the vagina), assessed up to 2 years"
+            },
+            {
+              "measure": "Time to isolated vaginal recurrence",
+              "description": "Distant metastasis and death in absence of vaginal failure will be considered competing risk events in the analysis.",
+              "timeFrame": "Time from enrollment to the time of histologic confirmation of vaginal recurrence, assessed up to 2 years"
+            },
+            {
+              "measure": "Time to para-aortic recurrence",
+              "description": "Distant metastasis and death in absence of para-aortic recurrence will be considered competing risk events in the analysis.",
+              "timeFrame": "Time from enrollment to the time of radiological and/or histologic confirmation of para-aortic recurrence (i.e. nodal recurrence at/above L5/S1 and below the renal hilum), whichever occurs first, assessed up to 2 years"
+            },
+            {
+              "measure": "Time to distant metastasis",
+              "description": "Distant recurrence includes all tumour recurrences at distant sites, such as supraclavicular and/or mediastinal nodes, peritoneal carcinomatosis, malignant ascites, metastasis in liver, lung, bone, brain and/or other distant sites. Death in absence of distant metastasis will be considered a competing risk event in the analysis.",
+              "timeFrame": "Time from enrollment to the time of radiological and/or histologic confirmation of para-aortic recurrence (i.e. nodal recurrence at/above L5/S1 and below the renal hilum), whichever occurs first, assessed up to 2 years"
+            },
+            {
+              "measure": "Recurrence-free survival",
+              "timeFrame": "Time from enrollment to the time of endometrial cancer recurrence or death, whichever occurs first, assessed up to 2 years"
+            },
+            {
+              "measure": "Endometrial cancer-specific survival",
+              "timeFrame": "Time from enrollment to the time of death from endometrial cancer, assessed up to 2 years"
+            },
+            {
+              "measure": "Overall survival",
+              "timeFrame": "Time from enrollment to the time of death from any cause, assessed up to 2 years"
+            },
+            {
+              "measure": "Quality of life (QOL)",
+              "description": "All patients who have completed baseline and at least 1 follow-up QOL questionnaire are evaluable for QOL.",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Health economics",
+              "description": "All enrolled patients are evaluable for health economics evaluation. Those who have completed the health utility questionnaire and for whom resource utilization data are measured, will be evaluable for the economic analysis",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Decisional conflict",
+              "description": "All patients who have completed the Decisional Conflict Scale are evaluable for decisional conflict. Change in level of patient decisional conflict is defined as the change in the Decisional Conflict Scale or subscale prior to and after molecular classification.",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Fear of recurrence",
+              "description": "All patients who have completed the Fear of Recurrence Inventory are evaluable for fear of recurrence.",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Incidence of adverse events",
+              "description": "All patients will be evaluable for adverse event evaluation from the time of enrollment. Toxicity will be scored using the National Cancer Institute Common Terminology Criteria for Adverse Events version 5.0 and will assess risks of gastrointestinal, genitourinary, musculoskeletal and vaginal toxicity.",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Variability in adjuvant treatment",
+              "description": "Treatment variation is defined as the proportion of cases enrolled where adjuvant therapy administered deviated from the recommendations.",
+              "timeFrame": "Up to 2 years"
+            }
+          ]
+        },
+        "eligibilityModule": {
+          "eligibilityCriteria": "Inclusion Criteria:\n\n* Patients must have had surgery consisting of hysterectomy (total abdominal, laparoscopic or robotic-assisted) and bilateral salpingo-oophorectomy. Lymph node dissection can be performed as per institutional standards (sentinel or full lymphadenectomy). There must be no macroscopic residual disease after surgery\n* Patients must have histologically confirmed stage I to III endometrial carcinoma which can be endometrioid, serous, clear cell, un/dedifferentiated, carcinosarcoma or mixed\n* Patients' Eastern Cooperative Group (ECOG) performance status must be 0, 1, or 2\n* Patients' age must be \\>= 18 years\n* Patient consent must be appropriately obtained in accordance with applicable local and regulatory requirements. Each patient must sign a consent form prior to enrollment in the trial to document their willingness to participate. A similar process must be followed for sites outside of Canada as per their respective cooperative group's procedures\n* Patient is able (i.e. sufficiently fluent) and willing to complete the patient reported outcomes (PRO) questionnaires in either English, French or a validated language. The baseline assessment must be completed within required timelines, prior to enrollment. Inability (lack of comprehension in English or French, or other equivalent reason such as cognitive issues or lack of competency) to complete the questionnaires will not make the patient ineligible for the study. However, ability but unwillingness to complete the questionnaires will make the patient ineligible\n* Patients must be accessible for treatment and follow-up. Patients enrolled on this trial must be treated and followed at the participating centre. This implies there must be reasonable geographical limits placed on patients being considered for this trial. The patient's city of residence may be required to verify their geographical proximity. (Call the CCTG office (613-533-6430) if questions arise regarding the interpretation of this criterion.) Investigators must assure themselves the patients enrolled on this trial will be available for complete documentation of the treatment, adverse events, and follow-up\n* Patients must agree to return to their primary care facility for any adverse events which may occur through the course of the trial\n* Protocol treatment is to begin within 10 weeks of hysterectomy/bilateral salpingo-oophorectomy\n* SUB-STUDY A: Patients with endometrial carcinoma (endometrioid, serous, clear cell, un-/dedifferentiated, carcinosarcoma, mixed), must have one of the following combinations of International Federation of Gynecology and Obstetrics (FIGO) stage, grade, and lymphovascular invasion (LVI):\n\n  * Cohort A1:\n\n    * Stage IA (not confined to polyp), grade 3, pN0, with or without LVI (Pelvic lymph node surgical assessment (sentinel or full lymphadenectomy) is required for grade 3 or stage II. Para-aortic lymphadenectomy is not mandated.)\n    * Stage IB, grade 1 or 2, pNx/N0, with or without LVI\n    * Stage IB, grade 3, pN0, without substantial LVI (Pelvic lymph node surgical assessment (sentinel or full lymphadenectomy) is required for grade 3 or stage II. Para-aortic lymphadenectomy is not mandated.)\n    * Stage II (microscopic), grade 1 or 2, pN0, without substantial LVI (Pelvic lymph node surgical assessment (sentinel or full lymphadenectomy) is required for grade 3 or stage II. Para-aortic lymphadenectomy is not mandated.) (Substantial LVI is defined as \\>= 3 foci per College of American Pathologists' reporting guideline)\n  * Cohort A2:\n\n    * Stage IA (not confined to polyp), grade 3, pNx, with or without LVI\n    * Stage IB, grade 3, pNx, with or without LVI\n    * Stage IB, grade 3, pN0, with substantial LVI (Substantial LVI is defined as \\>= 3 foci per College of American Pathologists' reporting guideline)\n    * Stage II (microscopic), grade 1 or 2, pNx, with or without LVI\n    * Stage II (microscopic), grade 1 or 2, pN0, with substantial LVIƒõ\n    * Stage II (microscopic), grade 3, pNx/N0, with or without LVI\n    * Stage II non-microscopic, any grade, pNx/N0, with or without LVI\n    * Stage III, any grade, pNx/N0-2, with or without LVI\n    * Substantial LVI is defined as .3 foci per College of American Pathologists¡¦ reporting guideline\n* SUB-STUDY A: Patients must have a molecular classification of POLE mutation.\n\n  * Note: patients in Cohort A2 should have a known POLE pathogenic mutation prior to consenting\n* SUB-STUDY B: Patients with endometrial carcinoma (endometrioid only), must have one of the following combinations of FIGO stage, grade, and lymphovascular invasion (LVI):\n\n  * Stage IA (not confined to polyp), grade 3, pN0, with or without LVI (Pelvic lymph node surgical assessment \\[sentinel or full lymphadenectomy\\] is required for grade 3 or stage II. Para-aortic lymphadenectomy is not mandated) (Substantial LVI is defined as \\>= 3 foci per College of American Pathologists' reporting guideline)\n  * Stage IB, grade 1 or 2, pNx/N0, with or without LVI\n  * Stage IB, grade 3, pN0, without substantial LVI (Pelvic lymph node surgical assessment \\[sentinel or full lymphadenectomy\\] is required for grade 3 or stage II. Para-aortic lymphadenectomy is not mandated) (Substantial LVI is defined as \\>= 3 foci per College of American Pathologists' reporting guideline)\n  * Stage II (microscopic), grade 1 or 2, pN0\\*, without substantial LVI (Pelvic lymph node surgical assessment \\[sentinel or full lymphadenectomy\\] is required for grade 3 or stage II. Para-aortic lymphadenectomy is not mandated) (Substantial LVI is defined as \\>= 3 foci per College of American Pathologists' reporting guideline)\n* SUB-STUDY B: Patients must have molecular classification of p53wt/NSMP (based on normal p53 IHC, and absence of pathogenic POLE mutation or MMR deficiency)\n* SUB-STUDY B: Estrogen receptor positive (\\> 10% of the tumour with positive nuclear staining) on IHC\n\nExclusion Criteria:\n\n* Prior neoadjuvant chemotherapy for current endometrial cancer diagnosis\n* Prior pelvic radiation\n* Patients with a history of other malignancies, except: adequately treated non-melanoma skin cancer, curatively treated in-situ cancer of the cervix, or other solid tumours curatively treated with no evidence of disease for \\>= 5 years\n* Clinical evidence of distant metastasis as determined by pre-surgical or post-surgical imaging (CT scan of chest, abdomen and pelvis or whole-body PET-CT scan)\n* SUB-STUDY A: Isolated tumour cell(s) identified in lymph node(s) for patients in Cohort A1\n* SUB-STUDY B: Abnormal p53 and/or mismatch repair deficiency on immunohistochemistry without pathogenic POLE mutation.\n\n  * Abnormal p53 can also be determined by TP53 mutations found on DNA testing.\n* SUB-STUDY B: p53wt/NSMP endometrial carcinoma with a MELF (microcystic, elongated and fragmented) pattern of myoinvasion and/or substantial lymphovascular invasion\n* SUB-STUDY B: Stage IA (not confined to polyp), grade 3, pN0, with substantial LVI. Stage IB, grade 1 or 2, pNx/N0, with substantial LVI\n* SUB-STUDY B: Isolated tumour cell(s) identified in lymph node(s)",
+          "healthyVolunteers": false,
+          "sex": "FEMALE",
+          "minimumAge": "18 Years",
+          "stdAges": [
+            "ADULT",
+            "OLDER_ADULT"
+          ]
+        },
+        "contactsLocationsModule": {
+          "overallOfficials": [
+            {
+              "name": "Matthew A Powell",
+              "affiliation": "NRG Oncology",
+              "role": "PRINCIPAL_INVESTIGATOR"
+            }
+          ],
+          "locations": [
+            {
+              "facility": "Women and Infants Hospital",
+              "status": "RECRUITING",
+              "city": "Providence",
+              "state": "Rhode Island",
+              "zip": "02905",
+              "country": "United States",
+              "contacts": [
+                {
+                  "name": "Site Public Contact",
+                  "role": "CONTACT",
+                  "phone": "401-274-1122"
+                },
+                {
+                  "name": "Matthew T. Oliver",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                }
+              ],
+              "geoPoint": {
+                "lat": 41.82399,
+                "lon": -71.41283
+              }
+            }
+          ]
+        }
+      },
+      "derivedSection": {
+        "miscInfoModule": {
+          "versionHolder": "2024-08-09"
+        },
+        "conditionBrowseModule": {
+          "meshes": [
+            {
+              "id": "D000012509",
+              "term": "Sarcoma"
+            },
+            {
+              "id": "D000016889",
+              "term": "Endometrial Neoplasms"
+            },
+            {
+              "id": "D000018203",
+              "term": "Sarcoma, Endometrial Stromal"
+            }
+          ],
+          "ancestors": [
+            {
+              "id": "D000018204",
+              "term": "Neoplasms, Connective and Soft Tissue"
+            },
+            {
+              "id": "D000009370",
+              "term": "Neoplasms by Histologic Type"
+            },
+            {
+              "id": "D000009369",
+              "term": "Neoplasms"
+            },
+            {
+              "id": "D000014594",
+              "term": "Uterine Neoplasms"
+            },
+            {
+              "id": "D000005833",
+              "term": "Genital Neoplasms, Female"
+            },
+            {
+              "id": "D000014565",
+              "term": "Urogenital Neoplasms"
+            },
+            {
+              "id": "D000009371",
+              "term": "Neoplasms by Site"
+            },
+            {
+              "id": "D000014591",
+              "term": "Uterine Diseases"
+            },
+            {
+              "id": "D000005831",
+              "term": "Genital Diseases, Female"
+            },
+            {
+              "id": "D000052776",
+              "term": "Female Urogenital Diseases"
+            },
+            {
+              "id": "D000005261",
+              "term": "Female Urogenital Diseases and Pregnancy Complications"
+            },
+            {
+              "id": "D000091642",
+              "term": "Urogenital Diseases"
+            },
+            {
+              "id": "D000091662",
+              "term": "Genital Diseases"
+            },
+            {
+              "id": "D000018193",
+              "term": "Neoplasms, Complex and Mixed"
+            },
+            {
+              "id": "D000036821",
+              "term": "Endometrial Stromal Tumors"
+            }
+          ],
+          "browseLeaves": [
+            {
+              "id": "M15327",
+              "name": "Sarcoma",
+              "asFound": "Sarcoma",
+              "relevance": "HIGH"
+            },
+            {
+              "id": "M20349",
+              "name": "Sarcoma, Endometrial Stromal",
+              "asFound": "Endometrial Stromal Sarcoma",
+              "relevance": "HIGH"
+            },
+            {
+              "id": "M19235",
+              "name": "Endometrial Neoplasms",
+              "asFound": "Endometrial Cancer",
+              "relevance": "HIGH"
+            },
+            {
+              "id": "M20350",
+              "name": "Neoplasms, Connective and Soft Tissue",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M12315",
+              "name": "Neoplasms by Histologic Type",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M17342",
+              "name": "Uterine Neoplasms",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M8945",
+              "name": "Genital Neoplasms, Female",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M17315",
+              "name": "Urogenital Neoplasms",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M17339",
+              "name": "Uterine Diseases",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M8943",
+              "name": "Genital Diseases, Female",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M2876",
+              "name": "Genital Diseases",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M2875",
+              "name": "Urogenital Diseases",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M27093",
+              "name": "Female Urogenital Diseases",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M14127",
+              "name": "Pregnancy Complications",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M8399",
+              "name": "Female Urogenital Diseases and Pregnancy Complications",
+              "relevance": "LOW"
+            },
+            {
+              "id": "M24643",
+              "name": "Endometrial Stromal Tumors",
+              "relevance": "LOW"
+            },
+            {
+              "id": "T5284",
+              "name": "Soft Tissue Sarcoma",
+              "asFound": "Sarcoma",
+              "relevance": "HIGH"
+            },
+            {
+              "id": "T2073",
+              "name": "Endometrial Stromal Sarcoma",
+              "asFound": "Endometrial Stromal Sarcoma",
+              "relevance": "HIGH"
+            }
+          ],
+          "browseBranches": [
+            {
+              "abbrev": "BC04",
+              "name": "Neoplasms"
+            },
+            {
+              "abbrev": "All",
+              "name": "All Conditions"
+            },
+            {
+              "abbrev": "BXS",
+              "name": "Urinary Tract, Sexual Organs, and Pregnancy Conditions"
+            },
+            {
+              "abbrev": "Rare",
+              "name": "Rare Diseases"
+            }
+          ]
+        }
+      },
+      "hasResults": false
+    }
+  ]
+}
