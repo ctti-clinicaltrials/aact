@@ -3,11 +3,11 @@
 # This module is reponsible for applying all the mappings to any StudyJsonRecord objects that need to be updated
 class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   StudyRelationship.load_mappings
-  include SchemaSwitcher
 
   attr_accessor :collections
 
   def initialize
+    puts "New Worker initialized".red unless Rails.env.test?
     @collections = Hash.new { |h, k| h[k] = [] }
   end
 
@@ -45,11 +45,6 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     Float(str) rescue nil
   end
 
-  def self.reset
-    StudyRelationship.study_models.each(&:delete_all)
-    StudyJsonRecord.where(version: '2').update_all(saved_study_at: nil) # rubocop:disable Rails/SkipsModelValidations
-  end
-
   def save_children(parents, indent="  ")
     return unless parents.first
 
@@ -70,20 +65,20 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       end
       next if collection.empty?
 
-      print "#{indent}   ↳ #{collection.first.class.table_name} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
+      print "#{indent}   ↳ #{collection.first.class.table_name} - #{collection.count}" unless Rails.env.test?
       collection.first.class.import(collection)
-      puts "\r✅#{indent} ↳ #{collection.first.class.table_name} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
+      puts "\r✅#{indent} ↳ #{collection.first.class.table_name} - #{collection.count}" unless Rails.env.test?
       save_children(collection,"  #{indent}")
     end
   end
 
-  def import_all(batch_size=5000)
+  def import_all(batch_size=1000)
     silence_active_record do
-      records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
-      puts "worker: total records to process: #{records}".green
+      records = StudyJsonRecord.version_2.needs_processing.count
+      puts "worker has #{records} updated records to process".green
       while records > 0
         process(batch_size)
-        records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').count
+        records = StudyJsonRecord.version_2.needs_processing.count
       end
     end
   end
@@ -94,26 +89,25 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
 
   def process(count = 1, records = nil)
     # load records
-    # TODO: replace hardcoded search path
-    with_search_path('ctgov, support, public') do
-      records = StudyJsonRecord.where(version: '2').where('updated_at > saved_study_at OR saved_study_at IS NULL').limit(count) if records.nil?
-      
-      Rails.logger.debug { "records: #{records.count}" }
+    records = StudyJsonRecord.version_2.needs_processing.limit(count) if records.nil?
+    
+    Rails.logger.debug { "records: #{records.count}" }
 
-      puts "removing records: #{records.count}".red unless ENV['RAILS_ENV'] == 'test'
-      remove_study_data(records.map(&:nct_id))
+    puts "worker is about to process #{records.count} records".green  unless Rails.env.test?
+    remove_study_data(records.map(&:nct_id))
 
-      @collections = Hash.new { |h, k| h[k] = [] }
-      @index = Hash.new { |h, k| h[k] = {} }
+    @collections = Hash.new { |h, k| h[k] = [] }
+    @index = Hash.new { |h, k| h[k] = {} }
 
-      # import records data
-      StudyRelationship.sorted_mapping.each do |mapping| # process each mapping instructions
-        process_mapping(mapping, records)
-      end
-
-      # mark study records as saved
-      StudyJsonRecord.where(version: '2').where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
+    # import records data
+    StudyRelationship.sorted_mapping.each do |mapping| # process each mapping instructions
+      process_mapping(mapping, records)
     end
+
+    # recalculate values for processed records
+    CalculatedValue.populate_for(records.pluck(:nct_id))
+    # mark study records as saved
+    StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end
 
   # private

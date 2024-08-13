@@ -2,6 +2,7 @@ ENV["RACK_ENV"] = "test"
 ENV["RAILS_ENV"] = "test"
 
 require File.expand_path("../../config/environment", __FILE__)
+require "rspec/rails"
 
 #  Define databases...
 #abort("AACT_DB_SUPER_USERNAME env var must be set")   if !ENV["AACT_DB_SUPER_USERNAME"]
@@ -24,7 +25,6 @@ require File.expand_path("../../config/environment", __FILE__)
 #abort("AACT_ADMIN_EMAILS env var must be set to email people administering AACT")            if !ENV["AACT_ADMIN_EMAILS"]
 #abort("AACT_OWNER_EMAIL env var must be set to send emails")                                 if !ENV["AACT_OWNER_EMAIL"]
 
-require "rspec/rails"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 
@@ -39,6 +39,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.include SchemaSwitcher
+  config.include JsonHelper, type: :model
 
   config.before(:suite) do
     # DatabaseCleaner.clean_with(:truncation)
@@ -82,15 +83,16 @@ RSpec.configure do |config|
     # DatabaseCleaner[:active_record, { model: Study }].clean
   end
 
+  # TODO: review and implement another way; remove v2 metadata from all tests
   config.before(:each) do |example|
     if example.metadata[:schema] == :v2
-      @original_search_path = ActiveRecord::Base.connection.schema_search_path
-      ActiveRecord::Base.connection.schema_search_path = 'ctgov_v2, support, public'
+      # @original_search_path = ActiveRecord::Base.connection.schema_search_path
+      # ActiveRecord::Base.connection.schema_search_path = 'ctgov_v2, support, public'
     end
   end
 
   config.after(:each) do
-    ActiveRecord::Base.connection.schema_search_path = @original_search_path
+    # ActiveRecord::Base.connection.schema_search_path = @original_search_path
   end
 
 end

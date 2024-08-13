@@ -9,6 +9,8 @@ class Study < ApplicationRecord
 
   attr_accessor :xml, :with_related_records, :with_related_organizations
 
+  
+
   def as_indexed_json(options = {})
     self.as_json({
       only: [:nct_id, :acronym, :brief_title, :overall_status, :phase, :start_date, :primary_completion_date],
@@ -31,6 +33,12 @@ class Study < ApplicationRecord
   scope :sponsored_by,    lambda {|agency| joins(:sponsors).where("sponsors.agency LIKE ?", "#{agency}%")}
   scope :with_one_to_ones,   -> { joins(:eligibility, :brief_summary, :design, :detailed_description) }
   scope :with_organizations, -> { joins(:sponsors, :facilities, :central_contacts, :responsible_parties) }
+
+  scope :study_dates_for_calculations, -> (nct_ids) {
+    where(nct_id: nct_ids)
+    .select(:nct_id, :start_date, :start_date_type, :primary_completion_date, :primary_completion_date_type, :results_first_submitted_date, :study_first_submitted_date)
+  }
+
   self.primary_key = 'nct_id'
 
   has_one  :brief_summary,         :foreign_key => 'nct_id', :dependent => :delete

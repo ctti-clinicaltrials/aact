@@ -108,11 +108,8 @@ module Support
     end
 
     def log(msg)
-      stamped_message = "#{Time.zone.now} #{msg}"
-      self.description << stamped_message
+      self.description << "#{msg}\n"
       save!
-      $stdout.puts stamped_message
-      $stdout.flush
     end
 
     # find all the duplicated entries in tables which should have only
