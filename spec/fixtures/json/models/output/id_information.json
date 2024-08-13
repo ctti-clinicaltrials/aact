@@ -1,0 +1,36 @@
+{
+  "IdInformation": [
+    {
+      "nct_id": "NCT001",
+      "id_source": "nct_alias",
+      "id_value": "NCT002",
+      "id_type": null,
+      "id_type_description": null,
+      "id_link": null
+    },
+    {
+      "nct_id": "NCT001",
+      "id_source": "org_study_id",
+      "id_value": "NRG-GY032",
+      "id_type": null,
+      "id_type_description": null,
+      "id_link": null
+    },
+    {
+      "nct_id": "NCT001",
+      "id_source": "secondary_id",
+      "id_value": "NCI-2023-09355",
+      "id_type": "REGISTRY",
+      "id_type_description": "CTRP",
+      "id_link": null
+    },
+    {
+      "nct_id": "NCT001",
+      "id_source": "secondary_id",
+      "id_value": "U10CA180868",
+      "id_type": "NIH",
+      "id_type_description": null,
+      "id_link": "https://reporter.nih.gov/quickSearch/U10CA180868"
+    }
+  ]
+}

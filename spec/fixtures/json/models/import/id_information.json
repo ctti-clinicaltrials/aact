@@ -1,9 +1,9 @@
 {
   "protocolSection": {
     "identificationModule": {
-      "nctId": "NCT000001",
+      "nctId": "NCT001",
       "nctIdAliases": [
-        "NCT000002"
+        "NCT002"
       ],
       "orgStudyIdInfo": {
         "id": "NRG-GY032"
