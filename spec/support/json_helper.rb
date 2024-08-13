@@ -54,4 +54,28 @@ module JsonHelper
       raise "JSON parsing error in file: #{file_path} - #{e.message}"
     end
   end
+
+
+  def load_expected_data(model)
+    file_name = model.name.underscore
+    file_path = Rails.root.join("spec", "fixtures", "expected", "#{file_name}.json")
+
+    raise "File not found: #{file_path}" unless File.exist?(file_path)
+
+    begin
+      file_content = File.read(file_path)
+      json_data = JSON.parse(file_content)
+      # byebug
+      json_data[model.name]
+    rescue Errno::ENOENT => e
+      raise "Error reading file: #{file_path} - #{e.message}"
+    rescue JSON::ParserError => e
+      raise "JSON parsing error in file: #{file_path} - #{e.message}"
+    end
+  end
+
 end
+
+
+  # either compare the full files - "full mapping test"
+  # or test separately by models
