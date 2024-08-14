@@ -10,7 +10,7 @@ module TestDataHelper
 
   def setup_json_sample(model, nct_id = "NCT001")
     # byebug
-    content = load_json(model)
+    content = load_json_for(model)
     record = StudyJsonRecord.new(nct_id: nct_id, version: "2", content: content)
     StudyJsonRecord::Worker.new.process(1, [record])
   end
@@ -22,19 +22,14 @@ module TestDataHelper
   end
 
 
-
   # define custom matcher instead of excluding keys in before extraction and comparison
-  def compare_imported_with_expected(model_class, nct_id)
-    keys_to_exclude = ["id", "intervention_id", "facility_id"]
+  def compare_imported_with_expected_for(model)
+    setup_json_sample(model)
+    imported = imported_data_for(model)
+    expected = load_expected_data_for(model)
+    puts "expected", expected
+    puts "imported", imported
 
-    imported = model_class.where(nct_id: nct_id).map do |record|
-      record.attributes.except("id", "intervention_id", "facility_id")
-    end
-
-
-    expected = load_expected_data_for(nct_id, model_class)
-
-    # Compare the results
     expect(imported).to match_array(expected)
   end
 end

@@ -2,7 +2,7 @@ require "rails_helper"
   
 RSpec.describe IdInformation, type: :model do
   describe "Mapping" do
-    let(:expected) { load_expected_data(described_class) }
+    let(:expected) { load_expected_data_for(described_class) }
     let(:imported) { imported_data_for(described_class) }
 
     before(:each) do
