@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Condition do
+describe Condition, type: :model  do
   it "should create an instance of Condition", schema: :v2 do
     expected_data = [
       {
@@ -20,7 +20,7 @@ describe Condition do
       }
     ]  
 
-    setup_json_sample(described_class, models_support_path)
+    setup_test_data_for(described_class, models_support_path)
     imported = imported_data_for(described_class)
     expect(imported).to eq(expected_data)
   end
