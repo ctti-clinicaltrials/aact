@@ -1,0 +1,11 @@
+{
+  "protocolSection": {
+    "conditionsModule": {
+      "conditions": [
+        "Stage I Uterine Corpus Endometrial Stromal Sarcoma AJCC v8",
+        "Stage II Uterine Corpus Endometrial Stromal Sarcoma AJCC v8",
+        "Stage III Uterine Corpus Endometrial Stromal Sarcoma AJCC v8"
+      ]
+    }
+  }
+}

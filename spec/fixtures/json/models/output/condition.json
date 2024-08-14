@@ -1,0 +1,19 @@
+{
+  "Condition": [
+    {
+      "nct_id": "NCT001",
+      "name": "Stage I Uterine Corpus Endometrial Stromal Sarcoma AJCC v8",
+      "downcase_name": "stage i uterine corpus endometrial stromal sarcoma ajcc v8"
+    },
+    {
+      "nct_id": "NCT001",
+      "name": "Stage II Uterine Corpus Endometrial Stromal Sarcoma AJCC v8",
+      "downcase_name": "stage ii uterine corpus endometrial stromal sarcoma ajcc v8"
+    },
+    {
+      "nct_id": "NCT001",
+      "name": "Stage III Uterine Corpus Endometrial Stromal Sarcoma AJCC v8",
+      "downcase_name": "stage iii uterine corpus endometrial stromal sarcoma ajcc v8"
+    }
+  ]
+}
