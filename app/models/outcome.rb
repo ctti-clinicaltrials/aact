@@ -25,7 +25,6 @@ class Outcome < StudyRelationship
         {
           table: :result_groups,
           root: [:groups],
-          index: [:ctgov_group_code, :result_type, :outcome_id],
           columns: [
             { name: :ctgov_group_code, value: :id },
             { name: :result_type, value: 'Outcome' },

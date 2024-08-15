@@ -100,5 +100,11 @@
     "parent_table": "result_groups",
     "child_column": "result_group_id",
     "parent_column": "id"
+  },
+  {
+    "child_table": "result_groups",
+    "parent_table": "outcomes",
+    "child_column": "outcome_id",
+    "parent_column": "id"
   }
 ]

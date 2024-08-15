@@ -111,7 +111,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     StudyRelationship.sorted_mapping.each do |mapping| # process each mapping instructions
       process_mapping(mapping, records)
     end
-    # byebug
+    
     ResultGroup.handle_outcome_result_groups_ids(nct_ids)
     CalculatedValue.populate_for(nct_ids)
     # mark study records as saved
