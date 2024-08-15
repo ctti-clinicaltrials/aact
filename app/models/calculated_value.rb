@@ -2,6 +2,7 @@ class CalculatedValue < ActiveRecord::Base
   belongs_to :study, :foreign_key => 'nct_id'
 
   def self.populate_for(nct_ids)
+    Rails.logger.info "Calculating values for #{nct_ids.size} studies"
     return if nct_ids.empty?
     @nct_ids = nct_ids.freeze
     @calculations = initialize_calculations

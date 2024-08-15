@@ -10,9 +10,12 @@ namespace :db do
 
   desc 'process study json records'
   task :import_study, [:nct_id] => :environment do |t, args|
+    dbmgr = Util::DbManager.new
+    dbmgr.remove_constraints
     worker = StudyJsonRecord::Worker.new
     records = StudyJsonRecord.where(nct_id: args[:nct_id], version: '2')
     worker.process(1, records)
+    dbmgr.add_constraints
   end
 
   desc 'process study json records'

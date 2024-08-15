@@ -1,13 +1,13 @@
 class Outcome < StudyRelationship
-  has_many :outcome_counts, inverse_of: :outcome 
-  has_many :outcome_analyses, inverse_of: :outcome
-  has_many :outcome_measurements, inverse_of: :outcome
+  has_many :outcome_counts
+  has_many :outcome_analyses
+  has_many :outcome_measurements
+  has_many :result_groups
 
   add_mapping do
     {
       table: :outcomes,
       root: [:resultsSection, :outcomeMeasuresModule, :outcomeMeasures],
-      requires: :result_groups,
       columns: [
         { name: :outcome_type, value: :type },
         { name: :title, value: :title },
@@ -23,12 +23,22 @@ class Outcome < StudyRelationship
       ],
       children: [
         {
+          table: :result_groups,
+          root: [:groups],
+          columns: [
+            { name: :ctgov_group_code, value: :id },
+            { name: :result_type, value: 'Outcome' },
+            { name: :title, value: :title },
+            { name: :description, value: :description }
+          ]
+        },
+        {
           table: :outcome_measurements,
-          root: nil,
+          # TODO: after removing dup values can update root to [:classes] to reduce object size
+          root: nil, 
           flatten: [:classes, :categories, :measurements],
           columns: [
-            { name: :outcome_id, value: nil },
-            { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
+            # result_group_id is set by ResultGroup.set_outcome_results_group_ids
             { name: :ctgov_group_code, value: :groupId },
             { name: :classification, value: [:$parent, :$parent, :title] },
             { name: :category, value: [:$parent, :title] },
@@ -52,12 +62,10 @@ class Outcome < StudyRelationship
         },
         { 
           table: :outcome_counts,
-          root: nil,
-          requires: :result_groups, # do I need this since the parent has it?
-          flatten: [:denoms, :counts],
+          root: [:denoms],
+          flatten: [:counts],
           columns: [
-            { name: :outcome_id, value: nil },
-            { name: :result_group_id, value: reference(:result_groups)[:groupId, 'Outcome'] },
+            # result_group_id is set by ResultGroup.handle_outcome_result_groups_ids
             { name: :ctgov_group_code, value: [:groupId] },
             { name: :scope, value: 'Measure' },
             { name: :units, value: [:$parent, :units] },
@@ -98,9 +106,8 @@ class Outcome < StudyRelationship
               table: :outcome_analysis_groups,
               root: [:groupIds],
               columns: [
-                { name: :outcome_analysis_id, value: nil },
-                { name: :result_group_id, value: reference(:result_groups)[nil, 'Outcome'] },
-                { name: :ctgov_group_code, value: nil }
+                # result_group_id is set by ResultGroup.handle_outcome_result_groups_ids
+                { name: :ctgov_group_code, value: nil } # will be single ctgov_group_code from [:groupIds]
               ]
             }  
           ]       
