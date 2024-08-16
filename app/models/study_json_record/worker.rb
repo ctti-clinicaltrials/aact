@@ -51,6 +51,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     klass = parents.first.class
     return if klass == Study
 
+
     klass.reflect_on_all_associations(:has_many).each do |association|
       # update the nct_id and parent_id of the children
       collection = []
@@ -59,6 +60,12 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         next unless inverse_name
   
         parent = child.send(inverse_name)
+        # keeping this temprorary fix until we find a better solution
+        if parent.nil?
+          puts "Skipping child because parent is nil"
+          puts "Parrent: #{inverse_name}, child: #{association.name}"
+          next
+        end
         child.nct_id = parent.nct_id
         child[association.foreign_key] = parent.id
         collection << child
@@ -90,11 +97,12 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
   def process(count = 1, records = nil)
     # load records
     records = StudyJsonRecord.version_2.needs_processing.limit(count) if records.nil?
-    
-    Rails.logger.debug { "records: #{records.count}" }
+    return if records.empty?
+    nct_ids = records.map(&:nct_id)
+    Rails.logger.debug { "records: #{nct_ids.count}" }
 
-    puts "worker is about to process #{records.count} records".green  unless Rails.env.test?
-    remove_study_data(records.map(&:nct_id))
+    puts "worker is about to process #{nct_ids.count} records".green  unless Rails.env.test?
+    remove_study_data(nct_ids)
 
     @collections = Hash.new { |h, k| h[k] = [] }
     @index = Hash.new { |h, k| h[k] = {} }
@@ -103,11 +111,11 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     StudyRelationship.sorted_mapping.each do |mapping| # process each mapping instructions
       process_mapping(mapping, records)
     end
-
-    # recalculate values for processed records
-    CalculatedValue.populate_for(records.pluck(:nct_id))
+    
+    ResultGroup.handle_outcome_result_groups_ids(nct_ids)
+    CalculatedValue.populate_for(nct_ids)
     # mark study records as saved
-    StudyJsonRecord.version_2.where(nct_id: records.map(&:nct_id)).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
+    StudyJsonRecord.version_2.where(nct_id: nct_ids).update_all(saved_study_at: Time.zone.now) # rubocop:disable Rails/SkipsModelValidations
   end
 
   # private
@@ -119,7 +127,6 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
       collection = [] # this array will collect all the models to be imported
       model = mapping[:table].to_s.classify.constantize # get the model from the table name
       root = mapping[:root].map(&:to_s) if mapping[:root] # normalize root path to array of strings
-
       mapping_root = root ? content.dig(*root) : content
       next if mapping_root.nil? # skip if no root found
 
@@ -254,6 +261,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
     print "\r   #{mapping[:table]} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
     model.import(collection)
     puts "\r✅ #{mapping[:table]} - #{collection.count}" unless ENV['RAILS_ENV'] == 'test'
+    
     if mapping[:index]
       index = [:nct_id] + mapping[:index]
       collection.each do |row|
@@ -261,6 +269,7 @@ class StudyJsonRecord::Worker # rubocop:disable Style/ClassAndModuleChildren
         @index[mapping[:table]][row_index] = row.id
       end
     end
+
     save_children(collection)
   rescue
     raise "Error processing #{mapping[:table]}"

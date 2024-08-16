@@ -84,7 +84,8 @@ describe "BaselineMeasurement and Baseline ResultGroup" do
         ctgov_group_code: record["id"],
         result_type: "Baseline",
         title: record["title"],
-        description: record["description"]
+        description: record["description"],
+        outcome_id: nil
       }
     end
   end
