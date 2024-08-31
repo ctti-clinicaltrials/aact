@@ -10,6 +10,16 @@ module API
       get("studies/#{nct_id}")
     end
 
+    def studies(page_token: nil, query_term: nil, page_size: nil, limit: nil)
+      params = { pageSize: page_size }
+      params[:pageToken] = page_token if page_token
+      params["query.term"] = query_term if query_term
+      # params["query.term"] = "AREA[LastUpdatePostDate]RANGE[2024-08-30,MAX]"
+      params[:countTotal] = true if !page_token # total shown in 1 page response only
+      Rails.logger.debug("Params: #{params}")
+      get("studies", params.compact)
+    end
+
     def fetch_studies(fields: nil, nct_ids: nil, query_term: nil, page_size: nil, limit: nil)
       items = []
       page_token = nil
@@ -44,11 +54,16 @@ module API
       items
     end
 
+    def query_term_for(start_date:, end_date: nil)
+      "AREA[LastUpdatePostDate]RANGE[#{start_date},#{end_date || 'MAX'}]"
+    end
+
     # start_date is required keyword argument
     def fetch_studies_by_date(start_date:, end_date: nil, page_size: 5, limit: 10)
       Rails.logger.info("Fetching studies for range: #{start_date} - #{end_date || Date.today}")
       query_term = "AREA[LastUpdatePostDate]RANGE[#{start_date},#{end_date || 'MAX'}]"
       fetch_studies(query_term: query_term, page_size: page_size, limit: limit)
+      # studies(query_term: query_term, page_size: page_size, limit: limit)
     end
   end
 end

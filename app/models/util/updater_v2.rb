@@ -30,8 +30,14 @@ module Util
       create_load_event
       log("🚀🚀🚀 Execute Event for #{@schema} schema 🚀🚀🚀", false, true)
 
+      # TODO: 
+      # add unique index to SJR using migraion
+      # add index to do-not-remove-list
+      # update execute flow to use SyncService
+      # work on download functionality that should include removing merged studies
+
       run_step("Remove Contraints") { db_mgr.remove_constraints }
-      run_step("Download Studies") { StudyDownloader.download_recently_updated}
+      # run_step("Download Studies") { StudyDownloader.download_recently_updated }
       run_step("Process Studies") { worker.import_all}
       run_step("Add Constraints") { db_mgr.add_constraints }
       run_step("Compare Counts", skipped = true)
