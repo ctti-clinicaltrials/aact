@@ -12,12 +12,13 @@ module API
       get("studies/#{nct_id}")
     end
 
-    def studies(fields: nil, page_size: 4, limit: nil)
+    def studies(fields: nil, nct_ids: nil, page_size: 4, limit: nil)
       items = []
       page_token = nil
 
       params = { pageSize: page_size }
       params[:fields] = fields
+      params["filter.ids"] = nct_ids.join(",") if nct_ids
         
       loop do
         params[:pageToken] = page_token
@@ -25,10 +26,11 @@ module API
 
         result = get("studies", params.compact)
         studies = result["studies"] if result
+        byebug
         break if studies.nil? or studies.empty?
 
         items.concat(studies)
-        break if items.size >= limit
+        break if items.size >= limit if limit
 
         page_token = result["nextPageToken"]
         break if page_token.nil?
