@@ -29,6 +29,8 @@ class Facility < StudyRelationship
         { name: :state, value: :state },
         { name: :zip, value: :zip },
         { name: :country, value: :country },
+        { name: :latitude, value: [:geoPoint, :lat] },
+        { name: :longitude, value: [:geoPoint, :lon] },
       ],
       children: [
         {
