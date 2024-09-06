@@ -41,7 +41,7 @@ module Util
       if @load_event.sanity_checks.count == 0
         run_step("Take DB Snapshot") { take_snapshot }
         run_step("Refresh Public DB") { db_mgr.refresh_public_db }
-        run_step("Create Flat Files") { create_flat_files }
+        # run_step("Create Flat Files") { create_flat_files }
         log("🏁🏁🏁 Execute Event Completed 🏁🏁🏁", false)
         @load_event.update({ status: "complete", completed_at: Time.now})
       else
