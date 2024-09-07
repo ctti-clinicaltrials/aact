@@ -8,11 +8,9 @@ class StudySyncService
     @api_client = api_client
   end
 
-  # get a better name - for now mimic study_downloader
   def sync_recent_studies
-    silence_active_record { StudyJsonRecord.destroy_all } # temporary fix
-    start_date = get_sync_start_date
-    # start_date = "2024-09-04"
+    # start_date = get_sync_start_date
+    start_date = "2024-09-03"
     @api_client.get_studies_in_date_range(start_date: start_date, page_size: 500) do |studies|
       persist(studies)
     end
@@ -29,23 +27,20 @@ class StudySyncService
           version: "2",
           content: study_json,
           download_date: Date.today.to_s,
-          # don't need these fields?
-          created_at: Time.now,
-          updated_at: Time.now
         )
       end
-      StudyJsonRecord.import(study_records)
+
+      StudyJsonRecord.import(
+        study_records,
+        on_duplicate_key_update: {
+          conflict_target: [:nct_id, :version],
+          columns: [:content, :download_date, :updated_at]
+        }
+      )
+
       Rails.logger.info("Imported #{study_records.size} StudyJsonRecords")
     end
-    
-    
-    # StudyJsonRecord.import(study_records), on_duplicate_key_update: {
-    #   conflict_target: [:nct_id, :version],
-    #   columns: [:content, :download_date, :updated_at]
-    #   })
   end
-
-  private
 
   def get_sync_start_date
     last_event = Support::LoadEvent
