@@ -1,9 +1,9 @@
 module API
   class CTGovClientV2 < HttpService
-    BASE_URL = "https://clinicaltrials.gov/api/v2/".freeze
+    include API::CTGovClientInterface
 
     def initialize
-      super(BASE_URL)
+      super("#{BASE_URL}v2/")
     end
 
     def fetch_study(nct_id)
