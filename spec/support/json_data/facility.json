@@ -11,7 +11,11 @@
           "contacts": [
             { "role": "Investigator", "name": "Investigator Name" },
             { "role": "Coordinator", "name": "Contact Name", "email": "contact@example.com", "phone": "123-456-7890" }
-          ]
+          ],
+          "geoPoint": {
+              "lat": -12.97111,
+              "lon": -38.51083
+          }
         }]
       }
     }

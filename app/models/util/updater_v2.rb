@@ -34,11 +34,10 @@ module Util
       # add unique index to SJR using migraion
       # work on download functionality that should include removing merged studies
 
-      run_step("Remove Contraints") { db_mgr.remove_constraints }
-      # run_step("Download Studies") { StudyDownloader.download_recently_updated }
       run_step("Download Studies") { StudySyncService.new.sync_recent_studies }
+      run_step("Remove Indexes/Contraints") { db_mgr.remove_indexes_and_constraints }
       run_step("Process Studies") { worker.import_all}
-      run_step("Add Constraints") { db_mgr.add_constraints }
+      run_step("Add Indexes/Constraints") { db_mgr.add_indexes_and_constraints }
       run_step("Compare Counts", skipped = true)
       run_step("Study Searches", skipped = true)
       run_step("Sanity Checks") { @load_event.run_sanity_checks(@schema) }

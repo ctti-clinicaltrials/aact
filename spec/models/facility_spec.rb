@@ -23,6 +23,8 @@ RSpec.describe Facility, type: :model do
             "state" => "Test State",
             "zip" => "12345",
             "country" => "Test Country",
+            "latitude" => -12.97111,
+            "longitude" => -38.51083
             }
         ]
 
