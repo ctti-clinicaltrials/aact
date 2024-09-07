@@ -22,6 +22,17 @@ class StudySyncService
 
   end
 
+  def recent_studies
+    silence_active_record { StudyJsonRecord.destroy_all } # temporary fix
+    # start_date = fetch_start_date
+    start_date = "2024-09-01"
+
+    query_term = @api_client.query_term_for(start_date: start_date)
+    @api_client.fetch_studies_paginated(query_term: query_term, page_size: 500) do |studies|
+      import_studies(studies)
+    end
+  end
+
   def recently_updated
     silence_active_record do
       StudyJsonRecord.destroy_all # temporary fix
