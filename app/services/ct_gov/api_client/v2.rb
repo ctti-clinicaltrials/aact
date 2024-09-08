@@ -1,28 +1,21 @@
-module API
-  class CTGovClientV2 < HttpService
-    include API::CTGovClientInterface
+module CTGov
+  class ApiClient::V2 < ApiClient::Base
 
     def initialize
-      super("#{BASE_URL}v2/")
+      super(version: "v2")
     end
 
     def version
       "2"
     end
 
-    def fetch_study(nct_id)
-      get("studies/#{nct_id}")
-    end
-
-    # TODO: error handling
-    # replace query term in params with range or similar
-    def fetch_studies(query_term: nil, nct_ids: nil, page_size: nil)
+    def fetch_studies(range: nil, nct_ids: nil, page_size: nil)
       page_token = nil
       total_count = 0
       total_fetched = 0
 
       params = { pageSize: page_size, countTotal: true }
-      params["query.term"] = query_term
+      params["query.term"] = range
       params["filter.ids"] = nct_ids
 
       loop do
@@ -56,13 +49,13 @@ module API
     def get_studies_in_date_range(start_date:, end_date: nil, page_size: nil)
       Rails.logger.info("Fetching studies for range: #{start_date} - #{end_date || Date.today}")
       query_term = build_date_range_query(start_date: start_date, end_date: end_date)
-      fetch_studies(query_term: query_term, page_size: page_size) do |studies|
+      fetch_studies(range: query_term, page_size: page_size) do |studies|
         yield studies
       end
     end
 
     def get_studies_by_nct_ids(list:, page_size: 50)
-      nct_ids = list.join('|') # what if not an array? or empty?
+      nct_ids = list.join('|')
       fetch_studies(nct_ids: nct_ids, page_size: page_size) do |studies|
         yield studies
       end
@@ -73,6 +66,5 @@ module API
     def build_date_range_query(start_date:, end_date: nil)
       "AREA[LastUpdatePostDate]RANGE[#{start_date},#{end_date || 'MAX'}]"
     end
-
   end
 end

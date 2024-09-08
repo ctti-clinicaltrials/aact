@@ -1,7 +1,7 @@
-module API
-  class HttpService
+# module API
+  module HttpService
     
-    def initialize(base_url, timeout: 10, open_timeout: 5, retries: 3)
+    def setup_connection(base_url, timeout: 10, open_timeout: 5, retries: 3)
       retry_options = {
         max: retries,
         interval: 0.05,
@@ -40,4 +40,4 @@ module API
       Airbrake.notify(error)
     end
   end
-end
+# end

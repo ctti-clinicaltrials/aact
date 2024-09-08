@@ -8,7 +8,7 @@ module Util
       @params = params
       @type = (params[:event_type] || "incremental")
       @schema = params[:schema] || "ctgov"
-      @sync_service = StudySyncService.new
+      @sync_service = CTGov::StudySyncService.new
     end
 
 

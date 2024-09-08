@@ -1,15 +1,17 @@
+module CTGov
 class StudySyncService
 
-  def initialize(api_client = API::CTGovClientV2.new)
-    unless api_client.is_a?(API::CTGovClientInterface)
-      raise ArgumentError, "Invalid API client. Must implement API::CTGovClientInterface"
+  # def initialize(api_client = API::CTGovClientV2.new)
+  def initialize(api_client = CTGov::ApiClient::V2.new)
+    unless api_client.is_a?(CTGov::ApiClient::Base)
+      raise ArgumentError, "Invalid API client. Must inherit from CTGov::ApiClient::Base"
     end
     @api_client = api_client
   end
 
   def sync_recent_studies_from_api
     # start_date = get_sync_start_date
-    start_date = "2024-09-03"
+    start_date = "2024-08-25"
     @api_client.get_studies_in_date_range(start_date: start_date, page_size: 500) do |studies|
       persist(studies)
     end
@@ -17,6 +19,7 @@ class StudySyncService
 
   def refresh_studies_from_db
     list = Study.order(updated_at: :asc).limit(500).pluck(:nct_id)
+    # list = hardcoded_list
     raise "No Studies found to sync" if list.empty?
     @api_client.get_studies_by_nct_ids(list: list, page_size: 500) do |studies|
       persist(studies)
@@ -41,6 +44,11 @@ class StudySyncService
       Rails.logger.info("Removed #{nct_id} from all related tables")
     end
   end
+
+  def hardcoded_list
+    ["NCT00000624", "NCT04852770", "NCT00017953"] # 1 was merged with 3
+  end
+
 
   def persist(studies)
     silence_active_record do
@@ -85,4 +93,5 @@ class StudySyncService
       Date.today - 5 # or any default date you want to use
     end
   end
+end
 end
