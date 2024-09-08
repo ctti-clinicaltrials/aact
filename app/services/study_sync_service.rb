@@ -20,10 +20,27 @@ class StudySyncService
     raise "No Studies found to sync" if list.empty?
     @api_client.get_studies_by_nct_ids(list: list, page_size: 500) do |studies|
       persist(studies)
+
+      # removing study logic
+      api_nct_ids = studies.map { |study| study.dig("protocolSection", "identificationModule", "nctId") }
+      missing_nct_ids = list - api_nct_ids
+      remove_studies(missing_nct_ids) if missing_nct_ids.present?
     end
   end
 
   private
+
+  def remove_studies(nct_ids)
+    Rails.logger.info("Removing #{nct_ids} studies from the database")
+    StudyJsonRecord.where(nct_id: nct_ids, version: @api_client.version).delete_all
+    # remove study and related records
+    nct_ids.each do |nct_id|
+      StudyRelationship.study_models.each do |model|
+        model.where(nct_id: nct_id).delete_all
+      end
+      Rails.logger.info("Removed #{nct_id} from all related tables")
+    end
+  end
 
   def persist(studies)
     silence_active_record do
@@ -45,11 +62,6 @@ class StudySyncService
 
   def build_study_record(study_json)
     nct_id = study_json.dig("protocolSection", "identificationModule", "nctId")
-
-    if nct_id.nil?
-      Rails.logger.warn("NCT ID can't be found in #{study_json}")
-      return nil
-    end
 
     StudyJsonRecord.new(
       nct_id: nct_id,
