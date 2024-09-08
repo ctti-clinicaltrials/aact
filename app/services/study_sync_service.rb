@@ -1,10 +1,9 @@
 class StudySyncService
-  # get recently updated studies (compared to last aact udpate)
-  # get studies that has been removed, merged by ctgov
-  # have a comparison logic to define studies needs to be updated
-  # new studies?
 
   def initialize(api_client = API::CTGovClientV2.new)
+    unless api_client.is_a?(API::CTGovClientInterface)
+      raise ArgumentError, "Invalid API client. Must implement API::CTGovClientInterface"
+    end
     @api_client = api_client
   end
 
@@ -54,7 +53,7 @@ class StudySyncService
 
     StudyJsonRecord.new(
       nct_id: nct_id,
-      version: "2",
+      version: @api_client.version,
       content: study_json,
       download_date: Date.today.to_s
     )

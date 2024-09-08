@@ -6,6 +6,10 @@ module API
       super("#{BASE_URL}v2/")
     end
 
+    def version
+      "2"
+    end
+
     def fetch_study(nct_id)
       get("studies/#{nct_id}")
     end
