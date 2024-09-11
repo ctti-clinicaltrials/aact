@@ -9,6 +9,11 @@ module CTGov
       "2"
     end
 
+    # TODO: Review option of returning hash ({ nct_id:, content:})
+    def nct_id_path
+      ["protocolSection", "identificationModule", "nctId"]
+    end
+
     def fetch_studies(range: nil, nct_ids: nil, page_size: nil)
       page_token = nil
       total_count = 0

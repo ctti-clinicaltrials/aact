@@ -10,8 +10,7 @@ class StudySyncService
   end
 
   def sync_recent_studies_from_api
-    # start_date = get_sync_start_date
-    start_date = "2024-08-25"
+    start_date = get_sync_start_date
     @api_client.get_studies_in_date_range(start_date: start_date, page_size: 500) do |studies|
       persist(studies)
     end
@@ -19,13 +18,12 @@ class StudySyncService
 
   def refresh_studies_from_db
     list = Study.order(updated_at: :asc).limit(500).pluck(:nct_id)
-    # list = hardcoded_list
     raise "No Studies found to sync" if list.empty?
     @api_client.get_studies_by_nct_ids(list: list, page_size: 500) do |studies|
       persist(studies)
 
       # removing study logic
-      api_nct_ids = studies.map { |study| study.dig("protocolSection", "identificationModule", "nctId") }
+      api_nct_ids = studies.map { |study| study.dig(*@api_client.nct_id_path) }
       missing_nct_ids = list - api_nct_ids
       remove_studies(missing_nct_ids) if missing_nct_ids.present?
     end
@@ -45,11 +43,6 @@ class StudySyncService
     end
   end
 
-  def hardcoded_list
-    ["NCT00000624", "NCT04852770", "NCT00017953"] # 1 was merged with 3
-  end
-
-
   def persist(studies)
     silence_active_record do
       study_records = studies.map do |study_json|
@@ -68,11 +61,10 @@ class StudySyncService
     end
   end
 
+  # TODO: possibly move to SJR model
   def build_study_record(study_json)
-    nct_id = study_json.dig("protocolSection", "identificationModule", "nctId")
-
     StudyJsonRecord.new(
-      nct_id: nct_id,
+      nct_id: study_json.dig(*@api_client.nct_id_path),
       version: @api_client.version,
       content: study_json,
       download_date: Date.today.to_s
@@ -90,7 +82,7 @@ class StudySyncService
       last_event.completed_at.to_date - 1
     else
       Rails.logger.warn("No complete incremental events found, using default start date.")
-      Date.today - 5 # or any default date you want to use
+      Date.today - 5 # TODO: review this default
     end
   end
 end
