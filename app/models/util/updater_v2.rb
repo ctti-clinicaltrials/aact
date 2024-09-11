@@ -71,7 +71,7 @@ module Util
       @sync_service.refresh_studies_from_db
       db_mgr.remove_indexes_and_constraints
       worker.import_all
-      db_mgr.add_indexes_and_constraints # test how much this slows down the process
+      # db_mgr.add_indexes_and_constraints # test how much this slows down the process
     rescue => e
       puts "⛔ Error in updating current studies: #{e.message}"
       Airbrake.notify(e)
