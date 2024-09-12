@@ -8,6 +8,7 @@ module Util
       @params = params
       @type = (params[:event_type] || "incremental")
       @schema = params[:schema] || "ctgov"
+      @sync_service = CTGov::StudySyncService.new
     end
 
 
@@ -29,9 +30,8 @@ module Util
       @step_count = 0
       create_load_event
       log("🚀🚀🚀 Execute Event for #{@schema} schema 🚀🚀🚀", false, true)
-
+      run_step("Download Studies") { @sync_service.sync_recent_studies_from_api }
       run_step("Remove Indexes/Contraints") { db_mgr.remove_indexes_and_constraints }
-      run_step("Download Studies") { StudyDownloader.download_recently_updated}
       run_step("Process Studies") { worker.import_all}
       run_step("Add Indexes/Constraints") { db_mgr.add_indexes_and_constraints }
       run_step("Compare Counts", skipped = true)
@@ -67,14 +67,14 @@ module Util
       @db_mgr ||= Util::DbManager.new(event: @load_event, schema: @schema)
     end
 
-    def update_current_studies(count=1000)
-      # TODO: review why setting the search path is necessary
-      db_mgr.remove_constraints
-      with_search_path('ctgov, support, public') do
-        list = Study.order(updated_at: :asc).limit(count).pluck(:nct_id)
-        studies = StudyDownloader.download(list)
-        worker.process(studies.count, studies)
-      end
+    def update_current_studies
+      @sync_service.refresh_studies_from_db
+      db_mgr.remove_indexes_and_constraints
+      worker.import_all
+      # db_mgr.add_indexes_and_constraints # test how much this slows down the process
+    rescue => e
+      puts "⛔ Error in updating current studies: #{e.message}"
+      Airbrake.notify(e)
     end
 
     def take_snapshot

@@ -18,6 +18,7 @@ gem 'actionpack', '6.0.0'
 gem 'rails-html-sanitizer'
 gem "rack-timeout"
 gem "faraday"
+gem 'faraday-retry'
 gem "autoprefixer-rails"
 gem "flutie"
 gem "high_voltage"
