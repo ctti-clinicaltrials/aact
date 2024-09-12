@@ -17,7 +17,8 @@
       @connection = Faraday.new(url: base_url) do |f|
         f.request :json # for post requests - not currently used
         f.request :retry, retry_options # faraday-retry gem
-        f.response :logger, nil, { headers: false, bodies: false, errors: true }
+        # using Rails.logger for now
+        f.response :logger, Rails.logger, { headers: false, bodies: false, errors: true }
         f.response :raise_error # 40x, 50x errors -> Faraday::ClientError, Faraday::ServerError
         f.response :json # parse json response into body; fails with Faraday::ParsingError
         f.adapter Faraday.default_adapter # keep for clarity

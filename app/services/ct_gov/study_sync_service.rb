@@ -33,6 +33,7 @@ module CTGov
 
     def remove_studies(nct_ids)
       Rails.logger.info("Removing #{nct_ids} studies from the database")
+      puts "Removing #{nct_ids} studies from the database"
       StudyJsonRecord.where(nct_id: nct_ids, version: @api_client.version).delete_all
       # remove study and related records
       nct_ids.each do |nct_id|
@@ -58,6 +59,7 @@ module CTGov
         )
 
         Rails.logger.info("Imported #{study_records.size} StudyJsonRecords")
+        puts "Imported #{study_records.size} StudyJsonRecords"
       end
     end
 

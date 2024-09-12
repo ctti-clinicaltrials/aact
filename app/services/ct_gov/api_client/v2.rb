@@ -40,7 +40,7 @@ module CTGov
         total_count = result["totalCount"] if result["totalCount"]
         total_fetched += studies.size
         Rails.logger.info("Dowloaded #{total_fetched} from #{total_count} studies")
-
+        puts "Dowloaded #{total_fetched} from #{total_count} studies"
         # Yield each page of studies to the caller
         yield studies
 
