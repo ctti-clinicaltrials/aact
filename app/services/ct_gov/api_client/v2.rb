@@ -25,27 +25,25 @@ module CTGov
 
       loop do
         params[:pageToken] = page_token
-        Rails.logger.debug("Fetching studies with params: #{params}")
 
         result = get("studies", params.compact)
 
-        if result.nil? || result["studies"].nil?
-          Rails.logger.warn("Received nil response or empty studies from API")
-          break
+        if result["studies"].nil?
+          raise "CTGov API returned invalid response after fetching #{total_fetched} studies"
         end
 
         studies = result["studies"]
 
         # Capture total count on the first run
-        total_count = result["totalCount"] if result["totalCount"]
+        total_count = result["totalCount"] if result["totalCount"] # on first page only
         total_fetched += studies.size
-        Rails.logger.info("Dowloaded #{total_fetched} from #{total_count} studies")
+        # TODO: refactor out logging functionality
         puts "Dowloaded #{total_fetched} from #{total_count} studies"
-        # Yield each page of studies to the caller
+
         yield studies
 
         page_token = result["nextPageToken"]
-        break if page_token.nil? || total_fetched >= total_count
+        break if page_token.nil?
       end
     end
 
