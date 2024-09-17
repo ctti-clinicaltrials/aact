@@ -30,7 +30,6 @@ module HttpClient
   end
 
   def get(endpoint, params = {})
-    response = @connection.get(endpoint, params)
-    response.body if response.success?
+    @connection.get(endpoint, params).body
   end
 end
