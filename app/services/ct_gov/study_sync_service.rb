@@ -9,6 +9,7 @@ module CTGov
       @api_client = api_client
     end
 
+    # TODO: review error handling - currently all propagated to the Updater
     def sync_recent_studies_from_api
       start_date = get_sync_start_date
       @api_client.get_studies_in_date_range(start_date: start_date, page_size: 500) do |studies|
@@ -19,7 +20,7 @@ module CTGov
     def refresh_studies_from_db
       list = Study.order(updated_at: :asc).limit(500).pluck(:nct_id)
       raise "No Studies found to sync" if list.empty?
-      @api_client.get_studies_by_nct_ids(list: list, page_size: 500) do |studies|
+      @api_client.get_studies_by_nct_ids(list: list, page_size: 1000) do |studies|
         persist(studies)
 
         # removing study logic
