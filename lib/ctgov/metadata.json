@@ -1,0 +1,4535 @@
+[
+  {
+    "name": "protocolSection",
+    "piece": "ProtocolSection",
+    "title": "Protocol Section",
+    "sourceType": "STRUCT",
+    "type": "ProtocolSection",
+    "dedLink": {
+      "label": "Study Protocol",
+      "url": "https://clinicaltrials.gov/policy/protocol-definitions"
+    },
+    "children": [
+      {
+        "name": "identificationModule",
+        "piece": "IdentificationModule",
+        "sourceType": "STRUCT",
+        "type": "IdentificationModule",
+        "dedLink": {
+          "label": "Study Identification",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#identification"
+        },
+        "children": [
+          {
+            "name": "nctId",
+            "piece": "NCTId",
+            "sourceType": "TEXT",
+            "type": "text",
+            "altPieceNames": [
+              "NCT-ID"
+            ]
+          },
+          {
+            "name": "nctIdAliases",
+            "piece": "NCTIdAlias",
+            "sourceType": "TEXT",
+            "type": "text[]",
+            "synonyms": true
+          },
+          {
+            "name": "orgStudyIdInfo",
+            "piece": "OrgStudyIdInfo",
+            "sourceType": "STRUCT",
+            "type": "OrgStudyIdInfo",
+            "children": [
+              {
+                "name": "id",
+                "piece": "OrgStudyId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "ORGANIZATION-STUDY-ID"
+                ],
+                "dedLink": {
+                  "label": "Unique Protocol Identification Number",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#PrimaryId"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "OrgStudyIdType",
+                "sourceType": "TEXT",
+                "type": "OrgStudyIdType",
+                "isEnum": true,
+                "altPieceNames": [
+                  "ORGANIZATION-STUDY-ID-TYPE"
+                ]
+              },
+              {
+                "name": "link",
+                "piece": "OrgStudyIdLink",
+                "sourceType": "TEXT",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "secondaryIdInfos",
+            "piece": "SecondaryIdInfo",
+            "sourceType": "STRUCT",
+            "type": "SecondaryIdInfo[]",
+            "children": [
+              {
+                "name": "id",
+                "piece": "SecondaryId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "SECONDARY-ID"
+                ],
+                "dedLink": {
+                  "label": "Secondary IDs",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#SecondaryIds"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "SecondaryIdType",
+                "sourceType": "TEXT",
+                "type": "SecondaryIdType",
+                "isEnum": true,
+                "altPieceNames": [
+                  "SECONDARY-ID-TYPE"
+                ],
+                "dedLink": {
+                  "label": "Secondary ID Type",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#SecondaryIdType"
+                }
+              },
+              {
+                "name": "domain",
+                "piece": "SecondaryIdDomain",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "SECONDARY-ID-DOMAIN"
+                ],
+                "dedLink": {
+                  "label": "Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#SecondaryIdDescription"
+                }
+              },
+              {
+                "name": "link",
+                "piece": "SecondaryIdLink",
+                "sourceType": "TEXT",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "briefTitle",
+            "piece": "BriefTitle",
+            "sourceType": "TEXT",
+            "type": "text",
+            "synonyms": true,
+            "altPieceNames": [
+              "BRIEF-TITLE"
+            ],
+            "dedLink": {
+              "label": "Brief Title",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#BriefTitle"
+            }
+          },
+          {
+            "name": "officialTitle",
+            "piece": "OfficialTitle",
+            "sourceType": "TEXT",
+            "type": "text",
+            "synonyms": true,
+            "altPieceNames": [
+              "OFFICIAL-TITLE"
+            ],
+            "dedLink": {
+              "label": "Official Title",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#OfficialTitle"
+            }
+          },
+          {
+            "name": "acronym",
+            "piece": "Acronym",
+            "sourceType": "TEXT",
+            "type": "text",
+            "synonyms": true,
+            "altPieceNames": [
+              "ACRONYM"
+            ],
+            "dedLink": {
+              "label": "Acronym",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#Acronym"
+            }
+          },
+          {
+            "name": "organization",
+            "piece": "Organization",
+            "sourceType": "STRUCT",
+            "type": "Organization",
+            "children": [
+              {
+                "name": "fullName",
+                "piece": "OrgFullName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "ORGANIZATION-FULLNAME"
+                ]
+              },
+              {
+                "name": "class",
+                "piece": "OrgClass",
+                "sourceType": "TEXT",
+                "type": "AgencyClass",
+                "isEnum": true,
+                "altPieceNames": [
+                  "ORGANIZATION-CLASS"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "statusModule",
+        "piece": "StatusModule",
+        "sourceType": "STRUCT",
+        "type": "StatusModule",
+        "dedLink": {
+          "label": "Study Status",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#status"
+        },
+        "children": [
+          {
+            "name": "statusVerifiedDate",
+            "piece": "StatusVerifiedDate",
+            "sourceType": "DATE",
+            "type": "PartialDate",
+            "altPieceNames": [
+              "VERIFICATION-DATE"
+            ],
+            "dedLink": {
+              "label": "Record Verification Date",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#VerificationDate"
+            }
+          },
+          {
+            "name": "overallStatus",
+            "piece": "OverallStatus",
+            "sourceType": "TEXT",
+            "type": "Status",
+            "isEnum": true,
+            "altPieceNames": [
+              "OVERALL-STATUS"
+            ],
+            "dedLink": {
+              "label": "Overall Recruitment Status",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#OverallStatus"
+            }
+          },
+          {
+            "name": "lastKnownStatus",
+            "piece": "LastKnownStatus",
+            "sourceType": "TEXT",
+            "type": "Status",
+            "isEnum": true,
+            "altPieceNames": [
+              "LAST-KNOWN-STATUS"
+            ]
+          },
+          {
+            "name": "delayedPosting",
+            "piece": "DelayedPosting",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "altPieceNames": [
+              "DELAYED"
+            ],
+            "dedLink": {
+              "label": "Post Prior to U.S. FDA Approval or Clearance",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#PostPriorFDAAApproval"
+            }
+          },
+          {
+            "name": "whyStopped",
+            "piece": "WhyStopped",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "altPieceNames": [
+              "WHY-STOPPED"
+            ],
+            "dedLink": {
+              "label": "Why Study Stopped",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#WhyStudyStopped"
+            }
+          },
+          {
+            "name": "expandedAccessInfo",
+            "piece": "ExpandedAccessInfo",
+            "sourceType": "STRUCT",
+            "type": "ExpandedAccessInfo",
+            "children": [
+              {
+                "name": "hasExpandedAccess",
+                "piece": "HasExpandedAccess",
+                "sourceType": "TEXT",
+                "type": "boolean",
+                "altPieceNames": [
+                  "HAS-EXPANDED-ACCESS"
+                ],
+                "dedLink": {
+                  "label": "Availability of Expanded Access",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#HasExpandedAccess"
+                }
+              },
+              {
+                "name": "nctId",
+                "piece": "ExpandedAccessNCTId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "HAS-EXPANDED-ACCESS-NCT"
+                ],
+                "dedLink": {
+                  "label": "Expanded Access Record NCT Number",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#EANCTNumber"
+                }
+              },
+              {
+                "name": "statusForNctId",
+                "piece": "ExpandedAccessStatusForNCTId",
+                "sourceType": "TEXT",
+                "type": "ExpandedAccessStatus",
+                "isEnum": true
+              }
+            ]
+          },
+          {
+            "name": "startDateStruct",
+            "piece": "StartDateStruct",
+            "sourceType": "STRUCT",
+            "type": "PartialDateStruct",
+            "children": [
+              {
+                "name": "date",
+                "piece": "StartDate",
+                "sourceType": "DATE",
+                "type": "PartialDate",
+                "altPieceNames": [
+                  "START-DATE"
+                ],
+                "dedLink": {
+                  "label": "Study Start Date",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#StartDate"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "StartDateType",
+                "sourceType": "TEXT",
+                "type": "DateType",
+                "isEnum": true
+              }
+            ]
+          },
+          {
+            "name": "primaryCompletionDateStruct",
+            "piece": "PrimaryCompletionDateStruct",
+            "sourceType": "STRUCT",
+            "type": "PartialDateStruct",
+            "children": [
+              {
+                "name": "date",
+                "piece": "PrimaryCompletionDate",
+                "sourceType": "DATE",
+                "type": "PartialDate",
+                "altPieceNames": [
+                  "COMPLETION-DATE-PRIMARY"
+                ],
+                "dedLink": {
+                  "label": "Primary Completion Date",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#LastFollowUpDate"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "PrimaryCompletionDateType",
+                "sourceType": "TEXT",
+                "type": "DateType",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Primary Completion Date",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#LastFollowUpDate"
+                }
+              }
+            ]
+          },
+          {
+            "name": "completionDateStruct",
+            "piece": "CompletionDateStruct",
+            "sourceType": "STRUCT",
+            "type": "PartialDateStruct",
+            "children": [
+              {
+                "name": "date",
+                "piece": "CompletionDate",
+                "sourceType": "DATE",
+                "type": "PartialDate",
+                "altPieceNames": [
+                  "COMPLETION-DATE"
+                ],
+                "dedLink": {
+                  "label": "Study Completion Date",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#LastFollowUpDate"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "CompletionDateType",
+                "sourceType": "TEXT",
+                "type": "DateType",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Study Completion Date",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#LastFollowUpDate"
+                }
+              }
+            ]
+          },
+          {
+            "name": "studyFirstSubmitDate",
+            "piece": "StudyFirstSubmitDate",
+            "sourceType": "DATE",
+            "type": "NormalizedDate",
+            "altPieceNames": [
+              "STUDY-FIRST-SUBMITTED",
+              "FIRST-RECEIVED-DATE"
+            ]
+          },
+          {
+            "name": "studyFirstSubmitQcDate",
+            "piece": "StudyFirstSubmitQCDate",
+            "sourceType": "DATE",
+            "type": "NormalizedDate",
+            "altPieceNames": [
+              "STUDY-FIRST-SUBMITTED-QC"
+            ]
+          },
+          {
+            "name": "studyFirstPostDateStruct",
+            "piece": "StudyFirstPostDateStruct",
+            "sourceType": "STRUCT",
+            "type": "DateStruct",
+            "children": [
+              {
+                "name": "date",
+                "piece": "StudyFirstPostDate",
+                "sourceType": "DATE",
+                "type": "NormalizedDate",
+                "altPieceNames": [
+                  "STUDY-FIRST-POSTED"
+                ]
+              },
+              {
+                "name": "type",
+                "piece": "StudyFirstPostDateType",
+                "sourceType": "TEXT",
+                "type": "DateType",
+                "isEnum": true
+              }
+            ]
+          },
+          {
+            "name": "resultsWaived",
+            "piece": "ResultsWaived",
+            "sourceType": "BOOLEAN",
+            "type": "boolean"
+          },
+          {
+            "name": "resultsFirstSubmitDate",
+            "piece": "ResultsFirstSubmitDate",
+            "title": "Results First Submitted Date",
+            "sourceType": "DATE",
+            "type": "NormalizedDate",
+            "description": "The date on which the study sponsor or investigator first submits a study record with summary results information. There is typically a delay between the results first submitted date and when summary results information becomes available on ClinicalTrials.gov (the results first posted date).",
+            "rules": "System generated",
+            "altPieceNames": [
+              "RESULTS-FIRST-SUBMITTED",
+              "FIRST-RECEIVED-RESULTS-DATE"
+            ]
+          },
+          {
+            "name": "resultsFirstSubmitQcDate",
+            "piece": "ResultsFirstSubmitQCDate",
+            "sourceType": "DATE",
+            "type": "NormalizedDate",
+            "altPieceNames": [
+              "RESULTS-FIRST-SUBMITTED-QC"
+            ]
+          },
+          {
+            "name": "resultsFirstPostDateStruct",
+            "piece": "ResultsFirstPostDateStruct",
+            "sourceType": "STRUCT",
+            "type": "DateStruct",
+            "children": [
+              {
+                "name": "date",
+                "piece": "ResultsFirstPostDate",
+                "sourceType": "DATE",
+                "type": "NormalizedDate",
+                "altPieceNames": [
+                  "RESULTS-FIRST-POSTED"
+                ]
+              },
+              {
+                "name": "type",
+                "piece": "ResultsFirstPostDateType",
+                "sourceType": "TEXT",
+                "type": "DateType",
+                "isEnum": true
+              }
+            ]
+          },
+          {
+            "name": "dispFirstSubmitDate",
+            "piece": "DispFirstSubmitDate",
+            "sourceType": "DATE",
+            "type": "NormalizedDate",
+            "altPieceNames": [
+              "DISPOSITION-FIRST-SUBMITTED",
+              "FIRST-RECEIVED-DISPOSITION-DATE"
+            ]
+          },
+          {
+            "name": "dispFirstSubmitQcDate",
+            "piece": "DispFirstSubmitQCDate",
+            "sourceType": "DATE",
+            "type": "NormalizedDate",
+            "altPieceNames": [
+              "DISPOSITION-FIRST-SUBMITTED-QC"
+            ]
+          },
+          {
+            "name": "dispFirstPostDateStruct",
+            "piece": "DispFirstPostDateStruct",
+            "sourceType": "STRUCT",
+            "type": "DateStruct",
+            "children": [
+              {
+                "name": "date",
+                "piece": "DispFirstPostDate",
+                "sourceType": "DATE",
+                "type": "NormalizedDate",
+                "altPieceNames": [
+                  "DISPOSITION-FIRST-POSTED"
+                ]
+              },
+              {
+                "name": "type",
+                "piece": "DispFirstPostDateType",
+                "sourceType": "TEXT",
+                "type": "DateType",
+                "isEnum": true
+              }
+            ]
+          },
+          {
+            "name": "lastUpdateSubmitDate",
+            "piece": "LastUpdateSubmitDate",
+            "sourceType": "DATE",
+            "type": "NormalizedDate",
+            "altPieceNames": [
+              "LAST-UPDATE-SUBMITTED",
+              "LAST-RELEASE-DATE"
+            ]
+          },
+          {
+            "name": "lastUpdatePostDateStruct",
+            "piece": "LastUpdatePostDateStruct",
+            "sourceType": "STRUCT",
+            "type": "DateStruct",
+            "children": [
+              {
+                "name": "date",
+                "piece": "LastUpdatePostDate",
+                "sourceType": "DATE",
+                "type": "NormalizedDate",
+                "altPieceNames": [
+                  "LAST-UPDATE-POSTED"
+                ]
+              },
+              {
+                "name": "type",
+                "piece": "LastUpdatePostDateType",
+                "sourceType": "TEXT",
+                "type": "DateType",
+                "isEnum": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "sponsorCollaboratorsModule",
+        "piece": "SponsorCollaboratorsModule",
+        "sourceType": "STRUCT",
+        "type": "SponsorCollaboratorsModule",
+        "dedLink": {
+          "label": "Sponsor/Collaborators",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#Sponsors"
+        },
+        "children": [
+          {
+            "name": "responsibleParty",
+            "piece": "ResponsibleParty",
+            "sourceType": "STRUCT",
+            "type": "ResponsibleParty",
+            "dedLink": {
+              "label": "Investigator Information",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#InvestigatorInfo"
+            },
+            "children": [
+              {
+                "name": "type",
+                "piece": "ResponsiblePartyType",
+                "sourceType": "TEXT",
+                "type": "ResponsiblePartyType",
+                "isEnum": true,
+                "altPieceNames": [
+                  "RESPONSIBLE-PARTY-TYPE"
+                ],
+                "dedLink": {
+                  "label": "Responsible Party, by Official Title",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#RespParty"
+                }
+              },
+              {
+                "name": "investigatorFullName",
+                "piece": "ResponsiblePartyInvestigatorFullName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Investigator Name",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InvestigatorName"
+                }
+              },
+              {
+                "name": "investigatorTitle",
+                "piece": "ResponsiblePartyInvestigatorTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Investigator Official Title",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InvestigatorOfTitle"
+                }
+              },
+              {
+                "name": "investigatorAffiliation",
+                "piece": "ResponsiblePartyInvestigatorAffiliation",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Investigator Affiliation",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InvestigatorAffil"
+                }
+              },
+              {
+                "name": "oldNameTitle",
+                "piece": "ResponsiblePartyOldNameTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Investigator Name",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InvestigatorName"
+                }
+              },
+              {
+                "name": "oldOrganization",
+                "piece": "ResponsiblePartyOldOrganization",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Investigator Affiliation",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InvestigatorAffil"
+                }
+              }
+            ]
+          },
+          {
+            "name": "leadSponsor",
+            "piece": "LeadSponsor",
+            "sourceType": "STRUCT",
+            "type": "Sponsor",
+            "children": [
+              {
+                "name": "name",
+                "piece": "LeadSponsorName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "SPONSOR",
+                  "LEAD-SPONSOR"
+                ],
+                "dedLink": {
+                  "label": "Name of the Sponsor",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#Sponsor"
+                }
+              },
+              {
+                "name": "class",
+                "piece": "LeadSponsorClass",
+                "sourceType": "TEXT",
+                "type": "AgencyClass",
+                "isEnum": true,
+                "altPieceNames": [
+                  "LEAD-SPONSOR-CLASS"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "collaborators",
+            "piece": "Collaborator",
+            "sourceType": "STRUCT",
+            "type": "Sponsor[]",
+            "children": [
+              {
+                "name": "name",
+                "piece": "CollaboratorName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "COLLABORATOR"
+                ],
+                "dedLink": {
+                  "label": "Collaborators",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#Collaborators"
+                }
+              },
+              {
+                "name": "class",
+                "piece": "CollaboratorClass",
+                "sourceType": "TEXT",
+                "type": "AgencyClass",
+                "isEnum": true,
+                "altPieceNames": [
+                  "COLLABORATOR-CLASS"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "oversightModule",
+        "piece": "OversightModule",
+        "sourceType": "STRUCT",
+        "type": "OversightModule",
+        "dedLink": {
+          "label": "Oversight",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#oversight"
+        },
+        "children": [
+          {
+            "name": "oversightHasDmc",
+            "piece": "OversightHasDMC",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "altPieceNames": [
+              "HAS-DMC"
+            ],
+            "dedLink": {
+              "label": "Data Monitoring Committee",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#hasDMC"
+            }
+          },
+          {
+            "name": "isFdaRegulatedDrug",
+            "piece": "IsFDARegulatedDrug",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "dedLink": {
+              "label": "Studies a U.S. FDA-regulated Drug Product",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#FDADrugProduct"
+            }
+          },
+          {
+            "name": "isFdaRegulatedDevice",
+            "piece": "IsFDARegulatedDevice",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "dedLink": {
+              "label": "Studies a U.S. FDA-regulated Device Product",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#FDAReg"
+            }
+          },
+          {
+            "name": "isUnapprovedDevice",
+            "piece": "IsUnapprovedDevice",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "dedLink": {
+              "label": "Device Product Not Approved or Cleared by U.S. FDA",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#deviceNotCleared"
+            }
+          },
+          {
+            "name": "isPpsd",
+            "piece": "IsPPSD",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "dedLink": {
+              "label": "Pediatric Postmarket Surveillance of a Device Product",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#PediatricPostmarket"
+            }
+          },
+          {
+            "name": "isUsExport",
+            "piece": "IsUSExport",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "dedLink": {
+              "label": "Product Manufactured in and Exported from the U.S.",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#ProductFromUS"
+            }
+          },
+          {
+            "name": "fdaaa801Violation",
+            "piece": "FDAAA801Violation",
+            "sourceType": "BOOLEAN",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "name": "descriptionModule",
+        "piece": "DescriptionModule",
+        "sourceType": "STRUCT",
+        "type": "DescriptionModule",
+        "dedLink": {
+          "label": "Study Description",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#description"
+        },
+        "children": [
+          {
+            "name": "briefSummary",
+            "piece": "BriefSummary",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Brief Summary",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#BriefSummary"
+            }
+          },
+          {
+            "name": "detailedDescription",
+            "piece": "DetailedDescription",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Detailed Description",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#DetailedDescription"
+            }
+          }
+        ]
+      },
+      {
+        "name": "conditionsModule",
+        "piece": "ConditionsModule",
+        "sourceType": "STRUCT",
+        "type": "ConditionsModule",
+        "dedLink": {
+          "label": "Conditions and Keywords",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#Conditions"
+        },
+        "children": [
+          {
+            "name": "conditions",
+            "piece": "Condition",
+            "sourceType": "TEXT",
+            "type": "text[]",
+            "synonyms": true,
+            "altPieceNames": [
+              "CONDITIONS"
+            ],
+            "dedLink": {
+              "label": "Primary Disease or Condition Being Studied in the Trial, or the Focus of the Study",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#PrimaryCondition"
+            }
+          },
+          {
+            "name": "keywords",
+            "piece": "Keyword",
+            "sourceType": "TEXT",
+            "type": "text[]",
+            "synonyms": true,
+            "altPieceNames": [
+              "KEYWORDS"
+            ],
+            "dedLink": {
+              "label": "Keywords",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#Keywords"
+            }
+          }
+        ]
+      },
+      {
+        "name": "designModule",
+        "piece": "DesignModule",
+        "sourceType": "STRUCT",
+        "type": "DesignModule",
+        "dedLink": {
+          "label": "Study Design",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#StudyDesign"
+        },
+        "children": [
+          {
+            "name": "studyType",
+            "piece": "StudyType",
+            "sourceType": "TEXT",
+            "type": "StudyType",
+            "isEnum": true,
+            "altPieceNames": [
+              "STUDY-TYPE",
+              "STUDY-TYPES"
+            ],
+            "dedLink": {
+              "label": "Study Type",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#StudyType"
+            }
+          },
+          {
+            "name": "nPtrsToThisExpAccNctId",
+            "piece": "NPtrsToThisExpAccNCTId",
+            "sourceType": "NUMERIC",
+            "type": "number"
+          },
+          {
+            "name": "expandedAccessTypes",
+            "piece": "ExpandedAccessTypes",
+            "sourceType": "STRUCT",
+            "type": "ExpandedAccessTypes",
+            "children": [
+              {
+                "name": "individual",
+                "piece": "ExpAccTypeIndividual",
+                "sourceType": "BOOLEAN",
+                "type": "boolean"
+              },
+              {
+                "name": "intermediate",
+                "piece": "ExpAccTypeIntermediate",
+                "sourceType": "BOOLEAN",
+                "type": "boolean"
+              },
+              {
+                "name": "treatment",
+                "piece": "ExpAccTypeTreatment",
+                "sourceType": "BOOLEAN",
+                "type": "boolean"
+              }
+            ]
+          },
+          {
+            "name": "patientRegistry",
+            "piece": "PatientRegistry",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "altPieceNames": [
+              "PATIENT-REGISTRY"
+            ]
+          },
+          {
+            "name": "targetDuration",
+            "piece": "TargetDuration",
+            "sourceType": "TIME",
+            "type": "NormalizedTime",
+            "dedLink": {
+              "label": "Target Follow-Up Duration",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#RoPR"
+            }
+          },
+          {
+            "name": "phases",
+            "piece": "Phase",
+            "sourceType": "TEXT",
+            "type": "Phase[]",
+            "isEnum": true,
+            "altPieceNames": [
+              "PHASE"
+            ],
+            "dedLink": {
+              "label": "Study Phase",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#StudyPhase"
+            }
+          },
+          {
+            "name": "designInfo",
+            "piece": "DesignInfo",
+            "sourceType": "STRUCT",
+            "type": "DesignInfo",
+            "dedLink": {
+              "label": "Interventional Study Design",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#IntStudyDesign"
+            },
+            "children": [
+              {
+                "name": "allocation",
+                "piece": "DesignAllocation",
+                "sourceType": "TEXT",
+                "type": "DesignAllocation",
+                "isEnum": true,
+                "altPieceNames": [
+                  "DESIGN-ALLOCATION"
+                ],
+                "dedLink": {
+                  "label": "Allocation",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#IntAllocation"
+                }
+              },
+              {
+                "name": "interventionModel",
+                "piece": "DesignInterventionModel",
+                "sourceType": "TEXT",
+                "type": "InterventionalAssignment",
+                "isEnum": true,
+                "altPieceNames": [
+                  "DESIGN-INTERVENTION-MODEL"
+                ],
+                "dedLink": {
+                  "label": "Interventional Study Model",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#IntDesign"
+                }
+              },
+              {
+                "name": "interventionModelDescription",
+                "piece": "DesignInterventionModelDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "altPieceNames": [
+                  "DESIGN-INTERVENTION-MODEL-DESCRIPTION"
+                ],
+                "dedLink": {
+                  "label": "Model Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#ModelDesc"
+                }
+              },
+              {
+                "name": "primaryPurpose",
+                "piece": "DesignPrimaryPurpose",
+                "sourceType": "TEXT",
+                "type": "PrimaryPurpose",
+                "isEnum": true,
+                "altPieceNames": [
+                  "DESIGN-PRIMARY-PURPOSE"
+                ],
+                "dedLink": {
+                  "label": "Primary Purpose",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#IntPurpose"
+                }
+              },
+              {
+                "name": "observationalModel",
+                "piece": "DesignObservationalModel",
+                "sourceType": "TEXT",
+                "type": "ObservationalModel",
+                "isEnum": true,
+                "altPieceNames": [
+                  "DESIGN-OBSERVATIONAL-MODEL"
+                ],
+                "dedLink": {
+                  "label": "Observational Study Model",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#ObsStudyModel"
+                }
+              },
+              {
+                "name": "timePerspective",
+                "piece": "DesignTimePerspective",
+                "sourceType": "TEXT",
+                "type": "DesignTimePerspective",
+                "isEnum": true,
+                "altPieceNames": [
+                  "DESIGN-TIME-PERSPECTIVE"
+                ],
+                "dedLink": {
+                  "label": "Time Perspective",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#ObsTiming"
+                }
+              },
+              {
+                "name": "maskingInfo",
+                "piece": "DesignMaskingInfo",
+                "sourceType": "STRUCT",
+                "type": "MaskingBlock",
+                "children": [
+                  {
+                    "name": "masking",
+                    "piece": "DesignMasking",
+                    "sourceType": "TEXT",
+                    "type": "DesignMasking",
+                    "isEnum": true,
+                    "altPieceNames": [
+                      "DESIGN-MASKING"
+                    ],
+                    "dedLink": {
+                      "label": "Masking",
+                      "url": "https://clinicaltrials.gov/policy/protocol-definitions#IntMasking"
+                    }
+                  },
+                  {
+                    "name": "maskingDescription",
+                    "piece": "DesignMaskingDescription",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Masking Description",
+                      "url": "https://clinicaltrials.gov/policy/protocol-definitions#MaskingDesc"
+                    }
+                  },
+                  {
+                    "name": "whoMasked",
+                    "piece": "DesignWhoMasked",
+                    "sourceType": "TEXT",
+                    "type": "WhoMasked[]",
+                    "isEnum": true,
+                    "altPieceNames": [
+                      "DESIGN-WHO-MASKED"
+                    ],
+                    "dedLink": {
+                      "label": "Masking",
+                      "url": "https://clinicaltrials.gov/policy/protocol-definitions#IntMasking"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "bioSpec",
+            "piece": "BioSpec",
+            "sourceType": "STRUCT",
+            "type": "BioSpec",
+            "children": [
+              {
+                "name": "retention",
+                "piece": "BioSpecRetention",
+                "sourceType": "TEXT",
+                "type": "BioSpecRetention",
+                "isEnum": true,
+                "altPieceNames": [
+                  "BIOSPECIMEN-RETENTION"
+                ],
+                "dedLink": {
+                  "label": "Biospecimen Retention",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#ObsBiospecimenRetention"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "BioSpecDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "altPieceNames": [
+                  "BIOSPECIMEN-DESCRIPTION"
+                ],
+                "dedLink": {
+                  "label": "Biospecimen Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#ObsBiospecimenDescription"
+                }
+              }
+            ]
+          },
+          {
+            "name": "enrollmentInfo",
+            "piece": "EnrollmentInfo",
+            "sourceType": "STRUCT",
+            "type": "EnrollmentInfo",
+            "children": [
+              {
+                "name": "count",
+                "piece": "EnrollmentCount",
+                "sourceType": "NUMERIC",
+                "type": "integer",
+                "altPieceNames": [
+                  "ENROLLMENT"
+                ],
+                "dedLink": {
+                  "label": "Enrollment",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#IntEnrollment"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "EnrollmentType",
+                "sourceType": "TEXT",
+                "type": "EnrollmentType",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Enrollment",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#IntEnrollment"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "armsInterventionsModule",
+        "piece": "ArmsInterventionsModule",
+        "sourceType": "STRUCT",
+        "type": "ArmsInterventionsModule",
+        "dedLink": {
+          "label": "Arms, Groups, and Interventions",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#ArmsGroupsInterventions"
+        },
+        "children": [
+          {
+            "name": "armGroups",
+            "piece": "ArmGroup",
+            "sourceType": "STRUCT",
+            "type": "ArmGroup[]",
+            "dedLink": {
+              "label": "Arm Information",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#Arms"
+            },
+            "children": [
+              {
+                "name": "label",
+                "piece": "ArmGroupLabel",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "ARM-GROUP-LABEL"
+                ],
+                "dedLink": {
+                  "label": "Arm Title",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#ArmLabel"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "ArmGroupType",
+                "sourceType": "TEXT",
+                "type": "ArmGroupType",
+                "isEnum": true,
+                "altPieceNames": [
+                  "ARM-GROUP-TYPE",
+                  "ARM-GROUP-TYPES"
+                ],
+                "dedLink": {
+                  "label": "Arm Type",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#ArmType"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "ArmGroupDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "altPieceNames": [
+                  "ARM-GROUP-DESCRIPTION"
+                ],
+                "dedLink": {
+                  "label": "Arm Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#ArmDescription"
+                }
+              },
+              {
+                "name": "interventionNames",
+                "piece": "ArmGroupInterventionName",
+                "sourceType": "TEXT",
+                "type": "text[]",
+                "synonyms": true,
+                "altPieceNames": [
+                  "ARM-GROUP-INTERVENTION"
+                ],
+                "dedLink": {
+                  "label": "Arm/Group Intervention Name(s)",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InterventionName"
+                }
+              }
+            ]
+          },
+          {
+            "name": "interventions",
+            "piece": "Intervention",
+            "sourceType": "STRUCT",
+            "type": "Intervention[]",
+            "dedLink": {
+              "label": "Interventions",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#Interventions"
+            },
+            "children": [
+              {
+                "name": "type",
+                "piece": "InterventionType",
+                "sourceType": "TEXT",
+                "type": "InterventionType",
+                "isEnum": true,
+                "altPieceNames": [
+                  "INTERVENTION-TYPE",
+                  "INTERVENTION-TYPES"
+                ],
+                "dedLink": {
+                  "label": "Intervention Type",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InterventionType"
+                }
+              },
+              {
+                "name": "name",
+                "piece": "InterventionName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "INTERVENTION",
+                  "INTERVENTIONS",
+                  "INTERVENTION-NAME"
+                ],
+                "dedLink": {
+                  "label": "Intervention Name(s)",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InterventionName"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "InterventionDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "altPieceNames": [
+                  "INTERVENTION-DESCRIPTION"
+                ],
+                "dedLink": {
+                  "label": "Intervention Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InterventionDescription"
+                }
+              },
+              {
+                "name": "armGroupLabels",
+                "piece": "InterventionArmGroupLabel",
+                "sourceType": "TEXT",
+                "type": "text[]",
+                "synonyms": true
+              },
+              {
+                "name": "otherNames",
+                "piece": "InterventionOtherName",
+                "sourceType": "TEXT",
+                "type": "text[]",
+                "synonyms": true,
+                "altPieceNames": [
+                  "INTERVENTION-OTHER-NAME"
+                ],
+                "dedLink": {
+                  "label": "Other Intervention Name(s)",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#InterventionOtherName"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "outcomesModule",
+        "piece": "OutcomesModule",
+        "sourceType": "STRUCT",
+        "type": "OutcomesModule",
+        "dedLink": {
+          "label": "Outcome Measures",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#Outcomes"
+        },
+        "children": [
+          {
+            "name": "primaryOutcomes",
+            "piece": "PrimaryOutcome",
+            "sourceType": "STRUCT",
+            "type": "Outcome[]",
+            "dedLink": {
+              "label": "Primary Outcome Measure Information",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#PrimaryOMInfo"
+            },
+            "children": [
+              {
+                "name": "measure",
+                "piece": "PrimaryOutcomeMeasure",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "PRIMARY-OUTCOME-MEASURE"
+                ],
+                "dedLink": {
+                  "label": "Title",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#PrimaryOMTitle"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "PrimaryOutcomeDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#PrimaryOMDescription"
+                }
+              },
+              {
+                "name": "timeFrame",
+                "piece": "PrimaryOutcomeTimeFrame",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Time Frame",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#PrimaryOMTimeFrame"
+                }
+              }
+            ]
+          },
+          {
+            "name": "secondaryOutcomes",
+            "piece": "SecondaryOutcome",
+            "sourceType": "STRUCT",
+            "type": "Outcome[]",
+            "dedLink": {
+              "label": "Secondary Outcome Measure Information",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#SecondaryOMInfo"
+            },
+            "children": [
+              {
+                "name": "measure",
+                "piece": "SecondaryOutcomeMeasure",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "SECONDARY-OUTCOME-MEASURE"
+                ],
+                "dedLink": {
+                  "label": "Title",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#SecondaryOMTitle"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "SecondaryOutcomeDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#SecondaryOMDescription"
+                }
+              },
+              {
+                "name": "timeFrame",
+                "piece": "SecondaryOutcomeTimeFrame",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Time Frame",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#SecondaryOMTimeFrame"
+                }
+              }
+            ]
+          },
+          {
+            "name": "otherOutcomes",
+            "piece": "OtherOutcome",
+            "sourceType": "STRUCT",
+            "type": "Outcome[]",
+            "dedLink": {
+              "label": "Other Pre-specified Outcome Measures",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#OtherOMInfo"
+            },
+            "children": [
+              {
+                "name": "measure",
+                "piece": "OtherOutcomeMeasure",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Title",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#OtherOMTitle"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "OtherOutcomeDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#OtherOMDescription"
+                }
+              },
+              {
+                "name": "timeFrame",
+                "piece": "OtherOutcomeTimeFrame",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Time Frame",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#OtherOMTimeFrame"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "eligibilityModule",
+        "piece": "EligibilityModule",
+        "sourceType": "STRUCT",
+        "type": "EligibilityModule",
+        "dedLink": {
+          "label": "Eligibility",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#Eligibility"
+        },
+        "children": [
+          {
+            "name": "eligibilityCriteria",
+            "piece": "EligibilityCriteria",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Eligibility Criteria",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#EligibilityCriteria"
+            }
+          },
+          {
+            "name": "healthyVolunteers",
+            "piece": "HealthyVolunteers",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "altPieceNames": [
+              "HEALTHY-VOLUNTEERS"
+            ],
+            "dedLink": {
+              "label": "Accepts Healthy Volunteers",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#HealthyVolunteers"
+            }
+          },
+          {
+            "name": "sex",
+            "piece": "Sex",
+            "sourceType": "TEXT",
+            "type": "Sex",
+            "isEnum": true,
+            "altPieceNames": [
+              "Gender",
+              "GENDER"
+            ],
+            "dedLink": {
+              "label": "Sex/Gender",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#EligibilitySexGender"
+            }
+          },
+          {
+            "name": "genderBased",
+            "piece": "GenderBased",
+            "sourceType": "BOOLEAN",
+            "type": "boolean",
+            "dedLink": {
+              "label": "Gender Based",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#EligibilityGender"
+            }
+          },
+          {
+            "name": "genderDescription",
+            "piece": "GenderDescription",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Gender Eligibility Description",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#GenderDescription"
+            }
+          },
+          {
+            "name": "minimumAge",
+            "piece": "MinimumAge",
+            "sourceType": "TIME",
+            "type": "NormalizedTime",
+            "altPieceNames": [
+              "MINIMUM-AGE"
+            ],
+            "dedLink": {
+              "label": "Minimum Age",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#EligibilityMinAge"
+            }
+          },
+          {
+            "name": "maximumAge",
+            "piece": "MaximumAge",
+            "sourceType": "TIME",
+            "type": "NormalizedTime",
+            "altPieceNames": [
+              "MAXIMUM-AGE"
+            ],
+            "dedLink": {
+              "label": "Maximum Age",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#EligibilityMaxAge"
+            }
+          },
+          {
+            "name": "stdAges",
+            "piece": "StdAge",
+            "sourceType": "TEXT",
+            "type": "StandardAge[]",
+            "isEnum": true,
+            "altPieceNames": [
+              "AGE-GROUP"
+            ]
+          },
+          {
+            "name": "studyPopulation",
+            "piece": "StudyPopulation",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Study Population Description (For observational studies only)",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#EligibilityStudyPopulation"
+            }
+          },
+          {
+            "name": "samplingMethod",
+            "piece": "SamplingMethod",
+            "sourceType": "TEXT",
+            "type": "SamplingMethod",
+            "isEnum": true,
+            "dedLink": {
+              "label": "Sampling Method (For observational studies only)",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#EligibilitySamplingMethod"
+            }
+          }
+        ]
+      },
+      {
+        "name": "contactsLocationsModule",
+        "piece": "ContactsLocationsModule",
+        "sourceType": "STRUCT",
+        "type": "ContactsLocationsModule",
+        "dedLink": {
+          "label": "Contacts, Locations, and Investigator Information",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#Locations"
+        },
+        "children": [
+          {
+            "name": "centralContacts",
+            "piece": "CentralContact",
+            "sourceType": "STRUCT",
+            "type": "Contact[]",
+            "dedLink": {
+              "label": "Central Contact Person or Optional Central Contact Backup",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#OverallStudyContact"
+            },
+            "children": [
+              {
+                "name": "name",
+                "piece": "CentralContactName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "First Name & Middle Initial & Last Name or Official Title & Degree",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#OverallStudyContact"
+                }
+              },
+              {
+                "name": "role",
+                "piece": "CentralContactRole",
+                "sourceType": "TEXT",
+                "type": "ContactRole",
+                "isEnum": true
+              },
+              {
+                "name": "phone",
+                "piece": "CentralContactPhone",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Phone",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#OverallStudyContact"
+                }
+              },
+              {
+                "name": "phoneExt",
+                "piece": "CentralContactPhoneExt",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Ext",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#OverallStudyContact"
+                }
+              },
+              {
+                "name": "email",
+                "piece": "CentralContactEMail",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Email",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#OverallStudyContact"
+                }
+              }
+            ]
+          },
+          {
+            "name": "overallOfficials",
+            "piece": "OverallOfficial",
+            "sourceType": "STRUCT",
+            "type": "Official[]",
+            "dedLink": {
+              "label": "Overall Study Officials",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#StudyOfficials"
+            },
+            "children": [
+              {
+                "name": "name",
+                "piece": "OverallOfficialName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "First Name & Middle Initial & Last Name & Degree",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#StudyOfficials"
+                }
+              },
+              {
+                "name": "affiliation",
+                "piece": "OverallOfficialAffiliation",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Organizational Affiliation",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#StudyOfficials"
+                }
+              },
+              {
+                "name": "role",
+                "piece": "OverallOfficialRole",
+                "sourceType": "TEXT",
+                "type": "OfficialRole",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Official's Role",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#StudyOfficials"
+                }
+              }
+            ]
+          },
+          {
+            "name": "locations",
+            "piece": "Location",
+            "nested": true,
+            "sourceType": "STRUCT",
+            "type": "Location[]",
+            "dedLink": {
+              "label": "Facility Information",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#Facility"
+            },
+            "children": [
+              {
+                "name": "facility",
+                "piece": "LocationFacility",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "LOCATION-NAME",
+                  "FACILITY"
+                ],
+                "dedLink": {
+                  "label": "Facility Name",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#Facility"
+                }
+              },
+              {
+                "name": "status",
+                "piece": "LocationStatus",
+                "sourceType": "TEXT",
+                "type": "RecruitmentStatus",
+                "isEnum": true,
+                "altPieceNames": [
+                  "LOCATION-STATUS"
+                ],
+                "dedLink": {
+                  "label": "Individual Site Status",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#FacilityStatus"
+                }
+              },
+              {
+                "name": "city",
+                "piece": "LocationCity",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "LOCATION-CITY",
+                  "CITY"
+                ],
+                "dedLink": {
+                  "label": "City",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#Facility"
+                }
+              },
+              {
+                "name": "state",
+                "piece": "LocationState",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "LOCATION-STATE",
+                  "STATE"
+                ],
+                "dedLink": {
+                  "label": "State/Province",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#Facility"
+                }
+              },
+              {
+                "name": "zip",
+                "piece": "LocationZip",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "LOCATION-ZIP"
+                ],
+                "dedLink": {
+                  "label": "ZIP/Postal Code",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#Facility"
+                }
+              },
+              {
+                "name": "country",
+                "piece": "LocationCountry",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "LOCATION-COUNTRY",
+                  "COUNTRY",
+                  "COUNTRIES"
+                ],
+                "dedLink": {
+                  "label": "Country",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#Facility"
+                }
+              },
+              {
+                "name": "contacts",
+                "piece": "LocationContact",
+                "sourceType": "STRUCT",
+                "type": "Contact[]",
+                "dedLink": {
+                  "label": "Facility Contact or Facility Contact Backup",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#FacilityContact"
+                },
+                "children": [
+                  {
+                    "name": "name",
+                    "piece": "LocationContactName",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "dedLink": {
+                      "label": "First Name & Middle Initial & Last Name & Degree",
+                      "url": "https://clinicaltrials.gov/policy/protocol-definitions#FacilityContact"
+                    }
+                  },
+                  {
+                    "name": "role",
+                    "piece": "LocationContactRole",
+                    "sourceType": "TEXT",
+                    "type": "ContactRole",
+                    "isEnum": true,
+                    "dedLink": {
+                      "label": "Investigators",
+                      "url": "https://clinicaltrials.gov/policy/protocol-definitions#Investigator"
+                    }
+                  },
+                  {
+                    "name": "phone",
+                    "piece": "LocationContactPhone",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "dedLink": {
+                      "label": "Phone",
+                      "url": "https://clinicaltrials.gov/policy/protocol-definitions#FacilityContact"
+                    }
+                  },
+                  {
+                    "name": "phoneExt",
+                    "piece": "LocationContactPhoneExt",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "dedLink": {
+                      "label": "Ext",
+                      "url": "https://clinicaltrials.gov/policy/protocol-definitions#FacilityContact"
+                    }
+                  },
+                  {
+                    "name": "email",
+                    "piece": "LocationContactEMail",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "dedLink": {
+                      "label": "Email",
+                      "url": "https://clinicaltrials.gov/policy/protocol-definitions#FacilityContact"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "geoPoint",
+                "piece": "LocationGeoPoint",
+                "sourceType": "FUNC GeoPoint(LocationCity, LocationState, LocationZip, LocationCountry, LocationLatitude, LocationLongitude, OverallStatus, LastUpdatePostDate)",
+                "type": "GeoPoint"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "referencesModule",
+        "piece": "ReferencesModule",
+        "sourceType": "STRUCT",
+        "type": "ReferencesModule",
+        "dedLink": {
+          "label": "References",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#References"
+        },
+        "children": [
+          {
+            "name": "references",
+            "piece": "Reference",
+            "sourceType": "STRUCT",
+            "type": "Reference[]",
+            "dedLink": {
+              "label": "Citations",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#RefCitations"
+            },
+            "children": [
+              {
+                "name": "pmid",
+                "piece": "ReferencePMID",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "PUBMED-IDS"
+                ],
+                "dedLink": {
+                  "label": "PubMed Identifier",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#PubMedId"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "ReferenceType",
+                "sourceType": "TEXT",
+                "type": "ReferenceType",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Results Reference",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#IsResultsRef"
+                }
+              },
+              {
+                "name": "citation",
+                "piece": "ReferenceCitation",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "CITATIONS"
+                ],
+                "dedLink": {
+                  "label": "Citation",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#Citation"
+                }
+              },
+              {
+                "name": "retractions",
+                "piece": "Retraction",
+                "sourceType": "STRUCT",
+                "type": "Retraction[]",
+                "children": [
+                  {
+                    "name": "pmid",
+                    "piece": "RetractionPMID",
+                    "sourceType": "TEXT",
+                    "type": "text"
+                  },
+                  {
+                    "name": "source",
+                    "piece": "RetractionSource",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "seeAlsoLinks",
+            "piece": "SeeAlsoLink",
+            "sourceType": "STRUCT",
+            "type": "SeeAlsoLink[]",
+            "dedLink": {
+              "label": "Links",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#Links"
+            },
+            "children": [
+              {
+                "name": "label",
+                "piece": "SeeAlsoLinkLabel",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "altPieceNames": [
+                  "LINK-LABELS"
+                ],
+                "dedLink": {
+                  "label": "Description",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#LinkDescription"
+                }
+              },
+              {
+                "name": "url",
+                "piece": "SeeAlsoLinkURL",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "LINKS"
+                ],
+                "dedLink": {
+                  "label": "URL",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#URL"
+                }
+              }
+            ]
+          },
+          {
+            "name": "availIpds",
+            "piece": "AvailIPD",
+            "sourceType": "STRUCT",
+            "type": "AvailIpd[]",
+            "children": [
+              {
+                "name": "id",
+                "piece": "AvailIPDId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Available IPD/Information Identifier",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#AvailIPDId"
+                }
+              },
+              {
+                "name": "type",
+                "piece": "AvailIPDType",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Available IPD/Information Type",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#AvailIPDType"
+                }
+              },
+              {
+                "name": "url",
+                "piece": "AvailIPDURL",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Available IPD/Information URL",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#AvailIPDURL"
+                }
+              },
+              {
+                "name": "comment",
+                "piece": "AvailIPDComment",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Available IPD/Information Comments",
+                  "url": "https://clinicaltrials.gov/policy/protocol-definitions#AvailIPDComment"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ipdSharingStatementModule",
+        "piece": "IPDSharingStatementModule",
+        "sourceType": "STRUCT",
+        "type": "IpdSharingStatementModule",
+        "dedLink": {
+          "label": "IPD Sharing Statement",
+          "url": "https://clinicaltrials.gov/policy/protocol-definitions#IPDSharing"
+        },
+        "children": [
+          {
+            "name": "ipdSharing",
+            "piece": "IPDSharing",
+            "sourceType": "TEXT",
+            "type": "IpdSharing",
+            "isEnum": true,
+            "dedLink": {
+              "label": "Plan to Share IPD",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#PlantoShareIPD"
+            }
+          },
+          {
+            "name": "description",
+            "piece": "IPDSharingDescription",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "IPD Sharing Plan Description",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#IPDSharingPlanDescription"
+            }
+          },
+          {
+            "name": "infoTypes",
+            "piece": "IPDSharingInfoType",
+            "sourceType": "TEXT",
+            "type": "IpdSharingInfoType[]",
+            "isEnum": true,
+            "dedLink": {
+              "label": "IPD Sharing Supporting Information Type",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#IPDSharingSuppInfoType"
+            }
+          },
+          {
+            "name": "timeFrame",
+            "piece": "IPDSharingTimeFrame",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "IPD Sharing Time Frame",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#IPDSharingTimeFrame"
+            }
+          },
+          {
+            "name": "accessCriteria",
+            "piece": "IPDSharingAccessCriteria",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "IPD Sharing Access Criteria",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#IPDSharingAccess"
+            }
+          },
+          {
+            "name": "url",
+            "piece": "IPDSharingURL",
+            "sourceType": "TEXT",
+            "type": "text",
+            "dedLink": {
+              "label": "IPD Sharing URL",
+              "url": "https://clinicaltrials.gov/policy/protocol-definitions#IPDSharingURL"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "resultsSection",
+    "piece": "ResultsSection",
+    "title": "Study Results",
+    "sourceType": "STRUCT",
+    "type": "ResultsSection",
+    "dedLink": {
+      "label": "Study Results",
+      "url": "https://clinicaltrials.gov/policy/results-definitions"
+    },
+    "children": [
+      {
+        "name": "participantFlowModule",
+        "piece": "ParticipantFlowModule",
+        "title": "Participant Flow Module",
+        "sourceType": "STRUCT",
+        "type": "ParticipantFlowModule",
+        "dedLink": {
+          "label": "Participant Flow",
+          "url": "https://clinicaltrials.gov/policy/results-definitions#Result_ParticipantFlow"
+        },
+        "children": [
+          {
+            "name": "preAssignmentDetails",
+            "piece": "FlowPreAssignmentDetails",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Pre-assignment Details",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#PreAssignDetails"
+            }
+          },
+          {
+            "name": "recruitmentDetails",
+            "piece": "FlowRecruitmentDetails",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Recruitment Details",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#RecruitDetails"
+            }
+          },
+          {
+            "name": "typeUnitsAnalyzed",
+            "piece": "FlowTypeUnitsAnalyzed",
+            "sourceType": "TEXT",
+            "type": "text",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Type of Units Assigned",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#PopFlowTypeUnitsRandomized"
+            }
+          },
+          {
+            "name": "groups",
+            "piece": "FlowGroup",
+            "sourceType": "STRUCT",
+            "type": "FlowGroup[]",
+            "dedLink": {
+              "label": "Arm/Group Information",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#PopFlowArmGroup"
+            },
+            "children": [
+              {
+                "name": "id",
+                "piece": "FlowGroupId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "title",
+                "piece": "FlowGroupTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Arm/Group Title",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#PopFlowArmGroupTitle"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "FlowGroupDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Arm/Group Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#PopFlowArmGroupDesc"
+                }
+              }
+            ]
+          },
+          {
+            "name": "periods",
+            "piece": "FlowPeriod",
+            "sourceType": "STRUCT",
+            "type": "FlowPeriod[]",
+            "dedLink": {
+              "label": "Period(s)",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#Period"
+            },
+            "children": [
+              {
+                "name": "title",
+                "piece": "FlowPeriodTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Period Title",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#PeriodTitle"
+                }
+              },
+              {
+                "name": "milestones",
+                "piece": "FlowMilestone",
+                "sourceType": "STRUCT",
+                "type": "FlowMilestone[]",
+                "dedLink": {
+                  "label": "Additional Milestone(s)",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#MiscMilestone"
+                },
+                "children": [
+                  {
+                    "name": "type",
+                    "piece": "FlowMilestoneType",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Started",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#Started"
+                    }
+                  },
+                  {
+                    "name": "comment",
+                    "piece": "FlowMilestoneComment",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Comments",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#Result_ParticipantFlow_Milestone_Started_comment"
+                    }
+                  },
+                  {
+                    "name": "achievements",
+                    "piece": "FlowAchievement",
+                    "sourceType": "STRUCT",
+                    "type": "FlowStats[]",
+                    "children": [
+                      {
+                        "name": "groupId",
+                        "piece": "FlowAchievementGroupId",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true
+                      },
+                      {
+                        "name": "comment",
+                        "piece": "FlowAchievementComment",
+                        "sourceType": "MARKUP",
+                        "type": "markup",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Comments",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#MilestoneDataComments"
+                        }
+                      },
+                      {
+                        "name": "numSubjects",
+                        "piece": "FlowAchievementNumSubjects",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Milestone Data",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#MilestoneData"
+                        }
+                      },
+                      {
+                        "name": "numUnits",
+                        "piece": "FlowAchievementNumUnits",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Milestone Data",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#MilestoneData"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "dropWithdraws",
+                "piece": "FlowDropWithdraw",
+                "sourceType": "STRUCT",
+                "type": "DropWithdraw[]",
+                "dedLink": {
+                  "label": "Reason Not Completed",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#DWReason"
+                },
+                "children": [
+                  {
+                    "name": "type",
+                    "piece": "FlowDropWithdrawType",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Reason Not Completed Type",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#DWReasonType"
+                    }
+                  },
+                  {
+                    "name": "comment",
+                    "piece": "FlowDropWithdrawComment",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true
+                  },
+                  {
+                    "name": "reasons",
+                    "piece": "FlowReason",
+                    "sourceType": "STRUCT",
+                    "type": "FlowStats[]",
+                    "children": [
+                      {
+                        "name": "groupId",
+                        "piece": "FlowReasonGroupId",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true
+                      },
+                      {
+                        "name": "comment",
+                        "piece": "FlowReasonComment",
+                        "sourceType": "MARKUP",
+                        "type": "markup",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Reason Not Completed Data",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#DWReasonData"
+                        }
+                      },
+                      {
+                        "name": "numSubjects",
+                        "piece": "FlowReasonNumSubjects",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Reason Not Completed Data",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#DWReasonData"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "baselineCharacteristicsModule",
+        "piece": "BaselineCharacteristicsModule",
+        "sourceType": "STRUCT",
+        "type": "BaselineCharacteristicsModule",
+        "dedLink": {
+          "label": "Baseline Characteristics",
+          "url": "https://clinicaltrials.gov/policy/results-definitions#Result_Baseline"
+        },
+        "children": [
+          {
+            "name": "populationDescription",
+            "piece": "BaselinePopulationDescription",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Baseline Analysis Population Description",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineAnalysisPopulationDesc"
+            }
+          },
+          {
+            "name": "typeUnitsAnalyzed",
+            "piece": "BaselineTypeUnitsAnalyzed",
+            "sourceType": "TEXT",
+            "type": "text",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Type of Units Analyzed",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineTypeUnitsAnalyzed"
+            }
+          },
+          {
+            "name": "groups",
+            "piece": "BaselineGroup",
+            "sourceType": "STRUCT",
+            "type": "MeasureGroup[]",
+            "dedLink": {
+              "label": "Arm/Group Information",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineArmGroup"
+            },
+            "children": [
+              {
+                "name": "id",
+                "piece": "BaselineGroupId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "title",
+                "piece": "BaselineGroupTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Arm/Group Title",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineArmGroupTitle"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "BaselineGroupDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Arm/Group Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineArmGroupDesc"
+                }
+              }
+            ]
+          },
+          {
+            "name": "denoms",
+            "piece": "BaselineDenom",
+            "sourceType": "STRUCT",
+            "type": "Denom[]",
+            "children": [
+              {
+                "name": "units",
+                "piece": "BaselineDenomUnits",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Overall Number of Units Analyzed",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineNumUnitsAnalyzed"
+                }
+              },
+              {
+                "name": "counts",
+                "piece": "BaselineDenomCount",
+                "sourceType": "STRUCT",
+                "type": "DenomCount[]",
+                "children": [
+                  {
+                    "name": "groupId",
+                    "piece": "BaselineDenomCountGroupId",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true
+                  },
+                  {
+                    "name": "value",
+                    "piece": "BaselineDenomCountValue",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Overall Number of Baseline Participants",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#OverallBaselineNumber"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "measures",
+            "piece": "BaselineMeasure",
+            "sourceType": "STRUCT",
+            "type": "BaselineMeasure[]",
+            "dedLink": {
+              "label": "Baseline Measure Information",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineMeasure"
+            },
+            "children": [
+              {
+                "name": "title",
+                "piece": "BaselineMeasureTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Baseline Measure Title",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineMeasureType"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "BaselineMeasureDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Baseline Measure Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineDescription"
+                }
+              },
+              {
+                "name": "populationDescription",
+                "piece": "BaselineMeasurePopulationDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Measure Analysis Population Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineAnalysisPopDesc"
+                }
+              },
+              {
+                "name": "paramType",
+                "piece": "BaselineMeasureParamType",
+                "sourceType": "TEXT",
+                "type": "MeasureParam",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Measure Type",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineParamType"
+                }
+              },
+              {
+                "name": "dispersionType",
+                "piece": "BaselineMeasureDispersionType",
+                "sourceType": "TEXT",
+                "type": "MeasureDispersionType",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Measure of Dispersion",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineDispersType"
+                }
+              },
+              {
+                "name": "unitOfMeasure",
+                "piece": "BaselineMeasureUnitOfMeasure",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Unit of Measure",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineUnitOfMeasure"
+                }
+              },
+              {
+                "name": "calculatePct",
+                "piece": "BaselineMeasureCalculatePct",
+                "sourceType": "BOOLEAN",
+                "type": "boolean"
+              },
+              {
+                "name": "denomUnitsSelected",
+                "piece": "BaselineMeasureDenomUnitsSelected",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Analysis Population Type",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineAnalysisPopType"
+                }
+              },
+              {
+                "name": "denoms",
+                "piece": "BaselineMeasureDenom",
+                "sourceType": "STRUCT",
+                "type": "Denom[]",
+                "children": [
+                  {
+                    "name": "units",
+                    "piece": "BaselineMeasureDenomUnits",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Number of Units Analyzed",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineAnalysisNumUnits"
+                    }
+                  },
+                  {
+                    "name": "counts",
+                    "piece": "BaselineMeasureDenomCount",
+                    "sourceType": "STRUCT",
+                    "type": "DenomCount[]",
+                    "children": [
+                      {
+                        "name": "groupId",
+                        "piece": "BaselineMeasureDenomCountGroupId",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true
+                      },
+                      {
+                        "name": "value",
+                        "piece": "BaselineMeasureDenomCountValue",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Number of Baseline Participants",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineAnalysisPop"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "classes",
+                "piece": "BaselineClass",
+                "sourceType": "STRUCT",
+                "type": "MeasureClass[]",
+                "children": [
+                  {
+                    "name": "title",
+                    "piece": "BaselineClassTitle",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Category or Row Title",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#CategoryTitle"
+                    }
+                  },
+                  {
+                    "name": "denoms",
+                    "piece": "BaselineClassDenom",
+                    "sourceType": "STRUCT",
+                    "type": "Denom[]",
+                    "children": [
+                      {
+                        "name": "units",
+                        "piece": "BaselineClassDenomUnits",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true
+                      },
+                      {
+                        "name": "counts",
+                        "piece": "BaselineClassDenomCount",
+                        "sourceType": "STRUCT",
+                        "type": "DenomCount[]",
+                        "children": [
+                          {
+                            "name": "groupId",
+                            "piece": "BaselineClassDenomCountGroupId",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "value",
+                            "piece": "BaselineClassDenomCountValue",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "categories",
+                    "piece": "BaselineCategory",
+                    "sourceType": "STRUCT",
+                    "type": "MeasureCategory[]",
+                    "children": [
+                      {
+                        "name": "title",
+                        "piece": "BaselineCategoryTitle",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Category or Row Title",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#CategoryTitle"
+                        }
+                      },
+                      {
+                        "name": "measurements",
+                        "piece": "BaselineMeasurement",
+                        "sourceType": "STRUCT",
+                        "type": "Measurement[]",
+                        "children": [
+                          {
+                            "name": "groupId",
+                            "piece": "BaselineMeasurementGroupId",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "value",
+                            "piece": "BaselineMeasurementValue",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true,
+                            "dedLink": {
+                              "label": "Baseline Measure Data",
+                              "url": "https://clinicaltrials.gov/policy/results-definitions#BaselineData"
+                            }
+                          },
+                          {
+                            "name": "spread",
+                            "piece": "BaselineMeasurementSpread",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "lowerLimit",
+                            "piece": "BaselineMeasurementLowerLimit",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "upperLimit",
+                            "piece": "BaselineMeasurementUpperLimit",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "comment",
+                            "piece": "BaselineMeasurementComment",
+                            "sourceType": "MARKUP",
+                            "type": "markup",
+                            "synonyms": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "outcomeMeasuresModule",
+        "piece": "OutcomeMeasuresModule",
+        "sourceType": "STRUCT",
+        "type": "OutcomeMeasuresModule",
+        "dedLink": {
+          "label": "Outcome Measures",
+          "url": "https://clinicaltrials.gov/policy/results-definitions#Result_Outcome_Measure"
+        },
+        "children": [
+          {
+            "name": "outcomeMeasures",
+            "piece": "OutcomeMeasure",
+            "sourceType": "STRUCT",
+            "type": "OutcomeMeasure[]",
+            "dedLink": {
+              "label": "Outcome Measure Information",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeMeasure"
+            },
+            "children": [
+              {
+                "name": "type",
+                "piece": "OutcomeMeasureType",
+                "sourceType": "TEXT",
+                "type": "OutcomeMeasureType",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Outcome Measure Type",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeMeasureType"
+                }
+              },
+              {
+                "name": "title",
+                "piece": "OutcomeMeasureTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Outcome Measure Title",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeMeasureTitle"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "OutcomeMeasureDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Outcome Measure Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeMeasureDesc"
+                }
+              },
+              {
+                "name": "populationDescription",
+                "piece": "OutcomeMeasurePopulationDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Analysis Population Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AnalysisPopulation"
+                }
+              },
+              {
+                "name": "reportingStatus",
+                "piece": "OutcomeMeasureReportingStatus",
+                "sourceType": "TEXT",
+                "type": "ReportingStatus",
+                "isEnum": true
+              },
+              {
+                "name": "anticipatedPostingDate",
+                "piece": "OutcomeMeasureAnticipatedPostingDate",
+                "sourceType": "DATE",
+                "type": "PartialDate",
+                "dedLink": {
+                  "label": "Anticipated Reporting Date",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeAnticipatedPostDate"
+                }
+              },
+              {
+                "name": "paramType",
+                "piece": "OutcomeMeasureParamType",
+                "sourceType": "TEXT",
+                "type": "MeasureParam",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Measure Type",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeMeasureParamType"
+                }
+              },
+              {
+                "name": "dispersionType",
+                "piece": "OutcomeMeasureDispersionType",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Measure of Dispersion/Precision",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeMeasureDispersType"
+                }
+              },
+              {
+                "name": "unitOfMeasure",
+                "piece": "OutcomeMeasureUnitOfMeasure",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Unit of Measure",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeUnitOfMeasure"
+                }
+              },
+              {
+                "name": "calculatePct",
+                "piece": "OutcomeMeasureCalculatePct",
+                "sourceType": "BOOLEAN",
+                "type": "boolean"
+              },
+              {
+                "name": "timeFrame",
+                "piece": "OutcomeMeasureTimeFrame",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Outcome Measure Time Frame",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeMeasureTimeFrame"
+                }
+              },
+              {
+                "name": "typeUnitsAnalyzed",
+                "piece": "OutcomeMeasureTypeUnitsAnalyzed",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Type of Units Analyzed",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#TypeUnitsAnalyzed"
+                }
+              },
+              {
+                "name": "denomUnitsSelected",
+                "piece": "OutcomeMeasureDenomUnitsSelected",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "groups",
+                "piece": "OutcomeGroup",
+                "sourceType": "STRUCT",
+                "type": "MeasureGroup[]",
+                "dedLink": {
+                  "label": "Arm/Group Information",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeArmGroup"
+                },
+                "children": [
+                  {
+                    "name": "id",
+                    "piece": "OutcomeGroupId",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true
+                  },
+                  {
+                    "name": "title",
+                    "piece": "OutcomeGroupTitle",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Arm/Group Title",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeArmGroupTitle"
+                    }
+                  },
+                  {
+                    "name": "description",
+                    "piece": "OutcomeGroupDescription",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Arm/Group Description",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeArmGroupDesc"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "denoms",
+                "piece": "OutcomeDenom",
+                "sourceType": "STRUCT",
+                "type": "Denom[]",
+                "children": [
+                  {
+                    "name": "units",
+                    "piece": "OutcomeDenomUnits",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Overall Number of Units Analyzed",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#NumUnitsAnalyzed"
+                    }
+                  },
+                  {
+                    "name": "counts",
+                    "piece": "OutcomeDenomCount",
+                    "sourceType": "STRUCT",
+                    "type": "DenomCount[]",
+                    "children": [
+                      {
+                        "name": "groupId",
+                        "piece": "OutcomeDenomCountGroupId",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true
+                      },
+                      {
+                        "name": "value",
+                        "piece": "OutcomeDenomCountValue",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Overall Number of Participants Analyzed",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#SubjectsAnalyzed"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "classes",
+                "piece": "OutcomeClass",
+                "sourceType": "STRUCT",
+                "type": "MeasureClass[]",
+                "children": [
+                  {
+                    "name": "title",
+                    "piece": "OutcomeClassTitle",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Category or Row Title",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeCategoryTitle"
+                    }
+                  },
+                  {
+                    "name": "denoms",
+                    "piece": "OutcomeClassDenom",
+                    "sourceType": "STRUCT",
+                    "type": "Denom[]",
+                    "children": [
+                      {
+                        "name": "units",
+                        "piece": "OutcomeClassDenomUnits",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Number of Units Analyzed",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeNumUnits"
+                        }
+                      },
+                      {
+                        "name": "counts",
+                        "piece": "OutcomeClassDenomCount",
+                        "sourceType": "STRUCT",
+                        "type": "DenomCount[]",
+                        "children": [
+                          {
+                            "name": "groupId",
+                            "piece": "OutcomeClassDenomCountGroupId",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "value",
+                            "piece": "OutcomeClassDenomCountValue",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true,
+                            "dedLink": {
+                              "label": "Number of Participants Analyzed",
+                              "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomePopulation"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "categories",
+                    "piece": "OutcomeCategory",
+                    "sourceType": "STRUCT",
+                    "type": "MeasureCategory[]",
+                    "children": [
+                      {
+                        "name": "title",
+                        "piece": "OutcomeCategoryTitle",
+                        "sourceType": "TEXT",
+                        "type": "text",
+                        "synonyms": true,
+                        "dedLink": {
+                          "label": "Category or Row Title",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeCategoryTitle"
+                        }
+                      },
+                      {
+                        "name": "measurements",
+                        "piece": "OutcomeMeasurement",
+                        "sourceType": "STRUCT",
+                        "type": "Measurement[]",
+                        "dedLink": {
+                          "label": "Outcome Measure Data Table",
+                          "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeMeasureDataTable"
+                        },
+                        "children": [
+                          {
+                            "name": "groupId",
+                            "piece": "OutcomeMeasurementGroupId",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "value",
+                            "piece": "OutcomeMeasurementValue",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true,
+                            "dedLink": {
+                              "label": "Outcome Measure Data",
+                              "url": "https://clinicaltrials.gov/policy/results-definitions#OutcomeData"
+                            }
+                          },
+                          {
+                            "name": "spread",
+                            "piece": "OutcomeMeasurementSpread",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "lowerLimit",
+                            "piece": "OutcomeMeasurementLowerLimit",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "upperLimit",
+                            "piece": "OutcomeMeasurementUpperLimit",
+                            "sourceType": "TEXT",
+                            "type": "text",
+                            "synonyms": true
+                          },
+                          {
+                            "name": "comment",
+                            "piece": "OutcomeMeasurementComment",
+                            "sourceType": "MARKUP",
+                            "type": "markup",
+                            "synonyms": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "analyses",
+                "piece": "OutcomeAnalysis",
+                "sourceType": "STRUCT",
+                "type": "MeasureAnalysis[]",
+                "children": [
+                  {
+                    "name": "paramType",
+                    "piece": "OutcomeAnalysisParamType",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Estimation Parameter",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#EstParamType"
+                    }
+                  },
+                  {
+                    "name": "paramValue",
+                    "piece": "OutcomeAnalysisParamValue",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Estimated Value",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#EstValue"
+                    }
+                  },
+                  {
+                    "name": "dispersionType",
+                    "piece": "OutcomeAnalysisDispersionType",
+                    "sourceType": "TEXT",
+                    "type": "AnalysisDispersionType",
+                    "isEnum": true,
+                    "dedLink": {
+                      "label": "Parameter Dispersion Type",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#EstDispersType"
+                    }
+                  },
+                  {
+                    "name": "dispersionValue",
+                    "piece": "OutcomeAnalysisDispersionValue",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Dispersion Value",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#EstDispersAmount"
+                    }
+                  },
+                  {
+                    "name": "statisticalMethod",
+                    "piece": "OutcomeAnalysisStatisticalMethod",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Method",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#Method"
+                    }
+                  },
+                  {
+                    "name": "statisticalComment",
+                    "piece": "OutcomeAnalysisStatisticalComment",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Comments",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#OtherMethodComments"
+                    }
+                  },
+                  {
+                    "name": "pValue",
+                    "piece": "OutcomeAnalysisPValue",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "P-Value",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#PValue"
+                    }
+                  },
+                  {
+                    "name": "pValueComment",
+                    "piece": "OutcomeAnalysisPValueComment",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Comments",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#PValueComments"
+                    }
+                  },
+                  {
+                    "name": "ciNumSides",
+                    "piece": "OutcomeAnalysisCINumSides",
+                    "sourceType": "TEXT",
+                    "type": "ConfidenceIntervalNumSides",
+                    "isEnum": true,
+                    "dedLink": {
+                      "label": "Number of Sides",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#CINumberSides"
+                    }
+                  },
+                  {
+                    "name": "ciPctValue",
+                    "piece": "OutcomeAnalysisCIPctValue",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Level",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#ConfLevel"
+                    }
+                  },
+                  {
+                    "name": "ciLowerLimit",
+                    "piece": "OutcomeAnalysisCILowerLimit",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Lower Limit",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#LowerLimit"
+                    }
+                  },
+                  {
+                    "name": "ciUpperLimit",
+                    "piece": "OutcomeAnalysisCIUpperLimit",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Upper Limit",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#UpperLimit"
+                    }
+                  },
+                  {
+                    "name": "ciLowerLimitComment",
+                    "piece": "OutcomeAnalysisCILowerLimitComment",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true
+                  },
+                  {
+                    "name": "ciUpperLimitComment",
+                    "piece": "OutcomeAnalysisCIUpperLimitComment",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true
+                  },
+                  {
+                    "name": "estimateComment",
+                    "piece": "OutcomeAnalysisEstimateComment",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Estimation Comments",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#EstComments"
+                    }
+                  },
+                  {
+                    "name": "testedNonInferiority",
+                    "piece": "OutcomeAnalysisTestedNonInferiority",
+                    "sourceType": "BOOLEAN",
+                    "type": "boolean",
+                    "dedLink": {
+                      "label": "Type of Statistical Test",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#StatsTestType"
+                    }
+                  },
+                  {
+                    "name": "nonInferiorityType",
+                    "piece": "OutcomeAnalysisNonInferiorityType",
+                    "sourceType": "TEXT",
+                    "type": "NonInferiorityType",
+                    "isEnum": true,
+                    "dedLink": {
+                      "label": "Type of Statistical Test",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#StatsTestType"
+                    }
+                  },
+                  {
+                    "name": "nonInferiorityComment",
+                    "piece": "OutcomeAnalysisNonInferiorityComment",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Comments",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#Result_Outcome_Analysis_statsTestTypesComment"
+                    }
+                  },
+                  {
+                    "name": "otherAnalysisDescription",
+                    "piece": "OutcomeAnalysisOtherAnalysisDescription",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Other Statistical Analysis",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#OtherStats"
+                    }
+                  },
+                  {
+                    "name": "groupDescription",
+                    "piece": "OutcomeAnalysisGroupDescription",
+                    "sourceType": "MARKUP",
+                    "type": "markup",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Comments",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#Result_Outcome_Analysis_statsAnalysisComment"
+                    }
+                  },
+                  {
+                    "name": "groupIds",
+                    "piece": "OutcomeAnalysisGroupId",
+                    "sourceType": "TEXT",
+                    "type": "text[]",
+                    "synonyms": true,
+                    "dedLink": {
+                      "label": "Comparison Group Selection",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#GroupSelection"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "adverseEventsModule",
+        "piece": "AdverseEventsModule",
+        "sourceType": "STRUCT",
+        "type": "AdverseEventsModule",
+        "dedLink": {
+          "label": "Adverse Event Information",
+          "url": "https://clinicaltrials.gov/policy/results-definitions#Result_AdverseEvents"
+        },
+        "children": [
+          {
+            "name": "frequencyThreshold",
+            "piece": "EventsFrequencyThreshold",
+            "sourceType": "TEXT",
+            "type": "text",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Frequency Threshold for Reporting Other (Not Including Serious) Adverse Events",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#FrequencyThreshold"
+            }
+          },
+          {
+            "name": "timeFrame",
+            "piece": "EventsTimeFrame",
+            "sourceType": "TEXT",
+            "type": "text",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Time Frame",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#Result_AdverseEvents_timeFrame"
+            }
+          },
+          {
+            "name": "description",
+            "piece": "EventsDescription",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true,
+            "dedLink": {
+              "label": "Adverse Event Reporting Description",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#Result_AdverseEvents_additDescription"
+            }
+          },
+          {
+            "name": "allCauseMortalityComment",
+            "piece": "EventsAllCauseMortalityComment",
+            "sourceType": "MARKUP",
+            "type": "markup",
+            "synonyms": true
+          },
+          {
+            "name": "eventGroups",
+            "piece": "EventGroup",
+            "sourceType": "STRUCT",
+            "type": "EventGroup[]",
+            "dedLink": {
+              "label": "Arm/Group Information",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#EventArmGroupInfo"
+            },
+            "children": [
+              {
+                "name": "id",
+                "piece": "EventGroupId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "title",
+                "piece": "EventGroupTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Arm/Group Title",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#EventArmGroupTitle"
+                }
+              },
+              {
+                "name": "description",
+                "piece": "EventGroupDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Arm/Group Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#EventArmGroupDesc"
+                }
+              },
+              {
+                "name": "deathsNumAffected",
+                "piece": "EventGroupDeathsNumAffected",
+                "sourceType": "TEXT",
+                "type": "integer",
+                "dedLink": {
+                  "label": "Total Number Affected by All-Cause Mortality",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#Mortality_Affected"
+                }
+              },
+              {
+                "name": "deathsNumAtRisk",
+                "piece": "EventGroupDeathsNumAtRisk",
+                "sourceType": "TEXT",
+                "type": "integer",
+                "dedLink": {
+                  "label": "Total Number at Risk for All-Cause Mortality",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#Mortality_AtRisk"
+                }
+              },
+              {
+                "name": "seriousNumAffected",
+                "piece": "EventGroupSeriousNumAffected",
+                "sourceType": "TEXT",
+                "type": "integer",
+                "dedLink": {
+                  "label": "Total Number Affected by Any Serious Adverse Event",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#SeriousTotalAffected"
+                }
+              },
+              {
+                "name": "seriousNumAtRisk",
+                "piece": "EventGroupSeriousNumAtRisk",
+                "sourceType": "TEXT",
+                "type": "integer",
+                "dedLink": {
+                  "label": "Total Number at Risk for Serious Adverse Events",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#SeriousAE_AtRisk"
+                }
+              },
+              {
+                "name": "otherNumAffected",
+                "piece": "EventGroupOtherNumAffected",
+                "sourceType": "TEXT",
+                "type": "integer",
+                "dedLink": {
+                  "label": "Total Number Affected by Any Other (Not Including Serious) Adverse Events Above the Frequency Threshold",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OtherAE_Affected"
+                }
+              },
+              {
+                "name": "otherNumAtRisk",
+                "piece": "EventGroupOtherNumAtRisk",
+                "sourceType": "TEXT",
+                "type": "integer",
+                "dedLink": {
+                  "label": "Total Number at Risk for Other (Not Including Serious) Adverse Events",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OtherAE_AtRisk"
+                }
+              }
+            ]
+          },
+          {
+            "name": "seriousEvents",
+            "piece": "SeriousEvent",
+            "sourceType": "STRUCT",
+            "type": "AdverseEvent[]",
+            "children": [
+              {
+                "name": "term",
+                "piece": "SeriousEventTerm",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Adverse Event Term",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventTerm"
+                }
+              },
+              {
+                "name": "organSystem",
+                "piece": "SeriousEventOrganSystem",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Organ System",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OrganSystem"
+                }
+              },
+              {
+                "name": "sourceVocabulary",
+                "piece": "SeriousEventSourceVocabulary",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Source Vocabulary Name",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventVocab"
+                }
+              },
+              {
+                "name": "assessmentType",
+                "piece": "SeriousEventAssessmentType",
+                "sourceType": "TEXT",
+                "type": "EventAssessment",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Collection Approach",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AssessType"
+                }
+              },
+              {
+                "name": "notes",
+                "piece": "SeriousEventNotes",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Adverse Event Term Additional Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventNotes"
+                }
+              },
+              {
+                "name": "stats",
+                "piece": "SeriousEventStats",
+                "sourceType": "STRUCT",
+                "type": "EventStats[]",
+                "children": [
+                  {
+                    "name": "groupId",
+                    "piece": "SeriousEventStatsGroupId",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true
+                  },
+                  {
+                    "name": "numEvents",
+                    "piece": "SeriousEventStatsNumEvents",
+                    "sourceType": "TEXT",
+                    "type": "integer",
+                    "dedLink": {
+                      "label": "Number of Events",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#OtherAEEvents"
+                    }
+                  },
+                  {
+                    "name": "numAffected",
+                    "piece": "SeriousEventStatsNumAffected",
+                    "sourceType": "TEXT",
+                    "type": "integer",
+                    "dedLink": {
+                      "label": "Number of Participants Affected",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventAffected"
+                    }
+                  },
+                  {
+                    "name": "numAtRisk",
+                    "piece": "SeriousEventStatsNumAtRisk",
+                    "sourceType": "TEXT",
+                    "type": "integer",
+                    "dedLink": {
+                      "label": "Number of Participants at Risk",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventAtRisk"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "otherEvents",
+            "piece": "OtherEvent",
+            "sourceType": "STRUCT",
+            "type": "AdverseEvent[]",
+            "children": [
+              {
+                "name": "term",
+                "piece": "OtherEventTerm",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Adverse Event Term",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventTerm"
+                }
+              },
+              {
+                "name": "organSystem",
+                "piece": "OtherEventOrganSystem",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Organ System",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OrganSystem"
+                }
+              },
+              {
+                "name": "sourceVocabulary",
+                "piece": "OtherEventSourceVocabulary",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Source Vocabulary Name",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventVocab"
+                }
+              },
+              {
+                "name": "assessmentType",
+                "piece": "OtherEventAssessmentType",
+                "sourceType": "TEXT",
+                "type": "EventAssessment",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "Collection Approach",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AssessType"
+                }
+              },
+              {
+                "name": "notes",
+                "piece": "OtherEventNotes",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Adverse Event Term Additional Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventNotes"
+                }
+              },
+              {
+                "name": "stats",
+                "piece": "OtherEventStats",
+                "sourceType": "STRUCT",
+                "type": "EventStats[]",
+                "children": [
+                  {
+                    "name": "groupId",
+                    "piece": "OtherEventStatsGroupId",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true
+                  },
+                  {
+                    "name": "numEvents",
+                    "piece": "OtherEventStatsNumEvents",
+                    "sourceType": "TEXT",
+                    "type": "integer",
+                    "dedLink": {
+                      "label": "Number of Events",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#OtherAEEvents"
+                    }
+                  },
+                  {
+                    "name": "numAffected",
+                    "piece": "OtherEventStatsNumAffected",
+                    "sourceType": "TEXT",
+                    "type": "integer",
+                    "dedLink": {
+                      "label": "Number of Participants Affected",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventAffected"
+                    }
+                  },
+                  {
+                    "name": "numAtRisk",
+                    "piece": "OtherEventStatsNumAtRisk",
+                    "sourceType": "TEXT",
+                    "type": "integer",
+                    "dedLink": {
+                      "label": "Number of Participants at Risk",
+                      "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventAtRisk"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "moreInfoModule",
+        "piece": "MoreInfoModule",
+        "sourceType": "STRUCT",
+        "type": "MoreInfoModule",
+        "children": [
+          {
+            "name": "limitationsAndCaveats",
+            "piece": "LimitationsAndCaveats",
+            "sourceType": "STRUCT",
+            "type": "LimitationsAndCaveats",
+            "dedLink": {
+              "label": "Limitations and Caveats",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#Result_LimitationsAndCaveats_description"
+            },
+            "children": [
+              {
+                "name": "description",
+                "piece": "LimitationsAndCaveatsDescription",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Overall Limitations and Caveats",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#AdverseEventDataLimitCaveats"
+                }
+              }
+            ]
+          },
+          {
+            "name": "certainAgreement",
+            "piece": "CertainAgreement",
+            "sourceType": "STRUCT",
+            "type": "CertainAgreement",
+            "dedLink": {
+              "label": "Certain Agreements",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#Result_CertainAgreement"
+            },
+            "children": [
+              {
+                "name": "piSponsorEmployee",
+                "piece": "AgreementPISponsorEmployee",
+                "sourceType": "BOOLEAN",
+                "type": "boolean",
+                "dedLink": {
+                  "label": "Are all PIs Employees of Sponsor?",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#PIEmployment"
+                }
+              },
+              {
+                "name": "restrictionType",
+                "piece": "AgreementRestrictionType",
+                "sourceType": "TEXT",
+                "type": "AgreementRestrictionType",
+                "isEnum": true,
+                "dedLink": {
+                  "label": "PI Disclosure Restriction Type",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#RestrictionType"
+                }
+              },
+              {
+                "name": "restrictiveAgreement",
+                "piece": "AgreementRestrictiveAgreement",
+                "sourceType": "BOOLEAN",
+                "type": "boolean",
+                "dedLink": {
+                  "label": "Results Disclosure Restriction on PI(s)?",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#PIAgreement"
+                }
+              },
+              {
+                "name": "otherDetails",
+                "piece": "AgreementOtherDetails",
+                "sourceType": "MARKUP",
+                "type": "markup",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Other Disclosure Restriction Description",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OtherRestrictionType"
+                }
+              }
+            ]
+          },
+          {
+            "name": "pointOfContact",
+            "piece": "PointOfContact",
+            "sourceType": "STRUCT",
+            "type": "PointOfContact",
+            "dedLink": {
+              "label": "Results Point of Contact",
+              "url": "https://clinicaltrials.gov/policy/results-definitions#Result_PointOfContact"
+            },
+            "children": [
+              {
+                "name": "title",
+                "piece": "PointOfContactTitle",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Name or Official Title",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#NameOfficialTitle"
+                }
+              },
+              {
+                "name": "organization",
+                "piece": "PointOfContactOrganization",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Organization Name",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#OrgName"
+                }
+              },
+              {
+                "name": "email",
+                "piece": "PointOfContactEMail",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Email",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#Email"
+                }
+              },
+              {
+                "name": "phone",
+                "piece": "PointOfContactPhone",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Phone",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#Phone"
+                }
+              },
+              {
+                "name": "phoneExt",
+                "piece": "PointOfContactPhoneExt",
+                "sourceType": "TEXT",
+                "type": "text",
+                "dedLink": {
+                  "label": "Extension (Ext.)",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#PhoneExt"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "annotationSection",
+    "piece": "AnnotationSection",
+    "title": "Annotation Section",
+    "sourceType": "STRUCT",
+    "type": "AnnotationSection",
+    "description": "Internally generated Annotation section",
+    "children": [
+      {
+        "name": "annotationModule",
+        "piece": "AnnotationModule",
+        "sourceType": "STRUCT",
+        "type": "AnnotationModule",
+        "children": [
+          {
+            "name": "unpostedAnnotation",
+            "piece": "UnpostedAnnotation",
+            "sourceType": "STRUCT",
+            "type": "UnpostedAnnotation",
+            "children": [
+              {
+                "name": "unpostedResponsibleParty",
+                "piece": "UnpostedResponsibleParty",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "unpostedEvents",
+                "piece": "UnpostedEvent",
+                "sourceType": "STRUCT",
+                "type": "UnpostedEvent[]",
+                "children": [
+                  {
+                    "name": "type",
+                    "piece": "UnpostedEventType",
+                    "sourceType": "TEXT",
+                    "type": "UnpostedEventType",
+                    "isEnum": true
+                  },
+                  {
+                    "name": "date",
+                    "piece": "UnpostedEventDate",
+                    "sourceType": "DATE",
+                    "type": "NormalizedDate"
+                  },
+                  {
+                    "name": "dateUnknown",
+                    "piece": "UnpostedEventDateUnknown",
+                    "title": "Unposted Event Date is Unknown",
+                    "sourceType": "BOOLEAN",
+                    "type": "boolean"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "violationAnnotation",
+            "piece": "ViolationAnnotation",
+            "sourceType": "STRUCT",
+            "type": "ViolationAnnotation",
+            "children": [
+              {
+                "name": "violationEvents",
+                "piece": "ViolationEvent",
+                "sourceType": "STRUCT",
+                "type": "ViolationEvent[]",
+                "children": [
+                  {
+                    "name": "type",
+                    "piece": "ViolationEventType",
+                    "sourceType": "TEXT",
+                    "type": "ViolationEventType",
+                    "isEnum": true
+                  },
+                  {
+                    "name": "description",
+                    "piece": "ViolationEventDescription",
+                    "sourceType": "TEXT",
+                    "type": "text",
+                    "synonyms": true
+                  },
+                  {
+                    "name": "creationDate",
+                    "piece": "ViolationEventCreationDate",
+                    "sourceType": "DATE",
+                    "type": "NormalizedDate"
+                  },
+                  {
+                    "name": "issuedDate",
+                    "piece": "ViolationEventIssuedDate",
+                    "sourceType": "DATE",
+                    "type": "NormalizedDate"
+                  },
+                  {
+                    "name": "releaseDate",
+                    "piece": "ViolationEventReleaseDate",
+                    "sourceType": "DATE",
+                    "type": "NormalizedDate"
+                  },
+                  {
+                    "name": "postedDate",
+                    "piece": "ViolationEventPostedDate",
+                    "sourceType": "DATE",
+                    "type": "NormalizedDate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "documentSection",
+    "piece": "DocumentSection",
+    "title": "Document Upload Information Section",
+    "sourceType": "STRUCT",
+    "type": "DocumentSection",
+    "children": [
+      {
+        "name": "largeDocumentModule",
+        "piece": "LargeDocumentModule",
+        "sourceType": "STRUCT",
+        "type": "LargeDocumentModule",
+        "dedLink": {
+          "label": "A.1 Document Upload Information",
+          "url": "https://clinicaltrials.gov/policy/results-definitions#DocumentUpload"
+        },
+        "children": [
+          {
+            "name": "noSap",
+            "piece": "LargeDocNoSAP",
+            "sourceType": "BOOLEAN",
+            "type": "boolean"
+          },
+          {
+            "name": "largeDocs",
+            "piece": "LargeDoc",
+            "sourceType": "STRUCT",
+            "type": "LargeDoc[]",
+            "children": [
+              {
+                "name": "typeAbbrev",
+                "piece": "LargeDocTypeAbbrev",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Document Type",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#DocUploadDocType"
+                }
+              },
+              {
+                "name": "hasProtocol",
+                "piece": "LargeDocHasProtocol",
+                "sourceType": "TEXT",
+                "type": "boolean"
+              },
+              {
+                "name": "hasSap",
+                "piece": "LargeDocHasSAP",
+                "sourceType": "TEXT",
+                "type": "boolean"
+              },
+              {
+                "name": "hasIcf",
+                "piece": "LargeDocHasICF",
+                "sourceType": "TEXT",
+                "type": "boolean"
+              },
+              {
+                "name": "label",
+                "piece": "LargeDocLabel",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "dedLink": {
+                  "label": "Subtitle",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#DocUploadSubtitle"
+                }
+              },
+              {
+                "name": "date",
+                "piece": "LargeDocDate",
+                "sourceType": "DATE",
+                "type": "NormalizedDate",
+                "dedLink": {
+                  "label": "Document Date",
+                  "url": "https://clinicaltrials.gov/policy/results-definitions#DocUploadDocDate"
+                }
+              },
+              {
+                "name": "uploadDate",
+                "piece": "LargeDocUploadDate",
+                "sourceType": "DATE",
+                "type": "DateTimeMinutes"
+              },
+              {
+                "name": "filename",
+                "piece": "LargeDocFilename",
+                "sourceType": "TEXT",
+                "type": "text"
+              },
+              {
+                "name": "size",
+                "piece": "LargeDocSize",
+                "sourceType": "FUNC FileSize(NCTId, LargeDocFilename)",
+                "type": "long"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "derivedSection",
+    "piece": "DerivedSection",
+    "title": "Derived Section",
+    "sourceType": "STRUCT",
+    "type": "DerivedSection",
+    "description": "Internally Generated",
+    "children": [
+      {
+        "name": "miscInfoModule",
+        "piece": "MiscInfoModule",
+        "sourceType": "STRUCT",
+        "type": "MiscInfoModule",
+        "children": [
+          {
+            "name": "versionHolder",
+            "piece": "VersionHolder",
+            "sourceType": "DATE",
+            "type": "NormalizedDate"
+          },
+          {
+            "name": "removedCountries",
+            "piece": "RemovedCountry",
+            "sourceType": "TEXT",
+            "type": "text[]"
+          },
+          {
+            "name": "submissionTracking",
+            "piece": "SubmissionTracking",
+            "sourceType": "STRUCT",
+            "type": "SubmissionTracking",
+            "children": [
+              {
+                "name": "estimatedResultsFirstSubmitDate",
+                "piece": "EstimatedResultsFirstSubmitDate",
+                "sourceType": "DATE",
+                "type": "NormalizedDate"
+              },
+              {
+                "name": "firstMcpInfo",
+                "piece": "FirstMCPInfo",
+                "sourceType": "STRUCT",
+                "type": "FirstMcpInfo",
+                "children": [
+                  {
+                    "name": "postDateStruct",
+                    "piece": "FirstMCPPostDateStruct",
+                    "sourceType": "STRUCT",
+                    "type": "DateStruct",
+                    "altPieceNames": [
+                      "ResultsFirstPostedQCCommentsDateStruct"
+                    ],
+                    "children": [
+                      {
+                        "name": "date",
+                        "piece": "FirstMCPPostDate",
+                        "sourceType": "DATE",
+                        "type": "NormalizedDate",
+                        "altPieceNames": [
+                          "RESULTS-FIRST-MCP-POSTED",
+                          "ResultsFirstPostedQCCommentsDate"
+                        ]
+                      },
+                      {
+                        "name": "type",
+                        "piece": "FirstMCPPostDateType",
+                        "sourceType": "TEXT",
+                        "type": "DateType",
+                        "isEnum": true,
+                        "altPieceNames": [
+                          "ResultsFirstPostedQCCommentsDateType"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "submissionInfos",
+                "piece": "SubmissionInfo",
+                "sourceType": "STRUCT",
+                "type": "SubmissionInfo[]",
+                "children": [
+                  {
+                    "name": "releaseDate",
+                    "piece": "SubmissionReleaseDate",
+                    "sourceType": "DATE",
+                    "type": "NormalizedDate"
+                  },
+                  {
+                    "name": "unreleaseDate",
+                    "piece": "SubmissionUnreleaseDate",
+                    "sourceType": "DATE",
+                    "type": "NormalizedDate"
+                  },
+                  {
+                    "name": "unreleaseDateUnknown",
+                    "piece": "SubmissionUnreleaseDateUnknown",
+                    "sourceType": "BOOLEAN",
+                    "type": "boolean"
+                  },
+                  {
+                    "name": "resetDate",
+                    "piece": "SubmissionResetDate",
+                    "sourceType": "DATE",
+                    "type": "NormalizedDate"
+                  },
+                  {
+                    "name": "mcpReleaseN",
+                    "piece": "SubmissionMCPReleaseN",
+                    "sourceType": "NUMERIC",
+                    "type": "integer"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "conditionBrowseModule",
+        "piece": "ConditionBrowseModule",
+        "sourceType": "STRUCT",
+        "type": "BrowseModule",
+        "children": [
+          {
+            "name": "meshes",
+            "piece": "ConditionMesh",
+            "sourceType": "STRUCT",
+            "type": "Mesh[]",
+            "children": [
+              {
+                "name": "id",
+                "piece": "ConditionMeshId",
+                "sourceType": "TEXT",
+                "type": "text"
+              },
+              {
+                "name": "term",
+                "piece": "ConditionMeshTerm",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              }
+            ]
+          },
+          {
+            "name": "ancestors",
+            "piece": "ConditionAncestor",
+            "sourceType": "STRUCT",
+            "type": "Mesh[]",
+            "children": [
+              {
+                "name": "id",
+                "piece": "ConditionAncestorId",
+                "sourceType": "TEXT",
+                "type": "text"
+              },
+              {
+                "name": "term",
+                "piece": "ConditionAncestorTerm",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              }
+            ]
+          },
+          {
+            "name": "browseLeaves",
+            "piece": "ConditionBrowseLeaf",
+            "sourceType": "STRUCT",
+            "type": "BrowseLeaf[]",
+            "children": [
+              {
+                "name": "id",
+                "piece": "ConditionBrowseLeafId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "CONDITION-BROWSE-LEAF-ID"
+                ]
+              },
+              {
+                "name": "name",
+                "piece": "ConditionBrowseLeafName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "asFound",
+                "piece": "ConditionBrowseLeafAsFound",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "relevance",
+                "piece": "ConditionBrowseLeafRelevance",
+                "sourceType": "TEXT",
+                "type": "BrowseLeafRelevance",
+                "isEnum": true
+              }
+            ]
+          },
+          {
+            "name": "browseBranches",
+            "piece": "ConditionBrowseBranch",
+            "sourceType": "STRUCT",
+            "type": "BrowseBranch[]",
+            "children": [
+              {
+                "name": "abbrev",
+                "piece": "ConditionBrowseBranchAbbrev",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "CONDITION-BROWSE-BRANCH-ABBREV"
+                ]
+              },
+              {
+                "name": "name",
+                "piece": "ConditionBrowseBranchName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "interventionBrowseModule",
+        "piece": "InterventionBrowseModule",
+        "sourceType": "STRUCT",
+        "type": "BrowseModule",
+        "children": [
+          {
+            "name": "meshes",
+            "piece": "InterventionMesh",
+            "sourceType": "STRUCT",
+            "type": "Mesh[]",
+            "children": [
+              {
+                "name": "id",
+                "piece": "InterventionMeshId",
+                "sourceType": "TEXT",
+                "type": "text"
+              },
+              {
+                "name": "term",
+                "piece": "InterventionMeshTerm",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              }
+            ]
+          },
+          {
+            "name": "ancestors",
+            "piece": "InterventionAncestor",
+            "sourceType": "STRUCT",
+            "type": "Mesh[]",
+            "children": [
+              {
+                "name": "id",
+                "piece": "InterventionAncestorId",
+                "sourceType": "TEXT",
+                "type": "text"
+              },
+              {
+                "name": "term",
+                "piece": "InterventionAncestorTerm",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              }
+            ]
+          },
+          {
+            "name": "browseLeaves",
+            "piece": "InterventionBrowseLeaf",
+            "sourceType": "STRUCT",
+            "type": "BrowseLeaf[]",
+            "children": [
+              {
+                "name": "id",
+                "piece": "InterventionBrowseLeafId",
+                "sourceType": "TEXT",
+                "type": "text",
+                "altPieceNames": [
+                  "INTERVENTION-BROWSE-LEAF-ID"
+                ]
+              },
+              {
+                "name": "name",
+                "piece": "InterventionBrowseLeafName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "asFound",
+                "piece": "InterventionBrowseLeafAsFound",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              },
+              {
+                "name": "relevance",
+                "piece": "InterventionBrowseLeafRelevance",
+                "sourceType": "TEXT",
+                "type": "BrowseLeafRelevance",
+                "isEnum": true
+              }
+            ]
+          },
+          {
+            "name": "browseBranches",
+            "piece": "InterventionBrowseBranch",
+            "sourceType": "STRUCT",
+            "type": "BrowseBranch[]",
+            "children": [
+              {
+                "name": "abbrev",
+                "piece": "InterventionBrowseBranchAbbrev",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true,
+                "altPieceNames": [
+                  "INTERVENTION-BROWSE-BRANCH-ABBREV"
+                ]
+              },
+              {
+                "name": "name",
+                "piece": "InterventionBrowseBranchName",
+                "sourceType": "TEXT",
+                "type": "text",
+                "synonyms": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "hasResults",
+    "piece": "HasResults",
+    "title": "Has Results",
+    "sourceType": "FUNC Present(ResultsFirstSubmitDate)",
+    "type": "boolean",
+    "description": "Flag that indicates if a study has posted results on public site"
+  }
+]
