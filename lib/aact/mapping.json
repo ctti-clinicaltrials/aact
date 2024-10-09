@@ -1,0 +1,2729 @@
+[
+  {
+    "table": "outcomes",
+    "root": [
+      "resultsSection",
+      "outcomeMeasuresModule",
+      "outcomeMeasures"
+    ],
+    "columns": [
+      {
+        "name": "outcome_type",
+        "value": "type"
+      },
+      {
+        "name": "title",
+        "value": "title"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      },
+      {
+        "name": "time_frame",
+        "value": "timeFrame"
+      },
+      {
+        "name": "population",
+        "value": "populationDescription"
+      },
+      {
+        "name": "anticipated_posting_date",
+        "value": "anticipatedPostingDate",
+        "convert_to": "date_first_of_month"
+      },
+      {
+        "name": "anticipated_posting_month_year",
+        "value": "anticipatedPostingDate"
+      },
+      {
+        "name": "units",
+        "value": "unitOfMeasure"
+      },
+      {
+        "name": "units_analyzed",
+        "value": "typeUnitsAnalyzed"
+      },
+      {
+        "name": "dispersion_type",
+        "value": "dispersionType"
+      },
+      {
+        "name": "param_type",
+        "value": "paramType"
+      }
+    ],
+    "children": [
+      {
+        "table": "result_groups",
+        "root": [
+          "groups"
+        ],
+        "columns": [
+          {
+            "name": "ctgov_group_code",
+            "value": "id"
+          },
+          {
+            "name": "result_type",
+            "value": "Outcome"
+          },
+          {
+            "name": "title",
+            "value": "title"
+          },
+          {
+            "name": "description",
+            "value": "description"
+          }
+        ]
+      },
+      {
+        "table": "outcome_measurements",
+        "root": null,
+        "flatten": [
+          "classes",
+          "categories",
+          "measurements"
+        ],
+        "columns": [
+          {
+            "name": "ctgov_group_code",
+            "value": "groupId"
+          },
+          {
+            "name": "classification",
+            "value": [
+              "$parent",
+              "$parent",
+              "title"
+            ]
+          },
+          {
+            "name": "category",
+            "value": [
+              "$parent",
+              "title"
+            ]
+          },
+          {
+            "name": "title",
+            "value": [
+              "$parent",
+              "$parent",
+              "$parent",
+              "title"
+            ]
+          },
+          {
+            "name": "description",
+            "value": [
+              "$parent",
+              "$parent",
+              "$parent",
+              "description"
+            ]
+          },
+          {
+            "name": "units",
+            "value": [
+              "$parent",
+              "$parent",
+              "$parent",
+              "unitOfMeasure"
+            ]
+          },
+          {
+            "name": "param_type",
+            "value": [
+              "$parent",
+              "$parent",
+              "$parent",
+              "paramType"
+            ]
+          },
+          {
+            "name": "dispersion_type",
+            "value": [
+              "$parent",
+              "$parent",
+              "$parent",
+              "dispersionType"
+            ]
+          },
+          {
+            "name": "param_value",
+            "value": "value"
+          },
+          {
+            "name": "param_value_num",
+            "value": "value",
+            "convert_to": "float"
+          },
+          {
+            "name": "dispersion_value",
+            "value": "spread"
+          },
+          {
+            "name": "dispersion_value_num",
+            "value": "spread",
+            "convert_to": "float"
+          },
+          {
+            "name": "dispersion_lower_limit_raw",
+            "value": "lowerLimit"
+          },
+          {
+            "name": "dispersion_lower_limit",
+            "value": "lowerLimit",
+            "convert_to": "float"
+          },
+          {
+            "name": "dispersion_upper_limit_raw",
+            "value": "upperLimit"
+          },
+          {
+            "name": "dispersion_upper_limit",
+            "value": "upperLimit",
+            "convert_to": "float"
+          },
+          {
+            "name": "explanation_of_na",
+            "value": "comment"
+          }
+        ]
+      },
+      {
+        "table": "outcome_counts",
+        "root": [
+          "denoms"
+        ],
+        "flatten": [
+          "counts"
+        ],
+        "columns": [
+          {
+            "name": "ctgov_group_code",
+            "value": [
+              "groupId"
+            ]
+          },
+          {
+            "name": "scope",
+            "value": "Measure"
+          },
+          {
+            "name": "units",
+            "value": [
+              "$parent",
+              "units"
+            ]
+          },
+          {
+            "name": "count",
+            "value": [
+              "value"
+            ]
+          }
+        ]
+      },
+      {
+        "table": "outcome_analyses",
+        "root": [
+          "analyses"
+        ],
+        "columns": [
+          {
+            "name": "outcome_id",
+            "value": null
+          },
+          {
+            "name": "non_inferiority_type",
+            "value": "nonInferiorityType"
+          },
+          {
+            "name": "non_inferiority_description",
+            "value": "nonInferiorityComment"
+          },
+          {
+            "name": "param_type",
+            "value": "paramType"
+          },
+          {
+            "name": "param_value",
+            "value": "paramValue"
+          },
+          {
+            "name": "dispersion_type",
+            "value": "dispersionType"
+          },
+          {
+            "name": "dispersion_value",
+            "value": "dispersionValue"
+          },
+          {
+            "name": "p_value_modifier",
+            "value": "pValue",
+            "convert_to": {}
+          },
+          {
+            "name": "p_value",
+            "value": "pValue",
+            "convert_to": {}
+          },
+          {
+            "name": "p_value_raw",
+            "value": "pValue"
+          },
+          {
+            "name": "p_value_description",
+            "value": "pValueComment"
+          },
+          {
+            "name": "ci_n_sides",
+            "value": "ciNumSides"
+          },
+          {
+            "name": "ci_percent",
+            "value": "ciPctValue",
+            "convert_to": "float"
+          },
+          {
+            "name": "ci_lower_limit",
+            "value": "ciLowerLimit",
+            "convert_to": "float"
+          },
+          {
+            "name": "ci_upper_limit",
+            "value": "ciUpperLimit",
+            "convert_to": "float"
+          },
+          {
+            "name": "ci_lower_limit_raw",
+            "value": "ciLowerLimit"
+          },
+          {
+            "name": "ci_upper_limit_raw",
+            "value": "ciUpperLimit"
+          },
+          {
+            "name": "ci_upper_limit_na_comment",
+            "value": "ciUpperLimitComment"
+          },
+          {
+            "name": "method",
+            "value": "statisticalMethod"
+          },
+          {
+            "name": "method_description",
+            "value": "statisticalComment"
+          },
+          {
+            "name": "estimate_description",
+            "value": "estimateComment"
+          },
+          {
+            "name": "groups_description",
+            "value": "groupDescription"
+          },
+          {
+            "name": "other_analysis_description",
+            "value": "otherAnalysisDescription"
+          }
+        ],
+        "children": [
+          {
+            "table": "outcome_analysis_groups",
+            "root": [
+              "groupIds"
+            ],
+            "columns": [
+              {
+                "name": "ctgov_group_code",
+                "value": null
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "id": 30
+  },
+  {
+    "table": "result_groups",
+    "root": [
+      "resultsSection",
+      "adverseEventsModule",
+      "eventGroups"
+    ],
+    "index": [
+      "ctgov_group_code",
+      "result_type"
+    ],
+    "requires": "outcomes",
+    "unique": true,
+    "columns": [
+      {
+        "name": "ctgov_group_code",
+        "value": "id"
+      },
+      {
+        "name": "result_type",
+        "value": "Reported Event"
+      },
+      {
+        "name": "title",
+        "value": "title"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      }
+    ],
+    "id": 45
+  },
+  {
+    "table": "result_groups",
+    "root": [
+      "resultsSection",
+      "participantFlowModule",
+      "groups"
+    ],
+    "index": [
+      "ctgov_group_code",
+      "result_type"
+    ],
+    "unique": true,
+    "columns": [
+      {
+        "name": "ctgov_group_code",
+        "value": "id"
+      },
+      {
+        "name": "result_type",
+        "value": "Participant Flow"
+      },
+      {
+        "name": "title",
+        "value": "title"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      }
+    ],
+    "id": 44
+  },
+  {
+    "table": "result_groups",
+    "root": [
+      "resultsSection",
+      "baselineCharacteristicsModule",
+      "groups"
+    ],
+    "index": [
+      "ctgov_group_code",
+      "result_type"
+    ],
+    "unique": true,
+    "columns": [
+      {
+        "name": "ctgov_group_code",
+        "value": "id"
+      },
+      {
+        "name": "result_type",
+        "value": "Baseline"
+      },
+      {
+        "name": "title",
+        "value": "title"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      }
+    ],
+    "id": 43
+  },
+  {
+    "table": "design_groups",
+    "root": [
+      "protocolSection",
+      "armsInterventionsModule",
+      "armGroups"
+    ],
+    "index": [
+      "title"
+    ],
+    "columns": [
+      {
+        "name": "group_type",
+        "value": "type"
+      },
+      {
+        "name": "title",
+        "value": "label"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      }
+    ],
+    "id": 12
+  },
+  {
+    "table": "baseline_counts",
+    "root": [
+      "resultsSection",
+      "baselineCharacteristicsModule"
+    ],
+    "flatten": [
+      "denoms",
+      "counts"
+    ],
+    "requires": "result_groups",
+    "columns": [
+      {
+        "name": "result_group_id",
+        "value": {
+          "table": "result_groups",
+          "index": [
+            "groupId",
+            "Baseline"
+          ]
+        }
+      },
+      {
+        "name": "ctgov_group_code",
+        "value": "groupId"
+      },
+      {
+        "name": "units",
+        "value": [
+          "$parent",
+          "units"
+        ]
+      },
+      {
+        "name": "scope",
+        "value": "overall"
+      },
+      {
+        "name": "count",
+        "value": "value"
+      }
+    ],
+    "id": 1
+  },
+  {
+    "table": "study_references",
+    "root": [
+      "protocolSection",
+      "referencesModule",
+      "references"
+    ],
+    "columns": [
+      {
+        "name": "pmid",
+        "value": "pmid"
+      },
+      {
+        "name": "reference_type",
+        "value": "type"
+      },
+      {
+        "name": "citation",
+        "value": "citation"
+      }
+    ],
+    "children": [
+      {
+        "table": "retractions",
+        "root": [
+          "retractions"
+        ],
+        "columns": [
+          {
+            "name": "pmid",
+            "value": "pmid"
+          },
+          {
+            "name": "source",
+            "value": "source"
+          }
+        ]
+      }
+    ],
+    "id": 49
+  },
+  {
+    "table": "studies",
+    "root": null,
+    "columns": [
+      {
+        "name": "study_first_submitted_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "studyFirstSubmitDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "study_first_submitted_qc_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "studyFirstSubmitQcDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "study_first_posted_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "studyFirstPostDateStruct",
+          "date"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "study_first_posted_date_type",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "studyFirstPostDateStruct",
+          "type"
+        ]
+      },
+      {
+        "name": "results_first_submitted_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "resultsFirstSubmitDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "results_first_submitted_qc_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "resultsFirstSubmitQcDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "results_first_posted_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "resultsFirstPostDateStruct",
+          "date"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "results_first_posted_date_type",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "resultsFirstPostDateStruct",
+          "type"
+        ]
+      },
+      {
+        "name": "disposition_first_submitted_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "dispFirstSubmitDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "disposition_first_submitted_qc_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "dispFirstSubmitQcDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "disposition_first_posted_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "dispFirstPostDateStruct",
+          "date"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "disposition_first_posted_date_type",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "dispFirstPostDateStruct",
+          "type"
+        ]
+      },
+      {
+        "name": "last_update_submitted_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "lastUpdateSubmitDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "last_update_submitted_qc_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "lastUpdateSubmitDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "last_update_posted_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "lastUpdatePostDateStruct",
+          "date"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "last_update_posted_date_type",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "lastUpdatePostDateStruct",
+          "type"
+        ]
+      },
+      {
+        "name": "start_month_year",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "startDateStruct",
+          "date"
+        ]
+      },
+      {
+        "name": "start_date_type",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "startDateStruct",
+          "type"
+        ]
+      },
+      {
+        "name": "start_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "startDateStruct",
+          "date"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "verification_month_year",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "statusVerifiedDate"
+        ]
+      },
+      {
+        "name": "verification_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "statusVerifiedDate"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "completion_month_year",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "completionDateStruct",
+          "date"
+        ]
+      },
+      {
+        "name": "completion_date_type",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "completionDateStruct",
+          "type"
+        ]
+      },
+      {
+        "name": "completion_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "completionDateStruct",
+          "date"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "primary_completion_month_year",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "primaryCompletionDateStruct",
+          "date"
+        ]
+      },
+      {
+        "name": "primary_completion_date_type",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "primaryCompletionDateStruct",
+          "type"
+        ]
+      },
+      {
+        "name": "primary_completion_date",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "primaryCompletionDateStruct",
+          "date"
+        ],
+        "convert_to": "date"
+      },
+      {
+        "name": "baseline_population",
+        "value": [
+          "resultsSection",
+          "baselineCharacteristicsModule",
+          "populationDescription"
+        ]
+      },
+      {
+        "name": "brief_title",
+        "value": [
+          "protocolSection",
+          "identificationModule",
+          "briefTitle"
+        ]
+      },
+      {
+        "name": "official_title",
+        "value": [
+          "protocolSection",
+          "identificationModule",
+          "officialTitle"
+        ]
+      },
+      {
+        "name": "acronym",
+        "value": [
+          "protocolSection",
+          "identificationModule",
+          "acronym"
+        ]
+      },
+      {
+        "name": "overall_status",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "overallStatus"
+        ]
+      },
+      {
+        "name": "last_known_status",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "lastKnownStatus"
+        ]
+      },
+      {
+        "name": "why_stopped",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "whyStopped"
+        ]
+      },
+      {
+        "name": "delayed_posting",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "delayedPosting"
+        ]
+      },
+      {
+        "name": "phase",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "phases"
+        ],
+        "convert_to": {}
+      },
+      {
+        "name": "enrollment",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "enrollmentInfo",
+          "count"
+        ]
+      },
+      {
+        "name": "enrollment_type",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "enrollmentInfo",
+          "type"
+        ]
+      },
+      {
+        "name": "source",
+        "value": [
+          "protocolSection",
+          "identificationModule",
+          "organization",
+          "fullName"
+        ]
+      },
+      {
+        "name": "source_class",
+        "value": [
+          "protocolSection",
+          "identificationModule",
+          "organization",
+          "class"
+        ]
+      },
+      {
+        "name": "limitations_and_caveats",
+        "value": [
+          "resultsSection",
+          "moreInfoModule",
+          "limitationsAndCaveats",
+          "description"
+        ]
+      },
+      {
+        "name": "number_of_arms",
+        "value": "protocolSection",
+        "convert_to": {}
+      },
+      {
+        "name": "number_of_groups",
+        "value": "protocolSection",
+        "convert_to": {}
+      },
+      {
+        "name": "target_duration",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "targetDuration"
+        ]
+      },
+      {
+        "name": "study_type",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "studyType"
+        ]
+      },
+      {
+        "name": "patient_registry",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "patientRegistry"
+        ]
+      },
+      {
+        "name": "has_expanded_access",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "expandedAccessInfo",
+          "hasExpandedAccess"
+        ]
+      },
+      {
+        "name": "expanded_access_nctid",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "expandedAccessInfo",
+          "nctId"
+        ]
+      },
+      {
+        "name": "expanded_access_status_for_nctid",
+        "value": [
+          "protocolSection",
+          "statusModule",
+          "expandedAccessInfo",
+          "statusForNctId"
+        ]
+      },
+      {
+        "name": "expanded_access_type_individual",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "expandedAccessTypes",
+          "individual"
+        ]
+      },
+      {
+        "name": "expanded_access_type_intermediate",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "expandedAccessTypes",
+          "intermediate"
+        ]
+      },
+      {
+        "name": "expanded_access_type_treatment",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "expandedAccessTypes",
+          "treatment"
+        ]
+      },
+      {
+        "name": "has_dmc",
+        "value": [
+          "protocolSection",
+          "oversightModule",
+          "oversightHasDmc"
+        ]
+      },
+      {
+        "name": "is_fda_regulated_drug",
+        "value": [
+          "protocolSection",
+          "oversightModule",
+          "isFdaRegulatedDrug"
+        ]
+      },
+      {
+        "name": "is_fda_regulated_device",
+        "value": [
+          "protocolSection",
+          "oversightModule",
+          "isFdaRegulatedDevice"
+        ]
+      },
+      {
+        "name": "is_unapproved_device",
+        "value": [
+          "protocolSection",
+          "oversightModule",
+          "isUnapprovedDevice"
+        ]
+      },
+      {
+        "name": "is_ppsd",
+        "value": [
+          "protocolSection",
+          "oversightModule",
+          "isPpsd"
+        ]
+      },
+      {
+        "name": "is_us_export",
+        "value": [
+          "protocolSection",
+          "oversightModule",
+          "isUsExport"
+        ]
+      },
+      {
+        "name": "fdaaa801_violation",
+        "value": [
+          "protocolSection",
+          "oversightModule",
+          "fdaaa801Violation"
+        ]
+      },
+      {
+        "name": "biospec_retention",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "bioSpec",
+          "retention"
+        ]
+      },
+      {
+        "name": "biospec_description",
+        "value": [
+          "protocolSection",
+          "designModule",
+          "bioSpec",
+          "description"
+        ]
+      },
+      {
+        "name": "plan_to_share_ipd",
+        "value": [
+          "protocolSection",
+          "ipdSharingStatementModule",
+          "ipdSharing"
+        ]
+      },
+      {
+        "name": "plan_to_share_ipd_description",
+        "value": [
+          "protocolSection",
+          "ipdSharingStatementModule",
+          "description"
+        ]
+      },
+      {
+        "name": "ipd_time_frame",
+        "value": [
+          "protocolSection",
+          "ipdSharingStatementModule",
+          "timeFrame"
+        ]
+      },
+      {
+        "name": "ipd_access_criteria",
+        "value": [
+          "protocolSection",
+          "ipdSharingStatementModule",
+          "accessCriteria"
+        ]
+      },
+      {
+        "name": "ipd_url",
+        "value": [
+          "protocolSection",
+          "ipdSharingStatementModule",
+          "url"
+        ]
+      },
+      {
+        "name": "baseline_type_units_analyzed",
+        "value": [
+          "resultsSection",
+          "baselineCharacteristicsModule",
+          "typeUnitsAnalyzed"
+        ]
+      }
+    ],
+    "id": 48
+  },
+  {
+    "table": "sponsors",
+    "root": [
+      "protocolSection",
+      "sponsorCollaboratorsModule",
+      "collaborators"
+    ],
+    "columns": [
+      {
+        "name": "agency_class",
+        "value": "class"
+      },
+      {
+        "name": "lead_or_collaborator",
+        "value": "collaborator"
+      },
+      {
+        "name": "name",
+        "value": "name"
+      }
+    ],
+    "id": 47
+  },
+  {
+    "table": "sponsors",
+    "root": [
+      "protocolSection",
+      "sponsorCollaboratorsModule",
+      "leadSponsor"
+    ],
+    "columns": [
+      {
+        "name": "agency_class",
+        "value": "class"
+      },
+      {
+        "name": "lead_or_collaborator",
+        "value": "lead"
+      },
+      {
+        "name": "name",
+        "value": "name"
+      }
+    ],
+    "id": 46
+  },
+  {
+    "table": "result_contacts",
+    "root": [
+      "resultsSection",
+      "moreInfoModule",
+      "pointOfContact"
+    ],
+    "columns": [
+      {
+        "name": "extension",
+        "value": "phoneExt"
+      },
+      {
+        "name": "phone",
+        "value": "phone"
+      },
+      {
+        "name": "name",
+        "value": "title"
+      },
+      {
+        "name": "organization",
+        "value": "organization"
+      },
+      {
+        "name": "email",
+        "value": "email"
+      }
+    ],
+    "id": 42
+  },
+  {
+    "table": "result_agreements",
+    "root": [
+      "resultsSection",
+      "moreInfoModule",
+      "certainAgreement"
+    ],
+    "columns": [
+      {
+        "name": "pi_employee",
+        "value": "piSponsorEmployee"
+      },
+      {
+        "name": "restriction_type",
+        "value": "restrictionType"
+      },
+      {
+        "name": "restrictive_agreement",
+        "value": "restrictiveAgreement"
+      },
+      {
+        "name": "other_details",
+        "value": "otherDetails"
+      }
+    ],
+    "id": 41
+  },
+  {
+    "table": "responsible_parties",
+    "root": [
+      "protocolSection",
+      "sponsorCollaboratorsModule",
+      "responsibleParty"
+    ],
+    "columns": [
+      {
+        "name": "responsible_party_type",
+        "value": "type"
+      },
+      {
+        "name": "name",
+        "value": "investigatorFullName"
+      },
+      {
+        "name": "title",
+        "value": "investigatorTitle"
+      },
+      {
+        "name": "affiliation",
+        "value": "investigatorAffiliation"
+      },
+      {
+        "name": "old_name_title",
+        "value": "oldNameTitle"
+      },
+      {
+        "name": "organization",
+        "value": "oldOrganization"
+      }
+    ],
+    "id": 40
+  },
+  {
+    "table": "reported_events",
+    "root": [
+      "resultsSection",
+      "adverseEventsModule"
+    ],
+    "flatten": [
+      "otherEvents",
+      "stats"
+    ],
+    "requires": "result_groups",
+    "columns": [
+      {
+        "name": "result_group_id",
+        "value": {
+          "table": "result_groups",
+          "index": [
+            "groupId",
+            "Reported Event"
+          ]
+        }
+      },
+      {
+        "name": "event_type",
+        "value": "other"
+      },
+      {
+        "name": "time_frame",
+        "value": [
+          "$parent",
+          "$parent",
+          "timeFrame"
+        ]
+      },
+      {
+        "name": "frequency_threshold",
+        "value": [
+          "$parent",
+          "$parent",
+          "frequencyThreshold"
+        ]
+      },
+      {
+        "name": "description",
+        "value": [
+          "$parent",
+          "$parent",
+          "description"
+        ]
+      },
+      {
+        "name": "adverse_event_term",
+        "value": [
+          "$parent",
+          "term"
+        ]
+      },
+      {
+        "name": "organ_system",
+        "value": [
+          "$parent",
+          "organSystem"
+        ]
+      },
+      {
+        "name": "vocab",
+        "value": [
+          "$parent",
+          "sourceVocabulary"
+        ]
+      },
+      {
+        "name": "assessment",
+        "value": [
+          "$parent",
+          "assessmentType"
+        ]
+      },
+      {
+        "name": "ctgov_group_code",
+        "value": "groupId"
+      },
+      {
+        "name": "event_count",
+        "value": "numEvents"
+      },
+      {
+        "name": "subjects_affected",
+        "value": "numAffected"
+      },
+      {
+        "name": "subjects_at_risk",
+        "value": "numAtRisk"
+      }
+    ],
+    "id": 39
+  },
+  {
+    "table": "reported_events",
+    "root": [
+      "resultsSection",
+      "adverseEventsModule"
+    ],
+    "flatten": [
+      "seriousEvents",
+      "stats"
+    ],
+    "requires": "result_groups",
+    "columns": [
+      {
+        "name": "result_group_id",
+        "value": {
+          "table": "result_groups",
+          "index": [
+            "groupId",
+            "Reported Event"
+          ]
+        }
+      },
+      {
+        "name": "event_type",
+        "value": "serious"
+      },
+      {
+        "name": "time_frame",
+        "value": [
+          "$parent",
+          "$parent",
+          "timeFrame"
+        ]
+      },
+      {
+        "name": "frequency_threshold",
+        "value": [
+          "$parent",
+          "$parent",
+          "frequencyThreshold"
+        ]
+      },
+      {
+        "name": "description",
+        "value": [
+          "$parent",
+          "$parent",
+          "description"
+        ]
+      },
+      {
+        "name": "adverse_event_term",
+        "value": [
+          "$parent",
+          "term"
+        ]
+      },
+      {
+        "name": "organ_system",
+        "value": [
+          "$parent",
+          "organSystem"
+        ]
+      },
+      {
+        "name": "vocab",
+        "value": [
+          "$parent",
+          "sourceVocabulary"
+        ]
+      },
+      {
+        "name": "assessment",
+        "value": [
+          "$parent",
+          "assessmentType"
+        ]
+      },
+      {
+        "name": "ctgov_group_code",
+        "value": "groupId"
+      },
+      {
+        "name": "event_count",
+        "value": "numEvents"
+      },
+      {
+        "name": "subjects_affected",
+        "value": "numAffected"
+      },
+      {
+        "name": "subjects_at_risk",
+        "value": "numAtRisk"
+      }
+    ],
+    "id": 38
+  },
+  {
+    "table": "reported_event_totals",
+    "root": [
+      "resultsSection",
+      "adverseEventsModule",
+      "eventGroups"
+    ],
+    "columns": [
+      {
+        "name": "nct_id",
+        "value": "nct_id"
+      },
+      {
+        "name": "ctgov_group_code",
+        "value": "id"
+      },
+      {
+        "name": "event_type",
+        "value": "deaths"
+      },
+      {
+        "name": "classification",
+        "value": "Total, all-cause mortality"
+      },
+      {
+        "name": "subjects_affected",
+        "value": "deathsNumAffected"
+      },
+      {
+        "name": "subjects_at_risk",
+        "value": "deathsNumAtRisk"
+      }
+    ],
+    "id": 37
+  },
+  {
+    "table": "reported_event_totals",
+    "root": [
+      "resultsSection",
+      "adverseEventsModule",
+      "eventGroups"
+    ],
+    "columns": [
+      {
+        "name": "nct_id",
+        "value": "nct_id"
+      },
+      {
+        "name": "ctgov_group_code",
+        "value": "id"
+      },
+      {
+        "name": "event_type",
+        "value": "other"
+      },
+      {
+        "name": "classification",
+        "value": "Total, other adverse events"
+      },
+      {
+        "name": "subjects_affected",
+        "value": "otherNumAffected"
+      },
+      {
+        "name": "subjects_at_risk",
+        "value": "otherNumAtRisk"
+      }
+    ],
+    "id": 36
+  },
+  {
+    "table": "reported_event_totals",
+    "root": [
+      "resultsSection",
+      "adverseEventsModule",
+      "eventGroups"
+    ],
+    "columns": [
+      {
+        "name": "ctgov_group_code",
+        "value": "id"
+      },
+      {
+        "name": "event_type",
+        "value": "serious"
+      },
+      {
+        "name": "classification",
+        "value": "Total, serious adverse events"
+      },
+      {
+        "name": "subjects_affected",
+        "value": "seriousNumAffected"
+      },
+      {
+        "name": "subjects_at_risk",
+        "value": "seriousNumAtRisk"
+      }
+    ],
+    "id": 35
+  },
+  {
+    "table": "provided_documents",
+    "root": [
+      "documentSection",
+      "largeDocumentModule",
+      "largeDocs"
+    ],
+    "columns": [
+      {
+        "name": "document_type",
+        "value": "label"
+      },
+      {
+        "name": "has_protocol",
+        "value": "hasProtocol"
+      },
+      {
+        "name": "has_icf",
+        "value": "hasIcf"
+      },
+      {
+        "name": "has_sap",
+        "value": "hasSap"
+      },
+      {
+        "name": "document_date",
+        "value": "date"
+      },
+      {
+        "name": "url",
+        "value": "filename",
+        "convert_to": {}
+      }
+    ],
+    "id": 34
+  },
+  {
+    "table": "pending_results",
+    "root": [
+      "annotationSection",
+      "annotationModule",
+      "unpostedAnnotation",
+      "unpostedEvents"
+    ],
+    "columns": [
+      {
+        "name": "event",
+        "value": "type"
+      },
+      {
+        "name": "event_date_description",
+        "value": "date"
+      },
+      {
+        "name": "event_date",
+        "value": "date",
+        "convert_to": "date"
+      }
+    ],
+    "id": 33
+  },
+  {
+    "table": "participant_flows",
+    "root": [
+      "resultsSection",
+      "participantFlowModule"
+    ],
+    "columns": [
+      {
+        "name": "recruitment_details",
+        "value": "recruitmentDetails"
+      },
+      {
+        "name": "pre_assignment_details",
+        "value": "preAssignmentDetails"
+      },
+      {
+        "name": "units_analyzed",
+        "value": "typeUnitsAnalyzed"
+      }
+    ],
+    "id": 32
+  },
+  {
+    "table": "overall_officials",
+    "root": [
+      "protocolSection",
+      "contactsLocationsModule",
+      "overallOfficials"
+    ],
+    "columns": [
+      {
+        "name": "name",
+        "value": "name"
+      },
+      {
+        "name": "affiliation",
+        "value": "affiliation"
+      },
+      {
+        "name": "role",
+        "value": "role"
+      }
+    ],
+    "id": 31
+  },
+  {
+    "table": "milestones",
+    "root": [
+      "resultsSection",
+      "participantFlowModule",
+      "periods"
+    ],
+    "flatten": [
+      "milestones",
+      "achievements"
+    ],
+    "requires": "result_groups",
+    "columns": [
+      {
+        "name": "result_group_id",
+        "value": {
+          "table": "result_groups",
+          "index": [
+            "groupId",
+            "Participant Flow"
+          ]
+        }
+      },
+      {
+        "name": "ctgov_group_code",
+        "value": "groupId"
+      },
+      {
+        "name": "title",
+        "value": [
+          "$parent",
+          "type"
+        ]
+      },
+      {
+        "name": "period",
+        "value": [
+          "$parent",
+          "$parent",
+          "title"
+        ]
+      },
+      {
+        "name": "description",
+        "value": "description"
+      },
+      {
+        "name": "count",
+        "value": "numSubjects"
+      },
+      {
+        "name": "milestone_description",
+        "value": [
+          "$parent",
+          "comment"
+        ]
+      },
+      {
+        "name": "count_units",
+        "value": "numUnits"
+      }
+    ],
+    "id": 29
+  },
+  {
+    "table": "links",
+    "root": [
+      "protocolSection",
+      "referencesModule",
+      "seeAlsoLinks"
+    ],
+    "columns": [
+      {
+        "name": "url",
+        "value": "url"
+      },
+      {
+        "name": "description",
+        "value": "label"
+      }
+    ],
+    "id": 28
+  },
+  {
+    "table": "keywords",
+    "root": [
+      "protocolSection",
+      "conditionsModule",
+      "keywords"
+    ],
+    "columns": [
+      {
+        "name": "name",
+        "value": null
+      },
+      {
+        "name": "downcase_name",
+        "value": null,
+        "convert_to": "downcase"
+      }
+    ],
+    "id": 27
+  },
+  {
+    "table": "ipd_information_types",
+    "root": [
+      "protocolSection",
+      "ipdSharingStatementModule",
+      "infoTypes"
+    ],
+    "columns": [
+      {
+        "name": "name",
+        "value": null
+      }
+    ],
+    "id": 26
+  },
+  {
+    "table": "interventions",
+    "root": [
+      "protocolSection",
+      "armsInterventionsModule",
+      "interventions"
+    ],
+    "requires": [
+      "design_groups"
+    ],
+    "columns": [
+      {
+        "name": "intervention_type",
+        "value": "type"
+      },
+      {
+        "name": "name",
+        "value": "name"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      }
+    ],
+    "children": [
+      {
+        "table": "intervention_other_names",
+        "root": [
+          "otherNames"
+        ],
+        "columns": [
+          {
+            "name": "name",
+            "value": null
+          }
+        ]
+      },
+      {
+        "table": "design_group_interventions",
+        "root": [
+          "armGroupLabels"
+        ],
+        "columns": [
+          {
+            "name": "design_group_id",
+            "value": {
+              "table": "design_groups",
+              "index": [
+                null
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "id": 25
+  },
+  {
+    "table": "id_information",
+    "root": [
+      "protocolSection",
+      "identificationModule",
+      "secondaryIdInfos"
+    ],
+    "columns": [
+      {
+        "name": "id_source",
+        "value": "secondary_id"
+      },
+      {
+        "name": "id_value",
+        "value": "id"
+      },
+      {
+        "name": "id_type",
+        "value": "type"
+      },
+      {
+        "name": "id_type_description",
+        "value": "domain"
+      },
+      {
+        "name": "id_link",
+        "value": "link"
+      }
+    ],
+    "id": 24
+  },
+  {
+    "table": "id_information",
+    "root": [
+      "protocolSection",
+      "identificationModule",
+      "orgStudyIdInfo"
+    ],
+    "columns": [
+      {
+        "name": "id_source",
+        "value": "org_study_id"
+      },
+      {
+        "name": "id_type",
+        "value": "type"
+      },
+      {
+        "name": "id_type_description",
+        "value": "domain"
+      },
+      {
+        "name": "id_link",
+        "value": "link"
+      },
+      {
+        "name": "id_value",
+        "value": "id"
+      }
+    ],
+    "id": 23
+  },
+  {
+    "table": "id_information",
+    "root": [
+      "protocolSection",
+      "identificationModule",
+      "nctIdAliases"
+    ],
+    "columns": [
+      {
+        "name": "id_source",
+        "value": "nct_alias"
+      },
+      {
+        "name": "id_value",
+        "value": null
+      }
+    ],
+    "id": 22
+  },
+  {
+    "table": "facilities",
+    "root": [
+      "protocolSection",
+      "contactsLocationsModule",
+      "locations"
+    ],
+    "columns": [
+      {
+        "name": "status",
+        "value": "status"
+      },
+      {
+        "name": "name",
+        "value": "facility"
+      },
+      {
+        "name": "city",
+        "value": "city"
+      },
+      {
+        "name": "state",
+        "value": "state"
+      },
+      {
+        "name": "zip",
+        "value": "zip"
+      },
+      {
+        "name": "country",
+        "value": "country"
+      },
+      {
+        "name": "latitude",
+        "value": [
+          "geoPoint",
+          "lat"
+        ]
+      },
+      {
+        "name": "longitude",
+        "value": [
+          "geoPoint",
+          "lon"
+        ]
+      }
+    ],
+    "children": [
+      {
+        "table": "facility_investigators",
+        "root": [
+          "contacts"
+        ],
+        "filter": {},
+        "columns": [
+          {
+            "name": "role",
+            "value": "role"
+          },
+          {
+            "name": "name",
+            "value": "name"
+          }
+        ]
+      },
+      {
+        "table": "facility_contacts",
+        "root": [
+          "contacts"
+        ],
+        "filter": {},
+        "columns": [
+          {
+            "name": "contact_type",
+            "value": {}
+          },
+          {
+            "name": "name",
+            "value": "name"
+          },
+          {
+            "name": "email",
+            "value": "email"
+          },
+          {
+            "name": "phone",
+            "value": "phone"
+          },
+          {
+            "name": "phone_extension",
+            "value": "phoneExt"
+          }
+        ]
+      }
+    ],
+    "id": 21
+  },
+  {
+    "table": "eligibilities",
+    "root": [
+      "protocolSection",
+      "eligibilityModule"
+    ],
+    "columns": [
+      {
+        "name": "sampling_method",
+        "value": "samplingMethod"
+      },
+      {
+        "name": "population",
+        "value": "studyPopulation"
+      },
+      {
+        "name": "maximum_age",
+        "value": "maximumAge",
+        "default": "N/A"
+      },
+      {
+        "name": "minimum_age",
+        "value": "minimumAge",
+        "default": "N/A"
+      },
+      {
+        "name": "gender",
+        "value": "sex"
+      },
+      {
+        "name": "gender_based",
+        "value": {}
+      },
+      {
+        "name": "gender_description",
+        "value": "genderDescription"
+      },
+      {
+        "name": "healthy_volunteers",
+        "value": "healthyVolunteers"
+      },
+      {
+        "name": "criteria",
+        "value": "eligibilityCriteria"
+      },
+      {
+        "name": "adult",
+        "value": {}
+      },
+      {
+        "name": "child",
+        "value": {}
+      },
+      {
+        "name": "older_adult",
+        "value": {}
+      }
+    ],
+    "id": 20
+  },
+  {
+    "table": "drop_withdrawals",
+    "root": [
+      "resultsSection",
+      "participantFlowModule",
+      "periods"
+    ],
+    "flatten": [
+      "dropWithdraws",
+      "reasons"
+    ],
+    "requires": "result_groups",
+    "columns": [
+      {
+        "name": "result_group_id",
+        "value": {
+          "table": "result_groups",
+          "index": [
+            "groupId",
+            "Participant Flow"
+          ]
+        }
+      },
+      {
+        "name": "ctgov_group_code",
+        "value": "groupId"
+      },
+      {
+        "name": "period",
+        "value": [
+          "$parent",
+          "$parent",
+          "title"
+        ]
+      },
+      {
+        "name": "reason",
+        "value": [
+          "$parent",
+          "type"
+        ]
+      },
+      {
+        "name": "count",
+        "value": "numSubjects"
+      },
+      {
+        "name": "drop_withdraw_comment",
+        "value": [
+          "$parent",
+          "comment"
+        ]
+      },
+      {
+        "name": "reason_comment",
+        "value": "comment"
+      },
+      {
+        "name": "count_units",
+        "value": "numUnits"
+      }
+    ],
+    "id": 19
+  },
+  {
+    "table": "documents",
+    "root": [
+      "protocolSection",
+      "referencesModule",
+      "availIpds"
+    ],
+    "columns": [
+      {
+        "name": "document_id",
+        "value": "id"
+      },
+      {
+        "name": "document_type",
+        "value": "type"
+      },
+      {
+        "name": "url",
+        "value": "url"
+      },
+      {
+        "name": "comment",
+        "value": "comment"
+      }
+    ],
+    "id": 18
+  },
+  {
+    "table": "detailed_descriptions",
+    "root": [
+      "protocolSection",
+      "descriptionModule"
+    ],
+    "columns": [
+      {
+        "name": "description",
+        "value": "detailedDescription"
+      }
+    ],
+    "id": 17
+  },
+  {
+    "table": "designs",
+    "root": [
+      "protocolSection",
+      "designModule",
+      "designInfo"
+    ],
+    "columns": [
+      {
+        "name": "allocation",
+        "value": "allocation"
+      },
+      {
+        "name": "observational_model",
+        "value": "observationalModel"
+      },
+      {
+        "name": "intervention_model",
+        "value": "interventionModel"
+      },
+      {
+        "name": "intervention_model_description",
+        "value": "interventionModelDescription"
+      },
+      {
+        "name": "primary_purpose",
+        "value": "primaryPurpose"
+      },
+      {
+        "name": "time_perspective",
+        "value": "timePerspective"
+      },
+      {
+        "name": "masking",
+        "value": [
+          "maskingInfo",
+          "masking"
+        ]
+      },
+      {
+        "name": "masking_description",
+        "value": [
+          "maskingInfo",
+          "maskingDescription"
+        ]
+      },
+      {
+        "name": "subject_masked",
+        "value": [
+          "maskingInfo",
+          "whoMasked"
+        ],
+        "convert_to": {}
+      },
+      {
+        "name": "caregiver_masked",
+        "value": [
+          "maskingInfo",
+          "whoMasked"
+        ],
+        "convert_to": {}
+      },
+      {
+        "name": "investigator_masked",
+        "value": [
+          "maskingInfo",
+          "whoMasked"
+        ],
+        "convert_to": {}
+      },
+      {
+        "name": "outcomes_assessor_masked",
+        "value": [
+          "maskingInfo",
+          "whoMasked"
+        ],
+        "convert_to": {}
+      }
+    ],
+    "id": 16
+  },
+  {
+    "table": "design_outcomes",
+    "root": [
+      "protocolSection",
+      "outcomesModule",
+      "otherOutcomes"
+    ],
+    "columns": [
+      {
+        "name": "outcome_type",
+        "value": "other"
+      },
+      {
+        "name": "measure",
+        "value": "measure"
+      },
+      {
+        "name": "time_frame",
+        "value": "timeFrame"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      }
+    ],
+    "id": 15
+  },
+  {
+    "table": "design_outcomes",
+    "root": [
+      "protocolSection",
+      "outcomesModule",
+      "secondaryOutcomes"
+    ],
+    "columns": [
+      {
+        "name": "outcome_type",
+        "value": "secondary"
+      },
+      {
+        "name": "measure",
+        "value": "measure"
+      },
+      {
+        "name": "time_frame",
+        "value": "timeFrame"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      }
+    ],
+    "id": 14
+  },
+  {
+    "table": "design_outcomes",
+    "root": [
+      "protocolSection",
+      "outcomesModule",
+      "primaryOutcomes"
+    ],
+    "columns": [
+      {
+        "name": "outcome_type",
+        "value": "primary"
+      },
+      {
+        "name": "measure",
+        "value": "measure"
+      },
+      {
+        "name": "time_frame",
+        "value": "timeFrame"
+      },
+      {
+        "name": "description",
+        "value": "description"
+      }
+    ],
+    "id": 13
+  },
+  {
+    "table": "countries",
+    "root": [
+      "derivedSection",
+      "miscInfoModule",
+      "removedCountries"
+    ],
+    "unique": true,
+    "columns": [
+      {
+        "name": "name",
+        "value": null
+      },
+      {
+        "name": "removed",
+        "value": true
+      }
+    ],
+    "id": 11
+  },
+  {
+    "table": "countries",
+    "root": [
+      "protocolSection",
+      "contactsLocationsModule",
+      "locations"
+    ],
+    "unique": true,
+    "columns": [
+      {
+        "name": "name",
+        "value": "country"
+      },
+      {
+        "name": "removed",
+        "value": false
+      }
+    ],
+    "id": 10
+  },
+  {
+    "table": "conditions",
+    "root": [
+      "protocolSection",
+      "conditionsModule",
+      "conditions"
+    ],
+    "columns": [
+      {
+        "name": "name",
+        "value": null
+      },
+      {
+        "name": "downcase_name",
+        "value": null,
+        "convert_to": "downcase"
+      }
+    ],
+    "id": 9
+  },
+  {
+    "table": "central_contacts",
+    "root": [
+      "protocolSection",
+      "contactsLocationsModule",
+      "centralContacts"
+    ],
+    "columns": [
+      {
+        "name": "contact_type",
+        "value": {}
+      },
+      {
+        "name": "name",
+        "value": "name"
+      },
+      {
+        "name": "phone",
+        "value": "phone"
+      },
+      {
+        "name": "email",
+        "value": "email"
+      },
+      {
+        "name": "phone_extension",
+        "value": "phoneExt"
+      },
+      {
+        "name": "role",
+        "value": "role"
+      }
+    ],
+    "id": 8
+  },
+  {
+    "table": "browse_interventions",
+    "root": [
+      "derivedSection",
+      "interventionBrowseModule",
+      "ancestors"
+    ],
+    "columns": [
+      {
+        "name": "mesh_term",
+        "value": "term"
+      },
+      {
+        "name": "downcase_mesh_term",
+        "value": "term",
+        "convert_to": "downcase"
+      },
+      {
+        "name": "mesh_type",
+        "value": "mesh-ancestor"
+      }
+    ],
+    "id": 7
+  },
+  {
+    "table": "browse_interventions",
+    "root": [
+      "derivedSection",
+      "interventionBrowseModule",
+      "meshes"
+    ],
+    "columns": [
+      {
+        "name": "mesh_term",
+        "value": "term"
+      },
+      {
+        "name": "downcase_mesh_term",
+        "value": "term",
+        "convert_to": "downcase"
+      },
+      {
+        "name": "mesh_type",
+        "value": "mesh-list"
+      }
+    ],
+    "id": 6
+  },
+  {
+    "table": "browse_conditions",
+    "root": [
+      "derivedSection",
+      "conditionBrowseModule",
+      "ancestors"
+    ],
+    "columns": [
+      {
+        "name": "mesh_term",
+        "value": "term"
+      },
+      {
+        "name": "downcase_mesh_term",
+        "value": "term",
+        "convert_to": "downcase"
+      },
+      {
+        "name": "mesh_type",
+        "value": "mesh-ancestor"
+      }
+    ],
+    "id": 5
+  },
+  {
+    "table": "browse_conditions",
+    "root": [
+      "derivedSection",
+      "conditionBrowseModule",
+      "meshes"
+    ],
+    "columns": [
+      {
+        "name": "mesh_term",
+        "value": "term"
+      },
+      {
+        "name": "downcase_mesh_term",
+        "value": "term",
+        "convert_to": "downcase"
+      },
+      {
+        "name": "mesh_type",
+        "value": "mesh-list"
+      }
+    ],
+    "id": 4
+  },
+  {
+    "table": "brief_summaries",
+    "root": [
+      "protocolSection",
+      "descriptionModule"
+    ],
+    "columns": [
+      {
+        "name": "description",
+        "value": "briefSummary"
+      }
+    ],
+    "id": 3
+  },
+  {
+    "table": "baseline_measurements",
+    "root": [
+      "resultsSection",
+      "baselineCharacteristicsModule"
+    ],
+    "flatten": [
+      "measures",
+      "classes",
+      "categories",
+      "measurements"
+    ],
+    "requires": [
+      "result_groups",
+      "baseline_counts"
+    ],
+    "columns": [
+      {
+        "name": "result_group_id",
+        "value": {
+          "table": "result_groups",
+          "index": [
+            "groupId",
+            "Baseline"
+          ]
+        }
+      },
+      {
+        "name": "ctgov_group_code",
+        "value": "groupId"
+      },
+      {
+        "name": "classification",
+        "value": [
+          "$parent",
+          "$parent",
+          "title"
+        ]
+      },
+      {
+        "name": "category",
+        "value": [
+          "$parent",
+          "title"
+        ]
+      },
+      {
+        "name": "title",
+        "value": [
+          "$parent",
+          "$parent",
+          "$parent",
+          "title"
+        ]
+      },
+      {
+        "name": "description",
+        "value": [
+          "$parent",
+          "$parent",
+          "$parent",
+          "description"
+        ]
+      },
+      {
+        "name": "units",
+        "value": [
+          "$parent",
+          "$parent",
+          "$parent",
+          "unitOfMeasure"
+        ]
+      },
+      {
+        "name": "population_description",
+        "value": [
+          "$parent",
+          "$parent",
+          "$parent",
+          "populationDescription"
+        ]
+      },
+      {
+        "name": "calculate_percentage",
+        "value": [
+          "$parent",
+          "$parent",
+          "$parent",
+          "calculatePct"
+        ],
+        "convert_to": {}
+      },
+      {
+        "name": "param_type",
+        "value": [
+          "$parent",
+          "$parent",
+          "$parent",
+          "paramType"
+        ]
+      },
+      {
+        "name": "param_value",
+        "value": "value"
+      },
+      {
+        "name": "param_value_num",
+        "value": "value",
+        "convert_to": "float"
+      },
+      {
+        "name": "dispersion_type",
+        "value": [
+          "$parent",
+          "$parent",
+          "$parent",
+          "dispersionType"
+        ]
+      },
+      {
+        "name": "dispersion_value",
+        "value": "spread"
+      },
+      {
+        "name": "dispersion_value_num",
+        "value": "spread",
+        "convert_to": "float"
+      },
+      {
+        "name": "dispersion_lower_limit",
+        "value": "lowerLimit",
+        "convert_to": "float"
+      },
+      {
+        "name": "dispersion_upper_limit",
+        "value": "upperLimit",
+        "convert_to": "float"
+      },
+      {
+        "name": "explanation_of_na",
+        "value": "comment"
+      },
+      {
+        "name": "number_analyzed",
+        "value": null,
+        "convert_to": {}
+      },
+      {
+        "name": "number_analyzed_units",
+        "value": [
+          "$parent",
+          "$parent",
+          "$parent",
+          "denomUnitsSelected"
+        ],
+        "convert_to": {}
+      }
+    ],
+    "id": 2
+  }
+]
