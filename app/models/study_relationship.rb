@@ -43,6 +43,7 @@ class StudyRelationship < ActiveRecord::Base
       file_records
       study_statistics_comparisons
       background_jobs
+      ctgov_metadata
     )
   end
 
@@ -174,7 +175,7 @@ class StudyRelationship < ActiveRecord::Base
   end
 
   def get_text(label)
-    str=''
+    str = ''
     nodes=xml.xpath("//#{label}")
     nodes.each {|node| str << node.xpath("textblock").text}
     str
