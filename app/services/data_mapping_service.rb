@@ -30,7 +30,7 @@ class DataMappingService
           table_name: mapping["table"],
           field_name: column["name"],
           api_path: api_path,
-          ctgov_api_metadata_id: fetch_metadata_id(api_path),
+          ctgov_metadata_id: fetch_metadata_id(api_path),
           active: true,
           created_at: Time.now,
           updated_at: Time.now
