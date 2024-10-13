@@ -1,6 +1,6 @@
 module CTGov
   class ApiClient::Base
-    include HttpService
+    include HttpClient
 
     BASE_URL = "https://clinicaltrials.gov/api".freeze
 
